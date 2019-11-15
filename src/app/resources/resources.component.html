@@ -105,8 +105,8 @@
           clusters.length > 0 && 
           !requestError" 
           class="nalej-table-box no-p-col no-m-row">
-          <div class="label-nalej-table">
-            <div class="label-thead row">
+          <div class="nalej-table">
+            <div class="nalej-thead row">
               <div class="col-10">
                 <div class="row">
                   <div 
@@ -163,10 +163,10 @@
             <div *ngFor=
               "let cluster of clusterWithInstancesList |
               sortBy : sortedBy : reverse : true |
-              filter : searchTerm : ['name', 'labels']" class="label-tbody row">
+              filter : searchTerm : ['name', 'labels']" class="nalej-tbody row">
               <div class="col-10">
                 <div class="row">
-                  <div class="col-6 label-td">
+                  <div class="col-6 nalej-td">
                     <a 
                       [routerLink]="['cluster', cluster.cluster_id]" 
                       routerLinkActive="active" 
@@ -174,7 +174,7 @@
                       {{cluster.name}}
                     </a>
                   </div>
-                  <div class="col-6 text-center label-td">{{cluster.instances}}
+                  <div class="col-6 text-center nalej-td">{{cluster.instances}}
                   </div>
                 </div>
                 <div class="row">
@@ -221,7 +221,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-2 text-center label-td-flex">
+              <div class="col-2 text-center nalej-td-flex">
                 <button (click)="openEditCluster(cluster)" class="action-btn-blue">
                   <i class="material-icons i-white">edit</i>
                 </button>

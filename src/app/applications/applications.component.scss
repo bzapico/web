@@ -13,8 +13,6 @@
 
 @import '../scss/variables/colors';
 @import '../scss/variables/mixins';
-
-/* - - - Summary app card - - - */
 .donut-chart {
 	text-align: center;
 	position: relative;
@@ -53,8 +51,6 @@
 		max-height: 197px;
 	}
 }
-
-/* - - - Apps table card - - - */
 .app-info {
 	color: $base-violet;
 	cursor: pointer;
@@ -62,24 +58,17 @@
 	outline: none;
 	text-transform: capitalize;
 }
-.actions-col-fix {
-	padding: 0.75rem 0;
-}
 .instance-disabled {
 	color: $base-grey;
 	cursor: default;
 	outline: none;
 	text-transform: capitalize;
 }
-
-/* - - - List card - - - */
-.label-nalej-table {
-	.label-thead {
+.nalej-table {
+	.nalej-thead {
 		margin-bottom: 10px;
 	}
 }
-
-/* - - - Search box - - - */
 .search-box {
 	width: 100%;
 	margin-right: 0;
@@ -101,7 +90,7 @@
 		}
 	}
 }
-.label-tbody {
+.nalej-tbody {
 	.status-dot-nalej,
 	.status-dot::before,
 	.status-dot-error::before,
@@ -123,8 +112,6 @@
 		}
 	}
 }
-
-/* - - - Apps buttons - - - */
 .apps-options {
 	float: right;
 	margin-bottom: 43px;
@@ -157,8 +144,6 @@
 		}
 	}
 }
-
-/* - - - App graph card - - - */
 .graph {
 	height: 97%;
 }
@@ -209,8 +194,6 @@
 		}
 	}
 }
-
-/* - - - Quick filters  - - - */
 .quick-filters-box {
 	background-color: $super-light-grey;
 	border-radius: 10px;

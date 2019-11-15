@@ -20,8 +20,7 @@ import { NotificationsService } from '../services/notifications.service';
 
 @Component({
   selector: 'notifications',
-  templateUrl: './notifications.component.html',
-  styleUrls: ['./notifications.component.scss']
+  templateUrl: './notifications.component.html'
 })
 export class NotificationsComponent {
   @Input() notifications: any[];

@@ -30,13 +30,47 @@
                <div class="content getting-started">
                    <div class="content-data">
 
-<h1 id="nalej">Nalej</h1>
-<p>Nalej UI</p>
+<h1 id="nalej-ui">Nalej UI</h1>
+<p><img src="../web/src/assets/images/logo-inverted.png" alt="Nalej UI" class="img-responsive"></p>
+<p align="center">
+  <em> Nalej web UI is the friendly layer that allows the user to interact with the Nalej platform in a visual way.  The user can easily identify application or resources entities and their relationships in addition to managing users.
+  <br>
+  <br>
+  Develop Anything. Deploy Anywhere.
+</em>
+</p>
+
+<p><a href="http://makeapullrequest.com"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs Welcome" class="img-responsive"></a>
+<a href="http://www.apache.org/licenses/"><img src="https://img.shields.io/badge/license-Apache-green.svg" alt="Apache" class="img-responsive"></a></p>
+<p>The front end for <strong>NALEJ</strong></p>
+<p><a href="https://nalej.com/"><img src="https://img.shields.io/badge/deploy-for--nalej-blueviolet?logo=data:assets/../../../../src/assets/images/Logo-black.svg;base64;logoColor=white;logoWidth=40&style=for-the-badge" alt="Deploy" class="img-responsive"></a></p>
+<h2 id="table-of-contents">Table of contents</h2>
+<ul>
+<li><a href="#nalej-ui">Nalej UI</a><ul>
+<li><a href="#table-of-contents">Table of contents</a></li>
+<li><a href="#overall-features">Overall features</a></li>
+<li><a href="#getting-started">Getting Started</a><ul>
+<li><a href="#requirements">Requirements</a></li>
+<li><a href="#installation">Installation</a></li>
+<li><a href="#development-server">Development server</a></li>
+<li><a href="#code-scaffolding">Code scaffolding</a></li>
+<li><a href="#build">Build</a></li>
+<li><a href="#running-unit-tests">Running unit tests</a></li>
+<li><a href="#documentation">Documentation</a></li>
+<li><a href="#further-help">Further help</a></li>
+</ul>
+</li>
+<li><a href="#contributing">Contributing</a></li>
+<li><a href="#versioning">Versioning</a></li>
+<li><a href="#authors">Authors</a></li>
+<li><a href="#license">License</a></li>
+</ul>
+</li>
+</ul>
 <h2 id="overall-features">Overall features</h2>
 <p>Brand new UI Frontend for Nalej.</p>
 <ul>
-<li><p>Sidebar with navigation</p>
-<ul>
+<li>Sidebar with navigation<ul>
 <li>Edit profile</li>
 <li>Organization</li>
 <li>Infrastructure</li>
@@ -46,15 +80,13 @@
 <li>Logout</li>
 </ul>
 </li>
-<li><p>Organizations view</p>
-<ul>
+<li>Organizations view<ul>
 <li>Top indicators with organization info</li>
 <li>Members user list with action buttons</li>
 <li>Subscription plan</li>
 </ul>
 </li>
-<li><p>Infrastructure view</p>
-<ul>
+<li>Infrastructure view<ul>
 <li>Left indicators<ul>
 <li>Vertical aggregated capabilities summary</li>
 </ul>
@@ -67,8 +99,7 @@
 </li>
 </ul>
 </li>
-<li><p>Resources view</p>
-<ul>
+<li>Resources view<ul>
 <li>Left indicators<ul>
 <li>Summary info</li>
 <li>Cluster-instances list</li>
@@ -80,8 +111,7 @@
 </li>
 </ul>
 </li>
-<li><p>Clusters view</p>
-<ul>
+<li>Clusters view<ul>
 <li>Top indicators<ul>
 <li>Cluster status info</li>
 <li>Summary info</li>
@@ -91,8 +121,7 @@
 <li>Nodes list</li>
 </ul>
 </li>
-<li><p>Devices view</p>
-<ul>
+<li>Devices view<ul>
 <li>Top indicators<ul>
 <li>Summary info</li>
 <li>Devices status timeline</li>
@@ -105,8 +134,7 @@
 </li>
 </ul>
 </li>
-<li><p>Applications view</p>
-<ul>
+<li>Applications view<ul>
 <li>Left indicators<ul>
 <li>Summary info</li>
 <li>App instances and registered list</li>
@@ -122,8 +150,7 @@
 </li>
 </ul>
 </li>
-<li><p>Instances and registered view</p>
-<ul>
+<li>Instances and registered view<ul>
 <li>Breadcrumbs</li>
 <li>Left indicators<ul>
 <li>Instance/Registered info card</li>
@@ -137,7 +164,7 @@
 </ul>
 </li>
 </ul>
-<p>To see older logs check <code>CHANGELOG.md</code> file</p>
+<p>To see older logs check <a href="CHANGELOG.md">CHANGELOG</a> file</p>
 <p>Tested and supported resolutions in pixels:</p>
 <ul>
 <li>1280 x 720</li>
@@ -152,29 +179,52 @@
 <li>2560 x 1440</li>
 <li>2560 x 1800</li>
 </ul>
-<h2 id="requirements">Requirements</h2>
+<h2 id="getting-started">Getting Started</h2>
+<h3 id="requirements">Requirements</h3>
 <ul>
-<li>Node Package Manager (NPM) <a href="https://www.npmjs.com/">https://www.npmjs.com/</a></li>
-<li>Angular Command Line (Angular-CLI) <a href="https://cli.angular.io/">https://cli.angular.io/</a></li>
+<li>Node Package Manager (<a href="https://www.npmjs.com/">NPM</a>)</li>
+<li>Angular Command Line (<a href="https://cli.angular.io/">Angular-CLI</a>)</li>
 </ul>
-<h2 id="installation">Installation</h2>
-<ul>
+<h3 id="installation">Installation</h3>
+<ol>
 <li><code>Clone the repository</code></li>
 <li><code>Change to project directory</code></li>
 <li><code>npm install</code></li>
-</ul>
-<h2 id="development-server">Development server</h2>
-<p>Run <code>ng serve</code> for a dev server. Navigate to <code>http://localhost:4200/</code>. The app will automatically reload if you change any of the source files.</p>
-<h2 id="code-scaffolding">Code scaffolding</h2>
+</ol>
+<h3 id="development-server">Development server</h3>
+<ol>
+<li>Modify apiUrl in the src/environments/environment.ts to <a href="https://web.demo.nalej.io/">https://web.demo.nalej.io/</a></li>
+<li>Run <code>npm start</code> for a dev server.</li>
+<li>Navigate to <code>http://localhost:4200/</code>. The app will automatically reload if you change any of the source files, also in this task, every change will be linted.</li>
+</ol>
+<h3 id="code-scaffolding">Code scaffolding</h3>
 <p>Run <code>ng generate component component-name</code> to generate a new component. You can also use <code>ng generate directive|pipe|service|class|guard|interface|enum|module</code>.</p>
-<h2 id="build">Build</h2>
-<p>Run <code>ng build</code> to build the project. The build artifacts will be stored in the <code>dist/</code> directory. Using <code>--prod</code> flag will produce a dependency injection error (generated conflict between two libraries: <a href="https://github.com/valor-software/ngx-bootstrap">ngx-bootstrap</a> and <a href="https://github.com/swimlane/ngx-graph">ngx-graph</a>).</p>
-<h2 id="running-unit-tests">Running unit tests</h2>
-<p>Run <code>ng test</code> to execute the unit tests via <a href="https://karma-runner.github.io">Karma</a>.</p>
-<h2 id="documentation">Documentation</h2>
+<h3 id="build">Build</h3>
+<p>In order to build and compile this repository run <code>npm run build</code> to build(dev version) the project. If you want a production build you just run <code>npm run build-prod</code>, in both cases the build artifacts will be stored in the <code>dist/</code> directory.
+Also you can generate a build using our local profile running <code>npm run build-local</code>.
+On the other hand, if you want generate a production version and serve it in local just run <code>npm run build-and-serve-prod-local</code>.</p>
+<h3 id="linting">Linting</h3>
+<ul>
+<li>Run <code>npm run lint</code> to check that the code accomplish with every tslint rule.</li>
+<li>Run <code>npm run fix-lint</code> to fix every error in the code that don&#39;t accomplish with every tslint rule.</li>
+<li>Run <code>npm run style-lint</code> to check that the code accomplish with every style lint rule.</li>
+</ul>
+<h3 id="running-unit-tests">Running unit tests</h3>
+<p>Run <code>npm run test</code> to execute the unit tests via <a href="https://karma-runner.github.io">Karma</a>.</p>
+<h3 id="documentation">Documentation</h3>
 <p>Compodoc is the integrated library that automates the documentation generation. To update the documentation just run <code>npm run compodoc</code> and the updated version will be available to serve it in <code>documentation</code> folder (<a href="https://www.npmjs.com/package/http-server">http-server</a> could be used for this purpose).</p>
-<h2 id="further-help">Further help</h2>
+<h3 id="further-help">Further help</h3>
 <p>To get more help on the Angular CLI use <code>ng help</code> or go check out the <a href="https://github.com/angular/angular-cli/blob/master/README.md">Angular CLI README</a>.</p>
+<h2 id="contributing">Contributing</h2>
+<p>Please read <a href="contributing.md">contributing.md</a> for details on our code of conduct, and the process for submitting pull requests to us.
+​</p>
+<h2 id="versioning">Versioning</h2>
+<p>We use <a href="http://semver.org/">SemVer</a> for versioning. For the versions available, see the <a href="https://github.com/your/project/tags">tags on this repository</a>.</p>
+<h2 id="authors">Authors</h2>
+<p>See also the list of <a href="https://github.com/nalej/grpc-utils/contributors">contributors</a> who participated in this project.
+​</p>
+<h2 id="license">License</h2>
+<p>This project is licensed under the Apache 2.0 License - see the <a href="LICENSE">LICENSE</a> file for details.</p>
 
 
 

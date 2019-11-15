@@ -179,7 +179,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/applications/action-buttons-card/action-buttons-card.component.ts:39</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/applications/action-buttons-card/action-buttons-card.component.ts:26</a></div>
                             </td>
                         </tr>
 
@@ -235,7 +235,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/applications/action-buttons-card/action-buttons-card.component.ts:39</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/applications/action-buttons-card/action-buttons-card.component.ts:26</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -256,7 +256,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/applications/action-buttons-card/action-buttons-card.component.ts:37</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/applications/action-buttons-card/action-buttons-card.component.ts:24</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -277,7 +277,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/applications/action-buttons-card/action-buttons-card.component.ts:38</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/applications/action-buttons-card/action-buttons-card.component.ts:25</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -313,8 +313,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="69"
-                            class="link-to-prism">src/app/applications/action-buttons-card/action-buttons-card.component.ts:69</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="56"
+                            class="link-to-prism">src/app/applications/action-buttons-card/action-buttons-card.component.ts:56</a></div>
                 </td>
             </tr>
 
@@ -390,8 +390,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="62"
-                            class="link-to-prism">src/app/applications/action-buttons-card/action-buttons-card.component.ts:62</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="49"
+                            class="link-to-prism">src/app/applications/action-buttons-card/action-buttons-card.component.ts:49</a></div>
                 </td>
             </tr>
 
@@ -467,8 +467,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="48"
-                            class="link-to-prism">src/app/applications/action-buttons-card/action-buttons-card.component.ts:48</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="35"
+                            class="link-to-prism">src/app/applications/action-buttons-card/action-buttons-card.component.ts:35</a></div>
                 </td>
             </tr>
 
@@ -508,8 +508,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="55"
-                            class="link-to-prism">src/app/applications/action-buttons-card/action-buttons-card.component.ts:55</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="42"
+                            class="link-to-prism">src/app/applications/action-buttons-card/action-buttons-card.component.ts:42</a></div>
                 </td>
             </tr>
 
@@ -671,7 +671,7 @@ export class ActionButtonsCardComponent {
                 <p class="comment">
                     <code>./action-buttons-card.component.scss</code>
                 </p>
-                <pre class="line-numbers"><code class="language-scss">/* 
+                <pre class="line-numbers"><code class="language-scss">/*
  *  Copyright 2019 Nalej
  *  Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
  *  you may not use this file except in compliance with the License.
@@ -686,88 +686,92 @@ export class ActionButtonsCardComponent {
 
 @import &#x27;../../scss/variables/colors&#x27;;
 @import &#x27;../../scss/variables/mixins&#x27;;
-
 .a-btns-box-sm {
-    width: 90%;
-    margin: 0 auto;
+	width: 90%;
+	margin: 0 auto;
 }
 .a-btns-box {
-    display: flex;
-    justify-content: space-around;
-    flex-direction: row;
-    .a-btn-model {
-        font-size: 14px;
-        font-weight: 500;
-        padding: 8px 28px 8px 54px;
-        margin: 0 5px;
-        cursor: pointer;
-        position: relative;
-        outline: none;
-        border-radius: 5px;
-        border: none;
-        max-height: 35.5px;
-        &amp;:hover {
-            color: $white;
-            transition: 0.3s;
-            opacity: 0.6;
-        }
-        .a-i-blue {
-            top: 6px;
-            left: 14px;
-            font-size: 24px;
-            position: absolute;
-        }
-    }
-    .a-btn-blue {
-        @extend .a-btn-model;
-        background-color: $base-violet;
-        color: $white;
-        &amp;:hover {
-            background-color: $base-violet;
-        }
-    }
-    .add-connections-btn {
-        width: 230px;
-        .a-i-blue {
-            top: 6px;
-            left: 25px;
-            font-size: 24px;
-            position: absolute;
-        }
-    }
-    .a-btn-grey {
-        @extend .a-btn-model;
-        background-color: $light-grey;
-        color: $base-red;
-        &amp;:hover {
-            background-color: $base-red;
-        }
-        .a-i-red {
-            font-size: 19px;
-            position: absolute;
-            top: 8px;
-            left: 17px;
-        }
-    }
-    .a-btn-red {
-        @extend .a-btn-model;
-        background-color: $base-red;
-        color: $white;
-        &amp;:hover {
-            background-color: $base-red;
-        }
-    }
+	display: flex;
+	justify-content: space-around;
+	flex-direction: row;
+	.a-i-blue {
+		top: 6px;
+		left: 14px;
+		font-size: 24px;
+		position: absolute;
+	}
+	.a-btn-model,
+	%a-btn-model {
+		font-size: 14px;
+		font-weight: 500;
+		padding: 8px 28px 8px 54px;
+		margin: 0 5px;
+		cursor: pointer;
+		position: relative;
+		outline: none;
+		border-radius: 5px;
+		border: none;
+		max-height: 35.5px;
+		&amp;:hover {
+			color: $white;
+			transition: 0.3s;
+			opacity: 0.6;
+		}
+	}
+	.a-btn-blue {
+		@extend %a-btn-model;
+
+		background-color: $base-violet;
+		color: $white;
+		&amp;:hover {
+			background-color: $base-violet;
+		}
+	}
+	.add-connections-btn {
+		width: 230px;
+		.a-i-blue {
+			top: 6px;
+			left: 25px;
+			font-size: 24px;
+			position: absolute;
+		}
+	}
+	.a-btn-grey {
+		@extend %a-btn-model;
+
+		background-color: $light-grey;
+		color: $base-red;
+		&amp;:hover {
+			background-color: $base-red;
+		}
+		.a-i-red {
+			font-size: 19px;
+			position: absolute;
+			top: 8px;
+			left: 17px;
+		}
+	}
+	.a-btn-red {
+		@extend %a-btn-model;
+
+		background-color: $base-red;
+		color: $white;
+		&amp;:hover {
+			background-color: $base-red;
+		}
+	}
 }
 .a-btns-box-big {
-    @media all and (max-width: 1683px) { 
-        flex-direction: column;
-        .a-btn-blue, .a-btn-grey {
-            margin: 5px;
-        }
-        .add-connections-btn {
-            width: auto;
-        }
-    }
+	@media all and (max-width: 1683px) {
+		flex-direction: column;
+		.a-btn-blue,
+		.a-btn-grey {
+			margin: 5px;
+		}
+		.add-connections-btn {
+			width: auto;
+		}
+	}
 }
 </code></pre>
     </div>

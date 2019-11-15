@@ -1,4 +1,4 @@
-/* 
+/*
  *  Copyright 2019 Nalej
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -14,110 +14,102 @@
 @import '../../scss/variables/colors';
 @import '../../scss/variables/mixins';
 @import '../../scss/components/accordion';
-
 .summary-app-card {
-    width: 100%;
-    height: 100%;
-    overflow-y: scroll;
-    overflow-x: hidden;
+	width: 100%;
+	height: 100%;
+	overflow-y: scroll;
+	overflow-x: hidden;
 }
 .scroll-accordion-info {
-    height: 100%;
-    font-size:  .9em;
-    > div:first-child > span {
-        border-top: 0;
-    }
+	height: 100%;
+	font-size: .9em;
+	> div:first-child > span {
+		border-top: 0;
+	}
 }
 #summary-status {
-    font-size: 20px;
-    text-transform: uppercase;
-    font-weight: 500;
-    @include for-desktop-only {
-        font-size: 1em;
-    }
+	font-size: 20px;
+	text-transform: uppercase;
+	font-weight: 500;
+	@include for-desktop-only {
+		font-size: 1em;
+	}
 }
 .info-icon {
-    font-size: 32px;
+	font-size: 32px;
 }
-.big-status-dot-nalej, 
-.big-status-dot:before, 
-.big-status-dot-error:before, 
-.big-status-dot-process:before, 
-.modal-body .big-status-dot:before, 
-.modal-body .big-status-dot-error:before, 
-.modal-body .big-status-dot-process:before {
-    content: '\A';
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    display: inline-block;
-    margin-right: 7px;
-    margin-bottom: 1px;
+.big-status-dot-nalej,
+.big-status-dot::before,
+.big-status-dot-error::before,
+.big-status-dot-process::before,
+.modal-body .big-status-dot::before,
+.modal-body .big-status-dot-error::before,
+.modal-body .big-status-dot-process::before {
+	content: '\A';
+	width: 12px;
+	height: 12px;
+	border-radius: 50%;
+	display: inline-block;
+	margin-right: 7px;
+	margin-bottom: 1px;
 }
 .tabs-box {
-    margin-top: 22px;
-    justify-content: space-between;
-    padding: 0 24px;
-        li {
-        margin-right: 0px;
-    }
+	margin-top: 22px;
+	justify-content: space-between;
+	padding: 0 24px;
+	li {
+		margin-right: 0;
+	}
 }
 .search-box {
-    width: 100%;
-    float: none;
-    margin-bottom: 24px;
-    @media screen and (max-height: 872px) {
-        display: none;
-    }
+	width: 100%;
+	float: none;
+	margin-bottom: 24px;
+	@media screen and (max-height: 872px) {
+		display: none;
+	}
 }
 .app-info-button {
-    display: inline;
-    float: right;
+	display: inline;
+	float: right;
 }
-.label-nalej-table .label-thead .label-th {
-    font-size: 13px;
+.nalej-table .nalej-thead .label-th {
+	font-size: 13px;
 }
-.label-nalej-table {
-    overflow-y: hidden;
+.nalej-table {
+	overflow-y: hidden;
 }
 .accordion-box {
-    width: 100%;
-    overflow: hidden;
-    .form-group {
-        margin: 0;
-        padding: 0 5px 0 18px;
-        input {
-            &::placeholder {
-                color: $super-dark-grey;
-                font-size: 12px;
-            }
-        }
-    }
-    .form-control:disabled {
-        background-color: $light-grey;
-        border-color: $light-grey;
-        text-align: left;
-    }
-    .form-group label, .form-group-btn label {
-        font-size: 12px;
-    }
-    .action-btn-red {
-        height: 25px;
-        width: 25px;
-        .i-red {
-            font-size: 16px;
-            font-weight: 500;
-            position: absolute;
-            top: 5px;
-            left: 5px;
-        }
-    }
-    label.accordion-foot {
-        color: $base-light-grey;
-        text-transform: lowercase;
-        font-size: 10px !important;
-        &::first-letter {
-            text-transform: capitalize;
-        }
-    }
+	width: 100%;
+	overflow: hidden;
+	.form-group {
+		margin: 0;
+		padding: 0 5px 0 18px;
+		input {
+			&::placeholder {
+				color: $super-dark-grey;
+				font-size: 12px;
+			}
+		}
+	}
+	.form-control:disabled {
+		background-color: $light-grey;
+		border-color: $light-grey;
+		text-align: left;
+	}
+	.form-group label,
+	.form-group-btn label {
+		font-size: 12px;
+	}
+	.action-btn-red {
+		height: 25px;
+		width: 25px;
+		.i-red {
+			font-size: 16px;
+			font-weight: 500;
+			position: absolute;
+			top: 5px;
+			left: 5px;
+		}
+	}
 }

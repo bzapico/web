@@ -1,4 +1,4 @@
-/* 
+/*
  *  Copyright 2019 Nalej
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -10,191 +10,182 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
+@import 'app/scss/variables/mixins';
 
-// -----------------------------------------------------------------------------
-// Modals
-// -----------------------------------------------------------------------------
-
-@import  'app/scss/variables/mixins';
-
-/* - - - Modal window styles - - - */
+/* stylelint-disable declaration-no-important */
 .modal.fade {
-    display: flex !important;
-    justify-content: center;
-    align-items: center;
+	display: flex !important;
+	justify-content: center;
+	align-items: center;
 }
+/* stylelint-enable */
 .modal-dialog {
-    vertical-align: middle;
-    max-width: 1112px;
-    @include for-md-desktop-up {
-        margin: 0.5rem auto;
-    }
+	vertical-align: middle;
+	max-width: 1112px;
+	@include for-md-desktop-up {
+		margin: 0.5rem auto;
+	}
 }
 .modal-content {
-    border: 0;
-    border-radius: 10px;
+	border: 0;
+	border-radius: 10px;
 }
 .modal-card {
-    min-width: 500px;
-    border: 0;
-    border-radius: 10px;
-    outline: 0;
-    padding: 2rem;
-    @include for-md-desktop-up {
-        padding: 1rem;
-    }
+	min-width: 500px;
+	border: 0;
+	border-radius: 10px;
+	outline: 0;
+	padding: 2rem;
+	@include for-md-desktop-up {
+		padding: 1rem;
+	}
 }
 .modal-card-info {
-    @include for-md-desktop-up {
-        padding: 2rem;
-    }
+	@include for-md-desktop-up {
+		padding: 2rem;
+	}
 }
 .modal-header {
-    padding-bottom: 0;
-    border: none;
-    text-transform: uppercase;
-    font-weight: 700;
-    color: $base-grey;
+	padding-bottom: 0;
+	border: none;
+	text-transform: uppercase;
+	font-weight: 700;
+	color: $base-grey;
 }
 .close {
-    font-weight: 500;
-    color: $super-dark-grey;
-    &:focus {
-        outline: none;
-    }
+	font-weight: 500;
+	color: $super-dark-grey;
+	&:focus {
+		outline: none;
+	}
 }
-
-/* - - - Scroll app info styles- - - */
 .scroll-app-info {
-    margin: 3.5em 0;
-    max-height: 475px;
-    overflow-y: scroll;
-    overflow-x: hidden;
-    font-size:  .9em;
-    &::-webkit-scrollbar {
-        -webkit-appearance: none;
-        width: 8px;
-        margin-left: 2px;
-    }
-    &::-webkit-scrollbar-thumb {
-        border-radius: 5px;
-        background-color: rgba(0, 0, 0, 0.5);
-        -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
-    }
-    @media screen and (max-height: 872px) {
-        height: 224px;
-        margin: 1.5em 0;
-    }
+	margin: 3.5em 0;
+	max-height: 475px;
+	overflow-y: scroll;
+	overflow-x: hidden;
+	font-size: .9em;
+	&::-webkit-scrollbar {
+		-webkit-appearance: none;
+		width: 8px;
+		margin-left: 2px;
+	}
+	&::-webkit-scrollbar-thumb {
+		border-radius: 5px;
+		background-color: $base-light-grey;
+		-webkit-box-shadow: 0 0 1px rgba( 255, 255, 255, 0.5 );
+	}
+	@media screen and (max-height: 872px) {
+		height: 224px;
+		margin: 1.5em 0;
+	}
 }
-
-/* - - - Scroll modal form - - - */
-
 .scroll-modal-form {
-    margin: 1.5em 0;
-    overflow-y: scroll;
-    overflow-x: hidden;
-    font-size:  .9em;
-    &::-webkit-scrollbar {
-        -webkit-appearance: none;
-        width: 8px;
-        margin-left: 2px;
-    }
-    &::-webkit-scrollbar-thumb {
-        border-radius: 5px;
-        background-color: rgba(0, 0, 0, 0.5);
-        -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
-    }
-
-    @include for-md-desktop-h  {
-       max-height: 380px;
-    }
+	margin: 1.5em 0;
+	overflow-y: scroll;
+	overflow-x: hidden;
+	font-size: .9em;
+	&::-webkit-scrollbar {
+		-webkit-appearance: none;
+		width: 8px;
+		margin-left: 2px;
+	}
+	&::-webkit-scrollbar-thumb {
+		border-radius: 5px;
+		background-color: $base-light-grey;
+		-webkit-box-shadow: 0 0 1px rgba( 255, 255, 255, 0.5 );
+	}
+	@include for-md-desktop-h  {
+		max-height: 380px;
+	}
 }
-
 .modal-body {
-    .status-dot-nalej {
-        content:'\A';
-        width:10px;
-        height:10px;
-        border-radius:50%;
-        display:inline-block;
-        margin: 0 5px 0 0;
-    }
-    .status-dot {
-        &:before {
-            @extend .status-dot-nalej;
-            background: $status-teal;
-        }
-    }
-    .status-dot-error{
-        &:before {
-            @extend .status-dot-nalej;
-            background: $base-red;
-        }
-    }
-    .status-dot-process {
-        &:before {
-            @extend .status-dot-nalej;
-            background: $status-yellow;
-        }
-    }
+	.status-dot-nalej,
+	%status-dot-nalej {
+		content: '\A';
+		width: 10px;
+		height: 10px;
+		border-radius: 50%;
+		display: inline-block;
+		margin: 0 5px 0 0;
+	}
+	.status-dot {
+		&::before {
+			@extend %status-dot-nalej;
+
+			background: $status-teal;
+		}
+	}
+	.status-dot-error{
+		&::before {
+			@extend %status-dot-nalej;
+
+			background: $base-red;
+		}
+	}
+	.status-dot-process {
+		&::before {
+			@extend %status-dot-nalej;
+
+			background: $status-yellow;
+		}
+	}
+	.big-status-dot-nalej,
+	%big-status-dot-nalej {
+		content: '\A';
+		width: 15px;
+		height: 15px;
+		border-radius: 50%;
+		display: inline-block;
+		margin-right: 7px;
+		margin-bottom: 1px;
+	}
+	.big-status-dot {
+		&::before {
+			@extend %big-status-dot-nalej;
+
+			background: $status-teal;
+		}
+	}
+	.big-status-dot-error{
+		&::before {
+			@extend %big-status-dot-nalej;
+
+			background: $base-red;
+		}
+	}
+	.big-status-dot-process {
+		&::before {
+			@extend %big-status-dot-nalej;
+
+			background: $status-yellow;
+		}
+	}
 }
-
-.modal-body {
-    .big-status-dot-nalej {
-        content:'\A';
-        width: 15px;
-        height: 15px;
-        border-radius: 50%;
-        display:inline-block;
-        margin-right: 7px;
-        margin-bottom: 1px;
-    }
-    .big-status-dot {
-        &:before {
-            @extend .big-status-dot-nalej;
-            background: $status-teal;
-        }
-    }
-    .big-status-dot-error{
-        &:before {
-            @extend .big-status-dot-nalej;
-            background: $base-red;
-        }
-    }
-    .big-status-dot-process {
-        &:before {
-            @extend .big-status-dot-nalej;
-            background: $status-yellow;
-        }
-    }
-}
-
-/* - - - Modal info- - - */
-
 .modal-info-h3-title {
-    color: $super-dark-grey;
-    font-size: 1.5rem;
-    margin-bottom: .1rem;
-    text-transform: uppercase;
-    font-weight: 700;
+	color: $super-dark-grey;
+	font-size: 1.5rem;
+	margin-bottom: .1rem;
+	text-transform: uppercase;
+	font-weight: 700;
 }
 .modal-info-image {
-    font-size: .9em;
-    color:  $dark-grey;
-    margin-bottom: .2em;
-    font-weight: 500;
+	font-size: .9em;
+	color: $dark-grey;
+	margin-bottom: .2em;
+	font-weight: 500;
 }
 .modal-info-title {
-    font-size: .9em;
-    color:  $super-dark-grey;
-    margin-bottom: 0;
+	font-size: .9em;
+	color: $super-dark-grey;
+	margin-bottom: 0;
 }
 .modal-info-title-sm {
-    font-size: .8em;
-    color:  $base-grey;
-    margin-bottom: 0;
+	font-size: .8em;
+	color: $base-grey;
+	margin-bottom: 0;
 }
 .modal-info-table-title {
-    color: $base-grey;
-    font-weight: 500;
+	color: $base-grey;
+	font-weight: 500;
 }

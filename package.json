@@ -14,8 +14,8 @@
         "test": "ng test",
         "lint": "ng lint",
         "fix-lint": "ng lint --fix=true",
-        "style-lint": "stylelint ./src/app/**/*.scss --config .stylelintrc.json",
-        "fix-style-lint": "stylelint ./src/app/**/*.scss --fix",
+        "style-lint": "stylelint 'src/app/**/*.scss' --config .stylelintrc.json",
+        "fix-style-lint": "stylelint 'src/app/**/*.scss' --fix",
         "e2e": "ng e2e",
         "compodoc": "./node_modules/.bin/compodoc -p src/tsconfig.app.json",
         "build-and-doc": "npm run compodoc && npm run build"

@@ -189,8 +189,8 @@
                     getGroupDevices(group.device_group_id).length !== 0 &&
                     !requestError" 
                     class="nalej-table-box no-p-col no-m-row">
-                    <div class="label-nalej-table">
-                      <div *ngIf="!searchTerm" class="label-thead row">
+                    <div class="nalej-table">
+                      <div *ngIf="!searchTerm" class="nalej-thead row">
                         <div class="col-11">
                           <div class="row">
                             <div 
@@ -261,13 +261,13 @@
                           "let device of getGroupDevices(group.device_group_id) |
                           sortBy : sortedBy : reverse : 'case-insensitive' |
                           filter : searchTerm">
-                          <div class="label-tbody row">
+                          <div class="nalej-tbody row">
                             <div class="col-11">
                               <div class="row mb-2">
-                                <div class="col-4 label-td">{{device.device_id}}</div> 
-                                <div *ngIf="device.register_since" class="col-4 label-td">{{parseTimestampToDate(device.register_since) | date: 'dd/MM/yyyy'}}</div>  
+                                <div class="col-4 nalej-td">{{device.device_id}}</div> 
+                                <div *ngIf="device.register_since" class="col-4 nalej-td">{{parseTimestampToDate(device.register_since) | date: 'dd/MM/yyyy'}}</div>  
                                 <div 
-                                  class="col-4 label-td col-center-lowercase"
+                                  class="col-4 nalej-td col-center-lowercase"
                                   [ngClass]=
                                   "{
                                     'status-dot':classStatusCheck(device.device_status_name, 'status.online' | translate),
@@ -328,8 +328,8 @@
                                 </div>
                               </div>
                             </div>
-                            <div class="col-1 label-td-flex">
-                              <div class="actions-col actions-col-fix">
+                            <div class="col-1 nalej-td-flex">
+                              <div class="actions-col">
                                 <button 
                                   *ngIf="device.enabled"
                                   (click)="enableSwitcher(device)"

@@ -16,8 +16,7 @@ import { BsModalRef } from 'ngx-bootstrap';
 
 @Component({
   selector: 'device-group-info',
-  templateUrl: './device-group-info.component.html',
-  styleUrls: ['./device-group-info.component.scss']
+  templateUrl: './device-group-info.component.html'
 })
 export class DeviceGroupInfoComponent {
   /**
