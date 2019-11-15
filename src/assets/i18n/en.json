@@ -104,6 +104,7 @@
 			"disconnectConfirmOutboundRequired": "The connection is required for a correct performance of the instance. Do you want to delete it anyway?",
 			"disconnectMessage": "Your disconnection request has been scheduled",
 			"noConnections": "No connections",
+			"removingConnection": "Removing connections",
 			"requiredFields": "Required field",
 			"sourceInstance": "Source instance",
 			"sourceInterface": "Source interface",

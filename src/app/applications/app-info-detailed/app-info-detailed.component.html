@@ -9,16 +9,14 @@
   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   See the License for the specific language governing permissions and
   limitations under the License.
- -->
+-->
 
 <div class="modal-card modal-card-info">
   <div class="modal-content" id="app-info-detailed">
-    <!-- Header -->
     <div class="modal-header">
       <h3 *ngIf="openFromInstance" class="modal-info-title mb-4">{{'app-info.instance.title' | translate}}</h3>
       <h3 *ngIf="openFromRegistered" class="modal-info-title mb-4">{{'app-info.registeredTitle' | translate}}</h3>
     </div>
-    <!-- Body -->
     <div class="modal-body">
       <div class="app-info-detailed-p">
         <h3 class="modal-info-h3-title">{{name}}</h3>
@@ -43,7 +41,6 @@
           <div *ngIf="!labels" class="col-sm text-right">{{'tables.no' | translate}}</div>
         </div>
         <br>
-        <!-- Groups -->
         <div class="row">
           <div class="col-sm modal-info-table-title">{{'tables.tableGroups' | translate}}</div>
         </div>
@@ -292,7 +289,6 @@
         </span>
         <br>
       </div>      
-      <!-- Option button -->
       <div class="form-group-btn app-info-detailed-p">
         <button (click)="closeModal()" class="nalej-form-btn-blue">
           <span class="align-bottom">{{'buttons.close' | translate}}</span>

@@ -9,7 +9,7 @@
   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   See the License for the specific language governing permissions and
   limitations under the License.
- -->
+-->
 
 <div class="row row-title">
   <div class="col-lg-12">
@@ -32,7 +32,6 @@
 <div class="row row-app-main">
   <div class="col-4 h-100">
     <div class="flex-col-app">
-      <!-- Application instances id card -->
       <app-info
         [loadedData]="loadedData"
         [registeredData]="getDescriptorFromInstance(instance)[0]"
@@ -40,15 +39,12 @@
         [openFromInstance]="openFromInstance"
         class="row-info-app flex-grow-1 h-75">
       </app-info>
-      <!-- [registeredData]="registered" -->
-      <!-- Labels card-->
       <labels-card 
         [loadedData]="loadedData"
         [labelsData]="instance"
         [isSelectableLabel]="isSelectableLabel"
         class="row-info-app flex-grow-0">
       </labels-card>
-      <!-- Action buttons card -->
       <action-buttons-card  
         [loadedData]="loadedData"
         [app]="instance"
@@ -62,7 +58,6 @@
       <div class="card">
         <services-card (displayGraph)='onShowGraph($event)'>
         </services-card>
-        <!-- Graph  -->
         <div *ngIf="showGraph" class="services-card-box">
           <div *ngIf=
             "graphDataLoaded &&
@@ -94,7 +89,6 @@
             {{'apps.instance.noServices' | translate}}
           </div>
         </div>
-        <!-- Tables -->
         <div *ngIf="!showGraph" class="services-card-box">
           <!-- Groups table -->
           <div class="services-table-box">
@@ -311,7 +305,7 @@
                 </accordion>
               </div>
             </div>
-            <!-- Loader -->
+            
             <div *ngIf="!loadedData" class="nalej-loader-box">
               <div class="loader">
                 <svg class="circular" viewBox="25 25 50 50">
@@ -525,7 +519,7 @@
             <div *ngIf="loadedData && requestError" class="no-elements">
               <p>{{requestError}}</p>
             </div>
-            <!-- Loader -->
+            
             <div *ngIf="!loadedData" class="nalej-loader-box">
               <div class="loader">
                 <svg class="circular" viewBox="25 25 50 50">

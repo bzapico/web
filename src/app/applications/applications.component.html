@@ -9,7 +9,7 @@
   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   See the License for the specific language governing permissions and
   limitations under the License.
- -->
+-->
 
 <div class="row row-title">
   <div class="col-lg-12">
@@ -500,7 +500,7 @@
         <div *ngIf="loadedData && requestError" class="no-elements">
           <p>{{requestError}}</p>
         </div>
-        <!-- Loader -->
+        
         <div *ngIf="!loadedData" class="nalej-loader-box">
           <div class="loader">
             <svg class="circular" viewBox="25 25 50 50">
@@ -525,7 +525,6 @@
         <div class="card-title-name">
           <h5>{{'apps.title' | translate}}</h5>
         </div>
-        <!-- Apps options buttons -->
         <div class="row">
           <div class="col">
             <div class="apps-options">
@@ -551,7 +550,6 @@
           </div>
         </div>
         <div class="row">
-          <!-- Quick filters -->
           <div class="col">
             <ul class="quick-filters-box">
               <li>
@@ -620,7 +618,6 @@
             </div>
           </div>      
         </div>
-        <!-- Sorting messages -->
         <div class="row row-sorting-lg"> 
           <div class="col-12">  
             <p *ngIf="isSearchingInGraph && searchTermGraph && !quickFilter" class="sorting-message text-right">

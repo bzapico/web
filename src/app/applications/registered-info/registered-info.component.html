@@ -9,11 +9,10 @@
   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   See the License for the specific language governing permissions and
   limitations under the License.
- -->
+-->
 
 <div class="row row-title">
   <div class="col-lg-12">
-    <!-- <h2 class="section-title">{{'apps.instance.title' | translate}}</h2> -->
     <h2 class="section-title">
       <a 
         [routerLink]="['/applications']" 
@@ -33,14 +32,12 @@
 <div class="row row-app-main">
   <div class="col-4 h-100">
     <div class="flex-col-app">
-      <!-- Registered id card -->
       <app-info
         [loadedData]="loadedData"
         [registeredData]="registeredData"
         [openFromRegistered]="openFromRegistered"
         class="row-info-app flex-grow-1 h-75">
       </app-info>
-      <!-- Labels card-->
       <labels-card 
         [loadedData]="loadedData"
         [labelsData]="registeredData"
@@ -48,7 +45,6 @@
         (updateLabels)="updateLabels($event)"
         class="row-info-app flex-grow-0">
       </labels-card>
-      <!-- Action buttons card -->
       <action-buttons-card 
         [loadedData]="loadedData"
         [app]="registeredData"
@@ -57,13 +53,11 @@
       </action-buttons-card>
     </div>
   </div>
-  <!-- Services card-->
   <div class="col-8 h-100">
     <div class="flex-col-app">
       <div class="card">
         <services-card (displayGraph)='onShowGraph($event)'>
         </services-card>
-        <!-- Graph -->
         <div *ngIf="showGraph" class="services-card-box">
           <div *ngIf="graphDataLoaded && !graphReset" class="graph">
             <graph
@@ -86,7 +80,6 @@
             </div>
           </div>
         </div>
-        <!-- Tables -->
         <div *ngIf="!showGraph" class="services-card-box">
           <!-- Groups table -->
           <div class="services-table-box">
@@ -279,7 +272,7 @@
                 </accordion>
               </div>
             </div>
-            <!-- Loader -->
+            
             <div *ngIf="!loadedData" class="nalej-loader-box">
               <div class="loader">
                 <svg class="circular" viewBox="25 25 50 50">
@@ -302,7 +295,6 @@
                 <h6 class="card-title-name">{{'apps.accessRules' | translate}}</h6>
               </div>
             </div>
-            <!-- Search box -->
             <div *ngIf=
               "loadedData &&
               registeredData.rules &&
@@ -489,11 +481,9 @@
               class="no-elements">
               {{'apps.instance.noRules' | translate}}
             </div>
-            <!-- Requested error -->
             <div *ngIf="loadedData && requestError" class="no-elements">
               <p>{{requestError}}</p>
             </div>
-            <!-- Loader -->
             <div *ngIf="!loadedData" class="nalej-loader-box">
               <div class="loader">
                 <svg class="circular" viewBox="25 25 50 50">

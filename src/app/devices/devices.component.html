@@ -9,14 +9,13 @@
   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   See the License for the specific language governing permissions and
   limitations under the License.
- -->
+-->
 
 <div class="row row-title">
   <div class="col-12">
     <h2 class="section-title">{{'devices.title' | translate}}</h2>
   </div>
 </div>
-<!-- Summary and devices status timeline row -->
 <div class="row row-info">
   <div class="col-lg-4 h-100">
     <div class="card">
@@ -85,7 +84,6 @@
         <div class="col-10 card-title-name-mb">
           <h5>{{'devices.title' | translate}}</h5>
         </div>
-        <!-- Add group -->
         <div class="col-2 add-group-box">
           <button (click)="addGroup()" class="add-group-btn">
             <i class="material-icons i-add">add</i>
@@ -94,14 +92,12 @@
         </div>
       </div>
       <span *ngIf="loadedData" class="loaded-devices">
-        <!-- Search box -->
         <div  
           *ngIf=
           "groups && groups.length > 0 &&
           countDevices() != 0 &&
           loadedData"
           class="row mb-15">
-          <!-- Sorting messages -->
           <div class="col-8">  
             <p *ngIf="searchTerm && !filterField" class="sorting-message">
               {{'sortingMessage.filteredBy' | translate:{value: searchTerm} }}
@@ -127,7 +123,6 @@
               </span>
             </p> 
           </div>
-          <!-- Search input -->
           <div class="col-4">
             <form>
               <div class="search-box">
@@ -360,27 +355,23 @@
                       </span>
                     </div>
                   </div> 
-                  <!-- No devices to show -->
                   <div *ngIf=
                     "getGroupDevices(group.device_group_id).length === 0 &&
                     loadedData"
                     class="no-elements-in-group">
                     {{'devices.noDevicesRegistered' | translate}}
                   </div>
-                  <!-- Requested error -->
                   <div *ngIf="requestError" class="no-elements">
                     <p>{{ requestError }}</p>
                   </div>
               </accordion-group>
             </accordion>
           </div>
-          <!-- No info to show -->
           <div *ngIf="loadedData && groups.length === 0" class="col no-elements-in-group">  
             {{'devices.noGroupsCreated' | translate}}
           </div>
         </div>
       </span>
-      <!-- Loader -->
       <div *ngIf="!loadedData" class="nalej-loader-box h-100 w-100">
         <div class="loader">
           <svg class="circular" viewBox="25 25 50 50">
