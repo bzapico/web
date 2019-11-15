@@ -21,8 +21,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-device-info',
-  templateUrl: './device-info.component.html',
-  styleUrls: ['./device-info.component.scss']
+  templateUrl: './device-info.component.html'
 })
 export class DeviceInfoComponent implements OnInit {
   /**

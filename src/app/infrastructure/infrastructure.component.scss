@@ -13,8 +13,6 @@
 
 @import '../scss/variables/colors';
 @import '../scss/variables/mixins';
-
-/* - - - Summary infrastructure card - - - */
 .row-sorting-lg {
 	min-height: 41px;
 }
@@ -57,8 +55,6 @@
 .summary-box {
 	min-height: 124px;
 }
-
-/* - - - Pie chart- - - */
 .donut-chart {
 	text-align: center;
 	position: relative;
@@ -87,8 +83,6 @@
 		margin-top: 0;
 	}
 }
-
-/* - - - Inventory card - - - */
 .quick-filters-title {
 	color: $base-grey;
 	font-size: .6em;
@@ -141,8 +135,6 @@
 
 	background-color: $base-violet;
 }
-
-/* - - - Install buttons - - - */
 .install-options-btn,
 .quick-filters-btn {
 	&:hover {
