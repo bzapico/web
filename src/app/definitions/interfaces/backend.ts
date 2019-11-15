@@ -22,6 +22,7 @@ import { AddConnectionRequest } from './add-connection-request';
 import { LoginResponse } from '../models/login-response';
 import { HttpResponse } from '@angular/common/http';
 import { AssetInfo } from './asset-info';
+import { KeyValue } from './key-value';
 
 export interface Backend {
     // Login
@@ -75,8 +76,8 @@ export interface Backend {
     // Devices
     getDevices(organizationId: string, groupId: string);
     updateDevice(organizationId: string, deviceData: any);
-    addLabelToDevice(organizationId: string, label: any);
-    removeLabelFromDevice(organizationId: string, label: any);
+    addLabelToDevice(organizationId: string, label: KeyValue);
+    removeLabelFromDevice(organizationId: string, label: KeyValue);
     removeDevice(organizationId: string, groupId: string, deviceId: string);
     // Groups
     getGroups(organizationId: string);

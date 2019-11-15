@@ -23,7 +23,7 @@ import { AddAppDescriptorRequest } from '../definitions/interfaces/add-app-descr
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { RemoveConnectionRequest } from '../definitions/interfaces/remove-connection-request';
 import { AddConnectionRequest } from '../definitions/interfaces/add-connection-request';
-import {LoginResponse} from '../definitions/models/login-response';
+import { LoginResponse } from '../definitions/models/login-response';
 
 /**
  * URL of the public API
