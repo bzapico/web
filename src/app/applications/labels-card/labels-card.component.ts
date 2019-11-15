@@ -13,6 +13,7 @@
 
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { LabelsCardService } from './labels-card.service';
+import { LabelsData } from '../../definitions/interfaces/labels-data';
 
 @Component({
   selector: 'labels-card',
@@ -20,7 +21,7 @@ import { LabelsCardService } from './labels-card.service';
   styleUrls: ['./labels-card.component.scss']
 })
 export class LabelsCardComponent {
-  @Input() labelsData: any[];
+  @Input() labelsData: LabelsData;
   @Input() isSelectableLabel: boolean;
   @Input() loadedData: boolean;
   @Output() updateLabels: EventEmitter<{action: string, selectedLabels: any[]}>;
@@ -32,7 +33,7 @@ export class LabelsCardComponent {
   ) {
     this.selectedLabels = [];
     this.updateLabels = new EventEmitter<{action: string, selectedLabels: any[]}>();
-    this.labelsData = [];
+    this.labelsData = {labels: []};
   }
   /**
    * Opens the modal view that holds add label component

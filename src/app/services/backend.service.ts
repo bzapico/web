@@ -15,12 +15,15 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Backend } from '../definitions/interfaces/backend';
-import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import { AddUserRequest } from '../definitions/interfaces/add-user-request';
 import { UserChanges } from '../definitions/interfaces/user-changes';
 import { InstallAgentRequest } from '../definitions/interfaces/install-agent-request';
-import {AddAppDescriptorRequest} from '../definitions/interfaces/add-app-descriptor-request';
+import { AddAppDescriptorRequest } from '../definitions/interfaces/add-app-descriptor-request';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
+import { RemoveConnectionRequest } from '../definitions/interfaces/remove-connection-request';
+import { AddConnectionRequest } from '../definitions/interfaces/add-connection-request';
+import {LoginResponse} from '../definitions/models/login-response';
 
 /**
  * URL of the public API
@@ -51,8 +54,8 @@ export class BackendService implements Backend {
    * @param email User Id / email
    * @param password string containing the user password
    */
-  login(email: string, password: string): Observable<any> {
-    return this.http.post(
+  login(email: string, password: string): Observable<LoginResponse> {
+    return this.http.post<LoginResponse>(
       // URL
       // environment.apiUrl + ':30210/v1/login',
       API_URL + 'login',
@@ -537,10 +540,10 @@ export class BackendService implements Backend {
    * Adds a new connection between one outbound and one inbound
    * @param organizationId Organization identifier
    */
-  addConnection(organizationId: string, connection: any) {
+  addConnection(organizationId: string, addConnectionRequest: AddConnectionRequest) {
     return this.post(
       API_URL + 'appnet/connection/' + organizationId + '/add',
-      connection
+        addConnectionRequest
     );
   }
   // POST 'appnet/connection/{organization_id}/remove'
@@ -548,10 +551,10 @@ export class BackendService implements Backend {
    * Operation that removes a connection
    * @param organizationId Organization identifier
    */
-  removeConnection(organizationId: string, connection: any) {
+  removeConnection(organizationId: string, removeConnectionRequest: RemoveConnectionRequest) {
     return this.post(
       API_URL + 'appnet/connection/' + organizationId + '/remove',
-      connection
+        removeConnectionRequest
     );
   }
   // GET '/appnet/connection/{organization_id}/list'

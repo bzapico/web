@@ -184,9 +184,7 @@ export class ManageConnectionsComponent implements OnInit, OnDestroy {
       this.backend.removeConnection(this.organizationId, {
         organization_id: this.organizationId,
         source_instance_id: connection.source_instance_id,
-        source_instance_name: connection.source_instance_name,
         target_instance_id: connection.target_instance_id,
-        target_instance_name: connection.target_instance_name,
         inbound_name: connection.inbound_name,
         outbound_name: connection.outbound_name,
         user_confirmation: true

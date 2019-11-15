@@ -42,6 +42,9 @@ import { UserChanges } from '../definitions/interfaces/user-changes';
 import { InstallAgentRequest } from '../definitions/interfaces/install-agent-request';
 import { AddAppDescriptorRequest } from '../definitions/interfaces/add-app-descriptor-request';
 import { ApplicationDescriptor } from '../definitions/models/application-descriptor';
+import { RemoveConnectionRequest } from '../definitions/interfaces/remove-connection-request';
+import { AddConnectionRequest } from '../definitions/interfaces/add-connection-request';
+import { LoginResponse } from '../definitions/models/login-response';
 
 @Injectable({
   providedIn: 'root'
@@ -61,12 +64,12 @@ export class MockupBackendService implements Backend {
    * @param email String containing the user email
    * @param password String that holds the user password
    */
-  login(email: string, password: string): Observable<any> {
-    return of (new HttpResponse({
-      body: JSON.stringify({
+  login(email: string, password: string): Observable<HttpResponse<LoginResponse>> {
+    return of (new HttpResponse<LoginResponse>({
+      body: {
         token: mockJwtToken,
         refresh_token: '018e42cf-9acb-4b4c-8804-6c54334d6947'
-      }),
+      },
       status: 200
     }));
   }
@@ -650,8 +653,9 @@ export class MockupBackendService implements Backend {
   /**
    * Simulates to add a new connection between one outbound and one inbound
    * @param organizationId Organization identifier
+   * @param addConnectionRequest has the necessary data to add a connection
    */
-  addConnection(organizationId: string, connection: any) {
+  addConnection(organizationId: string, addConnectionRequest: AddConnectionRequest) {
     const newConnection = {
       organization_id: '3bc6a816-bbb8-4b5f-a2b7-23921dde4146',
       connection_id: '3bc6a816-6548-4b5f-a2b7-23921dd6548b',
@@ -659,8 +663,8 @@ export class MockupBackendService implements Backend {
       source_instance_name: 'Wordpress1',
       target_instance_id: '3bc6a816-6548-4b5f-a2b7-239455',
       target_instance_name: 'Wordpress5',
-      inbound_name: connection.inbound_name,
-      outbound_name: connection.outbound_name,
+      inbound_name: addConnectionRequest.inbound_name,
+      outbound_name: addConnectionRequest.outbound_name,
       outbound_required: true
     };
     mockConnectionsList.push(newConnection);
@@ -671,15 +675,16 @@ export class MockupBackendService implements Backend {
   /**
    * Operation that allows to remove a connection
    * @param organizationId Organization identifier
+   * @param removeConnectionRequest indicates the necessary data to remove any connection
    */
-  removeConnection(organizationId: string, connection: any) {
+  removeConnection(organizationId: string, removeConnectionRequest: RemoveConnectionRequest) {
     let found = false;
     for (let index = 0; index < mockConnectionsList.length && !found; index++) {
       const element = mockConnectionsList[index];
-      if (element.source_instance_id === connection.source_instance_id &&
-          element.target_instance_id === connection.target_instance_id &&
-          element.outbound_name === connection.outbound_name &&
-          element.inbound_name === connection.inbound_name) {
+      if (element.source_instance_id === removeConnectionRequest.source_instance_id &&
+          element.target_instance_id === removeConnectionRequest.target_instance_id &&
+          element.outbound_name === removeConnectionRequest.outbound_name &&
+          element.inbound_name === removeConnectionRequest.inbound_name) {
         found = true;
         mockConnectionsList.splice(index, 1);
       }

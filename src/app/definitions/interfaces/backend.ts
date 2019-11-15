@@ -17,10 +17,15 @@ import { AddUserRequest } from './add-user-request';
 import { UserChanges } from './user-changes';
 import { InstallAgentRequest } from './install-agent-request';
 import { AddAppDescriptorRequest } from './add-app-descriptor-request';
+import { RemoveConnectionRequest } from './remove-connection-request';
+import { AddConnectionRequest } from './add-connection-request';
+import { LoginResponse } from '../models/login-response';
+import { HttpResponse } from '@angular/common/http';
+import { AssetInfo } from './asset-info';
 
 export interface Backend {
     // Login
-    login(email: string, password: string): Observable<any>;
+    login(email: string, password: string): Observable<LoginResponse | HttpResponse<LoginResponse>>;
     logout();
     // Organization
     getUserProfileInfo(organizationId: string, userId: string);
@@ -41,7 +46,7 @@ export interface Backend {
     createAgentJoinToken(organizationId: string,  edgeControllerId: string);
     unlinkEIC(organizationId: string, edgeControllerId: string);
     removeDeviceFromInventoryMockup(organizationId: string, deviceId: string);
-    updateAsset(organizationId: string, assetId: string, asset: any);
+    updateAsset(organizationId: string, assetId: string, asset: AssetInfo);
     updateEC(organizationId: string, ecId: string, ec: any);
     // Resources
     saveClusterChanges(organizationId: string, clusterId: string, changes: any);
@@ -63,8 +68,8 @@ export interface Backend {
     // Application network
     getListAvailableInstanceInbounds(organizationId: string);
     getListAvailableInstanceOutbounds(organizationId: string);
-    addConnection(organizationId: string, connection: any);
-    removeConnection(organizationId: string, connection: any);
+    addConnection(organizationId: string, addConnectionRequest: AddConnectionRequest);
+    removeConnection(organizationId: string, removeConnectionRequest: RemoveConnectionRequest);
     getListConnections(organizationId: string);
     getListAvailableInstanceParameters(organizationId: string, instanceId: string);
     // Devices

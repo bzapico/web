@@ -20,6 +20,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { LoginResponse } from '../definitions/models/login-response';
 
 /**
  * Service that enables authentication in the platform
@@ -55,7 +56,7 @@ export class AuthService {
    * @param email String containing user email
    * @param password String that holds the user password
    */
-  login (email: string, password: string): Observable<any> {
+  login (email: string, password: string): Observable<LoginResponse> {
     return this.backend.login(email, password).pipe(map(response => {
       if (response.status === 404 || response.status === 500) {
         return response;

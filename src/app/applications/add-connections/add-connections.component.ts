@@ -235,7 +235,7 @@ export class AddConnectionsComponent implements OnInit {
       // Request to add a connection
       this.backend
         .addConnection(this.organizationId, connectionRequest)
-        .subscribe(result => {
+        .subscribe(() => {
           this.notificationsService.add({
             message: this.translateService.instant('apps.manageConnections.createdConnection')
           });

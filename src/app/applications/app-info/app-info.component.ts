@@ -167,13 +167,11 @@ export class AppInfoComponent implements OnChanges {
       this.backend.removeConnection(instance.organization_id, {
         organization_id: instance.organization_id,
         source_instance_id: fullConnection.source_instance_id,
-        source_instance_name: fullConnection.source_instance_name,
         target_instance_id: fullConnection.target_instance_id,
-        target_instance_name: fullConnection.target_instance_name,
         inbound_name: fullConnection.inbound_name,
         outbound_name: fullConnection.outbound_name,
         user_confirmation: true
-      }).subscribe(response => {
+      }).subscribe(() => {
         this.notificationsService.add({
           message: 'Removing connection',
           timeout: NOTIFICATION_TIMEOUT
