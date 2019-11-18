@@ -20,14 +20,14 @@
   <div class="col-lg-4 h-100">
     <div class="card">
       <div class="card-title-name">
-        <h5>{{'devices.summary.title' | translate}}</h5>
+        <h5>{{'resources.summary' | translate}}</h5>
       </div>
       <div *ngIf="groups && groups.length > 0" class="summary-card">
         <div class="summary-box">
           <div class="circle">
               <span >{{groups.length}}</span>
           </div>
-          <p class="circle-name">{{'devices.summary.groups.title' | translate}}</p>
+          <p class="circle-name">{{'devices.summary.groupsTitle' | translate}}</p>
         </div>        
         <div class="summary-box">
           <div class="circle">
@@ -193,7 +193,7 @@
                               (click)="setOrder('name')"
                               [ngClass]="getCategoryCSSClass('name')"
                               class="label-th col-4">
-                              <span tooltip="{{'devices.tableName' | translate}}" placement="bottom">{{'devices.tableName' | translate}}</span>
+                              <span tooltip="{{'tables.tableName' | translate}}" placement="bottom">{{'tables.tableName' | translate}}</span>
                               <span *ngIf="sortedBy === 'name' && !reverse" class="expand-chevron">
                                 <i class="material-icons">expand_more</i>
                               </span>
@@ -206,7 +206,7 @@
                               (click)="setOrder('date')" 
                               [ngClass]="getCategoryCSSClass('date')"
                               class="label-th col-4">
-                              <span tooltip="{{'devices.tableDate' | translate}}" placement="bottom">{{'devices.tableDate' | translate}}</span>
+                              <span tooltip="{{'tables.tableDate' | translate}}" placement="bottom">{{'tables.tableDate' | translate}}</span>
                               <span *ngIf="sortedBy === 'date' && !reverse" class="expand-chevron">
                                 <i class="material-icons">expand_more</i>
                               </span>
@@ -219,7 +219,7 @@
                               (click)="setOrder('status')" 
                               [ngClass]="getCategoryCSSClass('status')"
                               class="label-th col-4 text-center">
-                              <span tooltip="{{'devices.tableStatus' | translate}}" placement="bottom">{{'devices.tableStatus' | translate}}</span>
+                              <span tooltip="{{'tables.tableStatus' | translate}}" placement="bottom">{{'tables.tableStatus' | translate}}</span>
                               <span *ngIf="sortedBy === 'status' && !reverse" class="expand-chevron">
                                 <i class="material-icons">expand_more</i>
                               </span>
@@ -232,7 +232,7 @@
                               (click)="setOrder('labels')" 
                               [ngClass]="getCategoryCSSClass('labels')"
                               class="label-th col-12">
-                              <span tooltip="{{'devices.tableLabels' | translate}}" placement="bottom">{{'devices.tableLabels' | translate}}</span>
+                              <span tooltip="{{'tables.tableLabels' | translate}}" placement="bottom">{{'tables.tableLabels' | translate}}</span>
                               <span *ngIf="sortedBy === 'labels' && !reverse" class="expand-chevron">
                                 <i class="material-icons">expand_more</i>
                               </span>
@@ -245,7 +245,7 @@
                         <div 
                           *ngIf="countDevices() > 0"
                           class="label-th col-1 text-center">
-                          <span tooltip="{{'devices.tableActions' | translate}}" placement="bottom">{{'devices.tableActions' | translate}}</span> 
+                          <span tooltip="{{'tables.tableActions' | translate}}" placement="bottom">{{'tables.tableActions' | translate}}</span> 
                         </div>
                       </div>
                       <span *ngIf="

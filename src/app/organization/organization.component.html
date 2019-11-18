@@ -41,21 +41,21 @@
       <div class="row mb-3">
         <div class="col-7">  
           <p *ngIf="searchTerm && !filterField" class="sorting-message">
-            {{'organization.filteredBy' | translate:{value: searchTerm} }}
-            <span (click)="resetFilters()" class="reset-search">{{'organization.users.reset' | translate}}</span>
+            {{'sortingMessage.filteredBy' | translate:{value: searchTerm} }}
+            <span (click)="resetFilters()" class="reset-search">{{'sortingMessage.reset' | translate}}</span>
           </p>
           <p *ngIf="filterField && !searchTerm" class="sorting-message">
-            {{'organization.sortedBy' | translate:{value: sortedBy} }}
-            <span *ngIf="reverse">{{'organization.users.ascendant' | translate:{value: '. '} }}</span>
-            <span *ngIf="!reverse">{{'organization.users.descendant' | translate:{value: '. '} }}</span>
-            <span (click)="resetFilters()" class="reset-search">{{'organization.users.reset' | translate}}</span>
+            {{'sortingMessage.sortedBy' | translate:{value: sortedBy} }}
+            <span *ngIf="reverse">{{'sortingMessage.ascendant' | translate:{value: '. '} }}</span>
+            <span *ngIf="!reverse">{{'sortingMessage.descendant' | translate:{value: '. '} }}</span>
+            <span (click)="resetFilters()" class="reset-search">{{'sortingMessage.reset' | translate}}</span>
           </p>
           <p *ngIf="filterField && searchTerm" class="sorting-message">
-            {{'organization.sortedBy' | translate:{value: sortedBy} }}
-            <span *ngIf="reverse">{{'organization.users.ascendant' | translate:{value: ' '} }}</span>
-            <span *ngIf="!reverse">{{'organization.users.descendant' | translate:{value: ' '} }}</span>
-            {{'organization.users.andFiltered' | translate:{value: searchTerm} }}
-            <span (click)="resetFilters()" class="reset-search">{{'organization.users.reset' | translate}}</span>
+            {{'sortingMessage.sortedBy' | translate:{value: sortedBy} }}
+            <span *ngIf="reverse">{{'sortingMessage.ascendant' | translate:{value: ' '} }}</span>
+            <span *ngIf="!reverse">{{'sortingMessage.descendant' | translate:{value: ' '} }}</span>
+            {{'sortingMessage.andFiltered' | translate:{value: searchTerm} }}
+            <span (click)="resetFilters()" class="reset-search">{{'sortingMessage.reset' | translate}}</span>
           </p> 
         </div>
         <div class="col-5">

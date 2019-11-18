@@ -43,7 +43,6 @@
 		"appConnections": "App connections",
 		"appInfo": "App info",
 		"appsRunning": "Apps running",
-		"deploy": "Deploy",
 		"deployTitle": "Deploy instance",
 		"deployed": "DEPLOYED",
 		"filters": {
@@ -74,20 +73,9 @@
 			"serviceInsInfoTitle": "Service instances info",
 			"servicesList": "services",
 			"servicesTitle": "SERVICES",
-			"tableAccess": "Access",
-			"tableAuth": "Auth",
-			"tableAuthIn": "(g - s/d)",
-			"tableAuthInBig": "(group, service / device group)",
-			"tableEndpoints": "Endpoints",
 			"tableImage": "Image",
 			"tableInstanceOf": "Instance of",
-			"tableLabels": "Labels",
-			"tableName": "Name",
-			"tableReplicas": "Replicas",
-			"tableStatus": "Status",
 			"tableTarget": "Target",
-			"tableTargetIn": "(g - s - p)",
-			"tableTargetInBig": "(group, service, port)",
 			"title": "APPLICATIONS",
 			"undeployConfirm": "Undeploy {{appName}}?",
 			"undeployDoubleCheckConfirm": "The app {{appName}} has inbound/outbound connections. Do you want to undeploy it anyway?",
@@ -147,8 +135,7 @@
 		"registeredTitle": "REGISTERED ",
 		"requiredConnections": "Required connections",
 		"title": "APPLICATIONS",
-		"typeRestriction": "Type restrictions:",
-		"undeploy": "Undeploy"
+		"typeRestriction": "Type restrictions:"
 	},
 	"buttons": {
 		"addNewConnections": "Add new connection",
@@ -172,6 +159,13 @@
 		"passNotMatch": "Set passwords do not match",
 		"passReq": "Password is required",
 		"setPass": "Set passwords do not match"
+	},
+	"deploy": {
+		"deployingInstance": "Deploying instance of {{registeredName}}",
+		"descriptorNotFound": "Descriptor not found",
+		"selectAnyRegistered": "Select any registered name",
+		"selectInterface": "Select any interface name",
+		"selectReg": "Select any registered name"
 	},
 	"devices": {
 		"add": {
@@ -215,18 +209,10 @@
 			"title": "DEVICES STATUS TIMELINE"
 		},
 		"summary": {
-			"groups": {
-				"title": "GROUPS"
-			},
-			"noAvailable": "No available groups detected",
-			"title": "SUMMARY"
+			"groupsTitle": "GROUPS",
+			"noAvailable": "No available groups detected"
 		},
 		"switcherMessage": "The device is now ",
-		"tableActions": "Actions",
-		"tableDate": "Attached date",
-		"tableLabels": "Labels",
-		"tableName": "Name",
-		"tableStatus": "Status",
 		"title": "DEVICES",
 		"unlinkDevice": "Unlink device",
 		"unlinkDeviceConfirm": "Unlink {{deviceId}}?",
@@ -275,7 +261,6 @@
 			"manufacturer": "Manufacturer",
 			"model": "Model",
 			"netSpecs": "Networking specs",
-			"no": "no",
 			"on": "on",
 			"os": "OS",
 			"ram": "RAM",
@@ -308,8 +293,6 @@
 			"enablementMessage": "The device is now ",
 			"info": "Device info",
 			"notFound": "Not found",
-			"notificationTextDisabled": "disabled",
-			"notificationTextEnabled": "enabled",
 			"unlinkConfirm": "Unlink device?",
 			"unlinkMessage": "The device has been unlinked"
 		},
@@ -325,7 +308,6 @@
 			"install": "Install",
 			"message": "Installing agent on {{targetHost}} target host",
 			"more": "more",
-			"noResults": "No results found!",
 			"required": "An agent type is required",
 			"select": "Select any Edge Controller",
 			"sshPass": "SSH password",
@@ -399,7 +381,6 @@
 		"emailValid": "Email must be a valid email address",
 		"expired": "Session has expired, please log in",
 		"login": "Log in",
-		"password": "Password",
 		"passwordRequired": "Password is required",
 		"passwordValid": "Password must be at least 6 characters"
 	},
@@ -409,10 +390,8 @@
 	"nalej": "NALEJ",
 	"organization": {
 		"deleteUser": "Delete user?",
-		"filteredBy": "Filtered by term \"{{value}}\".",
 		"loading": "Loading...",
 		"notRegisteredUsers": "<p>There are not registered users in this organization<br>Click on \"add user\" button to start adding new users</p>",
-		"sortedBy": "Sorted by {{value}}",
 		"subscriptionType": "Free subscription",
 		"title": "ORGANIZATION",
 		"userCreated": "The user {{user}}  has been created successfully",
@@ -422,13 +401,7 @@
 		"users": {
 			"add": "Add user",
 			"addEx": "e.g. NalejAdmin",
-			"andFiltered": "and filtered by term \"{{ value }}\".",
-			"ascendant": "ascendant{{value}}",
-			"descendant": "descendant{{value}}",
 			"edit": "Edit user",
-			"email": "Email",
-			"name": "Name",
-			"reset": "Reset",
 			"role": "Role",
 			"roleReq": "A role is required",
 			"saveChange": "The user {{user}} has been edited",
@@ -473,6 +446,7 @@
 		"resources": "Resources"
 	},
 	"sortingMessage": {
+		"andFiltered": "and filtered by term \"{{ value }}\".",
 		"andFilteredBy": "and filtered by \"{{value}}\"",
 		"ascendant": "ascendant{{value}}",
 		"descendant": "descendant{{value}}",
@@ -503,9 +477,12 @@
 		"tableAppDescriptorID": "App descriptor ID",
 		"tableAppServices": "App services",
 		"tableAuth": "Auth",
+		"tableAuthIn": "(g - s/d)",
+		"tableAuthInBig": "(group, service, port)",
 		"tableBasic": "Basic",
 		"tableBasicInfo": "Basic information",
 		"tableCredentials": "Credentials",
+		"tableDate": "Attached date",
 		"tableDeployAfter": "Deploy after",
 		"tableDeployedOn": "Deployed on cluster ID",
 		"tableDeployedOnCID": "Deployed on cluster ID",
@@ -543,6 +520,8 @@
 		"tableState": "State",
 		"tableStatus": "Status",
 		"tableTarget": "Target",
+		"tableTargetIn": "(g - s - p)",
+		"tableTargetInBig": "(group, service / device group)",
 		"tableTargetInbound": "Target Inbound",
 		"tableTargetInstance": "Target Instance",
 		"tableType": "Type"
