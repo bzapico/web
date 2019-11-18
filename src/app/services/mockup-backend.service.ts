@@ -11,6 +11,7 @@
  *  limitations under the License.
  */
 
+// tslint:disable:no-any
 import { Injectable } from '@angular/core';
 import { Backend } from '../definitions/interfaces/backend';
 import { Observable, of } from 'rxjs';
@@ -40,11 +41,10 @@ import { AddUserRequest } from '../definitions/interfaces/add-user-request';
 import { PasswordChange } from '../definitions/interfaces/password-change';
 import { UserChanges } from '../definitions/interfaces/user-changes';
 import { InstallAgentRequest } from '../definitions/interfaces/install-agent-request';
-import { AddAppDescriptorRequest } from '../definitions/interfaces/add-app-descriptor-request';
-import { ApplicationDescriptor } from '../definitions/models/application-descriptor';
 import { RemoveConnectionRequest } from '../definitions/interfaces/remove-connection-request';
 import { AddConnectionRequest } from '../definitions/interfaces/add-connection-request';
-import { LoginResponse } from '../definitions/models/login-response';
+import { LoginResponse } from '../definitions/interfaces/login-response';
+import { UpdateAssetRequest } from '../definitions/interfaces/update-asset-request';
 
 @Injectable({
   providedIn: 'root'
@@ -64,7 +64,7 @@ export class MockupBackendService implements Backend {
    * @param email String containing the user email
    * @param password String that holds the user password
    */
-  login(email: string, password: string): Observable<HttpResponse<LoginResponse>> {
+  login(email: string, password: string): Observable<any> {
     return of (new HttpResponse<LoginResponse>({
       body: {
         token: mockJwtToken,
@@ -266,7 +266,7 @@ export class MockupBackendService implements Backend {
    * @param assetId Asset identifier
    * @param asset Asset updated object
    */
-  updateAsset(organizationId: string, assetId: string, asset: any) {
+  updateAsset(organizationId: string, assetId: string, asset: UpdateAssetRequest) {
     const index = mockInventoryList.assets.map(x => x.asset_id).indexOf(assetId);
     if (index !== -1) {
       if (asset.remove_labels) {
@@ -536,25 +536,12 @@ export class MockupBackendService implements Backend {
    * @param organizationId Organization identifier
    * @param descriptor Descriptor object
    */
-  addAppDescriptor(organizationId: string, descriptor: AddAppDescriptorRequest) {
+  addAppDescriptor(organizationId: string, descriptor: any) {
     // Not validating the descriptor
-    const generatedDescriptor
-      = new ApplicationDescriptor(
-        descriptor.organization_id,
-        this.uuidv4(),
-        descriptor.name,
-        descriptor.rules,
-        descriptor.configuration_options,
-        descriptor.environment_variables,
-        descriptor.labels,
-        descriptor.inbound_net_interfaces,
-        descriptor.outbound_net_interfaces,
-        descriptor.groups,
-        descriptor.parameters
-    );
-    mockRegisteredAppsList.push(generatedDescriptor);
+    descriptor.app_descriptor_id = this.uuidv4();
+    mockRegisteredAppsList.push(descriptor);
     return of (new HttpResponse({
-      body: JSON.stringify(generatedDescriptor),
+      body: JSON.stringify(descriptor),
       status: 200
     }));
   }

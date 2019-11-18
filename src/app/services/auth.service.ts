@@ -20,7 +20,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import { LoginResponse } from '../definitions/models/login-response';
+import { LoginResponse } from '../definitions/interfaces/login-response';
 
 /**
  * Service that enables authentication in the platform

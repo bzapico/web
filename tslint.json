@@ -2,6 +2,11 @@
   "rulesDirectory": [
     "node_modules/codelyzer"
   ],
+  "linterOptions": {
+    "exclude": [
+      "src/app/pipes/sort-by.pipe.ts"
+    ]
+  },
   "rules": {
     "arrow-return-shorthand": true,
     "callable-types": true,
@@ -129,6 +134,7 @@
     "component-class-suffix": true,
     "directive-class-suffix": true,
     "cyclomatic-complexity": [false, 20],
-    "import-destructuring-spacing": true
+    "import-destructuring-spacing": true,
+    "no-any": true
   }
 }

@@ -23,7 +23,7 @@ export interface AddAppDescriptorRequest {
     /**
      * OrganizationId with the organization identifier.
      */
-    organization_id?: string;
+    organization_id: string;
     /**
      * Name of the application.
      */

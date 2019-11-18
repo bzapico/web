@@ -23,8 +23,10 @@ import { AddAppDescriptorRequest } from '../definitions/interfaces/add-app-descr
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { RemoveConnectionRequest } from '../definitions/interfaces/remove-connection-request';
 import { AddConnectionRequest } from '../definitions/interfaces/add-connection-request';
-import { LoginResponse } from '../definitions/models/login-response';
+import { LoginResponse } from '../definitions/interfaces/login-response';
+import { UpdateAssetRequest } from '../definitions/interfaces/update-asset-request';
 
+// tslint:disable:no-any
 /**
  * URL of the public API
  */
@@ -321,7 +323,7 @@ export class BackendService implements Backend {
    * @param assetId Edge controller id
    * @param asset Asset object updated
    */
-  updateAsset(organizationId: string, assetId: string, asset: any) {
+  updateAsset(organizationId: string, assetId: string, asset: UpdateAssetRequest) {
     return this.post(
       API_URL + 'inventory/' + organizationId + '/asset/' + assetId + '/update',
       asset

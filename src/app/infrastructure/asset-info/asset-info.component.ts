@@ -43,7 +43,7 @@ export class AssetInfoComponent implements OnInit {
   agentId: string;
   assetIp: string;
   show: string;
-  created: string;
+  created: number;
   labels: KeyValue;
   class: string;
   version: string;

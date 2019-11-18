@@ -16,17 +16,16 @@ import { PasswordChange } from './password-change';
 import { AddUserRequest } from './add-user-request';
 import { UserChanges } from './user-changes';
 import { InstallAgentRequest } from './install-agent-request';
-import { AddAppDescriptorRequest } from './add-app-descriptor-request';
 import { RemoveConnectionRequest } from './remove-connection-request';
 import { AddConnectionRequest } from './add-connection-request';
-import { LoginResponse } from '../models/login-response';
-import { HttpResponse } from '@angular/common/http';
-import { AssetInfo } from './asset-info';
+import { LoginResponse } from './login-response';
 import { KeyValue } from './key-value';
+import { UpdateAssetRequest } from './update-asset-request';
 
+// tslint:disable:no-any
 export interface Backend {
     // Login
-    login(email: string, password: string): Observable<LoginResponse | HttpResponse<LoginResponse>>;
+    login(email: string, password: string): Observable<LoginResponse>;
     logout();
     // Organization
     getUserProfileInfo(organizationId: string, userId: string);
@@ -47,7 +46,7 @@ export interface Backend {
     createAgentJoinToken(organizationId: string,  edgeControllerId: string);
     unlinkEIC(organizationId: string, edgeControllerId: string);
     removeDeviceFromInventoryMockup(organizationId: string, deviceId: string);
-    updateAsset(organizationId: string, assetId: string, asset: AssetInfo);
+    updateAsset(organizationId: string, assetId: string, asset: UpdateAssetRequest);
     updateEC(organizationId: string, ecId: string, ec: any);
     // Resources
     saveClusterChanges(organizationId: string, clusterId: string, changes: any);
@@ -61,7 +60,7 @@ export interface Backend {
     getRegisteredApps(organizationId: string);
     getAppInstance(organizationId: string, instanceId: string);
     getAppDescriptor(organizationId: string, descriptorId: string);
-    addAppDescriptor(organizationId: string, descriptor: AddAppDescriptorRequest);
+    addAppDescriptor(organizationId: string, descriptor: any);
     updateAppDescriptor(organizationId: string, descriptorId: string, changes: any);
     deploy(organizationId: string, descriptorId: string, name: string, params?: any, connections?: any[]);
     undeploy(organizationId: string, instanceId: string,  confirmation?: {user_confirmation: boolean});

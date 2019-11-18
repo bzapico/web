@@ -29,9 +29,10 @@ import { ApplicationDescriptor } from '../../definitions/models/application-desc
 import { ServiceGroupInstance } from '../../definitions/interfaces/service-group-instance';
 import { ApplicationInstance } from '../../definitions/models/application-instance';
 import { Subscription, timer } from 'rxjs';
-import { GraphData } from '../../definitions/interfaces/graph-data';
+import { GraphData } from '../../definitions/models/graph-data';
 import { ColorScheme } from '../../definitions/interfaces/color-scheme';
 import { KeyValue } from '../../definitions/interfaces/key-value';
+import { Service } from '../../definitions/interfaces/service';
 
 @Component({
   selector: 'app-instance-info',
@@ -185,10 +186,8 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
       domain: ['#6C86F7']
     };
     this.graphDataLoaded = false;
-    this.graphData = {
-      nodes: [],
-      links: []
-    };
+    this.graphData.nodes = [];
+    this.graphData.links = [];
     this.nextColorIndex = 0;
     this.loadedData = false;
   }
@@ -438,7 +437,7 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
    * Return the list of group services
    * @param groupId Group identifier
    */
-  getGroupServices(groupId: string) {
+  getGroupServices(groupId: string): Service[] {
     const index = this.groups
       .map(x => x.service_group_instance_id)
       .indexOf(groupId);

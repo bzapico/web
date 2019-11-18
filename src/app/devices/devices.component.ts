@@ -11,6 +11,7 @@
  *  limitations under the License.
  */
 
+// tslint:disable:no-any
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { Backend } from '../definitions/interfaces/backend';
@@ -18,7 +19,6 @@ import { BackendService } from '../services/backend.service';
 import { MockupBackendService } from '../services/mockup-backend.service';
 import { NotificationsService } from '../services/notifications.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
-import { mockDevicesChart } from '../services/utils/mocks';
 import { AddDevicesGroupComponent } from './add-devices-group/add-devices-group.component';
 import { GroupConfigurationComponent } from './group-configuration/group-configuration.component';
 import { AddLabelComponent } from '../add-label/add-label.component';
@@ -55,7 +55,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   /**
    * List of available devices
    */
-  devices: any[];
+  devices: Device[];
   /**
    * List of available devices groups
    */
@@ -87,8 +87,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   /**
    * Charts references
    */
-  mockDevicesChart: any;
-  devicesChart: any;
+  devicesChart: any[];
   /**
    * Reference for the service that allows the add group component
    */
@@ -182,10 +181,6 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     this.searchTerm = '';
     // Filter field
     this.filterField = false;
-    /**
-     * Charts reference init
-     */
-    Object.assign(this, { mockDevicesChart });
   }
 
   ngOnInit() {
@@ -206,8 +201,8 @@ export class DevicesComponent implements OnInit, OnDestroy  {
    * Translates timestamps to the wish date
    * @param timestamp is an integer that represents the number of seconds elapsed
    */
-  parseTimestampToDate(timestamp: any) {
-    return new Date(Number.parseInt(timestamp, 10) * 1000);
+  parseTimestampToDate(timestamp: number) {
+    return new Date(timestamp * 1000);
   }
   /**
    * Method that counts the number of devices

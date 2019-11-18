@@ -15,6 +15,7 @@ import { Component } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap';
 import { ServicesStatus } from '../../definitions/enums/services-status.enum';
 import { KeyValue } from '../../definitions/interfaces/key-value';
+import { SecurityRule } from '../../definitions/interfaces/security-rule';
 
 @Component({
   selector: 'app-info-detailed',
@@ -32,7 +33,7 @@ export class AppInfoDetailedComponent {
   groups: any[];
   statusName: string;
   labels: KeyValue;
-  rules: any[];
+  rules: SecurityRule[];
   openFromInstance: boolean;
   openFromRegistered: boolean;
   /**

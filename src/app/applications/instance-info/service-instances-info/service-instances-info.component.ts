@@ -19,6 +19,7 @@ import { MockupBackendService } from '../../../services/mockup-backend.service';
 import { LocalStorageKeys } from '../../../definitions/const/local-storage-keys';
 import { ServicesStatus } from '../../../definitions/enums/services-status.enum';
 import { KeyValue } from '../../../definitions/interfaces/key-value';
+import {ServiceGroupDeploymentSpecs} from '../../../definitions/interfaces/service-group-deployment-specs';
 
 @Component({
   selector: 'app-service-instances-info',
@@ -37,7 +38,7 @@ export class ServiceInstancesInfoComponent {
   image: string;
   serviceId: string;
   statusName: string;
-  specs: any;
+  specs: ServiceGroupDeploymentSpecs;
   endpoints: any;
   exposedPorts: any;
   typeName: string;
@@ -47,7 +48,7 @@ export class ServiceInstancesInfoComponent {
   groupId: string;
   appDescriptorId: string;
   instanceId: string;
-  deployAfter: any;
+  deployAfter: string;
   deployedOnCluster: string;
   /**
    * Loaded Data status

@@ -20,13 +20,13 @@ export abstract class Application {
     constructor(
         organization_id: string,
         app_descriptor_id: string,
-        name: string,
-        rules: SecurityRule[],
-        configuration_options: KeyValue,
-        environment_variables: KeyValue,
-        labels: KeyValue,
-        inbound_net_interfaces: InboundNetworkInterface[],
-        outbound_net_interfaces: OutboundNetworkInterface[]) {
+        name?: string,
+        rules?: SecurityRule[],
+        configuration_options?: KeyValue,
+        environment_variables?: KeyValue,
+        labels?: KeyValue,
+        inbound_net_interfaces?: InboundNetworkInterface[],
+        outbound_net_interfaces?: OutboundNetworkInterface[]) {
         this.organization_id = organization_id;
         this.app_descriptor_id = app_descriptor_id;
         this.name = name;
@@ -40,11 +40,11 @@ export abstract class Application {
     /**
      * OrganizationId with the organization identifier.
      */
-    organization_id?: string;
+    organization_id: string;
     /**
      * AppDescriptorId with the application descriptor identifier.
      */
-    app_descriptor_id?: string;
+    app_descriptor_id: string;
     /**
      * Name of the application.
      */

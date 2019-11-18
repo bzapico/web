@@ -14,15 +14,15 @@
 /**
  * LoginResponse is the message that contains the generated token and the refresh token.
  */
-export class LoginResponse {
+export interface LoginResponse {
     /**
      * Token generated
      */
-    token: string;
+    token?: string;
     /**
      * Refresh Token
      */
-    refresh_token: string;
+    refresh_token?: string;
     /**
      * status code
      */

@@ -11,6 +11,7 @@
  *  limitations under the License.
  */
 
+// tslint:disable:no-any
 import { Component } from '@angular/core';
 import { Backend } from '../../../definitions/interfaces/backend';
 import { BsModalRef } from 'ngx-bootstrap';

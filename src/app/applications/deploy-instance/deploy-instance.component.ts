@@ -11,6 +11,7 @@
  *  limitations under the License.
  */
 
+// tslint:disable:no-any
 import { Component, OnInit } from '@angular/core';
 import { Backend } from '../../definitions/interfaces/backend';
 import { BsModalRef } from 'ngx-bootstrap';
@@ -51,7 +52,7 @@ export class DeployInstanceComponent implements OnInit {
   openFromRegistered: boolean;
   registeredApps: ApplicationDescriptor[];
   instanceName: string;
-  selectedApp: any;
+  selectedApp: ApplicationDescriptor;
   appFromRegistered: ApplicationInstance;
   fakeValue: ApplicationDescriptor;
   /**
@@ -161,8 +162,7 @@ export class DeployInstanceComponent implements OnInit {
     this.connections = [];
     this.areRequiredConnections = false;
     this.requiredConnections = [];
-    this.fakeValue = new ApplicationDescriptor();
-    this.fakeValue.app_descriptor_id = '-1';
+    this.fakeValue = new ApplicationDescriptor('', '-1');
     this.fakeValue.name = 'Select any registered name';
   }
 

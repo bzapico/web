@@ -21,6 +21,12 @@ import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { InventoryType } from '../definitions/enums/inventory-type.enum';
 import { TranslateService } from '@ngx-translate/core';
+import { Controller } from '../definitions/models/controller';
+import { Asset } from '../definitions/models/asset';
+import { ApplicationDescriptor } from '../definitions/models/application-descriptor';
+import { Device } from '../definitions/models/device';
+import { Node } from '../definitions/interfaces/node';
+import { Cluster } from '../definitions/interfaces/cluster';
 
 @Component({
   selector: 'app-add-label',
@@ -45,7 +51,7 @@ export class AddLabelComponent implements OnInit {
   labelName: string;
   labelValue: string;
   modalTitle: string;
-  entity: any;
+  entity: Controller & Asset & Device & ApplicationDescriptor & Node & Cluster;
   entityType: string;
   /**
    * Models that removes the possibility for the user to close the modal by clicking outside the content card
@@ -107,7 +113,7 @@ export class AddLabelComponent implements OnInit {
       this.loading = true;
       switch (this.entityType.toLowerCase()) {
         case InventoryType.Cluster:
-          if (!updatedEntity.labels || updatedEntity.labels === '-') {
+          if (!updatedEntity.labels) {
             updatedEntity.labels = {};
           }
           updatedEntity.labels[form.labelName.value] = form.labelValue.value;
@@ -134,7 +140,7 @@ export class AddLabelComponent implements OnInit {
           });
           break;
         case InventoryType.Node:
-          if (!updatedEntity.labels || updatedEntity.labels === '-') {
+          if (!updatedEntity.labels) {
             updatedEntity.labels = {};
           }
           updatedEntity.labels[form.labelName.value] = form.labelValue.value;
@@ -154,7 +160,7 @@ export class AddLabelComponent implements OnInit {
           this.bsModalRef.hide();
           break;
         case InventoryType.Device:
-          if (!updatedEntity.labels || updatedEntity.labels === '-') {
+          if (!updatedEntity.labels) {
             updatedEntity.labels = {};
           }
           updatedEntity.labels[form.labelName.value] = form.labelValue.value;
@@ -174,7 +180,7 @@ export class AddLabelComponent implements OnInit {
           this.bsModalRef.hide();
           break;
         case InventoryType.App:
-          if (!updatedEntity.labels || updatedEntity.labels === '-') {
+          if (!updatedEntity.labels) {
             updatedEntity.labels = {};
           }
           updatedEntity.labels[form.labelName.value] = form.labelValue.value;
@@ -196,7 +202,7 @@ export class AddLabelComponent implements OnInit {
           });
           break;
         case InventoryType.Ec:
-            if (!updatedEntity.labels || updatedEntity.labels === '-') {
+            if (!updatedEntity.labels) {
               updatedEntity.labels = {};
             }
             updatedEntity.labels[form.labelName.value] = form.labelValue.value;
@@ -219,7 +225,7 @@ export class AddLabelComponent implements OnInit {
             this.bsModalRef.hide();
           break;
         case InventoryType.Asset:
-          if (!updatedEntity.labels || updatedEntity.labels === '-') {
+          if (!updatedEntity.labels) {
             updatedEntity.labels = {};
           }
           updatedEntity.labels[form.labelName.value] = form.labelValue.value;

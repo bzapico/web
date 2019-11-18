@@ -24,6 +24,7 @@ import { StyledNode } from '../definitions/interfaces/styled-node';
 import { GraphNode } from '../definitions/interfaces/graph-node';
 import { ColorScheme } from '../definitions/interfaces/color-scheme';
 import * as shape from 'd3-shape';
+import { GraphLink } from '../definitions/models/graph-link';
 
 @Component({
   selector: 'tools',
@@ -75,7 +76,7 @@ export class ToolsComponent implements OnInit {
   /**
    * Graph options
    */
-  graphData: GraphData<any[]>;
+  graphData: GraphData;
   graphReset: boolean;
   orientation: string;
   curve = shape.curveBasis;
@@ -292,17 +293,15 @@ export class ToolsComponent implements OnInit {
             const isSourceNode = this.graphData.nodes.filter(item => item.id === source).length > 0;
             const isTargetNode = this.graphData.nodes.filter(item => item.id === target).length > 0;
             if (isSourceNode && isTargetNode) {
-              linksBetweenApps[ source + '_' + target] = {
-                source: source,
-                target: target,
-                is_between_apps: true
-              };
+              linksBetweenApps[ source + '_' + target] = new GraphLink(source, target, false, true);
             }
           });
         });
       }
     });
-    this.graphData.links.push(...Object.values(linksBetweenApps));
+    Object.values(linksBetweenApps).map((item: GraphLink) => {
+      this.graphData.links.push(new GraphLink(item.source, item.target, false, item.isBetweenApps));
+    });
   }
   generateClusterNode(cluster: Cluster, tooltip: string): GraphNode & StyledNode {
     const clusterName = cluster.name.toLowerCase();

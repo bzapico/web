@@ -15,7 +15,7 @@ import { Injectable } from '@angular/core';
 import { AccessType } from '../../definitions/enums/access-type.enum';
 import { TranslateService } from '@ngx-translate/core';
 import { ServicesStatus } from '../../definitions/enums/services-status.enum';
-import { GraphData } from '../../definitions/interfaces/graph-data';
+import { GraphData } from '../../definitions/models/graph-data';
 import { SecurityRule } from '../../definitions/interfaces/security-rule';
 /**
  * It sets the status colors for nodes

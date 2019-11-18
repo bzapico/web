@@ -11,6 +11,7 @@
  *  limitations under the License.
  */
 
+// tslint:disable:no-any
 import { Component, OnInit } from '@angular/core';
 import { Backend } from '../../definitions/interfaces/backend';
 import { BackendService } from '../../services/backend.service';
@@ -29,6 +30,7 @@ import { AddLabelComponent } from '../../add-label/add-label.component';
 import { RegisteredInfoService } from './registered-info.service';
 import { KeyValue } from '../../definitions/interfaces/key-value';
 import { SecurityRule } from '../../definitions/interfaces/security-rule';
+import { GraphData } from '../../definitions/models/graph-data';
 
 @Component({
   selector: 'app-registered-info',
@@ -113,7 +115,7 @@ export class RegisteredInfoComponent implements OnInit {
    */
   graphDataLoaded: boolean;
   graphReset: boolean;
-  graphData: any;
+  graphData: GraphData;
   orientation: string;
   autoZoom: boolean;
   autoCenter: boolean;
@@ -146,7 +148,7 @@ export class RegisteredInfoComponent implements OnInit {
     this.isOpenFromRegistered = true;
     this.requestError = '';
     this.showGraph = true;
-    this.registeredData = new ApplicationDescriptor();
+    this.registeredData = new ApplicationDescriptor('', '');
     // SortBy
     this.sortedBy = '';
     this.sortedByRules = '';

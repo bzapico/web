@@ -349,7 +349,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
             this.organizationId,
             item.mapId(),
             {
-              organizationId: this.organizationId,
+              organization_id: this.organizationId,
               asset_id: item.mapId(),
               remove_labels: true,
               labels: this.selectedLabels[indexAsset].labels

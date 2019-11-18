@@ -27,15 +27,15 @@ export class ApplicationDescriptor extends Application {
     constructor(
         organization_id: string,
         app_descriptor_id: string,
-        name: string,
-        rules: SecurityRule[],
-        configuration_options: KeyValue,
-        environment_variables: KeyValue,
-        labels: KeyValue,
-        inbound_net_interfaces: InboundNetworkInterface[],
-        outbound_net_interfaces: OutboundNetworkInterface[],
-        groups: ServiceGroup[],
-        parameters: AppParameter[]) {
+        name?: string,
+        rules?: SecurityRule[],
+        configuration_options?: KeyValue,
+        environment_variables?: KeyValue,
+        labels?: KeyValue,
+        inbound_net_interfaces?: InboundNetworkInterface[],
+        outbound_net_interfaces?: OutboundNetworkInterface[],
+        groups?: ServiceGroup[],
+        parameters?: AppParameter[]) {
         super(
             organization_id,
             app_descriptor_id,
@@ -46,8 +46,8 @@ export class ApplicationDescriptor extends Application {
             labels,
             inbound_net_interfaces,
             outbound_net_interfaces);
-        this.groups = groups;
-        this.parameters = parameters;
+        this.groups = groups || [];
+        this.parameters = parameters || [];
     }
     /**
      * Groups with the Service collocation strategies.

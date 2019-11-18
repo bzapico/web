@@ -14,22 +14,23 @@
 import { Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { AccessType } from '../../definitions/enums/access-type.enum';
+import { GraphData } from '../../definitions/models/graph-data';
+import { GraphLink } from '../../definitions/models/graph-link';
+import { SecurityRule } from '../../definitions/interfaces/security-rule';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RegisteredInfoService {
 
-  private _graphData: any;
+  private _graphData: GraphData;
   private _isGeneratedPublicRule: boolean;
-  private _publicRule: any;
+  private _publicRule: SecurityRule;
 
   constructor(
       private translateService: TranslateService) {
-    this._graphData = {
-      nodes: [],
-      links: []
-    };
+    this._graphData.nodes = [];
+    this._graphData.links = [];
     this._isGeneratedPublicRule = false;
     this._publicRule = null;
   }
@@ -42,27 +43,24 @@ export class RegisteredInfoService {
     this._isGeneratedPublicRule = value;
   }
 
-  get publicRule(): any {
+  get publicRule(): SecurityRule {
     return this._publicRule;
   }
 
-  set publicRule(value: any) {
+  set publicRule(value: SecurityRule) {
     this._publicRule = value;
   }
 
-  get graphData(): any {
+  get graphData(): GraphData {
     return this._graphData;
   }
 
-  set graphData(value: any) {
+  set graphData(value: GraphData) {
     this._graphData = value;
   }
 
   toGraphData(registered) {
-    this._graphData = {
-      nodes: [],
-      links: []
-    };
+    this._graphData.reset([], []);
     this._isGeneratedPublicRule = false;
     this._publicRule = null;
     if (registered && registered.groups) {
@@ -340,11 +338,12 @@ export class RegisteredInfoService {
   private setRulesLinks(rule, group) {
     group.services.forEach(service => {
       if (service.name === rule.target_service_name) {
-        this._graphData.links.push({
-          source: this._publicRule ? this._publicRule.rule_id : rule.rule_id,
-          target: group.service_group_id + '-s-' + service.service_id,
-          notMarker: true
-        });
+        this._graphData
+          .links.push(new GraphLink(
+            this._publicRule ? this._publicRule.rule_id : rule.rule_id,
+            group.service_group_id + '-s-' + service.service_id,
+            true,
+            false));
         if (!this._publicRule) {
           this._publicRule = rule;
         }
