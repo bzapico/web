@@ -18,7 +18,8 @@
         "fix-style-lint": "stylelint 'src/app/**/*.scss' --fix",
         "e2e": "ng e2e",
         "compodoc": "./node_modules/.bin/compodoc -p src/tsconfig.app.json",
-        "build-and-doc": "npm run compodoc && npm run build"
+        "build-and-doc": "npm run compodoc && npm run build",
+        "serve-prod": "http-server ./dist/ -p 4201 "
     },
     "private": true,
     "dependencies": {
@@ -62,6 +63,7 @@
         "@types/jasminewd2": "~2.0.3",
         "@types/node": "~8.9.4",
         "codelyzer": "5.2.0",
+        "http-server": "^0.11.1",
         "jasmine-core": "~2.99.1",
         "jasmine-spec-reporter": "~4.2.1",
         "karma": "~3.0.0",
