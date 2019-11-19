@@ -37,6 +37,7 @@ import { NameValue } from '../definitions/interfaces/name-value';
 import { ApplicationInstance } from '../definitions/models/application-instance';
 import { GraphNode } from '../definitions/interfaces/graph-node';
 import { StyledNode } from '../definitions/interfaces/styled-node';
+import { GraphLink } from '../definitions/models/graph-link';
 
 @Component({
   selector: 'applications',
@@ -105,7 +106,7 @@ export class ApplicationsComponent extends ToolsComponent implements OnInit, OnD
    * Graph options
    */
   graphDataLoaded: boolean;
-  searchGraphData: GraphData<KeyValue>;
+  searchGraphData: GraphData;
   /**
    * NGX-Charts object-assign required object references (for rendering)
    */
@@ -197,7 +198,7 @@ export class ApplicationsComponent extends ToolsComponent implements OnInit, OnD
     this.filterFieldRegistered = false;
     // Graph initialization
     this.graphDataLoaded = false;
-    this.searchGraphData = new GraphData({}, {});
+    this.searchGraphData = new GraphData([], []);
     this.foundOccurrenceInCluster = false;
     this.foundOccurrenceInInstance = false;
     this.foundOccurrenceInRegistered = false;
@@ -660,7 +661,7 @@ export class ApplicationsComponent extends ToolsComponent implements OnInit, OnD
    */
   toGraphData() {
     this.graphData.reset([], []);
-    this.searchGraphData.reset({}, {});
+    this.searchGraphData.reset([], []);
     this.foundOccurrenceInCluster = false;
     this.foundOccurrenceInInstance = false;
     this.foundOccurrenceInRegistered = false;
@@ -907,7 +908,7 @@ export class ApplicationsComponent extends ToolsComponent implements OnInit, OnD
     if ((!this.foundOccurrenceInRegistered && !this.foundOccurrenceInInstance && !this.foundOccurrenceInCluster)
         || ((this.foundOccurrenceInRegistered || this.foundOccurrenceInInstance || this.foundOccurrenceInCluster)
             && !this.initialState.showOnlyNodes)) {
-      this.graphData.links.push({source: source, target: target, is_between_apps: false});
+      this.graphData.links.push(new GraphLink(source, target, false, false));
     }
     if (!this.searchGraphData.links[source]) {
       this.searchGraphData.links[source] = [];

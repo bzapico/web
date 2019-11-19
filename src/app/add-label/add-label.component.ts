@@ -117,7 +117,6 @@ export class AddLabelComponent implements OnInit {
             updatedEntity.labels = {};
           }
           updatedEntity.labels[form.labelName.value] = form.labelValue.value;
-          updatedEntity.add_labels = true;
           this.backend
             .saveClusterChanges(this.organizationId, this.entity.cluster_id, {
               organizationId: this.organizationId,
@@ -144,7 +143,6 @@ export class AddLabelComponent implements OnInit {
             updatedEntity.labels = {};
           }
           updatedEntity.labels[form.labelName.value] = form.labelValue.value;
-          updatedEntity.add_labels = true;
           this.backend
             .updateNode(this.organizationId, this.entity.node_id, {
               organizationId: this.organizationId,
@@ -184,7 +182,6 @@ export class AddLabelComponent implements OnInit {
             updatedEntity.labels = {};
           }
           updatedEntity.labels[form.labelName.value] = form.labelValue.value;
-          updatedEntity.add_labels = true;
           this.backend.updateAppDescriptor(
             this.organizationId,
             this.entity.app_descriptor_id,
@@ -206,7 +203,6 @@ export class AddLabelComponent implements OnInit {
               updatedEntity.labels = {};
             }
             updatedEntity.labels[form.labelName.value] = form.labelValue.value;
-            updatedEntity.add_labels = true;
             this.backend.updateEC(
               this.organizationId,
               this.entity.app_descriptor_id,
