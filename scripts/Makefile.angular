@@ -20,7 +20,11 @@ dep:
 .PHONY: build
 build:
 	@echo ">>> Building Web UI"
-	@${NPMCMD} build
+	@if [ "$(ENVIRONMENT)" == "production" ]; then \
+		${NPMCMD} run build-prod ; \
+	else \
+		${NPMCMD} run build ; \
+	fi 
 	@echo ">>> Built Web UI"
 
 image: CONTEXTPATH=.
