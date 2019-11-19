@@ -11,6 +11,7 @@
  *  limitations under the License.
  */
 
+// tslint:disable:no-any
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { LabelsCardService } from './labels-card.service';
 import { LabelsData } from '../../definitions/interfaces/labels-data';

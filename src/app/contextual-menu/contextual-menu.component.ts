@@ -11,6 +11,7 @@
  *  limitations under the License.
  */
 
+// tslint:disable:no-any
 import { Component, Input, HostListener, Output, EventEmitter } from '@angular/core';
 
 @Component({

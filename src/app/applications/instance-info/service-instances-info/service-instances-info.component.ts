@@ -11,6 +11,7 @@
  *  limitations under the License.
  */
 
+// tslint:disable:no-any
 import { Component } from '@angular/core';
 import { Backend } from '../../../definitions/interfaces/backend';
 import { BsModalRef } from 'ngx-bootstrap';
@@ -19,7 +20,7 @@ import { MockupBackendService } from '../../../services/mockup-backend.service';
 import { LocalStorageKeys } from '../../../definitions/const/local-storage-keys';
 import { ServicesStatus } from '../../../definitions/enums/services-status.enum';
 import { KeyValue } from '../../../definitions/interfaces/key-value';
-import {ServiceGroupDeploymentSpecs} from '../../../definitions/interfaces/service-group-deployment-specs';
+import { ServiceGroupDeploymentSpecs } from '../../../definitions/interfaces/service-group-deployment-specs';
 
 @Component({
   selector: 'app-service-instances-info',
