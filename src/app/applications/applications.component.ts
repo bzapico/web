@@ -754,6 +754,8 @@ export class ApplicationsComponent extends ToolsComponent implements OnInit, OnD
    */
   private setRegisteredAndInstances(cluster: any) {
     const instancesInCluster = this.getAppsInCluster(cluster.cluster_id);
+    // console.log('GET APPS IN CLUSTER ::: CLUSTER ID ::: ', cluster.cluster_id);
+    // console.log('GET APPS IN CLUSTER ::: INSTANCES  ::: ', instancesInCluster);
     instancesInCluster.forEach(instance => {
       const registeredApp = this.getRegisteredApp(this.addNodeInstance(instance, cluster));
       if (registeredApp.length > 0) {
@@ -761,7 +763,7 @@ export class ApplicationsComponent extends ToolsComponent implements OnInit, OnD
         if (this.filters.instances && this.filters.registered) {
           this.setLinksInGraph(
               registeredApp[0]['app_descriptor_id'],
-              instance['app_instance_id']);
+              instance['app_instance_id'] + '-' + cluster.cluster_id);
         }
       }
       if (this.filters.clusters && this.filters.instances) {
@@ -770,7 +772,7 @@ export class ApplicationsComponent extends ToolsComponent implements OnInit, OnD
             && instance.status_name.toLowerCase() !== AppStatus.DeploymentError)
             || !this.areIncludedInstancesWithError) {
           this.setLinksInGraph(
-              instance['app_instance_id'],
+              instance['app_instance_id'] + '-' + cluster.cluster_id,
               cluster.cluster_id);
         }
       }
