@@ -226,21 +226,20 @@ export class ToolsComponent implements OnInit {
         if (this.areIncludedInstancesWithError
             && (this.instances[indexInstance].status_name.toLowerCase() === AppStatus.Error
                 || this.instances[indexInstance].status_name.toLowerCase() === AppStatus.DeploymentError)) {
-          appsInCluster[this.instances[indexInstance].app_instance_id + '-' + clusterId] = this.instances[indexInstance];
+          appsInCluster[this.instances[indexInstance].app_instance_id] = this.instances[indexInstance];
         } else {
           const groups = this.instances[indexInstance].groups || [];
           for (let indexGroup = 0, groupsLength = groups.length; indexGroup < groupsLength; indexGroup++) {
             const serviceInstances = groups[indexGroup].service_instances || [];
             for (let indexService = 0; indexService < serviceInstances.length; indexService++) {
               if (serviceInstances[indexService].deployed_on_cluster_id === clusterId) {
-                appsInCluster[serviceInstances[indexService].app_instance_id + '-' + clusterId] = this.instances[indexInstance];
+                appsInCluster[serviceInstances[indexService].app_instance_id] = this.instances[indexInstance];
               }
             }
           }
         }
       }
     }
-    console.log('MIRA LAS APPS :: ', appsInCluster);
     return Object.values(appsInCluster);
   }
   /**
@@ -327,7 +326,7 @@ export class ToolsComponent implements OnInit {
     const instanceName = instance.name.toLowerCase();
     return {
     ...{
-      id: instance.app_instance_id + '-' + cluster.cluster_id,
+      id: instance.app_instance_id,
       app_descriptor_id: instance.app_descriptor_id,
       label: instance.name,
       type: NodeType.Instances,
