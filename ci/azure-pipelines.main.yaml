@@ -36,7 +36,7 @@ jobs:
       versionSpec: '8.12.0' 
 
   - script: |
-      sudo npm install -g @angular/cli@7.3.6 && \
+      #sudo npm install -g @angular/cli@7.3.6 && \
       sudo chown -R $(whoami):$(id -gn) /home/$(whoami) && \
       npm_output=$(npm install 2>&1)
 
