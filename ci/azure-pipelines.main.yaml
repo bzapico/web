@@ -31,7 +31,25 @@ jobs:
       buildUrl: $(buildUrl)$(Build.BuildId)
       slackWebhook: $(slackBuilds)
 
-  - template: angular/dependencies.yaml@ci_templates
+  - task: NodeTool@0
+    inputs:
+      versionSpec: '8.12.0' 
+
+  - script: |
+      sudo npm install -g @angular/cli@7.3.6 && \
+      sudo chown -R $(whoami):$(id -gn) /home/$(whoami) && \
+      npm_output=$(npm install 2>&1)
+
+      if [ $? -ne 0 ]; then
+        echo "##vso[task.logissue type=error]There was an error installing the dependencies.%0D%0ACommand output:%0D%0A${npm_output//$'\n'/'%0D%0A'}%0D%0AError CIE0023"
+        echo "##vso[task.complete result=Failed;]"
+        echo "Install dependencies step failed. Output:" >> $(system.defaultWorkingDirectory)/pipeline_errors
+        echo $npm_output >> $(system.defaultWorkingDirectory)/pipeline_errors
+        echo "" >> $(system.defaultWorkingDirectory)/pipeline_errors
+      fi
+    displayName: 'Install dependencies'
+
+  #- template: angular/dependencies.yaml@ci_templates
     
   - template: angular/test.yaml@ci_templates
   
