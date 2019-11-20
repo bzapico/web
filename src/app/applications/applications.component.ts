@@ -841,7 +841,9 @@ export class ApplicationsComponent extends ToolsComponent implements OnInit, OnD
     if (!this.searchTermGraph
         || (this.searchTermGraph && !nodeName.includes(this.searchTermGraph) && !this.initialState.showOnlyNodes)
         || (this.searchTermGraph && nodeName.includes(this.searchTermGraph))) {
-      this.graphData.nodes.push(node);
+      if (this.graphData.nodes.filter(item => item.id === node.id).length === 0) {
+        this.graphData.nodes.push(node);
+      }
     }
   }
   /**
