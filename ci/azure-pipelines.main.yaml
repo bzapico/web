@@ -34,7 +34,7 @@ stages:
   dependsOn: 'SlackStart'
   jobs:
   - job: 
-    condition: eq(${{ language }}, 'angular') 
+    condition: eq(variables.language, 'angular') 
     pool:
       vmImage: 'ubuntu-latest'  
     steps:
