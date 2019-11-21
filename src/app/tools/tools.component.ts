@@ -26,44 +26,26 @@ import { ApplicationInstance } from '../definitions/models/application-instance'
   template: ``
 })
 export class ToolsComponent implements OnInit {
-  /**
-   * It sets a border color for found nodes by a term in the graph
-   */
-  static readonly FOUND_NODES_BORDER_COLOR = '#5800FF';
-  /**
-   * It sets a border size for found nodes by a term in the graph
-   */
-  static readonly FOUND_NODES_BORDER_SIZE = 4;
-  /**
-   * Refresh ratio
-   */
-  static readonly REFRESH_INTERVAL = 20000;
-  /**
-   * It sets the status colors for nodes
-   */
-  static readonly STATUS_COLORS = {
-    RUNNING: '#00E6A0',
-    ERROR: '#F7478A',
-    OTHER: '#FFEB6C',
-    OFFLINE: '#949494'
-  };
-  /**
-   * It sets the status colors for nodes
-   */
-  static readonly STATUS_TEXT_COLORS = {
-    RUNNING: '#FFFFFF',
-    ERROR: '#FFFFFF',
-    OTHER: '#444444',
-    OFFLINE: '#FFFFFF'
-  };
-  /**
-   * It sets a height for clusters nodes in the graph
-   */
-  static readonly CUSTOM_HEIGHT_CLUSTERS = 58;
-  /**
-   * It sets a height for instances nodes in the graph
-   */
-  static readonly CUSTOM_HEIGHT_INSTANCES = 32;
+
+  constructor() {
+    this.graphData = new GraphData([], []);
+    this.graphReset = false;
+    this.instances = [];
+    this.orientation = 'TB';
+    this.curve = shape.curveBasis;
+    this.autoZoom = true;
+    this.autoCenter = true;
+    this.enableZoom = true;
+    this.draggingEnabled = false;
+    this.organizationId = null;
+    this.gradient = true;
+    this.doughnut = true;
+    this.colorScheme = {
+      domain: ['#5800FF', '#828282']
+    };
+    this.searchTermGraph = '';
+    this.areIncludedInstancesWithError = true;
+  }
   /**
    * Backend reference
    */
@@ -98,26 +80,6 @@ export class ToolsComponent implements OnInit {
    * Search process
    */
   searchTermGraph: string;
-
-  constructor() {
-    this.graphData = new GraphData([], []);
-    this.graphReset = false;
-    this.instances = [];
-    this.orientation = 'TB';
-    this.curve = shape.curveBasis;
-    this.autoZoom = true;
-    this.autoCenter = true;
-    this.enableZoom = true;
-    this.draggingEnabled = false;
-    this.organizationId = null;
-    this.gradient = true;
-    this.doughnut = true;
-    this.colorScheme = {
-      domain: ['#5800FF', '#828282']
-    };
-    this.searchTermGraph = '';
-    this.areIncludedInstancesWithError = true;
-  }
 
   ngOnInit() {
     // Get User data from localStorage
@@ -346,4 +308,42 @@ export class ToolsComponent implements OnInit {
         outbound_connections: instance.outbound_connections || [],
     };
   }
+  /**
+   * It sets a border color for found nodes by a term in the graph
+   */
+  static readonly FOUND_NODES_BORDER_COLOR = '#5800FF';
+  /**
+   * It sets a border size for found nodes by a term in the graph
+   */
+  static readonly FOUND_NODES_BORDER_SIZE = 4;
+  /**
+   * Refresh ratio
+   */
+  static readonly REFRESH_INTERVAL = 20000;
+  /**
+   * It sets the status colors for nodes
+   */
+  static readonly STATUS_COLORS = {
+    RUNNING: '#00E6A0',
+    ERROR: '#F7478A',
+    OTHER: '#FFEB6C',
+    OFFLINE: '#949494'
+  };
+  /**
+   * It sets the status colors for nodes
+   */
+  static readonly STATUS_TEXT_COLORS = {
+    RUNNING: '#FFFFFF',
+    ERROR: '#FFFFFF',
+    OTHER: '#444444',
+    OFFLINE: '#FFFFFF'
+  };
+  /**
+   * It sets a height for clusters nodes in the graph
+   */
+  static readonly CUSTOM_HEIGHT_CLUSTERS = 58;
+  /**
+   * It sets a height for instances nodes in the graph
+   */
+  static readonly CUSTOM_HEIGHT_INSTANCES = 32;
 }

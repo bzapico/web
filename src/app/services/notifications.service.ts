@@ -18,20 +18,18 @@ import { Notification } from '../definitions/interfaces/notification';
   providedIn: 'root'
 })
 export class NotificationsService {
-  /**
-   * It sets the timeout in actions like undeploying or deleting
-   */
-  private static readonly TIMEOUT_ACTION = 3000;
-  /**
-   * It sets the timeout for errors
-   */
-  private static readonly TIMEOUT_ERROR = 5000;
-
-  private _notifications: any[];
 
   constructor() {
     this._notifications = [];
   }
+  /**
+   * Get notifications list
+   */
+  get notifications() {
+    return this._notifications;
+  }
+
+  private _notifications: any[];
 
   /**
   * add()
@@ -47,12 +45,6 @@ export class NotificationsService {
       }
     }
     this._notifications.push(notificationInstance);
-  }
-  /**
-   * Get notifications list
-   */
-  get notifications() {
-    return this._notifications;
   }
   /**
    * onClosed() will show close button to the right of the alert for dismiss option
@@ -74,4 +66,12 @@ export class NotificationsService {
       return v.toString(16);
     });
   }
+  /**
+   * It sets the timeout in actions like undeploying or deleting
+   */
+  private static readonly TIMEOUT_ACTION = 3000;
+  /**
+   * It sets the timeout for errors
+   */
+  private static readonly TIMEOUT_ERROR = 5000;
 }
