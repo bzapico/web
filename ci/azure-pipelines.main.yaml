@@ -38,12 +38,9 @@ stages:
       vmImage: 'ubuntu-latest'  
     steps:
     - template: misc/nalej-component.yaml@ci_templates 
-    - script:
-        echo $(languageVersion)
-        echo $(appList)
+
     - template: steps/angular-main.yaml@ci_templates
-      parameters: 
-        languageVersion: $(languageVersion)
+      condition: eq(variables['languageVersion'], 'angular')
 
 - stage: 'ImageBuild'
   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
