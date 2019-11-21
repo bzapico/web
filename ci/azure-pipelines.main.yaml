@@ -13,46 +13,70 @@ resources:
       endpoint: nalej
       ref: refs/heads/feature/NP-2419_Fix_Nodejs_Angular_versions
 
-jobs:
-- job: MainWorkflow
 
-  pool:
-    vmImage: 'ubuntu-latest'
+stages:
+- stage: 'SlackStart'
+  jobs:
+  - job: 
+    pool:
+      vmImage: 'ubuntu-latest'    
+    steps:
+    - template: slack/build/start.yaml@ci_templates
+      parameters:
+        author: $(authorName)
+        repository: $(Build.Repository.Name)
+        branch: $(Build.SourceBranch)
+        commit: $(Build.SourceVersionMessage)
+        buildUrl: $(buildUrl)$(Build.BuildId)
+        slackWebhook: $(slackBuilds)
+
+- stage: 'BinaryBuild'
+  dependsOn: 'SlackStart'
+  jobs:
+  - job: 
+    pool:
+      vmImage: 'ubuntu-latest'  
+    steps:
+    - template: steps/angular-main.yaml@ci_templates
+
+- stage: 'ImageBuild'
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+  dependsOn: 'BinaryBuild'
+  jobs:
+  - job: 
+    pool:
+      vmImage: 'ubuntu-latest'  
+    steps:     
+    - template: docker/login.yaml@ci_templates
   
-  steps:
-  - template: slack/build/start.yaml@ci_templates
-    parameters:
-      author: $(authorName)
-      repository: $(Build.Repository.Name)
-      branch: $(Build.SourceBranch)
-      commit: $(Build.SourceVersionMessage)
-      buildUrl: $(buildUrl)$(Build.BuildId)
-      slackWebhook: $(slackBuilds)
+    - script: |
+        build_output=$(docker build --no-cache -t nalej/web:edge -f components/web/Dockerfile.ci .)
 
-  - template: steps/angular-main.yaml@ci_templates
-      
-  - template: docker/login.yaml@ci_templates
+        if [ $? -ne 0 ]; then
+          echo "##vso[task.logissue type=error]There was an error creating the docker image nalej/web:edge.%0D%0ACommand output:%0D%0A${build_output//$'\n'/'%0D%0A'}%0D%0AError CIE0025"
+          echo "##vso[task.complete result=Failed;]"
+        fi
+      condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+      displayName: Build the docker images
   
-  - script: |
-      build_output=$(docker build --no-cache -t nalej/web:edge -f components/web/Dockerfile.ci .)
+    - script: |
+        push_output=$(docker push nalej/web:edge)
 
-      if [ $? -ne 0 ]; then
-        echo "##vso[task.logissue type=error]There was an error creating the docker image nalej/web:edge.%0D%0ACommand output:%0D%0A${build_output//$'\n'/'%0D%0A'}%0D%0AError CIE0025"
-        echo "##vso[task.complete result=Failed;]"
-      fi
-    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
-    displayName: Build the docker images
-  
-  - script: |
-      push_output=$(docker push nalej/web:edge)
-
-      if [ $? -ne 0 ]; then
-        echo "##vso[task.logissue type=error]There was an error pushing the docker image nalej/web:edge.%0D%0ACommand output:%0D%0A${push_output//$'\n'/'%0D%0A'}%0D%0AError CIE0026"
-        echo "##vso[task.complete result=Failed;]"
-      fi
-    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
-    displayName: Push docker images
+        if [ $? -ne 0 ]; then
+          echo "##vso[task.logissue type=error]There was an error pushing the docker image nalej/web:edge.%0D%0ACommand output:%0D%0A${push_output//$'\n'/'%0D%0A'}%0D%0AError CIE0026"
+          echo "##vso[task.complete result=Failed;]"
+        fi
+      condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+      displayName: Push docker images
     
-  - template: docker/logout.yaml@ci_templates
+    - template: docker/logout.yaml@ci_templates
   
-  - template: steps/slack-finish-main.yaml@ci_templates
+
+- stage: 'SlackFinish'
+  condition: always()
+  jobs:
+  - job: 
+    pool:
+      vmImage: 'ubuntu-latest'  
+    steps: 
+    - template: steps/slack-finish-main.yaml@ci_templates
