@@ -84,7 +84,13 @@
         ],
         "@typescript-eslint/rule-name": "error",
         "@typescript-eslint/restrict-plus-operands": "error",
-        "prettier/prettier": "error",
+        "prettier/prettier": [
+            "error",
+            {
+                // Overrides eslint (using prettier)
+                "singleQuote": true
+            }
+        ],
         "@typescript-eslint/explicit-function-return-type": 0
     }
 }
