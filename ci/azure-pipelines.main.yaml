@@ -1,9 +1,9 @@
 variables: 
-  - group: common-vars
-  - group: slack-webhooks
-  - group: docker-registries
-  - group: ci-service-principal
-  - group: ssh-credentials
+  - template: variables/global.yaml@ci_templates
+  - template: variables/go.yaml@ci_templates
+  - template: variables/k8s.yaml@ci_templates
+  - template: variables/nalej.yaml@ci_templates
+  - template: variables/git.yaml@ci_templates
 
 resources:
   repositories:
@@ -20,7 +20,6 @@ jobs:
     vmImage: 'ubuntu-latest'
   
   steps:
-  - template: misc/variables.yaml@ci_templates
 
   - template: slack/build/start.yaml@ci_templates
     parameters:
@@ -36,7 +35,7 @@ jobs:
       versionSpec: '8.12.0' 
 
   - script: |
-      sudo npm install -g @angular/cli@7.3.6 && \
+      #sudo npm install -g @angular/cli@7.3.6 && \
       sudo chown -R $(whoami):$(id -gn) /home/$(whoami) && \
       npm_output=$(npm install 2>&1)
 
