@@ -38,6 +38,7 @@ stages:
       vmImage: 'ubuntu-latest'  
     steps:
     - template: steps/angular-main.yaml@ci_templates
+      parameters: $(languageVersion)
 
 - stage: 'ImageBuild'
   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
