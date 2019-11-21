@@ -11,7 +11,7 @@ resources:
       type: github
       name: nalej/ci-templates
       endpoint: nalej
-      ref: refs/tags/v1.0.3
+      #ref: refs/tags/v1.0.3
 
 jobs:
 - job: MainWorkflow
@@ -103,14 +103,5 @@ jobs:
     displayName: Push docker images
     
   - template: docker/logout.yaml@ci_templates
-
-  - template: slack/build/finish.yaml@ci_templates
-    parameters:
-      author: $(authorName)
-      repository: $(Build.Repository.Name)
-      branch: $(Build.SourceBranch)
-      commit: $(Build.SourceVersionMessage)
-      buildUrl: $(buildUrl)$(Build.BuildId)
-      slackWebhook: $(slackBuilds)
   
   - template: steps/slack-finish-main.yaml@ci_templates
