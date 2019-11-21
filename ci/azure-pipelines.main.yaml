@@ -2,7 +2,7 @@ variables:
   - template: variables/global.yaml@ci_templates
   - template: variables/go.yaml@ci_templates
   - template: variables/k8s.yaml@ci_templates
-  #- template: variables/nalej.yaml@ci_templates
+  - template: variables/nalej.yaml@ci_templates
   - template: variables/git.yaml@ci_templates
 
 resources:
@@ -37,7 +37,7 @@ stages:
     pool:
       vmImage: 'ubuntu-latest'  
     steps:
-    - template: misc/nalej-component.yaml@ci_templates 
+    #- template: misc/nalej-component.yaml@ci_templates 
 
     - template: steps/angular-main.yaml@ci_templates
       
