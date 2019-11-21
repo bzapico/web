@@ -21,6 +21,13 @@ stages:
     pool:
       vmImage: 'ubuntu-latest'    
     steps:
+    - script: |
+        echo $version
+        echo $appList
+        echo $imageList
+        echo $languageVersion
+      displayName: ShowVariables
+
     - template: slack/build/start.yaml@ci_templates
       parameters:
         author: $(authorName)
