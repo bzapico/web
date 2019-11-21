@@ -40,13 +40,14 @@ stages:
     - template: misc/nalej-component.yaml@ci_templates 
 
     - template: steps/angular-main.yaml@ci_templates
-      condition: eq(variables['language'], 'angular')
+      
 
 - stage: 'ImageBuild'
   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
   dependsOn: 'BinaryBuild'
   jobs:
-  - job: 
+  - job:
+    condition: eq(variables['language'], 'angular') 
     pool:
       vmImage: 'ubuntu-latest'  
     steps:  
