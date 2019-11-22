@@ -2,7 +2,6 @@ variables:
   - template: variables/global.yaml@ci_templates
   - template: variables/go.yaml@ci_templates
   - template: variables/k8s.yaml@ci_templates
-  #- template: variables/nalej.yaml@ci_templates
   - template: variables/git.yaml@ci_templates
 
 resources:
@@ -30,7 +29,7 @@ stages:
         buildUrl: $(buildUrl)$(Build.BuildId)
         slackWebhook: $(slackBuilds)
 
-- stage: 'BinaryBuild'
+- stage: 'AngularBuild'
   dependsOn: 'SlackStart'
   jobs:
   - job: 
@@ -41,7 +40,7 @@ stages:
     - template: steps/angular-main.yaml@ci_templates   
 
 - stage: 'ImageBuild'
-  #condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
   dependsOn: 'BinaryBuild'
   jobs:
   - job:
