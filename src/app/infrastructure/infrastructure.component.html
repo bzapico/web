@@ -9,7 +9,7 @@
   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   See the License for the specific language governing permissions and
   limitations under the License.
- -->
+-->
 
 <div class="row row-title">
   <div class="col-xl-12">
@@ -22,7 +22,7 @@
       <!-- Infrastructure summary card -->
       <div class="card">
         <div class="card-title-name">
-          <h5>{{'devices.summary.title' | translate}}</h5>
+          <h5>{{'resources.summary' | translate}}</h5>
         </div>
         <div class="summary-card">
           <div *ngIf="ecsTotal > 0" class="summary-box">
@@ -77,7 +77,6 @@
         <div class="card-title-name">
           <h5>{{'infrastructure.inventory.title' | translate}}</h5>
         </div>
-        <!-- Install buttons -->
         <div class="install-options">
           <button
             (click)="installAgent()"
@@ -97,11 +96,10 @@
           </button>
         </div>
         <div class="row">
-          <!-- Quick filters -->
           <div class="col">
             <div class="quick-filters-title">{{'infrastructure.quickFilters.title' | translate}}</div>
             <button 
-              (click)="addQuickFilter('EC')"     
+              (click)="addQuickFilter('EC')"
               [ngClass]=
               "{
                 'quick-filters-btn-selected': quickFilter === 'EC',
@@ -113,8 +111,8 @@
               <i class="material-icons i-filters">device_hub</i>
               <span>{{'infrastructure.quickFilters.ecs' | translate}}</span>
             </button>
-            <button  
-              (click)="addQuickFilter('ASSET')" 
+            <button
+              (click)="addQuickFilter('ASSET')"
               [ngClass]=
               "{
                 'quick-filters-btn-selected': quickFilter === 'ASSET',
@@ -126,8 +124,8 @@
               <i class="material-icons i-filters">memory</i>
               <span>{{'infrastructure.quickFilters.assets' | translate}}</span>
             </button>
-            <button 
-              (click)="addQuickFilter('DEVICE')" 
+            <button
+              (click)="addQuickFilter('DEVICE')"
               [ngClass]=
               "{
                 'quick-filters-btn-selected': quickFilter === 'DEVICE',
@@ -140,12 +138,11 @@
               <span>{{'infrastructure.quickFilters.devices' | translate}}</span>
             </button>
           </div>
-          <!-- Search input -->
           <div class="col-4">
             <form>
               <div class="search-box">
                 <input 
-                  name="searchTerm" 
+                  name="searchTerm"
                   [(ngModel)]="searchTerm"
                   type="text" 
                   placeholder="{{'searcher.placeholder' | translate }}"
@@ -284,7 +281,7 @@
                     </span>
                   </div>
                   <div 
-                    (click)="setOrder('labels')" 
+                    (click)="setOrder('labels')"
                     [ngClass]="getCategoryCSSClass('labels')"
                     scope="col" 
                     class="label-th col-12">
@@ -359,7 +356,7 @@
                         {{label.key}}: {{label.value}}
                     </div>
                     <div class="label-btns">
-                      <div 
+                      <div
                         *ngIf="isAnyLabelSelected(item.id) === false"
                         (click)="addLabel(item)"
                         tooltip="{{'infrastructure.label.add' | translate}}" 
@@ -367,7 +364,7 @@
                         class="label-btn-blue">
                         <i class="material-icons i-add">add</i>
                       </div>
-                      <div 
+                      <div
                         *ngIf="isAnyLabelSelected(item.id) === true"
                         (click)="deleteLabel(item)"
                         tooltip="{{'infrastructure.label.delete' | translate}}"
@@ -400,7 +397,6 @@
             </div>
           </div>
         </div>
-        <!-- No info to show -->
         <div *ngIf=
           "loadedData &&
           inventory.length === 0 &&
@@ -408,11 +404,9 @@
           class="no-elements">
           {{'infrastructure.inventory.noInfo' | translate}}
         </div>
-        <!-- Requested error -->
         <div *ngIf="loadedData && requestError" class="no-elements">
           <p>{{requestError}}</p>
         </div>
-        <!-- Loader -->
         <div *ngIf="!loadedData" class="nalej-loader-box">
           <div class="loader">
             <svg class="circular" viewBox="25 25 50 50">

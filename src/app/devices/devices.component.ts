@@ -428,9 +428,9 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   getBeautyCategoryName(sortedByRawCategory: string): string {
     switch (sortedByRawCategory) {
       case 'device_status_name':
-        return this.translateService.instant('devices.tableStatus');
+        return this.translateService.instant('tables.tableStatus');
       case 'register_since':
-        return this.translateService.instant('devices.tableDate');
+        return this.translateService.instant('tables.tableDate');
       default:
         return sortedByRawCategory;
     }

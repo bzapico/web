@@ -1,15 +1,15 @@
 <!-- 
-  Copyright 2019 Nalej
-  Licensed under the Apache License, Version 2.0 (the "License");
-  you may not use this file except in compliance with the License.
-  You may obtain a copy of the License at
-      http://www.apache.org/licenses/LICENSE-2.0
-  Unless required by applicable law or agreed to in writing, software
-  distributed under the License is distributed on an "AS IS" BASIS,
-  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  See the License for the specific language governing permissions and
-  limitations under the License.
- -->
+    Copyright 2019 Nalej
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+        http://www.apache.org/licenses/LICENSE-2.0
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
 
 <div class="row row-title">
     <div class="col-lg-12">
@@ -22,7 +22,7 @@
             <!-- Summary info card -->
             <div class="card row-info-app flex-grow-0">
                 <div class="card-title-name">
-                    <h5>{{'devices.summary.title' | translate}}</h5>
+                    <h5>{{'resources.summary' | translate}}</h5>
                 </div>
                 <div class="summary-card">
                     <div class="summary-box">
@@ -57,15 +57,15 @@
                     <div class="col">
                         <ul class="tabs-box">
                             <li (click)="changeActiveList('registered')" [ngClass]="{
-                    'active': !showInstances,
-                    'tabs-btn-selected': !showInstances
-                  }" class="tabs-btn">
+                        'active': !showInstances,
+                        'tabs-btn-selected': !showInstances
+                    }" class="tabs-btn">
                                 {{'apps.registeredTitle' | translate}}
                             </li>
                             <li (click)="changeActiveList('instances')" [ngClass]="{
-                    'active': showInstances,
-                    'tabs-btn-selected': showInstances
-                  }" class="tabs-btn">
+                        'active': showInstances,
+                        'tabs-btn-selected': showInstances
+                    }" class="tabs-btn">
                                 {{'resources.instances' | translate}}
                             </li>
                         </ul>
@@ -75,10 +75,10 @@
                 <div class="row">
                     <!-- Search input instances -->
                     <div *ngIf="loadedData &&
-            instances &&
-            instances.length > 0 &&
-            !requestError && 
-            showInstances" class="col-12">
+                instances &&
+                instances.length > 0 &&
+                !requestError && 
+                showInstances" class="col-12">
                         <form>
                             <div class="search-box">
                                 <input name="searchTerm" [(ngModel)]="searchTerm" type="text"
@@ -94,10 +94,10 @@
                     </div>
                     <!-- Search input registered -->
                     <div *ngIf="loadedData &&
-            registered &&
-            registered.length > 0 &&
-            !requestError && 
-            !showInstances" class="col-12">
+                registered &&
+                registered.length > 0 &&
+                !requestError && 
+                !showInstances" class="col-12">
                         <form>
                             <div class="search-box">
                                 <input name="searchTermRegistered" [(ngModel)]="searchTermRegistered" type="text"
@@ -116,10 +116,10 @@
                 <div class="row">
                     <!-- App Instances Sorting messages -->
                     <div *ngIf="loadedData &&
-            instances &&
-            instances.length > 0 &&
-            !requestError && 
-            showInstances" class="col-12">
+                instances &&
+                instances.length > 0 &&
+                !requestError && 
+                showInstances" class="col-12">
                         <p *ngIf="searchTerm && !filterField" class="sorting-message">
                             {{ ( instances | filter : searchTerm : ['name', 'labels', 'status'])?.length }}
                             {{'sortingMessage.resultsFound' | translate}}
@@ -151,10 +151,10 @@
                     </div>
                     <!-- Registered Apps sorting -->
                     <div *ngIf="loadedData &&
-            registered &&
-            registered.length > 0 &&
-            !requestError && 
-            !showInstances" class="col-12">
+                registered &&
+                registered.length > 0 &&
+                !requestError && 
+                !showInstances" class="col-12">
                         <p *ngIf="searchTermRegistered && !filterFieldRegistered" class="sorting-message">
                             {{ ( registered | filter : searchTermRegistered : ['name', 'labels', 'instances'])?.length }}
                             {{'sortingMessage.resultsFound' | translate}}
@@ -191,10 +191,10 @@
                 </div>
                 <!-- App Instances table -->
                 <div *ngIf="loadedData &&
-          instances &&
-          instances.length > 0 &&
-          !requestError && 
-          showInstances" class="nalej-table-box no-p-col no-m-row">
+            instances &&
+            instances.length > 0 &&
+            !requestError && 
+            showInstances" class="nalej-table-box no-p-col no-m-row">
                     <div class="nalej-table">
                         <div class="nalej-thead row">
                             <div class="col-10">
@@ -240,14 +240,14 @@
                             </div>
                         </div>
                         <div *ngFor="let app of instances |
-              sortBy : sortedBy : reverse : true |
-              filter : searchTerm : ['name', 'labels', 'status_name']" class="nalej-tbody row">
-                            <!-- This solution applies when the backend updates the app status after triggering undeploy action 
-                (https://daisho.atlassian.net/browse/NP-1679)
-                <td 
-                (click)="goToInstanceView(app)"
-                [ngClass]="(app.status_name === 'UNDEPLOYING')? 'instance-disabled': 'app-info'" 
-                class="col-2"> -->
+                sortBy : sortedBy : reverse : true |
+                filter : searchTerm : ['name', 'labels', 'status_name']" class="nalej-tbody row">
+                                <!-- This solution applies when the backend updates the app status after triggering undeploy action 
+                    (https://daisho.atlassian.net/browse/NP-1679)
+                    <td 
+                    (click)="goToInstanceView(app)"
+                    [ngClass]="(app.status_name === 'UNDEPLOYING')? 'instance-disabled': 'app-info'" 
+                    class="col-2"> -->
                             <div class="col-10">
                                 <div class="row">
                                     <div class="col-6 nalej-td">
@@ -258,9 +258,9 @@
                                         </span>
                                     </div>
                                     <div [ngClass]="{'status-dot':classStatusCheck(app.status_name, 'running'),
-                      'status-dot-error':classStatusCheck(app.status_name, 'error'),
-                      'status-dot-process':classStatusCheck(app.status_name, 'process')
-                    }" tooltip="{{app.status_name | lowercase}}" placement="bottom"
+                        'status-dot-error':classStatusCheck(app.status_name, 'error'),
+                        'status-dot-process':classStatusCheck(app.status_name, 'process')
+                        }" tooltip="{{app.status_name | lowercase}}" placement="bottom"
                                         class="col-6 nalej-td col-center-lowercase">
                                     </div>
                                 </div>
@@ -275,8 +275,8 @@
                             </div>
                             <div class="col-2 text-center nalej-td-flex">
                                 <button (click)="openInstanceContextualMenu($event, app)" [ngClass]="{
-                    'action-btn-grey': app.app_instance_id !== activeContextMenuId,
-                    'action-btn-grey-selected': app.app_instance_id === activeContextMenuId }"
+                        'action-btn-grey': app.app_instance_id !== activeContextMenuId,
+                        'action-btn-grey-selected': app.app_instance_id === activeContextMenuId }"
                                     class="action-btn-grey position-relative">
                                     <i class="material-icons i-black">more_vert</i>
                                     <!-- Temporal workaround, in the future we should use the contextual menu component -->
@@ -284,10 +284,10 @@
                                     <div *ngIf="app.app_instance_id === activeContextMenuId"
                                         class="contextual-menu-wrapper">
                                         <div (click)="goToInstanceView(app)">
-                                            {{'devices.contextMenu.moreInfo' | translate}}
+                                            {{'infrastructure.contextMenu.moreInfo' | translate}}
                                         </div>
                                         <div (click)="undeploy(app)">
-                                            {{'apps.undeploy' | translate}}
+                                            {{'buttons.undeploy' | translate}}
                                         </div>
                                     </div>
                                 </button>
@@ -297,17 +297,17 @@
                 </div>
                 <!-- No app instances to show -->
                 <div *ngIf="loadedData
-           && (!instances || (instances && instances.length === 0))
-           && !requestError
-           && showInstances" class="no-elements">
+                && (!instances || (instances && instances.length === 0))
+                && !requestError
+                && showInstances" class="no-elements">
                     {{'apps.noAppsInstances' | translate}}
                 </div>
                 <!-- Registered Apps table -->
                 <div *ngIf="loadedData
-          && registered
-          && registered.length > 0
-          && !requestError
-          && !showInstances" class="nalej-table-box no-p-col no-m-row">
+            && registered
+            && registered.length > 0
+            && !requestError
+            && !showInstances" class="nalej-table-box no-p-col no-m-row">
                     <div class="nalej-table">
                         <div class="nalej-thead row">
                             <div class="col-10">
@@ -354,8 +354,8 @@
                         </div>
                         <div>
                             <div *ngFor="let app of registered |
-                sortBy : sortedBy : reverse : true |
-                filter : searchTerm : ['name', 'labels']" class="nalej-tbody row">
+                    sortBy : sortedBy : reverse : true |
+                    filter : searchTerm : ['name', 'labels']" class="nalej-tbody row">
                                 <div class="col-10">
                                     <div class="row">
                                         <div [routerLink]="['registered', app.app_descriptor_id]"
@@ -372,9 +372,9 @@
                                             <button *ngFor="let label of app.labels| keyvalue"
                                                 (click)="onLabelClick(app.app_descriptor_id, label.key, label.value)"
                                                 [ngClass]="{
-                            'label-content-selected': indexOfLabelSelected(app.app_descriptor_id, label.key, label.value) >= 0 ,
-                            'label-content': indexOfLabelSelected(app.app_descriptor_id,label.key, label.value) === -1
-                          }" class="label-content">
+                                'label-content-selected': indexOfLabelSelected(app.app_descriptor_id, label.key, label.value) >= 0 ,
+                                'label-content': indexOfLabelSelected(app.app_descriptor_id,label.key, label.value) === -1
+                            }" class="label-content">
                                                 {{label.key}}: {{label.value}}
                                             </button>
                                             <div class="label-btns">
@@ -396,19 +396,19 @@
                                 </div>
                                 <div class="col-2 actions-col nalej-td-flex">
                                     <button (click)="openRegisteredContextualMenu($event, app)" [ngClass]="{
-                        'action-btn-grey': app.app_descriptor_id !== activeContextMenuId,
-                        'action-btn-grey-selected': app.app_descriptor_id === activeContextMenuId
-                      }" class="action-btn-grey position-relative">
+                            'action-btn-grey': app.app_descriptor_id !== activeContextMenuId,
+                            'action-btn-grey-selected': app.app_descriptor_id === activeContextMenuId
+                        }" class="action-btn-grey position-relative">
                                         <i class="material-icons i-black">more_vert</i>
                                         <!-- Temporal workaround, in the future we should use the contextual menu component -->
                                         <!-- https://nalej.atlassian.net/browse/NP-2005 -->
                                         <div *ngIf="app.app_descriptor_id === activeContextMenuId"
                                             class="contextual-menu-wrapper">
                                             <div (click)="goToRegisteredView(app)">
-                                                {{'devices.contextMenu.moreInfo' | translate}}
+                                                {{'infrastructure.contextMenu.moreInfo' | translate}}
                                             </div>
                                             <div (click)="deployRegistered(app)">
-                                                {{'apps.deploy' | translate}}
+                                                {{'buttons.deploy' | translate}}
                                             </div>
                                             <div (click)="deleteApp(app)">
                                                 {{'label.deleteUp' | translate}}
@@ -422,16 +422,16 @@
                 </div>
                 <!-- No registered app to show -->
                 <div *ngIf="loadedData
-          && (!registered || (registered && registered.length === 0))
-          && !requestError
-          && !showInstances" class="no-elements">
+            && (!registered || (registered && registered.length === 0))
+            && !requestError
+            && !showInstances" class="no-elements">
                     {{'apps.noRegisteredApp' | translate}}
                 </div>
                 <!-- Requested error -->
                 <div *ngIf="loadedData && requestError" class="no-elements">
                     <p>{{requestError}}</p>
                 </div>
-                <!-- Loader -->
+
                 <div *ngIf="!loadedData" class="nalej-loader-box">
                     <div class="loader">
                         <svg class="circular" viewBox="25 25 50 50">
@@ -450,7 +450,6 @@
                 <div class="card-title-name">
                     <h5>{{'apps.title' | translate}}</h5>
                 </div>
-                <!-- Apps options buttons -->
                 <div class="row">
                     <div class="col">
                         <div class="apps-options">
@@ -460,7 +459,7 @@
                             </button>
                             <button (click)="deployInstance()" class="apps-actions-btn mr-3">
                                 <i class="material-icons i-options">play_arrow</i>
-                                {{'apps.deploy' | translate}}
+                                {{'buttons.deploy' | translate}}
                             </button>
                             <button (click)="manageConnections()" class="apps-actions-btn">
                                 <i class="material-icons-round i-options">link</i>
@@ -470,28 +469,27 @@
                     </div>
                 </div>
                 <div class="row">
-                    <!-- Quick filters -->
                     <div class="col">
                         <ul class="quick-filters-box">
                             <li>
                                 <i class="material-icons i-filter">filter_list</i>
                             </li>
                             <li (click)="addQuickFilter('registered')" [ngClass]="{
-                  'quick-filters-btn-selected': filters.registered,
-                  'quick-filters-btn': !filters.registered
-                }" tooltip="{{'apps.registeredTitle' | translate}}" placement="bottom" class="quick-filters-btn">
+                    'quick-filters-btn-selected': filters.registered,
+                    'quick-filters-btn': !filters.registered
+                    }" tooltip="{{'apps.registeredTitle' | translate}}" placement="bottom" class="quick-filters-btn">
                                 {{'apps.registeredTitle' | translate}}
                             </li>
                             <li (click)="addQuickFilter('instances')" [ngClass]="{
-                  'quick-filters-btn-selected': filters.instances,
-                  'quick-filters-btn': !filters.instances
-                }" tooltip="{{'resources.instances' | translate}}" placement="bottom" class="quick-filters-btn">
+                    'quick-filters-btn-selected': filters.instances,
+                    'quick-filters-btn': !filters.instances
+                    }" tooltip="{{'resources.instances' | translate}}" placement="bottom" class="quick-filters-btn">
                                 {{'resources.instances' | translate}}
                             </li>
                             <li (click)="addQuickFilter('clusters')" [ngClass]="{
-                  'quick-filters-btn-selected': filters.clusters,
-                  'quick-filters-btn': !filters.clusters
-                }" tooltip="{{'resources.clusters' | translate}}" placement="bottom" class="quick-filters-btn">
+                    'quick-filters-btn-selected': filters.clusters,
+                    'quick-filters-btn': !filters.clusters
+                    }" tooltip="{{'resources.clusters' | translate}}" placement="bottom" class="quick-filters-btn">
                                 {{'resources.clusters' | translate}}
                             </li>
                         </ul>
@@ -514,7 +512,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- Sorting messages -->
                 <div class="row row-sorting-lg">
                     <div class="col-12">
                         <p *ngIf="isSearchingInGraph && searchTermGraph && !quickFilter"

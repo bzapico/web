@@ -9,26 +9,25 @@
   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   See the License for the specific language governing permissions and
   limitations under the License.
- -->
+-->
 
 <div class="row row-title">
   <div class="col-12">
     <h2 class="section-title">{{'devices.title' | translate}}</h2>
   </div>
 </div>
-<!-- Summary and devices status timeline row -->
 <div class="row row-info">
   <div class="col-lg-4 h-100">
     <div class="card">
       <div class="card-title-name">
-        <h5>{{'devices.summary.title' | translate}}</h5>
+        <h5>{{'resources.summary' | translate}}</h5>
       </div>
       <div *ngIf="groups && groups.length > 0" class="summary-card">
         <div class="summary-box">
           <div class="circle">
               <span >{{groups.length}}</span>
           </div>
-          <p class="circle-name">{{'devices.summary.groups.title' | translate}}</p>
+          <p class="circle-name">{{'devices.summary.groupsTitle' | translate}}</p>
         </div>        
         <div class="summary-box">
           <div class="circle">
@@ -85,7 +84,6 @@
         <div class="col-10 card-title-name-mb">
           <h5>{{'devices.title' | translate}}</h5>
         </div>
-        <!-- Add group -->
         <div class="col-2 add-group-box">
           <button (click)="addGroup()" class="add-group-btn">
             <i class="material-icons i-add">add</i>
@@ -94,14 +92,12 @@
         </div>
       </div>
       <span *ngIf="loadedData" class="loaded-devices">
-        <!-- Search box -->
         <div  
           *ngIf=
           "groups && groups.length > 0 &&
           countDevices() != 0 &&
           loadedData"
           class="row mb-15">
-          <!-- Sorting messages -->
           <div class="col-8">  
             <p *ngIf="searchTerm && !filterField" class="sorting-message">
               {{'sortingMessage.filteredBy' | translate:{value: searchTerm} }}
@@ -127,7 +123,6 @@
               </span>
             </p> 
           </div>
-          <!-- Search input -->
           <div class="col-4">
             <form>
               <div class="search-box">
@@ -198,7 +193,7 @@
                               (click)="setOrder('name')"
                               [ngClass]="getCategoryCSSClass('name')"
                               class="label-th col-4">
-                              <span tooltip="{{'devices.tableName' | translate}}" placement="bottom">{{'devices.tableName' | translate}}</span>
+                              <span tooltip="{{'tables.tableName' | translate}}" placement="bottom">{{'tables.tableName' | translate}}</span>
                               <span *ngIf="sortedBy === 'name' && !reverse" class="expand-chevron">
                                 <i class="material-icons">expand_more</i>
                               </span>
@@ -211,7 +206,7 @@
                               (click)="setOrder('date')" 
                               [ngClass]="getCategoryCSSClass('date')"
                               class="label-th col-4">
-                              <span tooltip="{{'devices.tableDate' | translate}}" placement="bottom">{{'devices.tableDate' | translate}}</span>
+                              <span tooltip="{{'tables.tableDate' | translate}}" placement="bottom">{{'tables.tableDate' | translate}}</span>
                               <span *ngIf="sortedBy === 'date' && !reverse" class="expand-chevron">
                                 <i class="material-icons">expand_more</i>
                               </span>
@@ -224,7 +219,7 @@
                               (click)="setOrder('status')" 
                               [ngClass]="getCategoryCSSClass('status')"
                               class="label-th col-4 text-center">
-                              <span tooltip="{{'devices.tableStatus' | translate}}" placement="bottom">{{'devices.tableStatus' | translate}}</span>
+                              <span tooltip="{{'tables.tableStatus' | translate}}" placement="bottom">{{'tables.tableStatus' | translate}}</span>
                               <span *ngIf="sortedBy === 'status' && !reverse" class="expand-chevron">
                                 <i class="material-icons">expand_more</i>
                               </span>
@@ -237,7 +232,7 @@
                               (click)="setOrder('labels')" 
                               [ngClass]="getCategoryCSSClass('labels')"
                               class="label-th col-12">
-                              <span tooltip="{{'devices.tableLabels' | translate}}" placement="bottom">{{'devices.tableLabels' | translate}}</span>
+                              <span tooltip="{{'tables.tableLabels' | translate}}" placement="bottom">{{'tables.tableLabels' | translate}}</span>
                               <span *ngIf="sortedBy === 'labels' && !reverse" class="expand-chevron">
                                 <i class="material-icons">expand_more</i>
                               </span>
@@ -250,7 +245,7 @@
                         <div 
                           *ngIf="countDevices() > 0"
                           class="label-th col-1 text-center">
-                          <span tooltip="{{'devices.tableActions' | translate}}" placement="bottom">{{'devices.tableActions' | translate}}</span> 
+                          <span tooltip="{{'tables.tableActions' | translate}}" placement="bottom">{{'tables.tableActions' | translate}}</span> 
                         </div>
                       </div>
                       <span *ngIf="
@@ -360,27 +355,23 @@
                       </span>
                     </div>
                   </div> 
-                  <!-- No devices to show -->
                   <div *ngIf=
                     "getGroupDevices(group.device_group_id).length === 0 &&
                     loadedData"
                     class="no-elements-in-group">
                     {{'devices.noDevicesRegistered' | translate}}
                   </div>
-                  <!-- Requested error -->
                   <div *ngIf="requestError" class="no-elements">
                     <p>{{ requestError }}</p>
                   </div>
               </accordion-group>
             </accordion>
           </div>
-          <!-- No info to show -->
           <div *ngIf="loadedData && groups.length === 0" class="col no-elements-in-group">  
             {{'devices.noGroupsCreated' | translate}}
           </div>
         </div>
       </span>
-      <!-- Loader -->
       <div *ngIf="!loadedData" class="nalej-loader-box h-100 w-100">
         <div class="loader">
           <svg class="circular" viewBox="25 25 50 50">
