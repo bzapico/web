@@ -9,7 +9,7 @@
   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   See the License for the specific language governing permissions and
   limitations under the License.
- -->
+-->
 
 <div class="row row-title">
   <div class="col-lg-12">
@@ -22,7 +22,7 @@
       <!-- Summary info card -->
       <div class="card row-info-app flex-grow-0">
         <div class="card-title-name">
-          <h5>{{'devices.summary.title' | translate}}</h5>
+          <h5>{{'resources.summary' | translate}}</h5>
         </div>
         <div class="summary-card">
           <div class="summary-box">
@@ -325,10 +325,10 @@
                   <div *ngIf="app.app_instance_id === activeContextMenuId"
                     class="contextual-menu-wrapper">
                     <div (click)="goToInstanceView(app)">
-                      {{'devices.contextMenu.moreInfo' | translate}}
+                      {{'infrastructure.contextMenu.moreInfo' | translate}}
                     </div>
                     <div (click)="undeploy(app)">
-                      {{'apps.undeploy' | translate}}
+                      {{'buttons.undeploy' | translate}}
                     </div>
                   </div>
                 </button>
@@ -472,10 +472,10 @@
                     <div *ngIf="app.app_descriptor_id === activeContextMenuId"
                       class="contextual-menu-wrapper">
                       <div (click)="goToRegisteredView(app)">
-                        {{'devices.contextMenu.moreInfo' | translate}}
+                        {{'infrastructure.contextMenu.moreInfo' | translate}}
                       </div>
                       <div (click)="deployRegistered(app)">
-                        {{'apps.deploy' | translate}}
+                        {{'buttons.deploy' | translate}}
                       </div>
                       <div (click)="deleteApp(app)">
                         {{'label.deleteUp' | translate}}
@@ -500,7 +500,7 @@
         <div *ngIf="loadedData && requestError" class="no-elements">
           <p>{{requestError}}</p>
         </div>
-        <!-- Loader -->
+        
         <div *ngIf="!loadedData" class="nalej-loader-box">
           <div class="loader">
             <svg class="circular" viewBox="25 25 50 50">
@@ -525,7 +525,6 @@
         <div class="card-title-name">
           <h5>{{'apps.title' | translate}}</h5>
         </div>
-        <!-- Apps options buttons -->
         <div class="row">
           <div class="col">
             <div class="apps-options">
@@ -539,7 +538,7 @@
                 (click)="deployInstance()"
                 class="apps-actions-btn mr-3">
                 <i class="material-icons i-options">play_arrow</i>
-                  {{'apps.deploy' | translate}}
+                  {{'buttons.deploy' | translate}}
               </button>
               <button 
                 (click)="manageConnections()"
@@ -551,7 +550,6 @@
           </div>
         </div>
         <div class="row">
-          <!-- Quick filters -->
           <div class="col">
             <ul class="quick-filters-box">
               <li>
@@ -620,7 +618,6 @@
             </div>
           </div>      
         </div>
-        <!-- Sorting messages -->
         <div class="row row-sorting-lg"> 
           <div class="col-12">  
             <p *ngIf="isSearchingInGraph && searchTermGraph && !quickFilter" class="sorting-message text-right">

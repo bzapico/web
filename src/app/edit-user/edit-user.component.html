@@ -9,10 +9,9 @@
   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   See the License for the specific language governing permissions and
   limitations under the License.
- -->
+-->
 
 <div class="modal-card">
-  <!-- Header -->
   <div class="modal-header">
     <h3 class="nalej-form-title">{{title}}</h3>
     <button 
@@ -23,7 +22,6 @@
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
-  <!-- Body -->
   <div class="modal-body">
     <form [formGroup]="editUserForm" (ngSubmit)="saveUserChanges(f)">
       <div class="form-group">
@@ -86,11 +84,9 @@
           class="form-control">
         <div class="error-h"></div>
       </div>
-        <!-- Change password -->
       <div (click)="openChangePassword()" class="change-password">
         <p>Change password</p>
       </div>
-      <!-- Save new user -->
       <div class="form-group-btn">
         <button class="nalej-form-btn-blue" [disabled]="loading">
           <span class="align-bottom">Save changes</span>

@@ -9,7 +9,7 @@
   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   See the License for the specific language governing permissions and
   limitations under the License.
- -->
+-->
 
 <div class="row row-title">
   <div class="col-xl-12">
@@ -19,7 +19,6 @@
 <div class="row row-app-main resources-view">
   <div class="col-lg-4 h-100">
     <div class="flex-col-app">
-      <!-- Summary info card -->
       <div class="card row-info-app flex-grow-0">
         <div class="card-title-name">
           <h5>{{'resources.summary' | translate}}</h5>
@@ -54,7 +53,6 @@
           <h5>{{'resources.list' | translate}}</h5>
         </div>
         <div class="row">
-          <!-- Search input -->
           <div class="col-12">
             <form>
               <div class="search-box">
@@ -95,7 +93,7 @@
             {{'sortingMessage.andFilteredBy' | translate:{value: searchTerm} }} 
             <span (click)="resetFilters('clusters')" class="reset-search">{{'sortingMessage.reset' | translate}}</span>
           </p> 
-          <p *ngIf="!filterField && !searchTerm" class="sorting-message">
+          <p *ngIf="!filterField && !searchTerm" class="sorting-message"></p>
         </div>
         </div>
         <!-- Clusters table -->
@@ -110,7 +108,7 @@
               <div class="col-10">
                 <div class="row">
                   <div 
-                    (click)="setOrder('clusters','name')"            
+                    (click)="setOrder('clusters','name')"
                     [ngClass]="getCategoryCSSClass('name')"
                     tooltip="{{'tables.tableName' | translate}}" 
                     placement="bottom"
@@ -125,7 +123,7 @@
                     </span>
                   </div>
                   <div 
-                    (click)="setOrder('clusters','instances')"            
+                    (click)="setOrder('clusters','instances')"
                     [ngClass]="getCategoryCSSClass('instances')"
                     scope="col" 
                     class="col-6 text-center label-th">
@@ -168,7 +166,7 @@
                 <div class="row">
                   <div class="col-6 nalej-td">
                     <a 
-                      [routerLink]="['cluster', cluster.cluster_id]" 
+                      [routerLink]="['cluster', cluster.cluster_id]"
                       routerLinkActive="active" 
                       class="blue">
                       {{cluster.name}}
@@ -200,7 +198,7 @@
                       {{label.key}}: {{label.value}} 
                     </div>
                     <div class="label-btns"> 
-                      <div 
+                      <div
                         *ngIf="isAnyLabelSelected(cluster.cluster_id); else isNotAnyLabelSelected" 
                         (click)="deleteLabel(cluster)" 
                         tooltip="{{'label.deleteUp' | translate}}" 
@@ -241,7 +239,7 @@
         <div *ngIf="loadedData && requestError" class="no-elements">
           <p>{{requestError}}</p>
         </div>
-        <!-- Loader -->
+        
         <div *ngIf="!loadedData" class="nalej-loader-box" >
           <div class="loader">
             <svg class="circular" viewBox="25 25 50 50">
@@ -267,7 +265,6 @@
           <h5>{{'resources.clusterInstances' | translate}}</h5>
         </div>
         <div class="row mb-3">
-          <!-- Sorting message -->
           <div class="col-7">  
             <p *ngIf="isSearchingInGraph" class="sorting-message">
               {{ occurrencesCounter }} {{'sortingMessage.resultsFilteredBy' | translate:{value: searchTermGraph} }}
@@ -275,7 +272,6 @@
             </p>
             <p *ngIf="!isSearchingInGraph" class="sorting-message"></p>
           </div>
-          <!-- Search box -->
           <div class="col-5">
             <form class="graph-search-box">
               <input 
@@ -301,7 +297,6 @@
             <div    
               *ngIf="graphDataLoaded && !graphReset"
               class="graph">
-              <!-- [view]="view" -->
               <ngx-graph
                 [links]="graphData.links"
                 [nodes]="graphData.nodes"
@@ -361,7 +356,6 @@
               </ngx-graph>
             </div>
             <div *ngIf="!graphDataLoaded" class="loader"></div>
-            <!-- No info to show -->
             <div *ngIf="graphDataLoaded && clusters.length === 0" class="no-elements">
               {{'resources.NoAvailableClusters' | translate }}
             </div>

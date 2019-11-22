@@ -9,10 +9,9 @@
   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   See the License for the specific language governing permissions and
   limitations under the License.
- -->
+-->
 
 <div class="modal-card">
-  <!-- Header -->
   <div class="modal-header">
     <h3 class="nalej-form-title text-uppercase">{{title}}</h3>
     <button 
@@ -23,7 +22,6 @@
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
-  <!-- Body -->
   <div class="modal-body">
     <div class="modal-center-box">
       <button 
@@ -71,7 +69,6 @@
           <i (click)="resetFilters()" class="material-icons">close</i>
         </div>
       </div>
-      <!-- Table -->
       <div *ngIf="!connections || connections.length === 0" class="mt-0">
         {{'apps.manageConnections.noConnections' | translate}}
       </div>

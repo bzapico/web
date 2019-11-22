@@ -9,7 +9,7 @@
   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   See the License for the specific language governing permissions and
   limitations under the License.
- -->
+-->
 
 <div class="row row-title">
   <div class="col-lg-12">
@@ -32,7 +32,6 @@
 <div class="row row-app-main">
   <div class="col-4 h-100">
     <div class="flex-col-app">
-      <!-- Application instances id card -->
       <app-info
         [loadedData]="loadedData"
         [registeredData]="getDescriptorFromInstance(instance)[0]"
@@ -40,15 +39,12 @@
         [openFromInstance]="openFromInstance"
         class="row-info-app flex-grow-1 h-75">
       </app-info>
-      <!-- [registeredData]="registered" -->
-      <!-- Labels card-->
       <labels-card 
         [loadedData]="loadedData"
         [labelsData]="instance"
         [isSelectableLabel]="isSelectableLabel"
         class="row-info-app flex-grow-0">
       </labels-card>
-      <!-- Action buttons card -->
       <action-buttons-card  
         [loadedData]="loadedData"
         [app]="instance"
@@ -62,7 +58,6 @@
       <div class="card">
         <services-card (displayGraph)='onShowGraph($event)'>
         </services-card>
-        <!-- Graph  -->
         <div *ngIf="showGraph" class="services-card-box">
           <div *ngIf=
             "graphDataLoaded &&
@@ -94,7 +89,6 @@
             {{'apps.instance.noServices' | translate}}
           </div>
         </div>
-        <!-- Tables -->
         <div *ngIf="!showGraph" class="services-card-box">
           <!-- Groups table -->
           <div class="services-table-box">
@@ -195,7 +189,7 @@
                             (click)="setOrder('services','name')"
                             [ngClass]="getCategoryCSSClass('services','name')"
                             class="label-th col-1">
-                              {{'apps.instance.tableName' | translate}}
+                              {{'tables.tableName' | translate}}
                             <span *ngIf="sortedBy === 'name' && !reverse" class="expand-chevron">
                               <i class="material-icons">expand_more</i>
                             </span>
@@ -207,7 +201,7 @@
                             (click)="setOrder('services','replicas')"   
                             [ngClass]="getCategoryCSSClass('services','replicas')"
                             class="label-th text-center col-2">
-                              {{'apps.instance.tableReplicas' | translate}}
+                              {{'tables.tableReplicas' | translate}}
                             <span *ngIf="sortedBy === 'replicas' && !reverse" class="expand-chevron">
                               <i class="material-icons">expand_more</i>
                             </span>
@@ -219,7 +213,7 @@
                             (click)="setOrder('services','status')" 
                             [ngClass]="getCategoryCSSClass('services','status')"
                             class="label-th text-center col-2">
-                              {{'apps.instance.tableStatus' | translate}}
+                              {{'tables.tableStatus' | translate}}
                             <span *ngIf="sortedBy === 'status' && !reverse" class="expand-chevron">
                               <i class="material-icons">expand_more</i>
                             </span>
@@ -231,7 +225,7 @@
                             (click)="setOrder('services','endpoints')" 
                             [ngClass]="getCategoryCSSClass('services','endpoints')" 
                             class="label-th col-6">
-                              {{'apps.instance.tableEndpoints' | translate}}
+                              {{'tables.tableEndpoints' | translate}}
                             <span *ngIf="sortedBy === 'endpoints' && !reverse" class="expand-chevron">
                               <i class="material-icons">expand_more</i>
                             </span>
@@ -311,7 +305,7 @@
                 </accordion>
               </div>
             </div>
-            <!-- Loader -->
+            
             <div *ngIf="!loadedData" class="nalej-loader-box">
               <div class="loader">
                 <svg class="circular" viewBox="25 25 50 50">
@@ -400,8 +394,8 @@
                     (click)="setOrder('rules','access')"
                     [ngClass]="getCategoryCSSClass('rules','access')"
                     class="label-th col-3">
-                    <span tooltip="{{'apps.instance.tableAccess' | translate}}" placement="bottom">
-                      {{'apps.instance.tableAccess' | translate}}
+                    <span tooltip="{{'tables.tableAccess' | translate}}" placement="bottom">
+                      {{'tables.tableAccess' | translate}}
                     </span>
                     <span *ngIf="sortedByRules === 'access' && !reverseRules" class="expand-chevron">
                       <i class="material-icons">expand_more</i>
@@ -416,11 +410,11 @@
                     class="label-th col-3">
                     <span
                       tooltip="{{'apps.instance.tableTarget' | translate}}
-                      {{'apps.instance.tableTargetInBig' | translate}}"
+                      {{'tables.tableTargetInBig' | translate}}"
                       placement="bottom">
-                      {{'apps.instance.tableTarget' | translate}}
+                      {{'tables.tableTarget' | translate}}
                       <span class="grey typo-small">
-                        {{'apps.instance.tableTargetIn' | translate}}
+                        {{'tables.tableTargetIn' | translate}}
                       </span>
                     </span>
                     <span *ngIf="sortedByRules === 'target' && !reverseRules" class="expand-chevron">
@@ -435,12 +429,12 @@
                     [ngClass]="getCategoryCSSClass('rules','auth')"
                     class="label-th col-3">
                     <span
-                      tooltip="{{'apps.instance.tableAuth' | translate}}
-                      {{'apps.instance.tableAuthInBig' | translate}}"
+                      tooltip="{{'tables.tableAuth' | translate}}
+                      {{'tables.tableAuthInBig' | translate}}"
                       placement="bottom">
-                      {{'apps.instance.tableAuth' | translate}}
+                      {{'tables.tableAuth' | translate}}
                       <span class="grey typo-small">
-                        {{'apps.instance.tableAuthIn' | translate}}
+                        {{'tables.tableAuthIn' | translate}}
                       </span>
                     </span>
                     <span *ngIf="sortedByRules === 'auth' && !reverseRules" class="expand-chevron">
@@ -459,8 +453,8 @@
                     (click)="setOrder('rules','name')"
                     [ngClass]="getCategoryCSSClass('rules','name')"
                     class="label-th col-12">
-                    <span tooltip="{{'apps.instance.tableName' | translate}}" placement="bottom">
-                      {{'apps.instance.tableName' | translate}}
+                    <span tooltip="{{'tables.tableName' | translate}}" placement="bottom">
+                      {{'tables.tableName' | translate}}
                     </span>
                     <span *ngIf="sortedByRules === 'name' && !reverseRules" class="expand-chevron">
                       <i class="material-icons">expand_more</i>
@@ -525,7 +519,7 @@
             <div *ngIf="loadedData && requestError" class="no-elements">
               <p>{{requestError}}</p>
             </div>
-            <!-- Loader -->
+            
             <div *ngIf="!loadedData" class="nalej-loader-box">
               <div class="loader">
                 <svg class="circular" viewBox="25 25 50 50">
