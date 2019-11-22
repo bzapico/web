@@ -40,7 +40,7 @@ stages:
     - template: steps/angular-main.yaml@ci_templates   
 
 - stage: 'ImageBuild'
-  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+  #condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
   dependsOn: 'AngularBuild'
   jobs:
   - job:
