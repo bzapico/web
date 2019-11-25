@@ -1,9 +1,8 @@
 variables: 
-  - group: common-vars
-  - group: slack-webhooks
-  - group: docker-registries
-  - group: ci-service-principal
-  - group: ssh-credentials
+  - template: variables/global.yaml@ci_templates
+  - template: variables/go.yaml@ci_templates
+  - template: variables/k8s.yaml@ci_templates
+  - template: variables/git.yaml@ci_templates
 
 resources:
   repositories:
@@ -11,83 +10,51 @@ resources:
       type: github
       name: nalej/ci-templates
       endpoint: nalej
-      ref: refs/tags/v1.0.3
+      ref: refs/tags/v1.0.4
 
-jobs:
-- job: MainWorkflow
 
-  pool:
-    vmImage: 'ubuntu-latest'
-  
-  steps:
-  - template: misc/variables.yaml@ci_templates
+stages:
+- stage: 'SlackStart'
+  jobs:
+  - job: 
+    pool:
+      vmImage: 'ubuntu-latest'    
+    steps:
+    - template: slack/build/start.yaml@ci_templates
+      parameters:
+        author: $(authorName)
+        repository: $(Build.Repository.Name)
+        branch: $(Build.SourceBranch)
+        commit: $(Build.SourceVersionMessage)
+        buildUrl: $(buildUrl)$(Build.BuildId)
+        slackWebhook: $(slackBuilds)
 
-  - template: slack/build/start.yaml@ci_templates
-    parameters:
-      author: $(authorName)
-      repository: $(Build.Repository.Name)
-      branch: $(Build.SourceBranch)
-      commit: $(Build.SourceVersionMessage)
-      buildUrl: $(buildUrl)$(Build.BuildId)
-      slackWebhook: $(slackBuilds)
+- stage: 'AngularBuild'
+  dependsOn: 'SlackStart'
+  jobs:
+  - job: 
+    pool:
+      vmImage: 'ubuntu-latest'  
+    steps:
+    - template: misc/nalej-component.yaml@ci_templates 
+    - template: steps/angular-main.yaml@ci_templates   
 
-  - template: angular/dependencies.yaml@ci_templates
-    
-  - template: angular/test.yaml@ci_templates
-  
-  - task: PublishTestResults@2
-    inputs:
-      testRunner: JUnit
-      testResultsFiles: "$(System.DefaultWorkingDirectory)/junit/TESTS-*.xml"
-      failTaskOnFailedTests: true
-    displayName: "Publish test results"
+- stage: 'ImageBuild'
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+  dependsOn: 'AngularBuild'
+  jobs:
+  - job:
+    pool:
+      vmImage: 'ubuntu-latest'  
+    steps:  
+    - template: misc/nalej-component.yaml@ci_templates 
+    - template: steps/docker-angular-main.yaml@ci_templates
 
-  - task: PublishCodeCoverageResults@1
-    inputs:
-      codeCoverageTool: "cobertura"
-      summaryFileLocation: "$(System.DefaultWorkingDirectory)/coverage/cobertura-coverage.xml"
-    displayName: "Publish code coverage results"
-  
-  - template: angular/build.yaml@ci_templates
-      
-  - template: docker/login.yaml@ci_templates
-  
-  - script: |
-      build_output=$(docker build --no-cache -t nalej/web:edge -f components/web/Dockerfile.ci .)
-
-      if [ $? -ne 0 ]; then
-        echo "##vso[task.logissue type=error]There was an error creating the docker image nalej/web:edge.%0D%0ACommand output:%0D%0A${build_output//$'\n'/'%0D%0A'}%0D%0AError CIE0025"
-        echo "##vso[task.complete result=Failed;]"
-      fi
-    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
-    displayName: Build the docker images
-  
-  - script: |
-      push_output=$(docker push nalej/web:edge)
-
-      if [ $? -ne 0 ]; then
-        echo "##vso[task.logissue type=error]There was an error pushing the docker image nalej/web:edge.%0D%0ACommand output:%0D%0A${push_output//$'\n'/'%0D%0A'}%0D%0AError CIE0026"
-        echo "##vso[task.complete result=Failed;]"
-      fi
-    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
-    displayName: Push docker images
-    
-  - template: docker/logout.yaml@ci_templates
-
-  - template: slack/build/finish.yaml@ci_templates
-    parameters:
-      author: $(authorName)
-      repository: $(Build.Repository.Name)
-      branch: $(Build.SourceBranch)
-      commit: $(Build.SourceVersionMessage)
-      buildUrl: $(buildUrl)$(Build.BuildId)
-      slackWebhook: $(slackBuilds)
-  
-  - template: slack/build/failed.yaml@ci_templates
-    parameters:
-      author: $(authorName)
-      repository: $(Build.Repository.Name)
-      branch: $(Build.SourceBranch)
-      commit: $(Build.SourceVersionMessage)
-      buildUrl: $(buildUrl)$(Build.BuildId)
-      slackWebhook: $(slackCIFailed)
+- stage: 'SlackFinish'
+  condition: always()
+  jobs:
+  - job: 
+    pool:
+      vmImage: 'ubuntu-latest'  
+    steps: 
+    - template: steps/slack-finish-main.yaml@ci_templates
