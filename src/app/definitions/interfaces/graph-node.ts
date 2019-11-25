@@ -20,7 +20,7 @@ export interface GraphNode {
     label: string;
     type?: NodeType.Clusters | NodeType.Instances;
     tooltip: string;
-    group: string;
+    group?: string;
     inbound_connections?: ConnectionInstance[];
     outbound_connections?: ConnectionInstance[];
 }

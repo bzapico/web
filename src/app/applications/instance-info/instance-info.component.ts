@@ -32,7 +32,7 @@ import { Subscription, timer } from 'rxjs';
 import { GraphData } from '../../definitions/models/graph-data';
 import { ColorScheme } from '../../definitions/interfaces/color-scheme';
 import { KeyValue } from '../../definitions/interfaces/key-value';
-import { Service } from '../../definitions/interfaces/service';
+import { ServiceInstance } from '../../definitions/interfaces/service-instance';
 
 @Component({
   selector: 'app-instance-info',
@@ -437,7 +437,7 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
    * Return the list of group services
    * @param groupId Group identifier
    */
-  getGroupServices(groupId: string): Service[] {
+  getGroupServices(groupId: string): ServiceInstance[] {
     const index = this.groups
       .map(x => x.service_group_instance_id)
       .indexOf(groupId);

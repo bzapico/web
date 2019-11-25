@@ -165,10 +165,7 @@ export class RegisteredInfoComponent implements OnInit {
     this.autoCenter = true;
     this.enableZoom = true;
     this.graphDataLoaded = false;
-    this.graphData = {
-      nodes: [],
-      links: []
-    };
+    this.graphData = new GraphData([], []);
     this.graphReset = false;
     this.whiteColor = '#FFFFFF';
   }

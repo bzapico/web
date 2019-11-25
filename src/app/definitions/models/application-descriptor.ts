@@ -45,18 +45,14 @@ export class ApplicationDescriptor extends Application {
             environment_variables,
             labels,
             inbound_net_interfaces,
-            outbound_net_interfaces);
+            outbound_net_interfaces,
+            parameters);
         this.groups = groups || [];
-        this.parameters = parameters || [];
     }
     /**
      * Groups with the Service collocation strategies.
      */
     groups?: ServiceGroup[];
-    /**
-     * AppParameter with the parameters definition of an application
-     */
-    parameters?: AppParameter[];
 
     getId(): string {
         return this.app_descriptor_id;

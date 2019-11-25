@@ -29,10 +29,6 @@ import { Subscription, timer } from 'rxjs';
 import { Device } from '../definitions/models/device';
 import { Group } from '../definitions/interfaces/group';
 import { KeyValue } from '../definitions/interfaces/key-value';
-/**
- * Refresh ratio reference
- */
-const REFRESH_RATIO = 20000; // 20 seconds
 
 @Component({
   selector: 'app-devices',
@@ -40,6 +36,10 @@ const REFRESH_RATIO = 20000; // 20 seconds
   styleUrls: ['./devices.component.scss']
 })
 export class DevicesComponent implements OnInit, OnDestroy  {
+  /**
+   * Refresh ratio reference
+   */
+  private static REFRESH_RATIO = 20000;
   /**
    * Backend reference
    */
@@ -188,7 +188,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     const jwtData = localStorage.getItem(LocalStorageKeys.jwtData) || null;
     if (jwtData !== null) {
       this.organizationId = JSON.parse(jwtData).organizationID;
-      this.refreshIntervalRef = timer(0, REFRESH_RATIO).subscribe(() => {
+      this.refreshIntervalRef = timer(0, DevicesComponent.REFRESH_RATIO).subscribe(() => {
         this.updateGroupsList(this.organizationId);
       });
     }
@@ -507,18 +507,18 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     if (organizationId !== null) {
       // Requests an updated devices group list
       this.backend.getGroups(this.organizationId)
-      .subscribe(response => {
-        if (response.groups) {
-          response.groups.forEach(group => {
-            group.isFirstOpen = true;
+        .subscribe(response => {
+          if (response.groups) {
+            response.groups.forEach(group => {
+              group.isFirstOpen = true;
+            });
+          }
+          this.groups = response.groups || [];
+          this.updateDevicesList(this.organizationId);
+        }, errorResponse => {
+            this.loadedData = true;
+            this.requestError = errorResponse.error.message;
           });
-        }
-        this.groups = response.groups || [];
-        this.updateDevicesList(this.organizationId);
-      }, errorResponse => {
-          this.loadedData = true;
-          this.requestError = errorResponse.error.message;
-        });
     }
   }
   /**

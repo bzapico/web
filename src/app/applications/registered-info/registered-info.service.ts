@@ -17,6 +17,8 @@ import { AccessType } from '../../definitions/enums/access-type.enum';
 import { GraphData } from '../../definitions/models/graph-data';
 import { GraphLink } from '../../definitions/models/graph-link';
 import { SecurityRule } from '../../definitions/interfaces/security-rule';
+import { GraphNode } from '../../definitions/interfaces/graph-node';
+import { StyledNode } from '../../definitions/interfaces/styled-node';
 
 @Injectable({
   providedIn: 'root'
@@ -126,11 +128,11 @@ export class RegisteredInfoService {
             }
             sourcesIndex.forEach(indexSource => {
               targetsIndex.forEach(indexTarget => {
-                const link = {
-                  source: this._graphData.nodes[indexSource].id,
-                  target: this._graphData.nodes[indexTarget].id,
-                };
-                this._graphData.links.push(link);
+                this._graphData.links.push(
+                  new GraphLink(this._graphData.nodes[indexSource].id,
+                    this._graphData.nodes[indexTarget].id,
+                    false,
+                      false));
               });
             });
           });
@@ -154,16 +156,17 @@ export class RegisteredInfoService {
         group: group.service_group_id
       };
       this._graphData.nodes.push(nodeService);
-      this._graphData.links.push({
-        source: group.service_group_id,
-        target: group.service_group_id + '-s-' + service.service_id
-      });
+      this._graphData.links.push(
+          new GraphLink(group.service_group_id,
+              group.service_group_id + '-s-' + service.service_id,
+              false,
+              false));
     });
   }
 
   private setInboundConnections(registered) {
     if (registered.inbound_net_interfaces && registered.inbound_net_interfaces.length > 0 ) {
-      const inbounds = {};
+      const inbounds: GraphNode[] = [];
       registered.inbound_net_interfaces.forEach(inbound => {
         inbounds[inbound.name + '_i_' + registered.app_descriptor_id] = {
           id: inbound.name + '_i_' + registered.app_descriptor_id,
@@ -204,7 +207,7 @@ export class RegisteredInfoService {
 
   private generateOutboundConnections( registered) {
     if (registered.outbound_net_interfaces && registered.outbound_net_interfaces.length > 0 ) {
-      const outbounds = {};
+      const outbounds: GraphNode[] = [];
       registered.outbound_net_interfaces.forEach(outbound => {
         outbounds[outbound.name + '_i_' + registered.app_descriptor_id] = {
           id: outbound.name + '_i_' + registered.app_descriptor_id,
@@ -269,13 +272,15 @@ export class RegisteredInfoService {
     inbounds.forEach(inbound => {
       const filteredData = registered.rules.filter(rule => inbound.label === rule.inbound_net_interface);
       if (filteredData.length > 0) {
-        const nodeTarget =  this._graphData.nodes.filter(node => node.label === filteredData[0]['target_service_name']);
+        const nodeTarget = this._graphData.nodes.filter(node => node.label === filteredData[0]['target_service_name']);
         if (nodeTarget.length > 0) {
-          this._graphData.links.push({
-            source: inbound.id,
-            target: nodeTarget[0].id,
-            notMarker: true
-          });
+          this._graphData.links.push(
+            new GraphLink(
+              inbound.id,
+              nodeTarget[0].id,
+              true,
+              false
+            ));
         }
       }
     });
@@ -287,18 +292,20 @@ export class RegisteredInfoService {
       if (filteredData.length > 0) {
         const nodeTarget = this._graphData.nodes.filter(node => node.label === filteredData[0]['target_service_name']);
         if (nodeTarget.length > 0) {
-          this._graphData.links.push({
-            source: outbound.id,
-            target: nodeTarget[0].id,
-            notMarker: true
-          });
+          this._graphData.links.push(
+            new GraphLink(
+              outbound.id,
+              nodeTarget[0].id,
+              true,
+              false
+            ));
         }
       }
     });
   }
 
   private setPublicRulesNodes(rule) {
-    const ruleNode = {
+    const ruleNode: GraphNode & StyledNode = {
       id: rule.rule_id,
       label: '',
       tooltip: this.translateService.instant('graph.rule') + rule.name,

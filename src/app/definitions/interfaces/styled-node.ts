@@ -13,8 +13,12 @@
 
 export interface StyledNode {
     color: string;
-    text: string;
-    customBorderColor: string;
-    customBorderWidth: number;
-    customHeight: number;
+    text: string | {color: string, y: number};
+    secondaryText?: {text: string, color: string};
+    shape?: string;
+    customRadius?: number;
+    icon?: {width: number, height: number, viewBox: string, paths: {fill: string, d: string}[]};
+    customBorderColor?: string;
+    customBorderWidth?: number;
+    customHeight?: number;
 }

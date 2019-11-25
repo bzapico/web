@@ -52,7 +52,7 @@ export class DeployInstanceComponent implements OnInit {
   openFromRegistered: boolean;
   registeredApps: ApplicationDescriptor[];
   instanceName: string;
-  selectedApp: ApplicationDescriptor;
+  selectedApp: ApplicationInstance;
   appFromRegistered: ApplicationInstance;
   fakeValue: ApplicationDescriptor;
   /**

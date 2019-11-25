@@ -25,6 +25,7 @@ import { ToolsComponent } from '../tools/tools.component';
 import { AppStatus } from '../definitions/enums/app-status.enum';
 import { NameValue } from '../definitions/interfaces/name-value';
 import { GraphData } from '../definitions/models/graph-data';
+import { GraphLink } from '../definitions/models/graph-link';
 
 @Component({
   selector: 'app-resources',
@@ -439,11 +440,13 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
             && instance.status_name.toLowerCase() !== AppStatus.Error
             && instance.status_name.toLowerCase() !== AppStatus.DeploymentError)
             || !this.areIncludedInstancesWithError) {
-          this.graphData.links.push({
-            source: cluster.cluster_id,
-            target: instance['app_instance_id'],
-            is_between_apps: false
-          });
+          this.graphData.links.push(
+            new GraphLink(
+              cluster.cluster_id,
+              instance['app_instance_id'],
+              false,
+              false
+            ));
         }
       });
     });
