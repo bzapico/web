@@ -108,7 +108,7 @@ export class AssetInfoComponent implements OnInit {
   getECname(): string {
     let edgeControllerName = '';
     for (let index = 0; index < this.inventory.length; index++) {
-      if (this.inventory[index].mapType() === InventoryType.Ec
+      if (this.inventory[index].type === InventoryType.Ec
         && (this.inventory[index] as Controller).edge_controller_id
         && (this.inventory[index] as Controller).name
         && (this.inventory[index] as Controller).edge_controller_id === this.edgeControllerId) {
@@ -138,7 +138,7 @@ export class AssetInfoComponent implements OnInit {
     let controller: Controller;
     let ecIndexFound;
     for (let i = 0; i < this.inventory.length; i++) {
-      if (this.inventory[i].mapType() === InventoryType.Ec
+      if (this.inventory[i].type === InventoryType.Ec
         && (this.inventory[i] as Controller).edge_controller_id === this.edgeControllerId) {
         ecIndexFound = i;
       }

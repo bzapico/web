@@ -80,23 +80,19 @@ export class Controller extends Item {
         this.assets = assets;
     }
 
-    mapId(): string {
+    get id(): string {
         return this.edge_controller_id;
     }
 
-    mapType(): InventoryType {
+    get type(): InventoryType {
         return InventoryType.Ec;
     }
 
-    mapStatus(): string {
+    get itemStatus(): string {
         return this.status;
     }
 
-    mapLocation(): string {
+    get itemLocation(): string {
         return this.location && this.location.geolocation ? this.location.geolocation : 'undefined';
-    }
-
-    mapLabels(): KeyValue {
-        return this.labels || {};
     }
 }

@@ -42,7 +42,7 @@ export class ToolsComponent implements OnInit {
   /**
    * Refresh ratio
    */
-  static readonly REFRESH_INTERVAL = 20000000;
+  static readonly REFRESH_INTERVAL = 20000;
   /**
    * It sets the status colors for nodes
    */

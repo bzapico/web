@@ -142,8 +142,8 @@
         <div class="row row-sorting-lg">
           <div class="col">
             <p *ngIf="searchTerm && !filterField && !quickFilter" class="sorting-message">
-              {{ ( plainInventory | filter : quickFilter : ['mapType']
-                | filter : searchTerm : ['mapType', 'id', 'location', 'labels', 'status'])?.length }}
+              {{ ( plainInventory | filter : quickFilter : ['type']
+                | filter : searchTerm : ['type', 'id', 'itemLocation', 'labels', 'itemStatus'])?.length }}
               {{'sortingMessage.resultsFilteredBy' | translate:{value: searchTerm} }}
               <span (click)="resetFilters()" class="reset-search">{{'sortingMessage.reset' | translate}}</span>
             </p>
@@ -154,14 +154,14 @@
               <span (click)="resetFilters()" class="reset-search">{{'sortingMessage.reset' | translate}}</span>
             </p>
             <p *ngIf="quickFilter && !filterField && !searchTerm" class="sorting-message">
-              {{ ( plainInventory | filter : quickFilter : ['mapType']
-                | filter : searchTerm : ['mapType', 'id', 'location', 'labels', 'status'])?.length }}
+              {{ ( plainInventory | filter : quickFilter : ['type']
+                | filter : searchTerm : ['type', 'id', 'itemLocation', 'labels', 'itemStatus'])?.length }}
               {{'sortingMessage.resultsFilteredBy' | translate:{value: quickFilter} }}
               <span (click)="resetFilters()" class="reset-search">{{'sortingMessage.reset' | translate}}</span>
             </p>
             <p *ngIf="filterField && searchTerm" class="sorting-message">
-              {{ ( plainInventory | filter : quickFilter : ['mapType']
-                | filter : searchTerm : ['mapType', 'id', 'location', 'labels', 'status'])?.length }}
+              {{ ( plainInventory | filter : quickFilter : ['type']
+                | filter : searchTerm : ['type', 'id', 'itemLocation', 'labels', 'itemStatus'])?.length }}
               {{'sortingMessage.resultsFound' | translate }}
               {{'sortingMessage.sortedBy' | translate:{value: sortedBy} }},
               <span *ngIf="reverse">{{'sortingMessage.ascendant' | translate:{value: ', '} }} </span>
@@ -170,8 +170,8 @@
               <span (click)="resetFilters()" class="reset-search">{{'sortingMessage.reset' | translate}}</span>
             </p>
             <p *ngIf="filterField && quickFilter && !searchTerm" class="sorting-message">
-              {{ ( plainInventory | filter : quickFilter : ['mapType']
-                | filter : searchTerm : ['mapType', 'id', 'location', 'labels', 'status'])?.length }}
+              {{ ( plainInventory | filter : quickFilter : ['type']
+                | filter : searchTerm : ['type', 'id', 'itemLocation', 'labels', 'itemStatus'])?.length }}
               {{'sortingMessage.resultsFound' | translate }}
               {{'sortingMessage.sortedBy' | translate:{value: sortedBy} }},
               <span *ngIf="reverse">{{'sortingMessage.ascendant' | translate:{value: ', '} }} </span>
@@ -180,8 +180,8 @@
               <span (click)="resetFilters()" class="reset-search">{{'sortingMessage.reset' | translate}}</span>
             </p>
             <p *ngIf="quickFilter && searchTerm && !filterField" class="sorting-message">
-              {{ ( plainInventory | filter : quickFilter : ['mapType']
-                | filter : searchTerm : ['mapType', 'id', 'location', 'labels', 'status'])?.length }}
+              {{ ( plainInventory | filter : quickFilter : ['type']
+                | filter : searchTerm : ['type', 'id', 'itemLocation', 'labels', 'itemStatus'])?.length }}
               {{'sortingMessage.resultsFilteredBy' | translate:{value: searchTerm} }}
               {{'sortingMessage.resultsFilteredBy' | translate:{value: quickFilter} }}
               <span (click)="resetFilters()" class="reset-search">{{'sortingMessage.reset' | translate}}</span>
@@ -293,33 +293,33 @@
             </div>
             <div *ngFor="let item of plainInventory |
               sortBy : sortedBy : reverse : true |
-              filter : searchTerm : ['mapType', 'id', 'location', 'labels', 'status']|
-              filter : quickFilter : ['mapType']"  class="label-tbody row">
+              filter : searchTerm : ['type', 'id', 'itemLocation', 'labels', 'itemStatus']|
+              filter : quickFilter : ['type']"  class="label-tbody row">
               <div class="col-2 label-td-flex-text">
-                <span tooltip="{{'tables.tableType' | translate}}" placement="top">{{item.mapType()}}</span>
+                <span tooltip="{{'tables.tableType' | translate}}" placement="top">{{item.type}}</span>
               </div>
               <div class="col-9">
                 <div class="row">
                   <div class="col-4 label-td">
-                    <span tooltip="{{'tables.tableID' | translate}}" placement="top">{{item.mapId()}}</span>
+                    <span tooltip="{{'tables.tableID' | translate}}" placement="top">{{item.id}}</span>
                   </div>
                   <div class="col-4 label-td col-center-lowercase">
-                    <span *ngIf="item.mapStatus()"
+                    <span *ngIf="item.itemStatus"
                       [ngClass]="{
-                      'status-dot': classStatusCheck(item.mapStatus(), 'online'),
-                      'status-dot-error': classStatusCheck(item.mapStatus(), 'offline'),
-                      'status-dot-process': classStatusCheck(item.mapStatus(), 'process')}"
-                      tooltip="{{item.mapStatus()}}"
+                      'status-dot': classStatusCheck(item.itemStatus, 'online'),
+                      'status-dot-error': classStatusCheck(item.itemStatus, 'offline'),
+                      'status-dot-process': classStatusCheck(item.itemStatus, 'process')}"
+                      tooltip="{{item.itemStatus}}"
                       placement="bottom"
                       class="status-dot">
                     </span>
-                    <span *ngIf="item.mapStatus()" class="hide-lg">
-                      {{item.mapStatus()}}
+                    <span *ngIf="item.itemStatus" class="hide-lg">
+                      {{item.itemStatus}}
                     </span>
                   </div>
                   <div class="col-4 label-td">
                     <span tooltip="{{'tables.tableLocation' | translate}}" placement="top">
-                      {{item.mapLocation()}}
+                      {{item.itemLocation}}
                     </span>
                   </div>
                 </div>
@@ -328,14 +328,14 @@
                     <div *ngFor="let label of item.labels"
                       (click)="onLabelClick(item, label.key, label.value)"
                       [ngClass]="
-                        {'label-content-selected': indexOfLabelSelected(item.mapId(), label.key, label.value) >= 0 ,
-                        'label-content': indexOfLabelSelected(item.mapId(), label.key, label.value) === -1}"
+                        {'label-content-selected': indexOfLabelSelected(item.id, label.key, label.value) >= 0 ,
+                        'label-content': indexOfLabelSelected(item.id, label.key, label.value) === -1}"
                     class="label-content">
                       {{label.key}}: {{label.value}}
                     </div>
                     <div class="label-btns">
                       <div
-                        *ngIf="!isAnyLabelSelected(item.mapId())"
+                        *ngIf="!isAnyLabelSelected(item.id)"
                         (click)="addLabel(item)"
                         tooltip="{{'infrastructure.label.add' | translate}}"
                         placement="right"
@@ -343,7 +343,7 @@
                         <i class="material-icons i-add">add</i>
                       </div>
                       <div
-                        *ngIf="isAnyLabelSelected(item.mapId())"
+                        *ngIf="isAnyLabelSelected(item.id)"
                         (click)="deleteLabel(item)"
                         tooltip="{{'infrastructure.label.delete' | translate}}"
                         placement="right"
@@ -356,12 +356,12 @@
               </div>
               <div class="col-1 text-center label-td-flex">
                 <button (click)="openContextualMenu($event, item)"
-                        [ngClass]="{'action-btn-grey': item.mapId() !== activeContextMenuItemId,
-                        'action-btn-grey-selected': item.mapId() === activeContextMenuItemId}"
+                        [ngClass]="{'action-btn-grey': item.id !== activeContextMenuItemId,
+                        'action-btn-grey-selected': item.id === activeContextMenuItemId}"
                         class="action-btn-grey position-relative">
                   <i class="material-icons i-black">more_vert</i>
                   <app-contextual-menu
-                    [visible]="item.mapId() === activeContextMenuItemId"
+                    [visible]="item.id === activeContextMenuItemId"
                     [options]="getItemOptions(item)"
                     (closed)="onContextualMenuClose(item)">
                   </app-contextual-menu>

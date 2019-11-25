@@ -57,23 +57,19 @@ export class Device extends Item {
     this.asset_info = asset_info;
   }
 
-  mapId(): string {
+  get id(): string {
     return this.device_id;
   }
 
-  mapType(): InventoryType {
+  get type(): InventoryType {
     return InventoryType.Device;
   }
 
-  mapStatus(): string {
+  get itemStatus(): string {
     return this.device_status_name;
   }
 
-  mapLocation(): string {
+  get itemLocation(): string {
     return this.location && this.location.geolocation ? this.location.geolocation : 'undefined';
-  }
-
-  mapLabels(): KeyValue {
-    return this.labels || {};
   }
 }

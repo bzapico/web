@@ -154,7 +154,7 @@ export class InstallAgentComponent implements OnInit {
   getControllersList() {
     const controllersList = [];
     for (let i = 0; i < this.inventory.length; i++) {
-      if (this.inventory[i].mapType() === InventoryType.Ec) {
+      if (this.inventory[i].type === InventoryType.Ec) {
         controllersList.push(this.inventory[i]);
       }
     }
@@ -200,7 +200,8 @@ export class InstallAgentComponent implements OnInit {
       .subscribe(() => {
         this.loading = false;
         this.notificationsService.add({
-          message: this.translateService.instant('infrastructure.install-agent.message', {targetHost: agent.target_host }),
+          message:
+            this.translateService.instant('infrastructure.install-agent.message', {targetHost: agent.target_host }),
         });
         this.bsModalRef.hide();
       }, error => {

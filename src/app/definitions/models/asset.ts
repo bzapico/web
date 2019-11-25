@@ -121,23 +121,19 @@ export class Asset extends Item {
         this.location = location;
     }
 
-    mapId(): string {
+    get id(): string {
         return this.asset_id;
     }
 
-    mapType(): InventoryType {
+    get type(): InventoryType {
         return InventoryType.Asset;
     }
 
-    mapStatus(): string {
+    get itemStatus(): string {
         return this.status;
     }
 
-    mapLocation(): string {
+    get itemLocation(): string {
         return this.location && this.location.geolocation ? this.location.geolocation : 'undefined';
-    }
-
-    mapLabels(): KeyValue {
-        return this.labels || {};
     }
 }

@@ -278,10 +278,10 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
    */
   openContextualMenu(event, item: Item) {
     event.stopPropagation();
-    if (item.mapId() === this.activeContextMenuItemId) {
+    if (item.id === this.activeContextMenuItemId) {
       this.activeContextMenuItemId = '';
     } else {
-      this.activeContextMenuItemId = item.mapId();
+      this.activeContextMenuItemId = item.id;
     }
   }
   onContextualMenuClose(item) {
@@ -294,11 +294,11 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
   addLabel(item: (Device & Asset & Controller)) {
     const initialState = {
       organizationId: this.organizationId,
-      entityType: item.mapType(),
+      entityType: item.type,
       entity: item,
       modalTitle: ''
     };
-    switch (item.mapType().toLowerCase()) {
+    switch (item.type.toLowerCase()) {
       case InventoryType.Ec:
         initialState.modalTitle = item.name;
         break;
@@ -306,11 +306,11 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
         if (item.eic_net_ip) {
           initialState.modalTitle = item.eic_net_ip;
         } else {
-          initialState.modalTitle = item.mapId();
+          initialState.modalTitle = item.id;
         }
         break;
       case InventoryType.Device:
-        initialState.modalTitle = item.mapId();
+        initialState.modalTitle = item.id;
         break;
       default:
         break;
@@ -325,9 +325,9 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
   deleteLabel(item: (Device | Asset | Controller)) {
     const deleteConfirm = confirm(this.translateService.instant('infrastructure.label.deleteLabel'));
     if (deleteConfirm) {
-      switch (item.mapType()) {
+      switch (item.type) {
         case InventoryType.Ec:
-          const indexEC = this.selectedLabels.map(x => x.id).indexOf(item.mapId());
+          const indexEC = this.selectedLabels.map(x => x.id).indexOf(item.id);
           if (!(item instanceof Device)) {
             this.backend.updateEC(
                 this.organizationId,
@@ -344,13 +344,13 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
           }
           break;
         case InventoryType.Asset:
-          const indexAsset = this.selectedLabels.map(x => x.id).indexOf(item.mapId());
+          const indexAsset = this.selectedLabels.map(x => x.id).indexOf(item.id);
           this.backend.updateAsset(
             this.organizationId,
-            item.mapId(),
+            item.id,
             {
               organization_id: this.organizationId,
-              asset_id: item.mapId(),
+              asset_id: item.id,
               remove_labels: true,
               labels: this.selectedLabels[indexAsset].labels
             }).subscribe(() => {
@@ -359,13 +359,13 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
             });
           break;
         case InventoryType.Device:
-          const indexDevice = this.selectedLabels.map(x => x.id).indexOf(item.mapId());
+          const indexDevice = this.selectedLabels.map(x => x.id).indexOf(item.id);
           if (item instanceof Device) {
             this.backend.removeLabelFromDevice(
                 this.organizationId,
                 {
                   organizationId: this.organizationId,
-                  device_id: item.mapId(),
+                  device_id: item.id,
                   device_group_id: item.device_group_id,
                   labels: this.selectedLabels[indexDevice].labels
                 }).subscribe(() => {
@@ -386,13 +386,13 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
    * @param labelValue label value from selected label
    */
   onLabelClick(item: Item, labelKey: string, labelValue: string) {
-    const selectedIndex = this.indexOfLabelSelected(item.mapId(), labelKey, labelValue);
+    const selectedIndex = this.indexOfLabelSelected(item.id, labelKey, labelValue);
     const newLabel = {
-      id: item.mapId(),
+      id: item.id,
       labels: {}
     } ;
     if (selectedIndex === -1 ) {
-      const selected = this.selectedLabels.map(x => x.id).indexOf(item.mapId());
+      const selected = this.selectedLabels.map(x => x.id).indexOf(item.id);
       if (selected === -1) {
         newLabel.labels[labelKey] = labelValue;
         this.selectedLabels.push(newLabel);
@@ -441,7 +441,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
    * @param item inventory item
    */
   getItemOptions(item: Item) {
-    switch (item.mapType()) {
+    switch (item.type) {
       case InventoryType.Ec:
         const ecOptions = [];
         const ecOption1 = {
@@ -624,7 +624,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
             response.assets.forEach(asset => {
               if (asset.edge_controller_id === controller.edge_controller_id) {
                 const assetIp = asset.eic_net_ip ? asset.eic_net_ip : 'undefined';
-                controller.assets.push(new AssetsForController(asset.asset_id, assetIp, asset.mapStatus(), asset.edge_controller_id));
+                controller.assets.push(new AssetsForController(asset.asset_id, assetIp, asset.itemStatus, asset.edge_controller_id));
               }
             });
           }
@@ -652,7 +652,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
    * Gets the Edge Controllers count in inventory list
    */
   private getECsCount() {
-    return this.plainInventory.filter(item => item.mapType() === InventoryType.Ec).length;
+    return this.plainInventory.filter(item => item.type === InventoryType.Ec).length;
   }
   /**
    * Updates the pie chart with latest changes
@@ -701,7 +701,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
       storages: asset.storage,
       capacity: asset.hardware.installed_ram,
       eic: asset.eic_net_ip,
-      status: asset.mapStatus(),
+      status: asset.itemStatus,
       lastAlive: asset.last_alive_timestamp,
       inventory: this.plainInventory,
     };
@@ -785,7 +785,7 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
       name: controller.name,
       labels: controller.labels,
       status: controller.status,
-      type: controller.mapType(),
+      type: controller.type,
       inventory: this.plainInventory
     };
     this.ecModalRef = this.modalService.show(
