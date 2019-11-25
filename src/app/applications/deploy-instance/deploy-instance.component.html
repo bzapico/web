@@ -9,11 +9,10 @@
   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   See the License for the specific language governing permissions and
   limitations under the License.
- -->
+-->
 
 <div class="modal-card">
   <div class="modal-content">
-    <!-- Header -->
     <div class="modal-header">
       <h3 class="nalej-form-title">{{'apps.deployTitle' | translate}}</h3>
       <button 
@@ -25,7 +24,6 @@
       </button>
     </div>
   </div>
-  <!-- Body -->
   <div class="modal-body">
     <div *ngIf="loadedData">
       <form [formGroup]="deployInstanceForm" (ngSubmit)="deployInstance(f)">
@@ -221,7 +219,6 @@
         </button>
       </div>
     </div>
-    <!-- Loader -->
     <div *ngIf="!loadedData" class="nalej-loader-box">
       <div class="loader">
         <svg class="circular" viewBox="25 25 50 50">

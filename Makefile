@@ -1,6 +1,7 @@
-include scripts/Makefile.common
-include scripts/Makefile.k8s
-include scripts/Makefile.docker
-include scripts/Makefile.angular
 
 .DEFAULT_GOAL := all
+
+include scripts/Makefile.angular
+include scripts/Makefile.docker
+include scripts/Makefile.k8s
+include scripts/Makefile.common

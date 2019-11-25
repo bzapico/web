@@ -9,11 +9,10 @@
   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   See the License for the specific language governing permissions and
   limitations under the License.
- -->
+-->
 
 <div class="modal-card">
   <div class="modal-content">
-    <!-- Header -->
     <div class="modal-header">
       <h3 class="nalej-form-title">{{'infrastructure.install-agent.title' | translate}}</h3>
       <button 
@@ -24,18 +23,17 @@
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
-    <!-- Body -->
     <div class="modal-body">
       <form 
         *ngIf="!loading"
-        [formGroup]="installAgentForm" 
+        [formGroup]="installAgentForm"
         (ngSubmit)="installAgent(f)">
       <div class="scroll-modal-form">
         <div class="form-group form-group-drop">
           <label>{{'infrastructure.install-agent.agentType' | translate}}*</label>
-          <ngx-select-dropdown 
+          <ngx-select-dropdown
             formControlName="type" 
-            [multiple]="false" 
+            [multiple]="false"
             [ngClass]=
               "{ 
                 'ngx-error': submitted && f.type.errors && !agentType,
@@ -148,7 +146,6 @@
           </button>
         </div>
       </form>
-      <!-- Loader -->
       <div *ngIf="loading" class="nalej-loader-box">
         <div class="loader">
           <svg class="circular" viewBox="25 25 50 50">
