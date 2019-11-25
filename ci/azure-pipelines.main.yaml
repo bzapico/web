@@ -59,7 +59,7 @@ stages:
 
     - script: |
         echo $(ls -a)
-        build_output=$(docker build --no-cache -t mggarc59/web:v0.5.0 -f components/web/Dockerfile.ci .)
+        build_output=$(docker build --no-cache -t mggarc59/web:v0.5.0 -f components/web/Dockerfile .)
         if [ $? -ne 0 ]; then
           echo "##vso[task.logissue type=error]There was an error creating the docker image nalej/web:edge.%0D%0ACommand output:%0D%0A${build_output//$'\n'/'%0D%0A'}%0D%0AError CIE0025"
           echo "##vso[task.complete result=Failed;]"
