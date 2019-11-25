@@ -445,10 +445,6 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
       });
     });
     this.setLinksBetweenApps();
-    console.log('THIS GRAPH DATA NODES');
-    console.log(this.graphData.nodes);
-    console.log('THIS GRAPH DATA LINKS');
-    console.log(this.graphData.links);
     this.graphDataLoaded = true;
   }
   /**

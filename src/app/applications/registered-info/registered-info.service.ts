@@ -30,8 +30,7 @@ export class RegisteredInfoService {
 
   constructor(
       private translateService: TranslateService) {
-    this._graphData.nodes = [];
-    this._graphData.links = [];
+    this._graphData = new GraphData([], [])
     this._isGeneratedPublicRule = false;
     this._publicRule = null;
   }

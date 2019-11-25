@@ -160,7 +160,7 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
     this.isSelectableLabel = false;
     this.isOpenFromRegistered = false;
     this.groups = [];
-    this.instance = null;
+    this.instance = new ApplicationInstance('', '', '');
     this.registered = [];
     this.requestError = '';
     this.showGraph = true;
@@ -186,8 +186,7 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
       domain: ['#6C86F7']
     };
     this.graphDataLoaded = false;
-    this.graphData.nodes = [];
-    this.graphData.links = [];
+    this.graphData = new GraphData([], []);
     this.nextColorIndex = 0;
     this.loadedData = false;
   }
@@ -279,7 +278,7 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
    * Returns the descriptor
    * @param instance Instance app
    */
-  getDescriptorFromInstance(instance): ApplicationDescriptor[] {
+  getDescriptorFromInstance(instance: ApplicationInstance): ApplicationDescriptor[] {
     return this.registered.filter(x => x.app_descriptor_id === instance.app_descriptor_id);
   }
   /**
