@@ -13,7 +13,7 @@
 
 import { Component, Input } from '@angular/core';
 import * as shape from 'd3-shape';
-import { GraphLink } from '../../definitions/models/graph-link';
+import { GraphLink } from '../../definitions/interfaces/graph-link';
 import { GraphNode } from '../../definitions/interfaces/graph-node';
 
 @Component({

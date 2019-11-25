@@ -24,7 +24,7 @@ import { StyledNode } from '../definitions/interfaces/styled-node';
 import { GraphNode } from '../definitions/interfaces/graph-node';
 import { ColorScheme } from '../definitions/interfaces/color-scheme';
 import * as shape from 'd3-shape';
-import { GraphLink } from '../definitions/models/graph-link';
+import { GraphLink } from '../definitions/interfaces/graph-link';
 
 @Component({
   selector: 'tools',
@@ -42,7 +42,7 @@ export class ToolsComponent implements OnInit {
   /**
    * Refresh ratio
    */
-  static readonly REFRESH_INTERVAL = 20000;
+  static readonly REFRESH_INTERVAL = 20000000;
   /**
    * It sets the status colors for nodes
    */
@@ -293,14 +293,14 @@ export class ToolsComponent implements OnInit {
             const isSourceNode = this.graphData.nodes.filter(item => item.id === source).length > 0;
             const isTargetNode = this.graphData.nodes.filter(item => item.id === target).length > 0;
             if (isSourceNode && isTargetNode) {
-              linksBetweenApps[ source + '_' + target] = new GraphLink(source, target, false, true);
+              linksBetweenApps[ source + '_' + target] = {source: source, target: target, notMarker: false, isBetweenApps: true};
             }
           });
         });
       }
     });
     Object.values(linksBetweenApps).map((item: GraphLink) => {
-      this.graphData.links.push(new GraphLink(item.source, item.target, false, item.isBetweenApps));
+      this.graphData.links.push({source: item.source, target: item.target, notMarker: false, isBetweenApps: item.isBetweenApps});
     });
   }
   generateClusterNode(cluster: Cluster, tooltip: string): GraphNode & StyledNode {

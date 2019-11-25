@@ -15,7 +15,6 @@ import { Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { AccessType } from '../../definitions/enums/access-type.enum';
 import { GraphData } from '../../definitions/models/graph-data';
-import { GraphLink } from '../../definitions/models/graph-link';
 import { SecurityRule } from '../../definitions/interfaces/security-rule';
 import { GraphNode } from '../../definitions/interfaces/graph-node';
 import { StyledNode } from '../../definitions/interfaces/styled-node';
@@ -128,11 +127,10 @@ export class RegisteredInfoService {
             }
             sourcesIndex.forEach(indexSource => {
               targetsIndex.forEach(indexTarget => {
-                this._graphData.links.push(
-                  new GraphLink(this._graphData.nodes[indexSource].id,
-                    this._graphData.nodes[indexTarget].id,
-                    false,
-                      false));
+                this._graphData.links.push({source: this._graphData.nodes[indexSource].id,
+                    target: this._graphData.nodes[indexTarget].id,
+                    notMarker: false,
+                    isBetweenApps: false});
               });
             });
           });
@@ -156,11 +154,10 @@ export class RegisteredInfoService {
         group: group.service_group_id
       };
       this._graphData.nodes.push(nodeService);
-      this._graphData.links.push(
-          new GraphLink(group.service_group_id,
-              group.service_group_id + '-s-' + service.service_id,
-              false,
-              false));
+      this._graphData.links.push({source: group.service_group_id,
+        target: group.service_group_id + '-s-' + service.service_id,
+        notMarker: false,
+        isBetweenApps: false});
     });
   }
 
@@ -274,13 +271,10 @@ export class RegisteredInfoService {
       if (filteredData.length > 0) {
         const nodeTarget = this._graphData.nodes.filter(node => node.label === filteredData[0]['target_service_name']);
         if (nodeTarget.length > 0) {
-          this._graphData.links.push(
-            new GraphLink(
-              inbound.id,
-              nodeTarget[0].id,
-              true,
-              false
-            ));
+          this._graphData.links.push({source: inbound.id,
+            target: nodeTarget[0].id,
+            notMarker: true,
+            isBetweenApps: false});
         }
       }
     });
@@ -292,13 +286,10 @@ export class RegisteredInfoService {
       if (filteredData.length > 0) {
         const nodeTarget = this._graphData.nodes.filter(node => node.label === filteredData[0]['target_service_name']);
         if (nodeTarget.length > 0) {
-          this._graphData.links.push(
-            new GraphLink(
-              outbound.id,
-              nodeTarget[0].id,
-              true,
-              false
-            ));
+          this._graphData.links.push({source: outbound.id,
+            target: nodeTarget[0].id,
+            notMarker: true,
+            isBetweenApps: false});
         }
       }
     });
@@ -346,11 +337,10 @@ export class RegisteredInfoService {
     group.services.forEach(service => {
       if (service.name === rule.target_service_name) {
         this._graphData
-          .links.push(new GraphLink(
-            this._publicRule ? this._publicRule.rule_id : rule.rule_id,
-            group.service_group_id + '-s-' + service.service_id,
-            true,
-            false));
+          .links.push({source: this._publicRule ? this._publicRule.rule_id : rule.rule_id,
+            target: group.service_group_id + '-s-' + service.service_id,
+            notMarker: true,
+            isBetweenApps: false});
         if (!this._publicRule) {
           this._publicRule = rule;
         }

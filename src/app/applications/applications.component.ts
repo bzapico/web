@@ -37,7 +37,6 @@ import { NameValue } from '../definitions/interfaces/name-value';
 import { ApplicationInstance } from '../definitions/models/application-instance';
 import { GraphNode } from '../definitions/interfaces/graph-node';
 import { StyledNode } from '../definitions/interfaces/styled-node';
-import { GraphLink } from '../definitions/models/graph-link';
 
 @Component({
   selector: 'applications',
@@ -908,7 +907,7 @@ export class ApplicationsComponent extends ToolsComponent implements OnInit, OnD
     if ((!this.foundOccurrenceInRegistered && !this.foundOccurrenceInInstance && !this.foundOccurrenceInCluster)
         || ((this.foundOccurrenceInRegistered || this.foundOccurrenceInInstance || this.foundOccurrenceInCluster)
             && !this.initialState.showOnlyNodes)) {
-      this.graphData.links.push(new GraphLink(source, target, false, false));
+      this.graphData.links.push({source: source, target: target, notMarker: false, isBetweenApps: false});
     }
     if (!this.searchGraphData.links[source]) {
       this.searchGraphData.links[source] = [];

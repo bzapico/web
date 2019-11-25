@@ -12,7 +12,7 @@
  */
 
 import { GraphNode } from '../interfaces/graph-node';
-import { GraphLink } from './graph-link';
+import { GraphLink } from '../interfaces/graph-link';
 
 export class GraphData {
 
