@@ -12,7 +12,7 @@
         "build-and-serve-prod-local": "run-s lint style-lint build-local serve-local",
         "extract-i18n": "ngx-translate-extract --input ./src --output ./src/assets/i18n/en.json --clean --sort --format namespaced-json",
         "test": "ng test",
-        "test-ci": "ng run nalej:test-ci --watch=false --code-coverage || true",
+        "test-ci": "ng run nalej:test-ci --watch=false --code-coverage",
         "lint": "ng lint",
         "fix-lint": "ng lint --fix=true",
         "style-lint": "stylelint 'src/app/**/*.scss' --config .stylelintrc.json",
