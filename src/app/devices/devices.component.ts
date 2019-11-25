@@ -55,7 +55,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   /**
    * List of available devices
    */
-  devices: Device[];
+  devices: Device[][];
   /**
    * List of available devices groups
    */
@@ -159,7 +159,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
       this.backend = this.backendService;
     }
     // Default initialization
-    this.devices = [];
+    this.devices = [[]];
     this.groups = [];
     this.labels = [];
     this.loadedData = false;
