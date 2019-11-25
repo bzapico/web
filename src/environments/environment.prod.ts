@@ -15,7 +15,10 @@ import { LocalStorageKeys } from 'src/app/definitions/const/local-storage-keys';
 
 export const environment = {
   production: true,
-  apiUrl: getBaseUrl()
+  apiUrl: getBaseUrl(),
+  livezilla: false,
+  livezillaId: 'lzdefsc',
+  livezillaSrc: ''
 };
 
 function getBaseUrl() {
