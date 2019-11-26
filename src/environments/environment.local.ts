@@ -13,8 +13,5 @@
 
 export const environment = {
   production: true,
-  apiUrl: 'https://web.frontend.nalej.tech',
-  livezilla: false,
-  livezillaId: 'lzdefsc',
-  livezillaSrc: ''
+  apiUrl: 'https://web.frontend.nalej.tech'
 };
