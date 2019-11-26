@@ -22,6 +22,7 @@ import { LocalStorageKeys } from '../../definitions/const/local-storage-keys';
 import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@angular/forms';
 import { ApplicationInstance } from '../../definitions/models/application-instance';
 import { ApplicationDescriptor } from '../../definitions/models/application-descriptor';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-deploy-instance',
@@ -115,7 +116,8 @@ export class DeployInstanceComponent implements OnInit {
     public bsModalRef: BsModalRef,
     private backendService: BackendService,
     private mockupBackendService: MockupBackendService,
-    private notificationsService: NotificationsService
+    private notificationsService: NotificationsService,
+    private translateService: TranslateService,
   ) {
     const mock = localStorage.getItem(LocalStorageKeys.deployInstanceMock) || null;
     // check which backend is required (fake or real)
@@ -132,15 +134,17 @@ export class DeployInstanceComponent implements OnInit {
       displayKey: 'name',
       search: false,
       height: 'auto',
-      placeholder: 'Select any registered name',
+      placeholder: this.translateService.instant('deploy.selectReg'),
       limitTo: this.registeredApps.length,
       moreText: 'more',
-      noResultsFound: 'No results found!'
+      noResultsFound: this.translateService.instant(
+        'apps.addConnection.noResults'
+      )
     };
     this.targetInterfaceConfig = {};
     this.targetInstanceConfig = {};
     if (!this.registeredName) {
-      this.registeredName = 'Descriptor not found';
+      this.registeredName = this.translateService.instant('deploy.descriptorNotFound');
     }
     this.availableParamsCategory = {
       basic: false,
@@ -162,8 +166,8 @@ export class DeployInstanceComponent implements OnInit {
     this.connections = [];
     this.areRequiredConnections = false;
     this.requiredConnections = [];
-    this.fakeValue = new ApplicationDescriptor('', '-1');
-    this.fakeValue.name = 'Select any registered name';
+    this.fakeValue =
+      new ApplicationDescriptor('', '-1', this.translateService.instant('deploy.selectAnyRegistered'));
   }
 
   ngOnInit() {
@@ -232,7 +236,7 @@ export class DeployInstanceComponent implements OnInit {
           this.onClose(false);
           this.bsModalRef.hide();
           this.notificationsService.add({
-            message: `Deploying instance of ${this.registeredName}`
+            message: this.translateService.instant('deploy.deployingInstance', { registeredName: this.registeredName })
           });
         }, error => {
           this.notificationsService.add({
@@ -280,7 +284,7 @@ export class DeployInstanceComponent implements OnInit {
    */
   discardChanges(form) {
     if (form.dirty) {
-      const discard = confirm('Discard changes?');
+      const discard = confirm(this.translateService.instant('modals.discardChanges'));
       if (discard) {
         this.onClose(true);
         this.bsModalRef.hide();
@@ -385,10 +389,12 @@ export class DeployInstanceComponent implements OnInit {
         displayKey: 'name',
         search: false,
         height: 'auto',
-        placeholder: 'Select any interface name',
+        placeholder: this.translateService.instant('deploy.selectInterface'),
         limitTo: this.targetInterfaceOptions.length,
         moreText: 'more',
-        noResultsFound: 'No results found!'
+        noResultsFound: this.translateService.instant(
+          'apps.addConnection.noResults'
+        )
       };
     }
   }

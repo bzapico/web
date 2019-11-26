@@ -9,7 +9,7 @@
   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   See the License for the specific language governing permissions and
   limitations under the License.
- -->
+-->
 
 <div class="login">
     <!-- Login form -->
@@ -17,15 +17,15 @@
     <h2 
         (click)="openDebugPanel()" 
         class="form-login-heading"
-        style="visibility:hidden">
+        style="visibility: hidden;">
         {{'nalej' | translate}}
     </h2>
     <div class="login-card">
-        <!-- Header -->
+      
         <div class="modal-header">
             <h3 class="nalej-form-title">{{'login.login' | translate}}</h3>
         </div>
-        <!-- Body -->
+      
         <div class="modal-body">
             <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
                 <div class="form-group">
@@ -47,7 +47,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label>{{'login.password' | translate}}*</label>
+                    <label>{{'changePass.pass' | translate}}*</label>
                     <input 
                         formControlName="password" 
                         type="password" 

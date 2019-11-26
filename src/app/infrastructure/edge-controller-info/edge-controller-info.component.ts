@@ -24,8 +24,7 @@ import { KeyValue } from '../../definitions/interfaces/key-value';
 
 @Component({
   selector: 'app-edge-controller-info',
-  templateUrl: './edge-controller-info.component.html',
-  styleUrls: ['./edge-controller-info.component.scss']
+  templateUrl: './edge-controller-info.component.html'
 })
 export class EdgeControllerInfoComponent {
   /**

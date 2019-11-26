@@ -26,7 +26,8 @@
         "ignoreAtRules": [
           "extend",
           "ignores",
-          "include"
+          "include",
+          "mixin"
         ]
       }
     ],
@@ -38,7 +39,7 @@
     "block-opening-brace-newline-after": "always",
     "block-opening-brace-space-after": "always-single-line",
     "block-opening-brace-space-before": "always-single-line",
-    "color-hex-case":"upper",
+    "color-hex-case": "upper",
     "color-no-invalid-hex": true,
     "comment-empty-line-before": [
       "always",
@@ -56,12 +57,14 @@
     "declaration-block-semicolon-space-before": "never",
     "declaration-block-trailing-semicolon": "always",
     "declaration-colon-space-after": "always",
+    "declaration-no-important": true,
     "function-comma-space-after": "always",
     "function-parentheses-space-inside": "always",
     "indentation": "tab",
     "length-zero-no-unit": true,
     "max-empty-lines": 1,
     "max-line-length": 140,
+    "media-feature-name-no-unknown": true,
     "no-empty-first-line": true,
     "no-eol-whitespace": true,
     "number-leading-zero": null,
@@ -70,25 +73,26 @@
     "property-no-vendor-prefix": null,
     "rule-empty-line-before": "never",
     "scss/at-extend-no-missing-placeholder": true,
-    "selector-list-comma-newline-after": "always",
-    "selector-max-class": 3,
-    "string-no-newline": true,
-    "string-quotes": "single",
-    "unicode-bom": "never",
     "scss/selector-no-redundant-nesting-selector": true,
-    "media-feature-name-no-unknown": true,
-    "unit-case": "lower",
+    "selector-list-comma-newline-after": "always",
+    "selector-max-class": 4,
+    "selector-type-no-unknown": null,
     "sh-waqar/declaration-use-variable": [
       [
         "/color/",
         {
           "ignoreValues": [
-            "transparent",
-            "inherit"
+            "inherit",
+            "transparent"
           ]
         }
       ]
     ],
+    "shorthand-property-no-redundant-values": true,
+    "string-no-newline": true,
+    "string-quotes": "single",
+    "time-min-milliseconds": 100,
+    "unit-case": "lower",
     "unit-whitelist": [
       "%",
       "deg",
@@ -96,15 +100,14 @@
       "px",
       "rem",
       "s",
-      "vh"
+      "vh",
+      "vw"
     ],
     "value-keyword-case": "lower",
-    "value-list-comma-newline-after": "always",
-    "value-list-comma-newline-before": "always",
+    "value-list-comma-newline-after": "always-multi-line",
+    "value-list-comma-newline-before": "always-multi-line",
     "value-list-comma-space-after": "always",
     "value-list-comma-space-before": "always",
-    "value-list-max-empty-lines": 0,
-    "time-min-milliseconds": 100,
-    "shorthand-property-no-redundant-values": true
+    "value-list-max-empty-lines": 0
   }
 }

@@ -11,10 +11,6 @@
  *  limitations under the License.
  */
 
-// -----------------------------------------------------------------------------
-// Color variables and styles
-// -----------------------------------------------------------------------------
-
 $base-violet: #5800FF;
 $base-pink: #FF00D3;
 
@@ -30,25 +26,34 @@ $hover-red: #FF0061;
 $status-teal: #00E6A0;
 $status-yellow:#FFEB6C;
 
-// Extra colors
 $white: #FFF;
 $black: #000;
 $main-grey: #6B6B6B;
 $main-bg: #F5F5F5;
 $secondary-grey: #707070;
-$low-grey: #CACACA;
-.blue {color: $base-violet !important;}
-
-.grey {color: $base-grey !important;}
-
-.dark-grey {color: $dark-grey !important;}
-
-.red {color: $base-red !important;}
-
-.pink {color: $base-pink !important;}
-
-.teal {color: $status-teal !important;}
-
-.yellow {color: $status-yellow !important;}
-
-.base-light-grey {color: $base-light-grey !important;}
+/* stylelint-disable declaration-no-important */
+.blue {
+	color: $base-violet !important;
+}
+.grey {
+	color: $base-grey !important;
+}
+.dark-grey {
+	color: $dark-grey !important;
+}
+.red {
+	color: $base-red !important;
+}
+.pink {
+	color: $base-pink !important;
+}
+.teal {
+	color: $status-teal !important;
+}
+.yellow {
+	color: $status-yellow !important;
+}
+.base-light-grey {
+	color: $base-light-grey !important;
+}
+/* stylelint-enable */

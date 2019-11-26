@@ -18,8 +18,7 @@ import { LabelsData } from '../../definitions/interfaces/labels-data';
 
 @Component({
   selector: 'labels-card',
-  templateUrl: './labels-card.component.html',
-  styleUrls: ['./labels-card.component.scss']
+  templateUrl: './labels-card.component.html'
 })
 export class LabelsCardComponent {
   @Input() labelsData: LabelsData;

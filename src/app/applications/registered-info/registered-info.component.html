@@ -9,11 +9,10 @@
   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   See the License for the specific language governing permissions and
   limitations under the License.
- -->
+-->
 
 <div class="row row-title">
   <div class="col-lg-12">
-    <!-- <h2 class="section-title">{{'apps.instance.title' | translate}}</h2> -->
     <h2 class="section-title">
       <a 
         [routerLink]="['/applications']" 
@@ -33,14 +32,12 @@
 <div class="row row-app-main">
   <div class="col-4 h-100">
     <div class="flex-col-app">
-      <!-- Registered id card -->
       <app-info
         [loadedData]="loadedData"
         [registeredData]="registeredData"
         [openFromRegistered]="openFromRegistered"
         class="row-info-app flex-grow-1 h-75">
       </app-info>
-      <!-- Labels card-->
       <labels-card 
         [loadedData]="loadedData"
         [labelsData]="registeredData"
@@ -48,7 +45,6 @@
         (updateLabels)="updateLabels($event)"
         class="row-info-app flex-grow-0">
       </labels-card>
-      <!-- Action buttons card -->
       <action-buttons-card 
         [loadedData]="loadedData"
         [app]="registeredData"
@@ -57,13 +53,11 @@
       </action-buttons-card>
     </div>
   </div>
-  <!-- Services card-->
   <div class="col-8 h-100">
     <div class="flex-col-app">
       <div class="card">
         <services-card (displayGraph)='onShowGraph($event)'>
         </services-card>
-        <!-- Graph -->
         <div *ngIf="showGraph" class="services-card-box">
           <div *ngIf="graphDataLoaded && !graphReset" class="graph">
             <graph
@@ -84,7 +78,6 @@
             </div>
           </div>
         </div>
-        <!-- Tables -->
         <div *ngIf="!showGraph" class="services-card-box">
           <!-- Groups table -->
           <div class="services-table-box">
@@ -180,15 +173,15 @@
                       registeredData.groups.length > 0 &&
                       !requestError"
                         class="nalej-table-box no-p-col no-m-row">
-                      <div class="label-nalej-table">
-                        <div *ngIf="!searchTerm" class="label-thead row">
+                      <div class="nalej-table">
+                        <div *ngIf="!searchTerm" class="nalej-thead row">
                           <div class="col-12">
                             <div class="row">
                               <div
                                 (click)="setOrder('services','name')"
                                 [ngClass]="getCategoryCSSClass('services','name')"
                                 class="label-th col-3">
-                                {{'apps.instance.tableName' | translate}}
+                                {{'tables.tableName' | translate}}
                                 <span *ngIf="sortedBy === 'name' && !reverse" class="expand-chevron">
                                   <i class="material-icons">expand_more</i>
                                 </span>
@@ -217,7 +210,7 @@
                             (click)="setOrder('services','labels')"
                             [ngClass]="getCategoryCSSClass('services','labels')"
                             class="label-th col-12">
-                            {{'apps.instance.tableLabels' | translate}}
+                            {{'tables.tableLabels' | translate}}
                             <span *ngIf="sortedBy === 'labels' && !reverse" class="expand-chevron">
                               <i class="material-icons">expand_more</i>
                             </span>
@@ -230,16 +223,16 @@
                           "let service of getGroupServices(group.service_group_id) |
                           sortBy : sortedBy : reverse : true |
                           filter : searchTerm">
-                          <div class="label-tbody row">
+                          <div class="nalej-tbody row">
                             <div class="col-12">
                               <div class="row">
-                                <div class="col-3 label-td">
+                                <div class="col-3 nalej-td">
                                   {{service.name}}
                                 </div>
-                                <div class="col-8 label-td text-center">
+                                <div class="col-8 nalej-td text-center">
                                   {{service.image}}
                                 </div>
-                                <div class="col-1 label-td-flex">
+                                <div class="col-1 nalej-td-flex">
                                   <div
                                     (click)="openServicesInfo(service)"
                                     tooltip="{{'tables.tableInfo' | translate}}"
@@ -249,7 +242,7 @@
                                 </div>
                               </div>
                             </div>
-                            <div class="col-12 label-td">
+                            <div class="col-12 nalej-td">
                               <button
                                 *ngFor="let label of service.labels | keyvalue"
                                 class="label-content-disabled" disabled>
@@ -277,7 +270,7 @@
                 </accordion>
               </div>
             </div>
-            <!-- Loader -->
+            
             <div *ngIf="!loadedData" class="nalej-loader-box">
               <div class="loader">
                 <svg class="circular" viewBox="25 25 50 50">
@@ -300,7 +293,6 @@
                 <h6 class="card-title-name">{{'apps.accessRules' | translate}}</h6>
               </div>
             </div>
-            <!-- Search box -->
             <div *ngIf=
               "loadedData &&
               registeredData.rules &&
@@ -360,14 +352,14 @@
               registeredData.rules.length > 0 &&
               !requestError"
               class="nalej-table-box h-75">
-              <div class="label-nalej-table nalej-table-grey-bg">
-                <div class="label-thead row">
+              <div class="nalej-table nalej-table-grey-bg">
+                <div class="nalej-thead row">
                   <div
                     (click)="setOrder('rules','access')"
                     [ngClass]="getCategoryCSSClass('rules','access')"
                     class="label-th col-3">
-                    <span tooltip="{{'apps.instance.tableAccess' | translate}}" placement="bottom">
-                      {{'apps.instance.tableAccess' | translate}}
+                    <span tooltip="{{'tables.tableAccess' | translate}}" placement="bottom">
+                      {{'tables.tableAccess' | translate}}
                     </span>
                     <span *ngIf="sortedByRules === 'access' && !reverseRules" class="expand-chevron">
                       <i class="material-icons">expand_more</i>
@@ -381,12 +373,12 @@
                     [ngClass]="getCategoryCSSClass('rules','target')"
                     class="label-th col-3">
                     <span
-                      tooltip="{{'apps.instance.tableTarget' | translate}}
-                      {{'apps.instance.tableTargetInBig' | translate}}"
+                      tooltip="{{'tables.tableTarget' | translate}}
+                      {{'tables.tableTargetInBig' | translate}}"
                       placement="bottom">
-                      {{'apps.instance.tableTarget' | translate}}
+                      {{'tables.tableTarget' | translate}}
                       <span class="grey typo-small">
-                        {{'apps.instance.tableTargetIn' | translate}}
+                        {{'tables.tableTargetIn' | translate}}
                       </span>
                     </span>
                     <span *ngIf="sortedByRules === 'target' && !reverseRules" class="expand-chevron">
@@ -401,12 +393,12 @@
                     [ngClass]="getCategoryCSSClass('rules','auth')"
                     class="label-th col-3">
                     <span
-                      tooltip="{{'apps.instance.tableAuth' | translate}}
-                      {{'apps.instance.tableAuthInBig' | translate}}"
+                      tooltip="{{'tables.tableAuth' | translate}}
+                      {{'tables.tableAuthInBig' | translate}}"
                       placement="bottom">
-                      {{'apps.instance.tableAuth' | translate}}
+                      {{'tables.tableAuth' | translate}}
                       <span class="grey typo-small">
-                        {{'apps.instance.tableAuthIn' | translate}}
+                        {{'tables.tableAuthIn' | translate}}
                       </span>
                     </span>
                     <span *ngIf="sortedByRules === 'auth' && !reverseRules" class="expand-chevron">
@@ -425,8 +417,8 @@
                     (click)="setOrder('rules','name')"
                     [ngClass]="getCategoryCSSClass('rules','name')"
                     class="label-th col-12">
-                    <span tooltip="{{'apps.instance.tableName' | translate}}" placement="bottom">
-                      {{'apps.instance.tableName' | translate}}
+                    <span tooltip="{{'tables.tableName' | translate}}" placement="bottom">
+                      {{'tables.tableName' | translate}}
                     </span>
                     <span *ngIf="sortedByRules === 'name' && !reverseRules" class="expand-chevron">
                       <i class="material-icons">expand_more</i>
@@ -440,13 +432,13 @@
                   "let rule of registeredData.rules |
                   sortBy : sortedByRules : reverseRules : true |
                   filter : searchTermRules">
-                  <div class="label-tbody row">
-                    <div class="col-3 label-td">
+                  <div class="nalej-tbody row">
+                    <div class="col-3 nalej-td">
                       {{rule.access_name}}
                       <br>
                       {{rule.name | truncate}}
                     </div>
-                    <div class="col-3 label-td">
+                    <div class="col-3 nalej-td">
                       <span *ngIf="!rule.target_service_group_name"> - </span>
                       {{rule.target_service_group_name}}
                       <br>
@@ -456,7 +448,7 @@
                       <span *ngIf="!rule.target_port"> - </span>
                       {{rule.target_port}}
                     </div>
-                    <div class="col-3 label-td">
+                    <div class="col-3 nalej-td">
                       <span *ngIf="!rule.auth_service_group_name"> - </span>
                       {{rule.auth_service_group_name}}
                       <br>
@@ -466,7 +458,7 @@
                       <span *ngIf="!rule.device_group_names"></span>
                       {{rule.device_group_names}}
                     </div>
-                    <div class="col-3 label-td-flex">
+                    <div class="col-3 nalej-td-flex">
                       <div
                         (click)="openRulesInfo(rule)"
                         tooltip="{{'tables.tableInfo' | translate}}"
@@ -487,11 +479,9 @@
               class="no-elements">
               {{'apps.instance.noRules' | translate}}
             </div>
-            <!-- Requested error -->
             <div *ngIf="loadedData && requestError" class="no-elements">
               <p>{{requestError}}</p>
             </div>
-            <!-- Loader -->
             <div *ngIf="!loadedData" class="nalej-loader-box">
               <div class="loader">
                 <svg class="circular" viewBox="25 25 50 50">

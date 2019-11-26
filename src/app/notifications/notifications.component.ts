@@ -21,8 +21,7 @@ import { Notification } from '../definitions/interfaces/notification';
 
 @Component({
   selector: 'notifications',
-  templateUrl: './notifications.component.html',
-  styleUrls: ['./notifications.component.scss']
+  templateUrl: './notifications.component.html'
 })
 export class NotificationsComponent {
   @Input() notifications: Notification[];

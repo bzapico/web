@@ -1,4 +1,4 @@
-/* 
+/*
  *  Copyright 2019 Nalej
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -10,45 +10,39 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
-// -----------------------------------------------------------------------------
-// Drag and drop ngx-file-drop styles
-// -----------------------------------------------------------------------------
-
-
-.file-drop{
-    width: 100%;
-    height: 250px;
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    border: 2px dotted $base-grey;
-    color: #444444;
-    text-align: center;
-    margin-bottom: 0;
-    cursor: default;
+.file-drop {
+	width: 100%;
+	height: 250px;
+	border-radius: 10px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	border: 2px dotted $base-grey;
+	color: $dark-grey;
+	text-align: center;
+	margin-bottom: 0;
+	cursor: default;
 }
 .drop-note {
-    margin-top: -.5em;
-    font-size: .5em;
-    text-align: center;
-    cursor: pointer;
+	margin-top: -.5em;
+	font-size: .5em;
+	text-align: center;
+	cursor: pointer;
 }
 .drop-title {
-    margin-top: 1em;
-    font-size: 1.5em;
-    color: $base-grey;
-    text-align: center;
+	margin-top: 1em;
+	font-size: 1.5em;
+	color: $base-grey;
+	text-align: center;
 }
-.inputfile {
-    width: 0.1px;
-    height: 0.1px;
-    opacity: 0;
-    overflow: hidden;
-    position: absolute;
-    z-index: -1;
+.drop-zone {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
 }
 .cursor-pointer {
-    cursor: pointer;
+	cursor: pointer;
 }

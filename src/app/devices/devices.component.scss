@@ -14,8 +14,6 @@
 @import '../scss/variables/colors';
 @import '../scss/variables/mixins';
 @import '../scss/components/accordion';
-
-/* - - - Add group button - - - */
 .add-group-box {
 	display: flex;
 	justify-content: flex-end;
@@ -48,54 +46,15 @@
 		}
 	}
 }
-
-/* - - -Summary card devices table - - - */
-.actions-col-fix {
-	padding: 0.75rem 0;
-}
 .loaded-devices {
 	height: 100%;
 	width: 100%;
 	overflow: hidden;
 	.accordion-icons-box {
 		.accordion-btn {
-			top: 2px !important;
+			top: 2px;
 		}
 	}
-}
-
-/* - - - Close group button - - - */
-.close-group-button {
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	.button {
-		outline: none;
-		display: inline-block;
-		background-color: $base-violet;
-		border-radius: 50px;
-		border: none;
-		color: $white;
-		font-size: .8em;
-		font-weight: 500;
-		padding-bottom: .5em;
-		padding-top: .6em;
-		width: 161px;
-		transition: all 0.5s;
-		cursor: pointer;
-		text-transform: uppercase;
-		span.close-trigger {
-			font-size: 1.2em !important;
-			margin-left: 40px;
-			cursor: pointer;
-			display: inline-block;
-			position: relative;
-			transition: 0.5s;
-		}
-	}
-}
-.devices-checkbox {
-	cursor: pointer;
 }
 .opacity {
 	opacity: 0;

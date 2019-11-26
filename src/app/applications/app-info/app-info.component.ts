@@ -174,7 +174,7 @@ export class AppInfoComponent implements OnChanges {
         user_confirmation: true
       }).subscribe(() => {
         this.notificationsService.add({
-          message: 'Removing connection',
+          message: this.translateService.instant('apps.manageConnections.removingConnection'),
           timeout: NOTIFICATION_TIMEOUT
         });
         this.updateInstance(instance);

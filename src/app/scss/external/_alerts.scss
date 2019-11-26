@@ -1,4 +1,4 @@
-/* 
+/*
  *  Copyright 2019 Nalej
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -10,81 +10,74 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
-// -----------------------------------------------------------------------------
-// Alerts
-// -----------------------------------------------------------------------------
-
 .alert-message {
-    -ms-word-wrap: break-word;
-    word-wrap: break-word;
-    a, label {
-        color: $white;
-    }
-    a:hover {
-        color: $base-grey;
-        text-decoration: none;
-    }
+	-ms-word-wrap: break-word;
+	word-wrap: break-word;
+	a,
+	label {
+		color: $white;
+	}
+	a:hover {
+		color: $base-grey;
+		text-decoration: none;
+	}
 }
 .alert-dismissible .close {
-    padding: 1rem 1.2em;
-    outline: none;
+	padding: 1rem 1.2em;
+	outline: none;
 }
 .alert-top-right {
-    top: 12px;
-    right: 12px;
+	top: 12px;
+	right: 12px;
 }
 #alert-container {
-    position: fixed;
-    z-index: 999999;
-    max-width: 700px;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-    /*overrides*/
-    .alert {
-        position: relative;
-        overflow: hidden;
-        padding: 19px 56px 15px 52px;
-        border: 0px;
-        -moz-border-radius: 10px;
-        -webkit-border-radius: 10px;
-        border-radius: 10px;
-        background-position: center;
-        background-repeat: no-repeat;
-        color: $white;
-        &:hover {
-            box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
-            -moz-border-radius: 10px;
-            -webkit-border-radius: 10px;
-            border-radius: 10px;
-            opacity: 1;
-            color: $white;
-            cursor: pointer;
-        }
-    }
-}
-.alert {
-    background: $base-violet;
+	position: fixed;
+	z-index: 999999;
+	max-width: 700px;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	.alert {
+		position: relative;
+		overflow: hidden;
+		padding: 19px 56px 15px 52px;
+		border: 0;
+		-moz-border-radius: 10px;
+		-webkit-border-radius: 10px;
+		border-radius: 10px;
+		background: $base-violet;
+		background-position: center;
+		background-repeat: no-repeat;
+		color: $white;
+		&:hover {
+			box-shadow: 0 0 12px rgba( 0, 0, 0, 0.3 );
+			-moz-border-radius: 10px;
+			-webkit-border-radius: 10px;
+			border-radius: 10px;
+			opacity: 1;
+			color: $white;
+			cursor: pointer;
+		}
+	}
 }
 .alert-warning {
-    background-color: $base-red;
+	background-color: $base-red;
 }
 .alert-icon {
-    position: absolute;
-    left: 1em;
-    top: 1em;
-    font-weight: normal;
-    color: $white;
+	position: absolute;
+	left: 1em;
+	top: 1em;
+	font-weight: normal;
+	color: $white;
 }
 .alert-progress {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    height: 4px;
-    background-color: $super-dark-grey;
-    opacity: 0.4;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	height: 4px;
+	background-color: $super-dark-grey;
+	opacity: 0.4;
 }
 .alert > button.close:hover span {
-    color: $white;
+	color: $white;
 }

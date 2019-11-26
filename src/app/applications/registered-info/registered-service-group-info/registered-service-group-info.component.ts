@@ -16,8 +16,7 @@ import { BsModalRef } from 'ngx-bootstrap';
 
 @Component({
   selector: 'registered-service-group-info',
-  templateUrl: './registered-service-group-info.component.html',
-  styleUrls: ['./registered-service-group-info.component.scss']
+  templateUrl: './registered-service-group-info.component.html'
 })
 export class RegisteredServiceGroupInfoComponent {
   /**

@@ -9,14 +9,13 @@
   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   See the License for the specific language governing permissions and
   limitations under the License.
- -->
+-->
 
 <div class="row row-title">
   <div class="col-lg-12">
     <h2 class="section-title">{{'resources.title' | translate}}</h2>
   </div>
 </div>
-<!-- Cluster info card -->
 <div class="row row-info">
   <div class="col-lg-3 h-100">
     <div class="card">
@@ -91,14 +90,13 @@
     </div>
   </div>
 </div>
-<!-- Nodes panel card-->
 <div class="row row-main">
   <div class="col-lg-12 h-100">
     <div class="card">
       <div class="card-title-name">
         <h5>
           <a 
-            [routerLink]="['/resources']" 
+            [routerLink]="['/resources']"
             routerLinkActive="active" 
             class="blue">
             {{'resources.cluster' | translate}}
@@ -149,17 +147,16 @@
                 </div>
             </div>
           </form>
-        </div>      
+        </div>
       </div>
-      <!-- Clusters table -->
       <div *ngIf=
         "loadedData &&
         nodes &&
         nodes.length > 0 &&
         !requestError"
-        class="nalej-table-box nalej-table-p">
-        <div class="label-nalej-table">
-          <div class="label-thead ">
+        class="nalej-table-box no-p-col no-m-row">
+        <div class="nalej-table">
+          <div class="nalej-thead ">
             <div class="row">
               <div 
                 (click)="setOrder('ID')"
@@ -233,13 +230,13 @@
           <div *ngFor=
             "let node of nodes |
             sortBy : sortedBy : reverse : 'case-insensitive' |
-            filter : searchTerm" class="label-tbody">
+            filter : searchTerm" class="nalej-tbody">
             <div class="row">
-              <div class="col-4 label-td">{{node.node_id}}</div>
-              <div class="col-3 label-td">{{node.ip}}</div>  
-              <div class="col-3 label-td text-lowercase ">{{node.state_name}}</div>
+              <div class="col-4 nalej-td">{{node.node_id}}</div>
+              <div class="col-3 nalej-td">{{node.ip}}</div>  
+              <div class="col-3 nalej-td text-lowercase ">{{node.state_name}}</div>
               <div 
-                class="col-2 label-td col-center-lowercase"
+                class="col-2 nalej-td col-center-lowercase"
                 [ngClass]=
                 "{
                   'status-dot':classStatusCheck(node.status_name, 'running'),
@@ -293,7 +290,6 @@
           </div>
         </div>
       </div>
-      <!-- No info to show -->
       <div *ngIf=
         "loadedData &&
         nodes && nodes.length === 0 &&
@@ -301,11 +297,9 @@
         class="no-elements">
         <p>{{'resources.noNodes' | translate}}</p>
       </div>
-      <!-- Requested error -->
       <div *ngIf="loadedData && requestError" class="no-elements">
         <p>{{requestError}}</p>
       </div>
-      <!-- Loader -->
       <div *ngIf="!loadedData"class="nalej-loader-box">
         <div class="loader">
           <svg class="circular" viewBox="25 25 50 50">

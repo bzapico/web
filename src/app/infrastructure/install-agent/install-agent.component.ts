@@ -97,7 +97,9 @@ export class InstallAgentComponent implements OnInit {
       placeholder: this.translateService.instant('infrastructure.install-agent.agentType'),
       limitTo: 4,
       moreText: this.translateService.instant('infrastructure.install-agent.more'),
-      noResultsFound: this.translateService.instant('infrastructure.install-agent.noResults')
+      noResultsFound: this.translateService.instant(
+        'apps.addConnection.noResults'
+      )
     };
     this.agentTypeOptions = [{
       name: AgentType.LINUX_AMD64,
@@ -142,7 +144,9 @@ export class InstallAgentComponent implements OnInit {
       placeholder: this.translateService.instant('infrastructure.install-agent.ec'),
       limitTo: this.ecCount,
       moreText: 'more',
-      noResultsFound: this.translateService.instant('infrastructure.install-agent.noResults')
+      noResultsFound: this.translateService.instant(
+        'apps.addConnection.noResults'
+      )
     };
     if (!this.edgeControllerFromEC) {
       this.edgeControllerFromEC = this.translateService.instant('infrastructure.install-agent.select');

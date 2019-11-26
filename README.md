@@ -126,7 +126,7 @@ Tested and supported resolutions in pixels:
 3. `npm install`
 
 ### Development server
-1. Modify apiUrl in the src/environments/environment.ts to https://web.demo.nalej.io/
+1. Modify apiUrl in the src/environments/environment.ts with your own api url.
 2. Run `npm start` for a dev server.
 3. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files, also in this task, every change will be linted.
 
@@ -160,16 +160,16 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## Contributing
 
-Please read [contributing.md](contributing.md) for details on our code of conduct, and the process for submitting pull requests to us.
+Please read [contributing.md](https://github.com/nalej/web/contributing.md) for details on our code of conduct, and the process for submitting pull requests to us.
 ​
 
 ## Versioning
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags).
+We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/nalej/web/tags).
 
 ## Authors
 
-See also the list of [contributors](https://github.com/nalej/grpc-utils/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/nalej/web/contributors) who participated in this project.
 ​
 
 ## License

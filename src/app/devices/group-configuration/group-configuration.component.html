@@ -9,11 +9,11 @@
   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   See the License for the specific language governing permissions and
   limitations under the License.
- -->
+-->
 
 <div class="modal-card">
   <div class="modal-content">
-    <!-- Header -->
+  
     <div class="modal-header">
       <h3 class="nalej-form-title">{{name}} {{'devices.add.config' | translate}}</h3>
       <button 
@@ -24,7 +24,7 @@
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
-    <!-- Body -->
+  
     <div class="modal-body">
       <!-- Option checkboxes -->
       <div class="check-options">
@@ -33,13 +33,13 @@
           <span 
             *ngIf="!enabled" 
             (click)="enabled = true"
-            class="devices-checkbox">
+            class="checkbox-pointer">
             <i class="material-icons grey">check_box_outline_blank</i>
           </span>
           <span 
             *ngIf="enabled" 
             (click)="enabled = false"
-            class="devices-checkbox">
+            class="checkbox-pointer">
             <i class="material-icons blue">check_box</i>
           </span>
         </div>
@@ -49,13 +49,13 @@
           <span 
             *ngIf="!defaultConnectivity" 
             (click)="defaultConnectivity = true"
-            class="devices-checkbox">
+            class="checkbox-pointer">
             <i class="material-icons grey">check_box_outline_blank</i>
           </span>
           <span 
             *ngIf="defaultConnectivity" 
             (click)="defaultConnectivity = false"
-            class="devices-checkbox">
+            class="checkbox-pointer">
             <i class="material-icons blue">check_box</i>
           </span>
         </div>   

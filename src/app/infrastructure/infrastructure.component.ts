@@ -939,9 +939,9 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
         deviceId: device.device_id,
         enabled: device.enabled
       }).subscribe(() => {
-        let notificationText = this.translateService.instant('infrastructure.device.notificationTextEnabled');
+        let notificationText = this.translateService.instant('devices.enabled');
         if (!device.enabled) {
-        notificationText = this.translateService.instant('infrastructure.device.notificationTextDisabled');
+        notificationText = this.translateService.instant('devices.disabled');
         }
       this.notificationsService.add({
         message: this.translateService.instant('infrastructure.device.enablementMessage') + notificationText

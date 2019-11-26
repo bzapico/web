@@ -9,14 +9,14 @@
   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   See the License for the specific language governing permissions and
   limitations under the License.
- -->
+-->
 
 <nav class="sidebar">
   <div class="nalej-nav">
     <div 
       (click)="openDebugPanel()"
       class="nav-company-name" 
-      style="visibility:hidden">
+      style="visibility: hidden;">
       {{'sidebar.nalej' | translate}}
     </div>
     <div (click)="openEditUser()" class="nav-profile-info">
@@ -46,7 +46,7 @@
       </a>
     </div>
     <div *ngIf="role === 'NalejAdmin' || role === 'Operator'" class="nav-item">
-      <a         
+      <a
         routerLinkActive="active" 
         routerLink="/resources" 
         class="nav-link">
@@ -64,8 +64,8 @@
       </a>
     </div>
     <div *ngIf="role === 'NalejAdmin' || role === 'Developer'" class="nav-item">
-      <a         
-        routerLinkActive="active" 
+      <a
+        routerLinkActive="active"
         routerLink="/applications" 
         class="nav-link">
         <i class="material-icons">apps</i>

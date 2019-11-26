@@ -9,14 +9,13 @@
   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   See the License for the specific language governing permissions and
   limitations under the License.
- -->
+-->
 
 <div class="row row-title">
   <div class="col-lg-12">
     <h2 class="section-title">{{'organization.title' | translate}}</h2>
   </div>
 </div>
-<!-- Organization info card -->
 <div class="row row-info">
   <div class="col-lg-12 h-100">
     <div class="card">
@@ -33,7 +32,6 @@
     </div>
   </div>
 </div>
-<!-- Users card-->
 <div class="row row-main">
   <div class="col-lg-8 col-sm-12 h-100">
     <div class="card">
@@ -41,32 +39,30 @@
         <h5>{{'organization.users.title' | translate}}</h5>
       </div>
       <div class="row mb-3">
-        <!-- Sorting messages -->
         <div class="col-7">  
           <p *ngIf="searchTerm && !filterField" class="sorting-message">
-            {{'organization.filteredBy' | translate:{value: searchTerm} }}
-            <span (click)="resetFilters()" class="reset-search">{{'organization.users.reset' | translate}}</span>
+            {{'sortingMessage.filteredBy' | translate:{value: searchTerm} }}
+            <span (click)="resetFilters()" class="reset-search">{{'sortingMessage.reset' | translate}}</span>
           </p>
           <p *ngIf="filterField && !searchTerm" class="sorting-message">
-            {{'organization.sortedBy' | translate:{value: sortedBy} }}
-            <span *ngIf="reverse">{{'organization.users.ascendant' | translate:{value: '. '} }}</span>
-            <span *ngIf="!reverse">{{'organization.users.descendant' | translate:{value: '. '} }}</span>
-            <span (click)="resetFilters()" class="reset-search">{{'organization.users.reset' | translate}}</span>
+            {{'sortingMessage.sortedBy' | translate:{value: sortedBy} }}
+            <span *ngIf="reverse">{{'sortingMessage.ascendant' | translate:{value: '. '} }}</span>
+            <span *ngIf="!reverse">{{'sortingMessage.descendant' | translate:{value: '. '} }}</span>
+            <span (click)="resetFilters()" class="reset-search">{{'sortingMessage.reset' | translate}}</span>
           </p>
           <p *ngIf="filterField && searchTerm" class="sorting-message">
-            {{'organization.sortedBy' | translate:{value: sortedBy} }}
-            <span *ngIf="reverse">{{'organization.users.ascendant' | translate:{value: ' '} }}</span>
-            <span *ngIf="!reverse">{{'organization.users.descendant' | translate:{value: ' '} }}</span>
-            {{'organization.users.andFiltered' | translate:{value: searchTerm} }}
-            <span (click)="resetFilters()" class="reset-search">{{'organization.users.reset' | translate}}</span>
+            {{'sortingMessage.sortedBy' | translate:{value: sortedBy} }}
+            <span *ngIf="reverse">{{'sortingMessage.ascendant' | translate:{value: ' '} }}</span>
+            <span *ngIf="!reverse">{{'sortingMessage.descendant' | translate:{value: ' '} }}</span>
+            {{'sortingMessage.andFiltered' | translate:{value: searchTerm} }}
+            <span (click)="resetFilters()" class="reset-search">{{'sortingMessage.reset' | translate}}</span>
           </p> 
         </div>
-        <!-- Search input -->
         <div class="col-5">
           <form>
             <div class="search-box">
               <input 
-                name="searchTerm" 
+                name="searchTerm"
                 [(ngModel)]="searchTerm"
                 type="text" 
                 placeholder="{{'searcher.placeholder' | translate }}"
@@ -86,96 +82,90 @@
         users &&
         users.length > 0 && 
         !requestError" 
-        class="table-users">
-        <div class="nalej-table-box">
-          <table class="nalej-table">
-            <thead class="nalej-thead">
-              <tr>
-                <th 
-                  (click)="setOrder('name')"            
-                  [ngClass]="getCategoryCSSClass('name')"
-                  scope="col" 
-                  class="col-3">
-                  <span tooltip="{{'tables.tableName' | translate }" placement="bottom">
-                    {{'tables.tableName' | translate }}
-                  </span>
-                  <span class="expand-chevron" *ngIf="sortedBy === 'name' && !reverse" class="expand-chevron">
-                    <i class="material-icons">expand_more</i>
-                  </span>
-                  <span class="expand-chevron" *ngIf="sortedBy === 'name' && reverse" class="expand-chevron">
-                    <i class="material-icons">expand_less</i>
-                  </span>
-                </th>
-                <th 
-                  (click)="setOrder('role')"            
-                  [ngClass]="getCategoryCSSClass('role')"
-                  scope="col" 
-                  class="col-2">
-                  <span tooltip="{{'tables.tableRole' | translate }}" placement="bottom">
-                    {{'tables.tableRole' | translate }}
-                  </span>
-                  <span *ngIf="sortedBy === 'role' && !reverse" class="expand-chevron">
-                    <i class="material-icons">expand_more</i>
-                  </span>
-                  <span *ngIf="sortedBy === 'role' && reverse" class="expand-chevron">
-                    <i class="material-icons">expand_less</i>
-                  </span>
-                </th>
-                <th 
-                  (click)="setOrder('email')"            
-                  [ngClass]="getCategoryCSSClass('email')"
-                  scope="col" 
-                  class="col-5">
-                  <span tooltip="{{'tables.tableEmail' | translate }}" placement="bottom">
-                    {{'tables.tableEmail' | translate }}
-                  </span>
-                  <span *ngIf="sortedBy === 'email' && !reverse" class="expand-chevron">
-                    <i class="material-icons">expand_more</i>
-                  </span>
-                  <span *ngIf="sortedBy === 'email' && reverse" class="expand-chevron">
-                    <i class="material-icons">expand_less</i>
-                  </span>
-                </th>
-                <th scope="col" class="col-2 text-center">
-                  <span tooltip=" {{'tables.tableActions' | translate}}" placement="bottom">
-                    {{'tables.tableActions' | translate}}
-                  </span>
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor=
-                "let user of users |
-                sortBy : sortedBy : reverse : true |
-                filter : searchTerm">
-                <td class="col-3">{{user.name}}</td>
-                <td (click)="openUserInfo(user)" class="col-2 pink fw-bold">{{user.role_name}}</td>
-                <td class="col-5">{{user.email}}</td>
-                <td class="col-2 actions-col">
-                  <div    
-                    (click)="openUserInfo(user)" 
-                    tooltip=" {{'tables.tableInfo' | translate}}" 
-                    placement="left">
-                    <i class="material-icons info-icon">info</i>
-                  </div>
-                  <button 
-                    (click)="openEditUser(user)" 
-                    tooltip=" {{'tables.tableEdit' | translate}}" 
-                    placement="left"
-                    class="action-btn-blue-2">
-                    <i class="material-icons i-white-2">edit</i>
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <!-- Add user button -->
-        <div class="add-user-btn">
-          <button (click)="addUser()" class="btn nalej-btn-lg" >{{'organization.users.add' | translate}}</button>
+        class="nalej-table-box no-p-col no-m-row">
+        <div class="nalej-table">
+          <div class="nalej-thead row">
+            <div 
+              (click)="setOrder('name')"
+              [ngClass]="getCategoryCSSClass('name')"
+              scope="col" 
+              class="label-th col-3">
+              <span tooltip="{{'tables.tableName' | translate }}" placement="bottom">
+                {{'tables.tableName' | translate }}
+              </span>
+              <span *ngIf="sortedBy === 'name' && !reverse" class="expand-chevron">
+                <i class="material-icons">expand_more</i>
+              </span>
+              <span *ngIf="sortedBy === 'name' && reverse" class="expand-chevron">
+                <i class="material-icons">expand_less</i>
+              </span>
+            </div>
+            <div 
+              (click)="setOrder('role')"
+              [ngClass]="getCategoryCSSClass('role')"
+              scope="col" 
+              class="label-th col-2">
+              <span tooltip="{{'tables.tableRole' | translate }}" placement="bottom">
+                {{'tables.tableRole' | translate }}
+              </span>
+              <span *ngIf="sortedBy === 'role' && !reverse" class="expand-chevron">
+                <i class="material-icons">expand_more</i>
+              </span>
+              <span *ngIf="sortedBy === 'role' && reverse" class="expand-chevron">
+                <i class="material-icons">expand_less</i>
+              </span>
+            </div>
+            <div 
+              (click)="setOrder('email')"
+              [ngClass]="getCategoryCSSClass('email')"
+              scope="col" 
+              class="label-th col-5">
+              <span tooltip="{{'tables.tableEmail' | translate }}" placement="bottom">
+                {{'tables.tableEmail' | translate }}
+              </span>
+              <span *ngIf="sortedBy === 'email' && !reverse" class="expand-chevron">
+                <i class="material-icons">expand_more</i>
+              </span>
+              <span *ngIf="sortedBy === 'email' && reverse" class="expand-chevron">
+                <i class="material-icons">expand_less</i>
+              </span>
+            </div>
+            <div scope="col" class="label-th col-2 text-center">
+              <span tooltip=" {{'tables.tableActions' | translate}}" placement="bottom">
+                {{'tables.tableActions' | translate}}
+              </span>
+            </div>
+          </div>
+          <div *ngFor=
+            "let user of users |
+            sortBy : sortedBy : reverse : true |
+            filter : searchTerm">
+            <div class="nalej-tbody row">
+              <div class="nalej-td col-3">{{user.name}}</div>
+              <div (click)="openUserInfo(user)" class="nalej-td col-2 pink fw-bold">{{user.role_name}}</div>
+              <div class="nalej-td col-5">{{user.email}}</div>
+              <div class="nalej-td col-2 actions-col">
+                <div    
+                  (click)="openUserInfo(user)"
+                  tooltip=" {{'tables.tableInfo' | translate}}" 
+                  placement="left">
+                  <i class="material-icons info-icon">info</i>
+                </div>
+                <button 
+                  (click)="openEditUser(user)" 
+                  tooltip=" {{'tables.tableEdit' | translate}}" 
+                  placement="left"
+                  class="action-btn-blue-2">
+                  <i class="material-icons i-white-2">edit</i>
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-      <!-- No info to show -->
+      <div class="add-user-btn">
+        <button (click)="addUser()" class="btn nalej-btn-lg" >{{'organization.users.add' | translate}}</button>
+      </div>
       <div *ngIf=
           "loadedData &&
           users && users.length === 0 &&
@@ -183,11 +173,9 @@
           class="no-elements">
         {{'organization.notRegisteredUsers' | translate}}
       </div>
-      <!-- Requested error -->
       <div *ngIf="loadedData && requestError" class="no-elements">
         <p>{{requestError}}</p>
-      </div>
-      <!-- Loader -->
+      </div> 
       <div *ngIf="!loadedData" class="nalej-loader-box">
         <div class="loader">
           <svg class="circular" viewBox="25 25 50 50">
@@ -204,7 +192,6 @@
       </div>
     </div>
   </div>
-  <!-- Subscription card -->
   <div class="col-lg-4 col-sm-12 h-100">
     <div class="card">
       <div class="subscription-card">

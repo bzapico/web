@@ -5,9 +5,9 @@
 - **Do not open up a GitHub issue if the bug is a security vulnerability
   in Nalej**, please send an email to our [support](mailto:support@nalej.com) team.
 
-- **Ensure the bug was not already reported** by searching on GitHub under the issues section in the corresponding repository. For example, https://github.com/nalej/conductor/issues
+- **Ensure the bug was not already reported** by searching on GitHub under the issues section in the corresponding repository. For example, https://github.com/nalej/web/issues
 
-- If you're unable to find an open issue addressing the problem, [open a new one](https://github.com/nalej/conductor/issues/new). Be sure to include a **title and clear description**, as much relevant information as possible, and a **code sample** or an **executable test case** demonstrating the expected behavior that is not occurring.
+- If you're unable to find an open issue addressing the problem, [open a new one](https://github.com/nalej/web/issues/new). Be sure to include a **title and clear description**, as much relevant information as possible, and a **code sample** or an **executable test case** demonstrating the expected behavior that is not occurring.
 
 - If possible, use the bug template below to create the issue. Fill the template and give as many details as you can to help others clarifying the issue.
 

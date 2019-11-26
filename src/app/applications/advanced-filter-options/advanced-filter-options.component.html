@@ -9,85 +9,52 @@
   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   See the License for the specific language governing permissions and
   limitations under the License.
- -->
-
+-->
 <div class="modal-card">
-    <div class="modal-content">
-      <!-- Header -->
-      <div class="modal-header">
-        <h3 class="nalej-form-title">{{'advancedFilterOptions.title' | translate}}</h3>
-        <button 
-          (click)="closeModal()"
-          type="button" 
-          aria-label="Close"
-          class="close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3 class="nalej-form-title">{{'advancedFilterOptions.title' | translate}}</h3>
+      <button (click)="closeModal()" type="button" aria-label="Close" class="close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="check-options">
+        <p class="grey">{{'advancedFilterOptions.noFilters' | translate}}</p>
+        <div class="radio-btn-box">
+          <span *ngIf="!defaultFilter" (click)="changeFilterOption('defaultFilter')" class="devices-checkbox">
+            <i class="material-icons grey">radio_button_unchecked</i>
+          </span>
+          <span *ngIf="defaultFilter" (click)="changeFilterOption('defaultFilter')" class="devices-checkbox">
+            <i class="material-icons blue">radio_button_checked</i>
+          </span>
+        </div>
+        <br>
+        <p class="grey">{{'advancedFilterOptions.showNodes' | translate}}</p>
+        <div class="radio-btn-box">
+          <span *ngIf="!showOnlyNodes" (click)="changeFilterOption('showOnlyNodes')" class="devices-checkbox">
+            <i class="material-icons grey">radio_button_unchecked</i>
+          </span>
+          <span *ngIf="showOnlyNodes" (click)="changeFilterOption('showOnlyNodes')" class="devices-checkbox">
+            <i class="material-icons blue">radio_button_checked</i>
+          </span>
+        </div>
+        <br>
+        <p class="grey">{{'advancedFilterOptions.showRelatedNodes' | translate}}</p>
+        <div class="radio-btn-box">
+          <span *ngIf="!showRelatedNodes" (click)="changeFilterOption('showRelatedNodes')" class="devices-checkbox">
+            <i class="material-icons grey">radio_button_unchecked</i>
+          </span>
+          <span *ngIf="showRelatedNodes" (click)="changeFilterOption('showRelatedNodes')" class="devices-checkbox">
+            <i class="material-icons blue">radio_button_checked</i>
+          </span>
+        </div>
       </div>
-      <!-- Body -->
-      <div class="modal-body">
-        <!-- Option checkboxes -->
-        <div class="check-options">
-          <p class="grey">{{'advancedFilterOptions.noFilters' | translate}}</p>
-          
-          <div class="radio-btn-box">
-            <span 
-              *ngIf="!defaultFilter"
-              (click)="changeFilterOption('defaultFilter')"
-              class="devices-checkbox">
-              <i class="material-icons grey">radio_button_unchecked</i>
-            </span>
-            <span 
-              *ngIf="defaultFilter"
-              (click)="changeFilterOption('defaultFilter')"
-              class="devices-checkbox">
-              <i class="material-icons blue">radio_button_checked</i>
-            </span>
-          </div>
-
-          <br>
-          <p class="grey">{{'advancedFilterOptions.showNodes' | translate}}</p>
-
-          <div class="radio-btn-box">
-            <span 
-              *ngIf="!showOnlyNodes"
-              (click)="changeFilterOption('showOnlyNodes')"
-              class="devices-checkbox">
-              <i class="material-icons grey">radio_button_unchecked</i>
-            </span>
-            <span 
-              *ngIf="showOnlyNodes"
-              (click)="changeFilterOption('showOnlyNodes')"
-              class="devices-checkbox">
-              <i class="material-icons blue">radio_button_checked</i>
-            </span>
-          </div>
-
-          <br>
-          <p class="grey">{{'advancedFilterOptions.showRelatedNodes' | translate}}</p>
-
-          <div class="radio-btn-box">
-            <span 
-              *ngIf="!showRelatedNodes"
-              (click)="changeFilterOption('showRelatedNodes')"
-              class="devices-checkbox">
-              <i class="material-icons grey">radio_button_unchecked</i>
-            </span>
-            <span 
-              *ngIf="showRelatedNodes"
-              (click)="changeFilterOption('showRelatedNodes')"
-              class="devices-checkbox">
-              <i class="material-icons blue">radio_button_checked</i>
-            </span>
-          </div>
-        </div>
-        <div class="form-group-btn">
-          <button
-            (click)="saveChanges()"
-            class="nalej-form-btn-blue">
-            <span class="align-bottom">{{'buttons.saveChanges' | translate}}</span>
-          </button>
-        </div>
+      <div class="form-group-btn">
+        <button (click)="saveChanges()" class="nalej-form-btn-blue">
+          <span class="align-bottom">{{'buttons.saveChanges' | translate}}</span>
+        </button>
       </div>
     </div>
   </div>
+</div>
