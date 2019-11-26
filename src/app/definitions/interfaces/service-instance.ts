@@ -15,8 +15,8 @@ import { ImageCredentials } from './image-credentials';
 import { Port } from './port';
 import { ConfigFile } from './config-file';
 import { Storage } from './storage';
-import { KeyValue } from '@angular/common';
 import { DeploySpecs } from './deploy-specs';
+import { KeyValue } from './key-value';
 
 export interface ServiceInstance {
     // OrganizationId with the organization identifier.
@@ -49,11 +49,11 @@ export interface ServiceInstance {
     exposed_ports?: Port[];
     // EnvironmentVariables defines a key-value map of environment variables and values that will be passed to all
     // running services.
-    environment_variables?: KeyValue<string, string>;
+    environment_variables?: KeyValue;
     // Configs contains the configuration files required by the service.
     configs?: ConfigFile[];
     // Labels with the user defined labels.
-    labels?: KeyValue<string, string>;
+    labels?: KeyValue;
     // DeployAfter contains the list of services that must be running before launching a service.
     deploy_after?: string[];
     // Status of the deployed service
