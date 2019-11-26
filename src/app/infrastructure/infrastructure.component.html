@@ -325,7 +325,7 @@
                 </div>
                 <div class="row">
                   <div *ngIf="item.labels" class="col-12">
-                    <div *ngFor="let label of item.labels"
+                    <div *ngFor="let label of item.labels | keyvalue"
                       (click)="onLabelClick(item, label.key, label.value)"
                       [ngClass]="
                         {'label-content-selected': indexOfLabelSelected(item.id, label.key, label.value) >= 0 ,

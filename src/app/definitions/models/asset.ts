@@ -51,10 +51,6 @@ export class Asset extends Item {
      */
     created?: number;
     /**
-     * Labels defined by the user.
-     */
-    labels?: KeyValue;
-    /**
      * OS contains Operating System information.
      */
     os?: OperatingSystemInfo;
@@ -103,14 +99,13 @@ export class Asset extends Item {
         last_alive_timestamp: string,
         status: ConnectedStatus,
         location: InventoryLocation) {
-        super();
+        super(labels);
         this.organization_id = organization_id;
         this.edge_controller_id = edge_controller_id;
         this.asset_id = asset_id;
         this.agent_id = agent_id;
         this.show = show;
         this.created = created;
-        this.labels = labels;
         this.os = os;
         this.hardware = hardware;
         this.storage = storage;

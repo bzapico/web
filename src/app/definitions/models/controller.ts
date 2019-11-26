@@ -33,8 +33,6 @@ export class Controller extends Item {
     created?: number;
     // Name of the EIC.
     name?: string;
-    // Labels defined by the user.
-    labels?: KeyValue;
     // LastAliveTimestamp contains the last alive message received
     last_alive_timestamp?: string;
     // Status for the UI.
@@ -65,13 +63,12 @@ export class Controller extends Item {
         last_op_result: string,
         asset_info: AssetInfo,
         assets: AssetsForController[]) {
-        super();
+        super(labels);
         this.organization_id = organization_id;
         this.edge_controller_id = edge_controller_id;
         this.show = show;
         this.created = created;
         this.name = name;
-        this.labels = labels;
         this.last_alive_timestamp = last_alive_timestamp;
         this.status = status;
         this.location = location;

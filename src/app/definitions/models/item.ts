@@ -12,8 +12,16 @@
  */
 
 import { InventoryType } from '../enums/inventory-type.enum';
+import { KeyValue } from '../interfaces/key-value';
 
 export abstract class Item {
+
+    labels?: KeyValue;
+
+    constructor(labels: KeyValue) {
+        this.labels = labels;
+    }
+
     abstract get type(): InventoryType;
     abstract get id(): string;
     abstract get itemStatus(): string;
