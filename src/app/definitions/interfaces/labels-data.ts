@@ -12,5 +12,5 @@
  */
 
 export interface LabelsData {
-    labels: {key: string, value: string}[];
+    labels: {key: string, value: string, selected?: boolean}[];
 }

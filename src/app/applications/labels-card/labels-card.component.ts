@@ -52,7 +52,7 @@ export class LabelsCardComponent {
    * Selects a label
    * @param label label entity
    */
-  onLabelClick(label: {}) {
+  onLabelClick(label: {key: string, value: string, selected?: boolean}) {
     this.labelsCardService.onLabelClick(label, this.selectedLabels);
   }
 }
