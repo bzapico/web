@@ -17,7 +17,7 @@ import { Port } from './port';
 import { ConfigFile } from './config-file';
 import { ServiceType } from '../enums/service-type.enum';
 import { DeploySpecs } from './deploy-specs';
-import {KeyValue} from './key-value';
+import { KeyValue } from './key-value';
 
 export interface Service {
     // OrganizationId with the organization identifier.

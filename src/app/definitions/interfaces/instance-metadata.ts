@@ -14,7 +14,7 @@
 // This is a common metadata entity that collects information for a deployed instance. This instance can be a
 // service instance or a service group instance.
 
-import {KeyValue} from './key-value';
+import { KeyValue } from './key-value';
 
 export interface InstanceMetadata {
     // OrganizationId with the organization identifier.
