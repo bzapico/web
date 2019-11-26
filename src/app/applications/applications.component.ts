@@ -41,6 +41,18 @@ import { ApplicationDescriptor } from '../definitions/models/application-descrip
   styleUrls: ['./applications.component.scss']
 })
 export class ApplicationsComponent extends ToolsComponent implements OnInit, OnDestroy {
+  /**
+   * It sets a height for registered nodes in the graph
+   */
+  private static readonly CUSTOM_HEIGHT_REGISTERED = 32;
+  /**
+   * It sets a color for registered nodes
+   */
+  private static readonly REGISTERED_NODES_COLOR = '#444444';
+  /**
+   * It sets a color for registered nodes
+   */
+  private static readonly REGISTERED_NODES_TEXT_COLOR = '#FFFFFF';
 
   constructor(
     private modalService: BsModalService,
@@ -940,16 +952,4 @@ export class ApplicationsComponent extends ToolsComponent implements OnInit, OnD
       this.occurrencesCounter = this.graphData.nodes.filter(node => node.label.toLowerCase().includes(this.searchTermGraph)).length;
     }
   }
-  /**
-   * It sets a height for registered nodes in the graph
-   */
-  private static readonly CUSTOM_HEIGHT_REGISTERED = 32;
-  /**
-   * It sets a color for registered nodes
-   */
-  private static readonly REGISTERED_NODES_COLOR = '#444444';
-  /**
-   * It sets a color for registered nodes
-   */
-  private static readonly REGISTERED_NODES_TEXT_COLOR = '#FFFFFF';
 }

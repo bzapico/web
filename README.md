@@ -145,7 +145,7 @@ On the other hand, if you want generate a production version and serve it in loc
 ### Linting
 
 - Run `npm run lint` to check that the code accomplish with every tslint rule.
-- Run `npm run fix-lint` to fix every error in the code that don't accomplish with every tslint rule.
+- Run `npm run lint-fix` to fix every error in the code that don't accomplish with every tslint rule.
 - Run `npm run style-lint` to check that the code accomplish with every style lint rule.
 
 ### Running unit tests

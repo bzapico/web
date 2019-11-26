@@ -18,6 +18,14 @@ import { Notification } from '../definitions/interfaces/notification';
   providedIn: 'root'
 })
 export class NotificationsService {
+  /**
+   * It sets the timeout in actions like undeploying or deleting
+   */
+  private static readonly TIMEOUT_ACTION = 3000;
+  /**
+   * It sets the timeout for errors
+   */
+  private static readonly TIMEOUT_ERROR = 5000;
 
   constructor() {
     this._notifications = [];
@@ -66,12 +74,4 @@ export class NotificationsService {
       return v.toString(16);
     });
   }
-  /**
-   * It sets the timeout in actions like undeploying or deleting
-   */
-  private static readonly TIMEOUT_ACTION = 3000;
-  /**
-   * It sets the timeout for errors
-   */
-  private static readonly TIMEOUT_ERROR = 5000;
 }

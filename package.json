@@ -1,6 +1,6 @@
 {
 	"name": "nalej-web-ui",
-	"version": "0.4.0",
+	"version": "0.5.0",
 	"scripts": {
 		"build": "ng build",
 		"build-and-doc": "npm run compodoc && npm run build",

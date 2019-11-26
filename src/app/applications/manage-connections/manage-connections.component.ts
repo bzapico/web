@@ -30,6 +30,7 @@ import { Subscription, timer } from 'rxjs';
   styleUrls: ['./manage-connections.component.scss']
 })
 export class ManageConnectionsComponent implements OnInit, OnDestroy {
+  static readonly REFRESH_INTERVAL = 10000;
 
   constructor(
     public bsModalRef: BsModalRef,
@@ -232,5 +233,4 @@ export class ManageConnectionsComponent implements OnInit, OnDestroy {
     this.router.navigate(['/applications/instance/' + instanceId]);
     this.closeModal();
   }
-  static readonly REFRESH_INTERVAL = 10000;
 }
