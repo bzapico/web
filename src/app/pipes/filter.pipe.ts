@@ -19,19 +19,6 @@ import { Pipe, PipeTransform, Injectable } from '@angular/core';
 @Injectable()
 export class FilterPipe implements PipeTransform {
   /**
-   * @param items object from array
-   * @param term term's search
-   * @param propertiesToFilterBy key to be filtered by
-   */
-  transform(items: any, term: string, propertiesToFilterBy?: string[]): any {
-    if (!term || !items) { return items; }
-    if (propertiesToFilterBy) {
-      return FilterPipe.filter(items, term, propertiesToFilterBy);
-    } else {
-      return FilterPipe.filter(items, term);
-    }
-  }
-  /**
    * @param items List of items to filter
    * @param term  a string term to compare with every property of the list
    * @param propertiesToFilterBy a key to add to the filter
@@ -65,5 +52,18 @@ export class FilterPipe implements PipeTransform {
       return false;
       }
     });
+  }
+  /**
+   * @param items object from array
+   * @param term term's search
+   * @param propertiesToFilterBy key to be filtered by
+   */
+  transform(items: any, term: string, propertiesToFilterBy?: string[]): any {
+    if (!term || !items) { return items; }
+    if (propertiesToFilterBy) {
+      return FilterPipe.filter(items, term, propertiesToFilterBy);
+    } else {
+      return FilterPipe.filter(items, term);
+    }
   }
 }
