@@ -31,6 +31,35 @@ import { Subscription, timer } from 'rxjs';
 })
 export class ManageConnectionsComponent implements OnInit, OnDestroy {
   static readonly REFRESH_INTERVAL = 10000;
+
+  constructor(
+    public bsModalRef: BsModalRef,
+    private modalService: BsModalService,
+    private formBuilder: FormBuilder,
+    private backendService: BackendService,
+    private mockupBackendService: MockupBackendService,
+    private notificationsService: NotificationsService,
+    private translateService: TranslateService,
+    private router: Router
+    ) {
+      const mock = localStorage.getItem(LocalStorageKeys.manageConnectionsMock) || null;
+      // Check which backend is required (fake or real)
+      if (mock && mock === 'true') {
+        this.backend = this.mockupBackendService;
+      } else {
+        this.backend = this.backendService;
+      }
+    this.title = this.translateService.instant('apps.manageConnections.title');
+    this.searchTerm = '';
+    this.selectedApp = '';
+    //  Manage connections dropdown
+    this.manageConnections = null;
+    this.connections = [];
+  }
+  /**
+   * Convenience getter for easy access to form fields
+   */
+  get f() { return this.manageConnectionsFilterForm.controls; }
   /**
    * Backend reference
    */
@@ -68,31 +97,6 @@ export class ManageConnectionsComponent implements OnInit, OnDestroy {
    */
   refreshIntervalRef: Subscription;
 
-  constructor(
-    public bsModalRef: BsModalRef,
-    private modalService: BsModalService,
-    private formBuilder: FormBuilder,
-    private backendService: BackendService,
-    private mockupBackendService: MockupBackendService,
-    private notificationsService: NotificationsService,
-    private translateService: TranslateService,
-    private router: Router
-    ) {
-      const mock = localStorage.getItem(LocalStorageKeys.manageConnectionsMock) || null;
-      // Check which backend is required (fake or real)
-      if (mock && mock === 'true') {
-        this.backend = this.mockupBackendService;
-      } else {
-        this.backend = this.backendService;
-      }
-    this.title = this.translateService.instant('apps.manageConnections.title');
-    this.searchTerm = '';
-    this.selectedApp = '';
-    //  Manage connections dropdown
-    this.manageConnections = null;
-    this.connections = [];
-  }
-
   ngOnInit() {
     // Get organizationID
     const jwtData = localStorage.getItem(LocalStorageKeys.jwtData) || null;
@@ -115,10 +119,6 @@ export class ManageConnectionsComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.refreshIntervalRef.unsubscribe();
   }
-  /**
-   * Convenience getter for easy access to form fields
-   */
-  get f() { return this.manageConnectionsFilterForm.controls; }
   /**
    * Creates an array with the names to be filtered by
    */

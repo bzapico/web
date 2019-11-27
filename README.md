@@ -28,6 +28,7 @@ The front end for **NALEJ**
     - [Development server](#development-server)
     - [Code scaffolding](#code-scaffolding)
     - [Build](#build)
+    - [Linting](#linting)
     - [Running unit tests](#running-unit-tests)
     - [Documentation](#documentation)
     - [Further help](#further-help)
@@ -126,6 +127,7 @@ Tested and supported resolutions in pixels:
 3. `npm install`
 
 ### Development server
+
 1. Modify apiUrl in the src/environments/environment.ts with your own api url.
 2. Run `npm start` for a dev server.
 3. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files, also in this task, every change will be linted.
@@ -142,9 +144,9 @@ On the other hand, if you want generate a production version and serve it in loc
 
 ### Linting
 
-* Run `npm run lint` to check that the code accomplish with every tslint rule.
-* Run `npm run fix-lint` to fix every error in the code that don't accomplish with every tslint rule.
-* Run `npm run style-lint` to check that the code accomplish with every style lint rule.
+- Run `npm run lint` to check that the code accomplish with every tslint rule.
+- Run `npm run lint-fix` to fix every error in the code that don't accomplish with every tslint rule.
+- Run `npm run style-lint` to check that the code accomplish with every style lint rule.
 
 ### Running unit tests
 

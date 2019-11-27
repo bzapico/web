@@ -53,6 +53,53 @@ export class ApplicationsComponent extends ToolsComponent implements OnInit, OnD
    * It sets a color for registered nodes
    */
   private static readonly REGISTERED_NODES_TEXT_COLOR = '#FFFFFF';
+
+  constructor(
+    private modalService: BsModalService,
+    private backendService: BackendService,
+    private applicationsService: ApplicationsService,
+    private mockupBackendService: MockupBackendService,
+    private notificationsService: NotificationsService,
+    private translateService: TranslateService,
+    private router: Router) {
+    super();
+    const mock = localStorage.getItem(LocalStorageKeys.appsMock) || null;
+    // Check which backend is required (fake or real)
+    if (mock && mock === 'true') {
+      this.backend = this.mockupBackendService;
+    } else {
+      this.backend = this.backendService;
+    }
+    this.registered = [];
+    this.labels = [];
+    this.countRegistered = 0;
+    this.loadedData = false;
+    this.appsChart = [{name: 'Running apps %', series: []}];
+    this.requestError = '';
+    this.activeContextMenuId = '';
+     // SortBy
+    this.sortedBy = '';
+    this.sortedByRegistered = '';
+    this.reverse = false;
+    this.reverseRegistered = false;
+    this.searchTerm = '';
+    this.searchTermRegistered = '';
+    this.showInstances = true;
+    this.quickFilter = '';
+    // Filter field
+    this.filterField = false;
+    this.filterFieldRegistered = false;
+    // Graph initialization
+    this.graphDataLoaded = false;
+    this.searchGraphData = new GraphData({}, {});
+    this.foundOccurrenceInCluster = false;
+    this.foundOccurrenceInInstance = false;
+    this.foundOccurrenceInRegistered = false;
+    /**
+     * Charts reference init
+     */
+    Object.assign(this, {mockAppChart, mockAppPieChart});
+  }
   /**
    * Loaded Data status
    */
@@ -163,53 +210,6 @@ export class ApplicationsComponent extends ToolsComponent implements OnInit, OnD
    * Subscription for showing/hiding process for the manage subscription dialog
    */
   showManageSubscription: Subscription;
-
-  constructor(
-    private modalService: BsModalService,
-    private backendService: BackendService,
-    private applicationsService: ApplicationsService,
-    private mockupBackendService: MockupBackendService,
-    private notificationsService: NotificationsService,
-    private translateService: TranslateService,
-    private router: Router) {
-    super();
-    const mock = localStorage.getItem(LocalStorageKeys.appsMock) || null;
-    // Check which backend is required (fake or real)
-    if (mock && mock === 'true') {
-      this.backend = this.mockupBackendService;
-    } else {
-      this.backend = this.backendService;
-    }
-    this.registered = [];
-    this.labels = [];
-    this.countRegistered = 0;
-    this.loadedData = false;
-    this.appsChart = [{name: 'Running apps %', series: []}];
-    this.requestError = '';
-    this.activeContextMenuId = '';
-     // SortBy
-    this.sortedBy = '';
-    this.sortedByRegistered = '';
-    this.reverse = false;
-    this.reverseRegistered = false;
-    this.searchTerm = '';
-    this.searchTermRegistered = '';
-    this.showInstances = true;
-    this.quickFilter = '';
-    // Filter field
-    this.filterField = false;
-    this.filterFieldRegistered = false;
-    // Graph initialization
-    this.graphDataLoaded = false;
-    this.searchGraphData = new GraphData({}, {});
-    this.foundOccurrenceInCluster = false;
-    this.foundOccurrenceInInstance = false;
-    this.foundOccurrenceInRegistered = false;
-    /**
-     * Charts reference init
-     */
-    Object.assign(this, {mockAppChart, mockAppPieChart});
-  }
 
   ngOnInit() {
     super.ngOnInit();

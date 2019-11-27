@@ -6,7 +6,7 @@
 
 ### STAGE 1: Build the dist ###
 
-FROM node:8.12.0-alpine as builder
+FROM node:10.17.0-alpine as builder
 COPY package.json package-lock.json ./
 
 RUN npm i && mkdir /ng-app && mv ./node_modules ./ng-app
