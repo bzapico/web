@@ -24,6 +24,7 @@ import { Subscription, timer } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 import { ToolsComponent } from '../tools/tools.component';
 import { AppStatus } from '../definitions/enums/app-status.enum';
+import { ClusterStatusInfoComponent } from './cluster-status-info/cluster-status-info.component';
 
 @Component({
   selector: 'app-resources',
@@ -209,6 +210,19 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
       clusterName: cluster.name
     };
     this.modalRef = this.modalService.show(EditClusterComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
+    this.modalRef.content.closeBtnName = 'Close';
+    this.modalService.onHide.subscribe((reason: string) => {
+      this.updateClusterList();
+    });
+  }
+  /**
+   * Opens the modal view that holds the edit cluster component
+   */
+  openStatusCluster(cluster: Cluster) {
+    const initialState = {
+      organizationId: this.organizationId
+    };
+    this.modalRef = this.modalService.show(ClusterStatusInfoComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName = 'Close';
     this.modalService.onHide.subscribe((reason: string) => {
       this.updateClusterList();

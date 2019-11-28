@@ -234,7 +234,13 @@
                   <div *ngIf="cluster.cluster_id === activeContextMenuId"
                     class="contextual-menu-wrapper">
                     <div (click)="openEditCluster(cluster)">
-                      Edit TODO
+                      Edit
+                    </div>
+                    <div>
+                      Cordon
+                    </div>
+                    <div>
+                      Uncordon
                     </div>
                   </div>
                 </button>
@@ -370,7 +376,7 @@
                 </ng-template>
               </ngx-graph>
             </div>
-            <div class="explore-btn">
+            <div (click)="openStatusCluster(cluster)" class="explore-btn">
               <i class="material-icons explore-icon">explore</i>
             </div>
             <div *ngIf="!graphDataLoaded" class="loader"></div>
