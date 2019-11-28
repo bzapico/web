@@ -15,7 +15,7 @@ import { Injectable } from '@angular/core';
 import { Notification } from '../definitions/interfaces/notification';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class NotificationsService {
   /**
@@ -23,19 +23,26 @@ export class NotificationsService {
    */
   private static readonly TIMEOUT_ACTION = 3000;
   /**
-   * It sets the timeout for errors
-   */
+	 * It sets the timeout for errors
+	 */
   private static readonly TIMEOUT_ERROR = 5000;
-
+  /**
+	 * Notifications
+	 */
   private _notifications: Notification[];
 
   constructor() {
     this._notifications = [];
   }
-
   /**
-  * add()
-  */
+   * Get notifications list
+   */
+  get notifications() {
+    return this._notifications;
+  }
+  /**
+   * add()
+   */
   add(notificationInstance: Notification) {
     if (notificationInstance.type) {
       if (notificationInstance.type === 'warning' && !notificationInstance.timeout) {
@@ -49,12 +56,6 @@ export class NotificationsService {
     this._notifications.push(notificationInstance);
   }
   /**
-   * Get notifications list
-   */
-  get notifications() {
-    return this._notifications;
-  }
-  /**
    * onClosed() will show close button to the right of the alert for dismiss option
    */
   onClosed(dismissedNotification: Notification) {
@@ -64,13 +65,15 @@ export class NotificationsService {
     }
   }
   /**
-   * Generates UUID v4
-   * https://stackoverflow.com/questions/105034/create-guid-uuid-in-javascript
-   */
+	 * Generates UUID v4
+	 * https://stackoverflow.com/questions/105034/create-guid-uuid-in-javascript
+	 */
   uuidv4() {
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
       // tslint:disable-next-line:no-bitwise
-      const r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
+      const r = (Math.random() * 16) | 0,
+        // tslint:disable-next-line: no-bitwise
+        v = c === 'x' ? r : (r & 0x3) | 0x8;
       return v.toString(16);
     });
   }
