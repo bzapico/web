@@ -31,9 +31,19 @@
 	background-color: $dark-grey;
 }
 .cluster-status-list {
-	width: 100%;
+	width: 57%;
+	margin: 0 auto;
 	color: $white;
-	.status-dot {
-		text-align: left;
+	font-size: 15;
+	font-weight: 500;
+	.cluster-status-dot {
+		width: 10px;
+		height: 10px;
+		border-radius: 50%;
+		display: inline-block;
+		margin-right: 6px;
+	}
+	.cluster-status-item {
+		padding: 2px;
 	}
 }

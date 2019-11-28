@@ -233,6 +233,9 @@
                   <!-- https://nalej.atlassian.net/browse/NP-2005 -->
                   <div *ngIf="cluster.cluster_id === activeContextMenuId"
                     class="contextual-menu-wrapper">
+                    <div [routerLink]="['cluster', cluster.cluster_id]">
+                      More info
+                    </div>
                     <div (click)="openEditCluster(cluster)">
                       Edit
                     </div>
@@ -241,6 +244,9 @@
                     </div>
                     <div>
                       Uncordon
+                    </div>
+                    <div>
+                      Drain
                     </div>
                   </div>
                 </button>

@@ -43,18 +43,50 @@ export class ToolsComponent implements OnInit {
    */
   static readonly STATUS_COLORS = {
     RUNNING: '#00E6A0',
+    ONLINE: '#00E6A0',
+    OFFLINE: '#949494',
+    ONLINE_CORDON: '#EEEEEE',
+    OFFLINE_CORDON: '#EEEEEE',
+    PROVISIONING: '#5800FF',
+    PROVISIONED: '#009DFF',
+    INSTALLED: '#00FFF5',
+    UNINSTALLING: '#FFEB6C',
+    DECOMISIONING: '#FF9898',
+    INSTALL_IN_PROGRESS: '#00FFF5',
+    SCALING: '#E5FF79',
+    FAILURE: '#F7478A',
+    UNKNOWN: '#151515',
     ERROR: '#F7478A',
-    OTHER: '#FFEB6C',
-    OFFLINE: '#949494'
+    OTHER: '#FFEB6C'
   };
   /**
-   * It sets the status colors for nodes
+   * It sets the status text colors for nodes
    */
   static readonly STATUS_TEXT_COLORS = {
     RUNNING: '#FFFFFF',
+    ONLINE: '#444444',
+    OFFLINE: '#FFFFFF',
+    ONLINE_CORDON: '#444444',
+    OFFLINE_CORDON: '#444444',
+    PROVISIONING: '#FFFFFF',
+    PROVISIONED: '#FFFFFF',
+    INSTALLED: '#FFFFFF',
+    UNINSTALLING: '#FFFFFF',
+    DECOMISIONING: '#444444',
+    INSTALL_IN_PROGRESS: '#FFFFFF',
+    SCALING: '#444444',
+    FAILURE: '#FFFFFF',
+    UNKNOWN: '#FFFFFF',
     ERROR: '#FFFFFF',
-    OTHER: '#444444',
-    OFFLINE: '#FFFFFF'
+    OTHER: '#444444'
+  };
+  /**
+   * It sets the status border colors for nodes
+   */
+  static readonly STATUS_BORDER_COLORS = {
+    ONLINE_CORDON: '#00E6A0',
+    OFFLINE_CORDON: '#949494',
+    UNKNOWN: '#BFBFBF',
   };
   /**
    * It sets a height for clusters nodes in the graph
@@ -134,9 +166,11 @@ export class ToolsComponent implements OnInit {
     switch (status.toLowerCase()) {
       case ClusterStatus.Running:
       case ClusterStatus.Online:
-      case ClusterStatus.OnlineCordon:
-      case ClusterStatus.Installed:
         return ToolsComponent.STATUS_COLORS.RUNNING;
+      case ClusterStatus.OnlineCordon:
+        return ToolsComponent.STATUS_COLORS.ONLINE_CORDON;
+      case ClusterStatus.Installed:
+        return ToolsComponent.STATUS_COLORS.INSTALLED;
       case ClusterStatus.Error:
       case AppStatus.DeploymentError:
       case AppStatus.Incomplete:
@@ -144,19 +178,26 @@ export class ToolsComponent implements OnInit {
       case AppStatus.Error:
         return ToolsComponent.STATUS_COLORS.ERROR;
       case ClusterStatus.Provisioning:
+        return ToolsComponent.STATUS_COLORS.PROVISIONING;
       case ClusterStatus.Provisioned:
-      case ClusterStatus.Installing:
+        return ToolsComponent.STATUS_COLORS.PROVISIONED;
+      case ClusterStatus.InstallInProgress:
+        return ToolsComponent.STATUS_COLORS.INSTALL_IN_PROGRESS;
       case ClusterStatus.Uninstalling:
-      case ClusterStatus.Decommissioning:
+        return ToolsComponent.STATUS_COLORS.UNINSTALLING;
+      case ClusterStatus.Decomisioning:
+        return ToolsComponent.STATUS_COLORS.DECOMISIONING;
       case AppStatus.Queued:
       case AppStatus.Deploying:
       case AppStatus.Scheduled:
       case AppStatus.Planning:
         return ToolsComponent.STATUS_COLORS.OTHER;
       case ClusterStatus.Offline:
-      case ClusterStatus.OfflineCordon:
-      case ClusterStatus.Unknown:
         return ToolsComponent.STATUS_COLORS.OFFLINE;
+      case ClusterStatus.OfflineCordon:
+        return ToolsComponent.STATUS_COLORS.OFFLINE_CORDON;
+      case ClusterStatus.Unknown:
+        return ToolsComponent.STATUS_COLORS.UNKNOWN;
       default:
         return ToolsComponent.STATUS_COLORS.OTHER;
     }
@@ -180,9 +221,9 @@ export class ToolsComponent implements OnInit {
         return ToolsComponent.STATUS_TEXT_COLORS.ERROR;
       case ClusterStatus.Provisioning:
       case ClusterStatus.Provisioned:
-      case ClusterStatus.Installing:
+      case ClusterStatus.InstallInProgress:
       case ClusterStatus.Uninstalling:
-      case ClusterStatus.Decommissioning:
+      case ClusterStatus.Decomisioning:
       case AppStatus.Queued:
       case AppStatus.Deploying:
       case AppStatus.Scheduled:
@@ -194,6 +235,22 @@ export class ToolsComponent implements OnInit {
         return ToolsComponent.STATUS_TEXT_COLORS.OFFLINE;
       default:
         return ToolsComponent.STATUS_TEXT_COLORS.OTHER;
+    }
+  }
+  /**
+   * Return an specific border color depending on the node status
+   * @param status Status name
+   */
+  getBorderColor(status: string): string {
+    switch (status.toLowerCase()) {
+      case ClusterStatus.OnlineCordon:
+        return ToolsComponent.STATUS_BORDER_COLORS.ONLINE_CORDON;
+      case ClusterStatus.OfflineCordon:
+        return ToolsComponent.STATUS_BORDER_COLORS.OFFLINE_CORDON;
+      case ClusterStatus.Unknown:
+        return ToolsComponent.STATUS_BORDER_COLORS.UNKNOWN;
+      default:
+        return '';
     }
   }
   /**
@@ -316,7 +373,7 @@ export class ToolsComponent implements OnInit {
           this.getNodeColor(status),
           this.getNodeTextColor(status),
           (this.searchTermGraph && clusterName.includes(this.searchTermGraph)) ?
-                            ToolsComponent.FOUND_NODES_BORDER_COLOR : '',
+                            ToolsComponent.FOUND_NODES_BORDER_COLOR : this.getBorderColor(status),
           (this.searchTermGraph && clusterName.includes(this.searchTermGraph)) ?
                             ToolsComponent.FOUND_NODES_BORDER_SIZE : 0,
           ToolsComponent.CUSTOM_HEIGHT_CLUSTERS)

@@ -429,6 +429,7 @@
 		"noNodes": "There are not registered nodes in this cluster",
 		"nodes": "NODES",
 		"saveChanges": "The cluster {{cluster}} has been edited",
+		"statusInfo": "STATUS INFO",
 		"summary": "SUMMARY",
 		"title": "RESOURCES"
 	},

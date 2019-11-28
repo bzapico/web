@@ -14,17 +14,18 @@
 <div class="modal-card">
 	<div class="modal-content">
 		<div class="modal-header">
-			<h3 class="nalej-form-title">STATUS INFO</h3>
+			<h3 class="nalej-form-title">{{ 'resources.statusInfo' | translate }}</h3>
 			<button (click)="bsModalRef.hide()" type="button" aria-label="Close" class="close">
 				<span aria-hidden="true">&times;</span>
 			</button>
 		</div>
 		<div class="modal-body">
-      <div class="cluster-status-list">
-        <div class="status-dot">
-          online
-        </div>
-      </div>
+			<div class="cluster-status-list">
+				<div *ngFor="let status of statusList | keyvalue" class="cluster-status-item">
+					<div class="cluster-status-dot" [ngStyle]="getStatusDotColor(status.value)"></div>
+						{{ status.key }}
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
