@@ -99,6 +99,10 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
    * Boolean variable for indicate when it is searching in the graph
    */
   isSearchingInGraph: boolean;
+  /**
+   * Active context menu item ID
+   */
+  activeContextMenuId: string;
 
   constructor(
     private modalService: BsModalService,
@@ -119,6 +123,7 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
     this.clustersCount = 0;
     this.pieChartData = [];
     this.requestError = '';
+    this.activeContextMenuId = '';
     // SortBy
     this.sortedBy = '';
     this.reverse = false;
@@ -354,6 +359,18 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
     this.isSearchingInGraph = true;
     this.toGraphData();
     this.occurrencesGraphCounter();
+  }
+  /**
+   * Opens clusters context menu
+   * @param cluster cluster
+   */
+  openContextualMenu(event, cluster: any) {
+    event.stopPropagation();
+    if (cluster.cluster_id === this.activeContextMenuId) {
+      this.activeContextMenuId = '';
+    } else {
+      this.activeContextMenuId = cluster.cluster_id;
+    }
   }
   /**
    * Refresh all resources data as clusters list, instances, and cluster count and it updates it considering the REFRESH_INTERVAL
