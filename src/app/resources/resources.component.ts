@@ -25,6 +25,8 @@ import { TranslateService } from '@ngx-translate/core';
 import { ToolsComponent } from '../tools/tools.component';
 import { AppStatus } from '../definitions/enums/app-status.enum';
 import { ClusterStatusInfoComponent } from './cluster-status-info/cluster-status-info.component';
+import { ClusterStatus } from '../definitions/enums/cluster-status.enum';
+import { ToolsService } from '../tools/tools.service';
 
 @Component({
   selector: 'app-resources',
@@ -52,6 +54,9 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
    * Count of total clusters
    */
   clustersCount: number;
+  /**
+   * Number of online clusters
+   */
   countOnline: number;
   /**
    * Holds the reference of the interval that refreshes the lists
@@ -110,7 +115,9 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
     private modalService: BsModalService,
     private backendService: BackendService,
     private mockupBackendService: MockupBackendService,
-    private translateService: TranslateService) {
+    private translateService: TranslateService,
+    private toolsService: ToolsService
+    ) {
     super();
     const mock = localStorage.getItem(LocalStorageKeys.resourcesMock) || null;
     // check which backend is required (fake or real)
@@ -338,7 +345,7 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
       }
     }
   }
- /**
+  /**
   * Check if the label is selected. Return index number in selected labels or -1 if the label is not found.
   * @param entityId entity from selected label
   * @param labelKey label key from selected label
@@ -386,6 +393,14 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
     } else {
       this.activeContextMenuId = cluster.cluster_id;
     }
+  }
+  /**
+   * Return an specific dot color depending on the node status
+   * @param status Status name
+   */
+  getStatusDotColor(status: string): {'background-color': string, border?: string} {
+    console.log('status', status);
+    return this.toolsService.getStatusDotColor(status);
   }
   /**
    * Refresh all resources data as clusters list, instances, and cluster count and it updates it considering the REFRESH_INTERVAL

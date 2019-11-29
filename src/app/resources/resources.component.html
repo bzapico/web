@@ -123,15 +123,15 @@
                     </span>
                   </div>
                   <div 
-                    (click)="setOrder('clusters','instances')"
-                    [ngClass]="getCategoryCSSClass('instances')"
+                    (click)="setOrder('clusters','status')"
+                    [ngClass]="getCategoryCSSClass('status')"
                     scope="col" 
                     class="col-6 text-center label-th">
-                    <span tooltip="{{'tables.tableInstances' | translate}}" placement="bottom">{{'tables.tableInstances' | translate}}</span>
-                    <span *ngIf="sortedBy === 'instances' && !reverse" class="expand-chevron">
+                    <span tooltip="{{'tables.tableStatus' | translate}}" placement="bottom">{{'tables.tableStatus' | translate}}</span>
+                    <span *ngIf="sortedBy === 'status' && !reverse" class="expand-chevron">
                       <i class="material-icons">expand_more</i>
                     </span>
-                    <span *ngIf="sortedBy === 'instances' && reverse" class="expand-chevron">
+                    <span *ngIf="sortedBy === 'status' && reverse" class="expand-chevron">
                       <i class="material-icons">expand_less</i>
                     </span>
                   </div>
@@ -172,7 +172,13 @@
                       {{cluster.name}}
                     </a>
                   </div>
-                  <div class="col-6 text-center nalej-td">{{cluster.instances}}
+                  <div 
+                    tooltip="{{cluster.status | lowercase}}" 
+                    placement="bottom"
+                    class="col-6 nalej-td col-center-lowercase"> 
+                    <!-- TODO -->
+                    <!-- <div class="cluster-status-dot" [ngStyle]="getStatusDotColor(cluster.status)"></div> -->
+                    <div class="cluster-status-dot"></div>
                   </div>
                 </div>
                 <div class="row">
