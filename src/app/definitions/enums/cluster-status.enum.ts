@@ -12,31 +12,16 @@
  */
 
 export enum ClusterStatus {
-    // STATE
-    // Provisioning indicates that the cluster is now being provisioned in a cloud provider or through baremetal provisioning.
     Provisioning = 'provisioning',
-    // Provisioned indicates that the cluster has been successfully provisioned and it is ready to be installed.
     Provisioned = 'provisioned',
-    // InstallInProgress indicates that the Nalej platform is being installed on the target cluster.
     InstallInProgress = 'install_in_progress',
-     // STATUS_NAME
     Online = 'online',
     OnlineCordon = 'online_cordon',
     OfflineCordon = 'offline_cordon',
     Offline = 'offline',
-    // Scaling indicates that the cluster is now being modified in terms of number of available nodes.
     Scaling = 'scaling',
-    // Uninstalling indicates that the cluster is now being uninstalled and the platform is being undeployed.
     Uninstalling = 'uninstalling',
-    // Decomisioning indicates that the hardware resources are being freed.
     Decomisioning = 'decomisioning',
-    // Failure indicates that a process related to provisioning or installation has failed.
     Failure = 'failure',
-    // Unknown indicates that the cluster has just been created in system model and no provisioning or install operation has taken place.
-    Unknown = 'unknown',
-    // TODO
-    // Installed indicates that the Nalej platform has been successfully deployed on the target cluster.
-    Installed = 'installed',
-    Error = 'error',
-    Running = 'running',
+    Unknown = 'unknown'
 }
