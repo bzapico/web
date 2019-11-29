@@ -33,7 +33,7 @@
                 [gradient]="gradient"
                 [explodeSlices]="false">
               </ngx-charts-pie-chart>
-              <div class="donut-number">{{clustersCount}}/{{clusters.length}}</div>
+              <div class="donut-number">{{countOnline}}/{{clusters.length}}</div>
             </div>
             <p class="clusters-run">{{clustersCount}} {{'resources.clustersRunning' | translate}}</p>
             <p *ngIf="clustersCount === 0" class="circle-name no-deployed">{{'resources.noClusters' | translate}}</p>
@@ -234,19 +234,19 @@
                   <div *ngIf="cluster.cluster_id === activeContextMenuId"
                     class="contextual-menu-wrapper">
                     <div [routerLink]="['cluster', cluster.cluster_id]">
-                      More info
+                      {{'devices.contextMenu.moreInfo' | translate}}
                     </div>
                     <div (click)="openEditCluster(cluster)">
-                      Edit
+                      {{'resources.edit' | translate}}
                     </div>
                     <div>
-                      Cordon
+                      {{'devices.contextMenu.cordon' | translate}}
                     </div>
                     <div>
-                      Uncordon
+                      {{'devices.contextMenu.uncordon' | translate}}
                     </div>
                     <div>
-                      Drain
+                      {{'devices.contextMenu.drain' | translate}}
                     </div>
                   </div>
                 </button>

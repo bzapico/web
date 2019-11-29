@@ -52,6 +52,7 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
    * Count of total clusters
    */
   clustersCount: number;
+  countOnline: number;
   /**
    * Holds the reference of the interval that refreshes the lists
    */
@@ -426,6 +427,7 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
           online += 1;
         }
       });
+      this.countOnline = online;
       this.pieChartData = this.generateClusterChartData(online, clusters.length);
     }
   }
