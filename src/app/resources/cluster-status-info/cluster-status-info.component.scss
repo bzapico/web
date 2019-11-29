@@ -14,8 +14,10 @@
 @import '../../scss/variables/colors';
 @import '../../scss/variables/mixins';
 .modal-card {
-	min-width: 328px;
+	min-width: 498px;
 	background-color: $dark-grey;
+	// TODO
+	// border-radius: 25px;
 	.modal-header {
 		background-color: $dark-grey;
 		.nalej-form-title {
@@ -30,11 +32,19 @@
 .modal-body {
 	background-color: $dark-grey;
 }
+.cluster-status-list-box {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	.status-class-title {
+		font-size: 12px;
+	}
+}
 .cluster-status-list {
-	width: 57%;
 	margin: 0 auto;
+	padding: 1em 0;
 	color: $white;
-	font-size: 15;
+	font-size: 15px;
 	font-weight: 500;
 	.cluster-status-dot {
 		width: 10px;
@@ -44,6 +54,7 @@
 		margin-right: 6px;
 	}
 	.cluster-status-item {
-		padding: 2px;
+		padding: 5px;
+		text-transform: lowercase;
 	}
 }

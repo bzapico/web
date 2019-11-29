@@ -15,6 +15,8 @@ import { Component } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap';
 import { ClusterStatus } from '../../definitions/enums/cluster-status.enum';
 import { ToolsComponent } from 'src/app/tools/tools.component';
+import { AppStatus } from 'src/app/definitions/enums/app-status.enum';
+import { ToolsService } from 'src/app/tools/tools.service';
 
 @Component({
   selector: 'cluster-status-info',
@@ -26,22 +28,25 @@ export class ClusterStatusInfoComponent {
    * Models that hold organization id, cluster id, name
    */
   organizationId: string;
-
-  statusList = ClusterStatus;
-
+  /**
+   * Models that hold the cluster and instances enums
+   */
+  clusterStatusList = ClusterStatus;
+  appStatusList = AppStatus;
+  /**
+   * Method that returns an array of a given object's cluster and instances enums property
+   */
+  keys = Object.keys;
   constructor(
     public bsModalRef: BsModalRef,
+    private toolsService: ToolsService,
   ) { }
 
-
+  /**
+   * Return an specific dot color depending on the node status
+   * @param status Status name
+   */
   getStatusDotColor(status: string): {'background-color': string, border?: string} {
-    const basicColor = {
-      'background-color': ToolsComponent.STATUS_COLORS[status.toUpperCase()]
-    };
-    const basicBorderColor = ToolsComponent.STATUS_BORDER_COLORS[status.toUpperCase()];
-    if (basicBorderColor) {
-      basicColor['border'] = '1px ' + basicBorderColor + ' solid';
-    }
-    return basicColor;
+    return this.toolsService.getStatusDotColor(status);
   }
 }

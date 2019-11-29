@@ -184,8 +184,11 @@
 		"addGroup": "Add group",
 		"contextMenu": {
 			"configuration": "Configuration",
+			"cordon": "Cordon",
 			"deleteGroup": "Delete group",
-			"moreInfo": "More Info"
+			"drain": "Drain",
+			"moreInfo": "More Info",
+			"uncordon": "Uncordon"
 		},
 		"default": "default",
 		"deleteGroup": "Delete group?",

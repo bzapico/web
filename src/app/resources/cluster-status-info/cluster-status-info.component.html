@@ -20,10 +20,20 @@
 			</button>
 		</div>
 		<div class="modal-body">
-			<div class="cluster-status-list">
-				<div *ngFor="let status of statusList | keyvalue" class="cluster-status-item">
-					<div class="cluster-status-dot" [ngStyle]="getStatusDotColor(status.value)"></div>
-						{{ status.key }}
+			<div class="cluster-status-list-box">
+				<div class="cluster-status-list">
+					<p class="status-class-title">{{'resources.cluster' | translate}}</p>
+					<div *ngFor="let status of keys(clusterStatusList)" class="cluster-status-item">
+						<div class="cluster-status-dot" [ngStyle]="getStatusDotColor(status)"></div>
+							{{ status }}
+					</div>
+				</div>
+				<div class="cluster-status-list">
+					<p class="status-class-title">{{'apps.instance.idInstance' | translate}}</p>
+					<div *ngFor="let status of keys(appStatusList)" class="cluster-status-item">
+						<div class="cluster-status-dot" [ngStyle]="getStatusDotColor(status)"></div>
+							{{ status }}
+					</div>
 				</div>
 			</div>
 		</div>
