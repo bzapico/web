@@ -42,43 +42,39 @@ export class ToolsComponent implements OnInit {
    * It sets the status colors for nodes
    */
   static readonly STATUS_COLORS = {
-    RUNNING: '#00E6A0',
-    ONLINE: '#00E6A0',
-    OFFLINE: '#949494',
-    ONLINE_CORDON: '#EEEEEE',
-    OFFLINE_CORDON: '#EEEEEE',
+    // Clusters
     PROVISIONING: '#5800FF',
     PROVISIONED: '#009DFF',
-    INSTALLED: '#00FFF5',
+    INSTALL_IN_PROGRESS: '#00FFF5',
+    ONLINE: '#00E6A0',
+    ONLINE_CORDON: '#EEEEEE',
+    OFFLINE_CORDON: '#EEEEEE',
+    OFFLINE: '#949494',
+    SCALING: '#E5FF79',
     UNINSTALLING: '#FFEB6C',
     DECOMISIONING: '#FF9898',
-    INSTALL_IN_PROGRESS: '#00FFF5',
-    SCALING: '#E5FF79',
     FAILURE: '#F7478A',
     UNKNOWN: '#151515',
+    // Instances
+    QUEUED: '#5800FF',
+    PLANNING: '#009DFF',
+    SCHEDULED: '#00FFF5',
+    DEPLOYING: '#FFEB6C',
+    RUNNING: '#00E6A0',
+    TERMINATING: '#FF9898',
+    INCOMPLETE: '#F7478A',
+    PLANNING_ERROR: '#F7478A',
+    DEPLOYMENT_ERROR: '#F7478A',
     ERROR: '#F7478A',
+    TERMINATED: '#949494',
     OTHER: '#FFEB6C'
   };
   /**
    * It sets the status text colors for nodes
    */
   static readonly STATUS_TEXT_COLORS = {
-    RUNNING: '#FFFFFF',
-    ONLINE: '#444444',
-    OFFLINE: '#FFFFFF',
-    ONLINE_CORDON: '#444444',
-    OFFLINE_CORDON: '#444444',
-    PROVISIONING: '#FFFFFF',
-    PROVISIONED: '#FFFFFF',
-    INSTALLED: '#FFFFFF',
-    UNINSTALLING: '#FFFFFF',
-    DECOMISIONING: '#444444',
-    INSTALL_IN_PROGRESS: '#FFFFFF',
-    SCALING: '#444444',
-    FAILURE: '#FFFFFF',
-    UNKNOWN: '#FFFFFF',
-    ERROR: '#FFFFFF',
-    OTHER: '#444444'
+    BLACK: '#444444',
+    WHITE: '#FFFFFF',
   };
   /**
    * It sets the status border colors for nodes
@@ -164,38 +160,39 @@ export class ToolsComponent implements OnInit {
    */
   getNodeColor(status: string): string {
     switch (status.toLowerCase()) {
-      case ClusterStatus.Running:
+      case ClusterStatus.Provisioning:
+      case AppStatus.Queued:
+        return ToolsComponent.STATUS_COLORS.PROVISIONING;
+      case ClusterStatus.Provisioned:
+      case AppStatus.Planning:
+        return ToolsComponent.STATUS_COLORS.PROVISIONED;
+      case ClusterStatus.InstallInProgress:
+      case AppStatus.Scheduled:
+        return ToolsComponent.STATUS_COLORS.INSTALL_IN_PROGRESS;
       case ClusterStatus.Online:
+      case AppStatus.Running:
         return ToolsComponent.STATUS_COLORS.RUNNING;
       case ClusterStatus.OnlineCordon:
         return ToolsComponent.STATUS_COLORS.ONLINE_CORDON;
-      case ClusterStatus.Installed:
-        return ToolsComponent.STATUS_COLORS.INSTALLED;
-      case ClusterStatus.Error:
+      case ClusterStatus.OfflineCordon:
+        return ToolsComponent.STATUS_COLORS.OFFLINE_CORDON;
+      case ClusterStatus.Offline:
+      case AppStatus.Terminated:
+        return ToolsComponent.STATUS_COLORS.OFFLINE;
+      case ClusterStatus.Scaling:
+        return ToolsComponent.STATUS_COLORS.SCALING;
+      case ClusterStatus.Uninstalling:
+      case AppStatus.Deploying:
+        return ToolsComponent.STATUS_COLORS.UNINSTALLING;
+      case ClusterStatus.Decomisioning:
+      case AppStatus.Terminating:
+        return ToolsComponent.STATUS_COLORS.DECOMISIONING;
+      case ClusterStatus.Failure:
       case AppStatus.DeploymentError:
       case AppStatus.Incomplete:
       case AppStatus.PlanningError:
       case AppStatus.Error:
         return ToolsComponent.STATUS_COLORS.ERROR;
-      case ClusterStatus.Provisioning:
-        return ToolsComponent.STATUS_COLORS.PROVISIONING;
-      case ClusterStatus.Provisioned:
-        return ToolsComponent.STATUS_COLORS.PROVISIONED;
-      case ClusterStatus.InstallInProgress:
-        return ToolsComponent.STATUS_COLORS.INSTALL_IN_PROGRESS;
-      case ClusterStatus.Uninstalling:
-        return ToolsComponent.STATUS_COLORS.UNINSTALLING;
-      case ClusterStatus.Decomisioning:
-        return ToolsComponent.STATUS_COLORS.DECOMISIONING;
-      case AppStatus.Queued:
-      case AppStatus.Deploying:
-      case AppStatus.Scheduled:
-      case AppStatus.Planning:
-        return ToolsComponent.STATUS_COLORS.OTHER;
-      case ClusterStatus.Offline:
-        return ToolsComponent.STATUS_COLORS.OFFLINE;
-      case ClusterStatus.OfflineCordon:
-        return ToolsComponent.STATUS_COLORS.OFFLINE_CORDON;
       case ClusterStatus.Unknown:
         return ToolsComponent.STATUS_COLORS.UNKNOWN;
       default:
@@ -208,33 +205,33 @@ export class ToolsComponent implements OnInit {
    */
   getNodeTextColor(status: string): string {
     switch (status.toLowerCase()) {
-      case ClusterStatus.Running:
-      case ClusterStatus.Online:
+      case ClusterStatus.Scaling:
+      case ClusterStatus.Uninstalling:
       case ClusterStatus.OnlineCordon:
-      case ClusterStatus.Installed:
-        return ToolsComponent.STATUS_TEXT_COLORS.RUNNING;
-      case ClusterStatus.Error:
+      case ClusterStatus.InstallInProgress:
+      case ClusterStatus.OfflineCordon:
+      case AppStatus.Scheduled:
+      case AppStatus.Deploying:
+        return ToolsComponent.STATUS_TEXT_COLORS.BLACK;
+      case ClusterStatus.Provisioning:
+      case AppStatus.Queued:
+      case ClusterStatus.Provisioned:
+      case AppStatus.Planning:
+      case ClusterStatus.Online:
+      case AppStatus.Running:
+      case ClusterStatus.Offline:
+      case AppStatus.Terminated:
+      case ClusterStatus.Decomisioning:
+      case AppStatus.Terminating:
+      case ClusterStatus.Failure:
       case AppStatus.DeploymentError:
       case AppStatus.Incomplete:
       case AppStatus.PlanningError:
       case AppStatus.Error:
-        return ToolsComponent.STATUS_TEXT_COLORS.ERROR;
-      case ClusterStatus.Provisioning:
-      case ClusterStatus.Provisioned:
-      case ClusterStatus.InstallInProgress:
-      case ClusterStatus.Uninstalling:
-      case ClusterStatus.Decomisioning:
-      case AppStatus.Queued:
-      case AppStatus.Deploying:
-      case AppStatus.Scheduled:
-      case AppStatus.Planning:
-        return ToolsComponent.STATUS_TEXT_COLORS.OTHER;
-      case ClusterStatus.Offline:
-      case ClusterStatus.OfflineCordon:
-      case ClusterStatus.Unknown:
-        return ToolsComponent.STATUS_TEXT_COLORS.OFFLINE;
+        case ClusterStatus.Unknown:
+        return ToolsComponent.STATUS_TEXT_COLORS.WHITE;
       default:
-        return ToolsComponent.STATUS_TEXT_COLORS.OTHER;
+        return ToolsComponent.STATUS_TEXT_COLORS.WHITE;
     }
   }
   /**
