@@ -293,7 +293,7 @@
             <div *ngFor="let item of plainInventory |
               sortBy : sortedBy : reverse : true |
               filter : searchTerm : ['type', 'id', 'itemLocation', 'labels', 'itemStatus']|
-              filter : quickFilter : ['type']"  class="label-tbody row">
+              filter : quickFilter : ['type']"  class="nalej-tbody row">
               <div class="col-2 label-td-flex-text">
                 <span tooltip="{{'tables.tableType' | translate}}" placement="top">{{item.type}}</span>
               </div>
