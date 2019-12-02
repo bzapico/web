@@ -8,6 +8,9 @@
     "image_list": [
         "web"
     ],
+    "component_list": [
+        "web"
+    ],
     "tools": [
         "docker",
         "k8s"
