@@ -294,7 +294,7 @@
               sortBy : sortedBy : reverse : true |
               filter : searchTerm : ['type', 'id', 'itemLocation', 'labels', 'itemStatus']|
               filter : quickFilter : ['type']"  class="nalej-tbody row">
-              <div class="col-2 label-td-flex-text">
+              <div class="col-2 label-td-flex-text nalej-td">
                 <span tooltip="{{'tables.tableType' | translate}}" placement="top">{{item.type}}</span>
               </div>
               <div class="col-9">
@@ -312,7 +312,7 @@
                       placement="bottom"
                       class="status-dot">
                     </span>
-                    <span *ngIf="item.itemStatus" class="hide-lg">
+                    <span *ngIf="item.itemStatus" class="hide-lg nalej-td">
                       {{item.itemStatus}}
                     </span>
                   </div>

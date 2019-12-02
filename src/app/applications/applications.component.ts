@@ -847,9 +847,11 @@ export class ApplicationsComponent extends ToolsComponent implements OnInit, OnD
         && this.initialState.showRelatedNodes) {
       this.graphData.nodes
         .map(node => {
-          this.searchGraphData.links[node.id].forEach(searchNode => {
-            relatedNodes[node.id] = this.graphData.nodes[searchNode];
-          });
+          if (this.searchGraphData.links[node.id]) {
+            this.searchGraphData.links[node.id].forEach(searchNode => {
+              relatedNodes[node.id] = this.graphData.nodes[searchNode];
+            });
+          }
         });
       const uniqueNodes = {};
       this.graphData.nodes.concat(Object.values(relatedNodes)).map(item => {
