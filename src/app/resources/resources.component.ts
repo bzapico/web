@@ -26,6 +26,7 @@ import { ToolsComponent } from '../tools/tools.component';
 import { AppStatus } from '../definitions/enums/app-status.enum';
 import { ClusterStatusInfoComponent } from './cluster-status-info/cluster-status-info.component';
 import { ToolsService } from '../tools/tools.service';
+import { NotificationsService } from '../services/notifications.service';
 
 @Component({
   selector: 'app-resources',
@@ -115,7 +116,8 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
     private backendService: BackendService,
     private mockupBackendService: MockupBackendService,
     private translateService: TranslateService,
-    private toolsService: ToolsService
+    private toolsService: ToolsService,
+    private notificationsService: NotificationsService
     ) {
     super();
     const mock = localStorage.getItem(LocalStorageKeys.resourcesMock) || null;
@@ -437,6 +439,69 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
     });
   }
   /**
+   * Requests to cordon that prevents the scheduler to deploy user applications on the target cluster
+   * @param cluster cluster
+   */
+  cordon(cluster) {
+    const uncordonConfirm = confirm(this.translateService.instant('resources.cordonConfirm', { clusterName: cluster.name }));
+    if (uncordonConfirm) {
+      this.backend.cordon(this.organizationId, cluster.cluster_id)
+        .subscribe(() => {
+          this.notificationsService.add({
+            message:  this.translateService.instant('resources.cordonMessage', { clusterName: cluster.name })
+          });
+          this.refreshData();
+        }, error => {
+          this.notificationsService.add({
+            message: error.error.message,
+            type: 'warning'
+          });
+        });
+    }
+  }
+  /**
+   * Requests to uncordon that enables the scheduler to deploy user applications on the target cluster
+   * @param cluster cluster
+   */
+  uncordon(cluster) {
+    const uncordonConfirm = confirm(this.translateService.instant('resources.uncordonConfirm', { clusterName: cluster.name }));
+    if (uncordonConfirm) {
+      this.backend.uncordon(this.organizationId, cluster.cluster_id)
+        .subscribe(() => {
+          this.notificationsService.add({
+            message:  this.translateService.instant('resources.uncordonMessage', { clusterName: cluster.name })
+          });
+          this.refreshData();
+        }, error => {
+          this.notificationsService.add({
+            message: error.error.message,
+            type: 'warning'
+          });
+        });
+    }
+  }
+  /**
+   * Requests to drain that reschedules all applications deployed in a given cluster
+   * @param cluster cluster
+   */
+  drain(cluster) {
+    const uncordonConfirm = confirm(this.translateService.instant('resources.drainConfirm', { clusterName: cluster.name }));
+    if (uncordonConfirm) {
+      this.backend.drain(this.organizationId, cluster.cluster_id)
+        .subscribe(() => {
+          this.notificationsService.add({
+            message:  this.translateService.instant('resources.drainMessage', { clusterName: cluster.name })
+          });
+          this.refreshData();
+        }, error => {
+          this.notificationsService.add({
+            message: error.error.message,
+            type: 'warning'
+          });
+        });
+    }
+  }
+  /**
    * Updates the pieChartsData status
    * @param clusters Array containing the cluster list that sources the chart values
    */
@@ -444,7 +509,7 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
     let online = 0;
     if (clusters) {
       clusters.forEach(cluster => {
-        if (cluster.status_name === 'ONLINE') {
+        if (cluster.status_name === 'ONLINE' || 'ONLINE_CORDON') {
           online += 1;
         }
       });

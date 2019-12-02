@@ -45,6 +45,9 @@ export interface Backend {
     updateNode(organizationId: string, nodeId: string, changes: any);
     getClusterDetail(organizationId: string, clusterId: string);
     getResourcesSummary(organizationId: string);
+    cordon(organizationId: string, clusterId: string);
+    uncordon(organizationId: string, clusterId: string);
+    drain(organizationId: string, clusterId: string);
     // Applications
     getInstances(organizationId: string);
     getRegisteredApps(organizationId: string);

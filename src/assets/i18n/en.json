@@ -423,6 +423,10 @@
 		"clusterInstances": "CLUSTERS-INSTANCES",
 		"clusters": "CLUSTERS",
 		"clustersOnline": "clusters online",
+		"cordonConfirm": "Cordon {{clusterName}}?",
+		"cordonMessage": "{{clusterName}} has been cordoned",
+		"drainConfirm": "Drain {{clusterName}}?",
+		"drainMessage": "{{clusterName}} has been drained",
 		"edit": "Edit",
 		"instances": "INSTANCES",
 		"list": "LIST",
@@ -434,7 +438,9 @@
 		"saveChanges": "The cluster {{cluster}} has been edited",
 		"statusInfo": "STATUS INFO",
 		"summary": "SUMMARY",
-		"title": "RESOURCES"
+		"title": "RESOURCES",
+		"uncordonConfirm": "Uncordon {{clusterName}}?",
+		"uncordonMessage": "{{clusterName}} has been uncordoned"
 	},
 	"searcher": {
 		"placeholder": "Search..."
@@ -461,7 +467,6 @@
 		"sortedBy": "Sorted by {{value}}"
 	},
 	"status": {
-		"error": "error",
 		"offline": "offline",
 		"online": "online",
 		"process": "process",

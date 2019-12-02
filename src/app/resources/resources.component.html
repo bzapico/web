@@ -243,13 +243,13 @@
                     <div (click)="openEditCluster(cluster)">
                       {{'resources.edit' | translate}}
                     </div>
-                    <div>
+                    <div (click)="cordon(cluster)">
                       {{'devices.contextMenu.cordon' | translate}}
                     </div>
-                    <div>
+                    <div (click)="uncordon(cluster)">
                       {{'devices.contextMenu.uncordon' | translate}}
                     </div>
-                    <div>
+                    <div (click)="drain(cluster)">
                       {{'devices.contextMenu.drain' | translate}}
                     </div>
                   </div>

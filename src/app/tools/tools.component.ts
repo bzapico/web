@@ -251,6 +251,20 @@ export class ToolsComponent implements OnInit {
     }
   }
   /**
+   * Return an the border size needed to paint online-cordon, offline-cordon and unknown status
+   * @param status Status name
+   */
+  getBorderSize(status: string): number {
+    switch (status.toLowerCase()) {
+      case ClusterStatus.Online_cordon:
+      case ClusterStatus.Offline_cordon:
+      case ClusterStatus.Unknown:
+        return 2;
+      default:
+        return 0;
+    }
+  }
+  /**
    * Filters the backend incoming status to display it in removing the initial "service_"
    * @param rawStatus string containing the status that the backend is sending
    */
@@ -373,7 +387,7 @@ export class ToolsComponent implements OnInit {
           (this.searchTermGraph && clusterName.includes(this.searchTermGraph)) ?
                             ToolsComponent.FOUND_NODES_BORDER_COLOR : this.getBorderColor(status),
           (this.searchTermGraph && clusterName.includes(this.searchTermGraph)) ?
-                            ToolsComponent.FOUND_NODES_BORDER_SIZE : 0,
+                            ToolsComponent.FOUND_NODES_BORDER_SIZE : this.getBorderSize(status),
           ToolsComponent.CUSTOM_HEIGHT_CLUSTERS)
     };
   }
