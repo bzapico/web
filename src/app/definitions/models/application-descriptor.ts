@@ -54,7 +54,7 @@ export class ApplicationDescriptor extends Application {
      */
     groups?: ServiceGroup[];
 
-    getId(): string {
+    get id(): string {
         return this.app_descriptor_id;
     }
 }

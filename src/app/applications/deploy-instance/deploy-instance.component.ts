@@ -419,7 +419,7 @@ export class DeployInstanceComponent implements OnInit {
   isInactiveNext(f) {
     let isInactiveNext = false;
     if (this.conditionExpression === 'basic') {
-      isInactiveNext = !this.selectedApp || this.selectedApp.getId() === '-1' || !f.instanceName.value;
+      isInactiveNext = !this.selectedApp || this.selectedApp.id === '-1' || !f.instanceName.value;
     } else if (this.conditionExpression === 'parameters') {
       this.selectedApp.parameters.map(param => {
           if (!param.category && !param.value) {

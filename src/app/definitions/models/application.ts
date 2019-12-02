@@ -83,5 +83,5 @@ export abstract class Application {
      */
     parameters?: AppParameter[];
 
-    abstract getId(): string;
+    abstract get id(): string;
 }
