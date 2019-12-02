@@ -64,6 +64,26 @@ export class ToolsComponent implements OnInit {
    * It sets a height for instances nodes in the graph
    */
   static readonly CUSTOM_HEIGHT_INSTANCES = 32;
+
+  constructor() {
+    this.graphData = new GraphData([], []);
+    this.graphReset = false;
+    this.instances = [];
+    this.orientation = 'TB';
+    this.curve = shape.curveBasis;
+    this.autoZoom = true;
+    this.autoCenter = true;
+    this.enableZoom = true;
+    this.draggingEnabled = false;
+    this.organizationId = null;
+    this.gradient = true;
+    this.doughnut = true;
+    this.colorScheme = {
+      domain: ['#5800FF', '#828282']
+    };
+    this.searchTermGraph = '';
+    this.areIncludedInstancesWithError = true;
+  }
   /**
    * Backend reference
    */
@@ -98,26 +118,6 @@ export class ToolsComponent implements OnInit {
    * Search process
    */
   searchTermGraph: string;
-
-  constructor() {
-    this.graphData = new GraphData([], []);
-    this.graphReset = false;
-    this.instances = [];
-    this.orientation = 'TB';
-    this.curve = shape.curveBasis;
-    this.autoZoom = true;
-    this.autoCenter = true;
-    this.enableZoom = true;
-    this.draggingEnabled = false;
-    this.organizationId = null;
-    this.gradient = true;
-    this.doughnut = true;
-    this.colorScheme = {
-      domain: ['#5800FF', '#828282']
-    };
-    this.searchTermGraph = '';
-    this.areIncludedInstancesWithError = true;
-  }
 
   ngOnInit() {
     // Get User data from localStorage
