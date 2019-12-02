@@ -422,7 +422,7 @@
 		"cluster": "CLUSTER ",
 		"clusterInstances": "CLUSTERS-INSTANCES",
 		"clusters": "CLUSTERS",
-		"clustersRunning": "clusters running",
+		"clustersOnline": "clusters online",
 		"edit": "Edit",
 		"instances": "INSTANCES",
 		"list": "LIST",

@@ -43,19 +43,8 @@
       <div *ngIf="openFromInstance" class="summary-table-tr">
         <div class="summary-table-th">{{'tables.tableStatus' | translate}}</div> 
         <div id="summary-status" class="summary-table-td">
-          <span 
-            *ngIf="instance && instance.status_name"
-            [ngClass]=
-              "{
-                'big-status-dot':classInstanceStatusCheck(instance.status_name, 'status.running' | translate),
-                'big-status-dot-error':classInstanceStatusCheck(instance.status_name, 'status.error' | translate),
-                'big-status-dot-process':classInstanceStatusCheck(instance.status_name, 'status.process' | translate)
-              }"
-            tooltip="{{instance.status_name}}" 
-            placement="bottom"
-            class="big-status-dot">
-            {{instance.status_name}}
-          </span>
+          <div class="cluster-status-dot" [ngStyle]="getStatusDotColor(instance.status_name, cluster)"></div>
+          {{ instance.status_name }}
         </div>
       </div>
       <div *ngIf="openFromInstance" class="summary-table-tr">

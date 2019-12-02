@@ -25,7 +25,6 @@ import { TranslateService } from '@ngx-translate/core';
 import { ToolsComponent } from '../tools/tools.component';
 import { AppStatus } from '../definitions/enums/app-status.enum';
 import { ClusterStatusInfoComponent } from './cluster-status-info/cluster-status-info.component';
-import { ClusterStatus } from '../definitions/enums/cluster-status.enum';
 import { ToolsService } from '../tools/tools.service';
 
 @Component({
@@ -166,19 +165,19 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
 
   /**
    * Generates the NGX-Chart required JSON object for pie chart rendering
-   * @param running Number of running nodes in a cluster
+   * @param online Number of online nodes in a cluster
    * @param total Number of total nodes in a cluster
    * @returns anonym array with the required object structure for pie chart rendering
    */
-  generateClusterChartData(running: number, total: number): any[] {
+  generateClusterChartData(online: number, total: number): any[] {
     return [
       {
-        name: 'Running',
-        value: running
+        name: 'Online',
+        value: online
       },
       {
         name: 'Stopped',
-        value: total - running
+        value: total - online
       }
     ];
   }
@@ -226,14 +225,13 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
   /**
    * Opens the modal view that holds the edit cluster component
    */
-  openStatusCluster(cluster: Cluster) {
+  openStatusCluster() {
     const initialState = {
       organizationId: this.organizationId
     };
     this.modalRef = this.modalService.show(ClusterStatusInfoComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName = 'Close';
     this.modalService.onHide.subscribe((reason: string) => {
-      this.updateClusterList();
     });
   }
   /**
@@ -397,10 +395,18 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
   /**
    * Return an specific dot color depending on the node status
    * @param status Status name
+   * @param cluster cluster
    */
-  getStatusDotColor(status: string): {'background-color': string, border?: string} {
-    console.log('status', status);
-    return this.toolsService.getStatusDotColor(status);
+  getStatusDotColor(status: string, cluster: any): {'background-color': string, border?: string} {
+    return this.toolsService.getStatusDotColor(status, cluster);
+  }
+  /**
+   * Return the status if the state is installed
+   * @param status Status name
+   * @param cluster cluster
+   */
+  getStatusOrState(status: string, cluster: any): string {
+    return this.toolsService.getStatusOrState(status, cluster);
   }
   /**
    * Refresh all resources data as clusters list, instances, and cluster count and it updates it considering the REFRESH_INTERVAL
@@ -499,7 +505,7 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
         }
         if ((this.areIncludedInstancesWithError
             && instance.status_name.toLowerCase() !== AppStatus.Error
-            && instance.status_name.toLowerCase() !== AppStatus.DeploymentError)
+            && instance.status_name.toLowerCase() !== AppStatus.Deployment_error)
             || !this.areIncludedInstancesWithError) {
           this.graphData.links.push({
             source: cluster.cluster_id,

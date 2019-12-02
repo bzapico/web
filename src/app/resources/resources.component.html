@@ -35,7 +35,7 @@
               </ngx-charts-pie-chart>
               <div class="donut-number">{{countOnline}}/{{clusters.length}}</div>
             </div>
-            <p class="clusters-run">{{clustersCount}} {{'resources.clustersRunning' | translate}}</p>
+            <p class="clusters-run">{{clustersCount}} {{'resources.clustersOnline' | translate}}</p>
             <p *ngIf="clustersCount === 0" class="circle-name no-deployed">{{'resources.noClusters' | translate}}</p>
             <p class="circle-name circle-name-mt">{{'resources.clusters' | translate}}</p>
           </div>
@@ -173,12 +173,10 @@
                     </a>
                   </div>
                   <div 
-                    tooltip="{{cluster.status | lowercase}}" 
+                    tooltip="{{getStatusOrState(cluster.status, cluster) | lowercase}}" 
                     placement="bottom"
                     class="col-6 nalej-td col-center-lowercase"> 
-                    <!-- TODO -->
-                    <!-- <div class="cluster-status-dot" [ngStyle]="getStatusDotColor(cluster.status)"></div> -->
-                    <div class="cluster-status-dot"></div>
+                    <div class="cluster-status-dot" [ngStyle]="getStatusDotColor(cluster.status, cluster)"></div>
                   </div>
                 </div>
                 <div class="row">
@@ -388,7 +386,7 @@
                 </ng-template>
               </ngx-graph>
             </div>
-            <div (click)="openStatusCluster(cluster)" class="explore-btn">
+            <div (click)="openStatusCluster()" class="explore-btn">
               <i class="material-icons explore-icon">explore</i>
             </div>
             <div *ngIf="!graphDataLoaded" class="loader"></div>

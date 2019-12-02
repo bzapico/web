@@ -33,7 +33,7 @@ export class ClusterStatusInfoComponent {
   clusterStatusList = ClusterStatus;
   appStatusList = AppStatus;
   /**
-   * Method that returns an array of a given object's cluster and instances enums property
+   * Method that returns an array of a given clusters and instances' enums property
    */
   keys = Object.keys;
   constructor(

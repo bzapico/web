@@ -37,7 +37,7 @@ export class ToolsComponent implements OnInit {
   /**
    * Refresh ratio
    */
-  static readonly REFRESH_INTERVAL = 20000;
+  static readonly REFRESH_INTERVAL = 2000;
   /**
    * It sets the status colors for nodes
    */
@@ -166,15 +166,15 @@ export class ToolsComponent implements OnInit {
       case ClusterStatus.Provisioned:
       case AppStatus.Planning:
         return ToolsComponent.STATUS_COLORS.PROVISIONED;
-      case ClusterStatus.InstallInProgress:
+      case ClusterStatus.Install_in_progress:
       case AppStatus.Scheduled:
         return ToolsComponent.STATUS_COLORS.INSTALL_IN_PROGRESS;
       case ClusterStatus.Online:
       case AppStatus.Running:
         return ToolsComponent.STATUS_COLORS.RUNNING;
-      case ClusterStatus.OnlineCordon:
+      case ClusterStatus.Online_cordon:
         return ToolsComponent.STATUS_COLORS.ONLINE_CORDON;
-      case ClusterStatus.OfflineCordon:
+      case ClusterStatus.Offline_cordon:
         return ToolsComponent.STATUS_COLORS.OFFLINE_CORDON;
       case ClusterStatus.Offline:
       case AppStatus.Terminated:
@@ -188,9 +188,9 @@ export class ToolsComponent implements OnInit {
       case AppStatus.Terminating:
         return ToolsComponent.STATUS_COLORS.DECOMISIONING;
       case ClusterStatus.Failure:
-      case AppStatus.DeploymentError:
+      case AppStatus.Deployment_error:
       case AppStatus.Incomplete:
-      case AppStatus.PlanningError:
+      case AppStatus.Planning_error:
       case AppStatus.Error:
         return ToolsComponent.STATUS_COLORS.ERROR;
       case ClusterStatus.Unknown:
@@ -207,9 +207,9 @@ export class ToolsComponent implements OnInit {
     switch (status.toLowerCase()) {
       case ClusterStatus.Scaling:
       case ClusterStatus.Uninstalling:
-      case ClusterStatus.OnlineCordon:
-      case ClusterStatus.InstallInProgress:
-      case ClusterStatus.OfflineCordon:
+      case ClusterStatus.Online_cordon:
+      case ClusterStatus.Install_in_progress:
+      case ClusterStatus.Offline_cordon:
       case AppStatus.Scheduled:
       case AppStatus.Deploying:
         return ToolsComponent.STATUS_TEXT_COLORS.BLACK;
@@ -224,9 +224,9 @@ export class ToolsComponent implements OnInit {
       case ClusterStatus.Decomisioning:
       case AppStatus.Terminating:
       case ClusterStatus.Failure:
-      case AppStatus.DeploymentError:
+      case AppStatus.Deployment_error:
       case AppStatus.Incomplete:
-      case AppStatus.PlanningError:
+      case AppStatus.Planning_error:
       case AppStatus.Error:
         case ClusterStatus.Unknown:
         return ToolsComponent.STATUS_TEXT_COLORS.WHITE;
@@ -240,9 +240,9 @@ export class ToolsComponent implements OnInit {
    */
   getBorderColor(status: string): string {
     switch (status.toLowerCase()) {
-      case ClusterStatus.OnlineCordon:
+      case ClusterStatus.Online_cordon:
         return ToolsComponent.STATUS_BORDER_COLORS.ONLINE_CORDON;
-      case ClusterStatus.OfflineCordon:
+      case ClusterStatus.Offline_cordon:
         return ToolsComponent.STATUS_BORDER_COLORS.OFFLINE_CORDON;
       case ClusterStatus.Unknown:
         return ToolsComponent.STATUS_BORDER_COLORS.UNKNOWN;
@@ -279,7 +279,7 @@ export class ToolsComponent implements OnInit {
       for (let indexInstance = 0, instancesLength = this.instances.length; indexInstance < instancesLength; indexInstance++) {
         if (this.areIncludedInstancesWithError
             && (this.instances[indexInstance].status_name.toLowerCase() === AppStatus.Error
-                || this.instances[indexInstance].status_name.toLowerCase() === AppStatus.DeploymentError)) {
+                || this.instances[indexInstance].status_name.toLowerCase() === AppStatus.Deployment_error)) {
           appsInCluster[this.instances[indexInstance].app_instance_id] = this.instances[indexInstance];
         } else {
           const groups = this.instances[indexInstance].groups || [];
@@ -357,7 +357,8 @@ export class ToolsComponent implements OnInit {
   }
   generateClusterNode(cluster: any, tooltip: string): any {
     const clusterName = cluster.name.toLowerCase();
-    const status = cluster.state ? (cluster.state === ClusterStatus.Installed ? cluster.status_name : cluster.state) : cluster.status_name;
+    const status = cluster.state ?
+    (cluster.state === ClusterStatus.Installed.toUpperCase() ? cluster.status_name : cluster.state) : cluster.status_name;
     return {
       ...{
         id: cluster.cluster_id,

@@ -34,6 +34,8 @@ import { AppStatus } from '../definitions/enums/app-status.enum';
 import { ToolsComponent } from '../tools/tools.component';
 import { Cluster } from '../definitions/interfaces/cluster';
 import { ApplicationDescriptor } from '../definitions/models/application-descriptor';
+import { ToolsService } from '../tools/tools.service';
+import { ClusterStatusInfoComponent } from '../resources/cluster-status-info/cluster-status-info.component';
 
 @Component({
   selector: 'applications',
@@ -61,7 +63,9 @@ export class ApplicationsComponent extends ToolsComponent implements OnInit, OnD
     private mockupBackendService: MockupBackendService,
     private notificationsService: NotificationsService,
     private translateService: TranslateService,
-    private router: Router) {
+    private router: Router,
+    private toolsService: ToolsService
+    ) {
     super();
     const mock = localStorage.getItem(LocalStorageKeys.appsMock) || null;
     // Check which backend is required (fake or real)
@@ -304,12 +308,32 @@ export class ApplicationsComponent extends ToolsComponent implements OnInit, OnD
     return [{name: 'Running', value: running}, {name: 'Stopped', value: total - running}];
   }
   /**
-   * Checks if the app status requires an special css class
-   * @param status app status name
-   * @param className CSS class name
+   * Return an specific dot color depending on the node status
+   * @param status Status name
+   * @param cluster cluster
    */
-  classStatusCheck(status: string, className: string): boolean {
-    return this.applicationsService.classStatusCheck(status, className);
+  getStatusDotColor(status: string, cluster: any): {'background-color': string, border?: string} {
+    return this.toolsService.getStatusDotColor(status, cluster);
+  }
+  /**
+   * Return the status if the state is installed
+   * @param status Status name
+   * @param cluster cluster
+   */
+  getStatusOrState(status: string, cluster: any): string {
+    return this.toolsService.getStatusOrState(status, cluster);
+  }
+  /**
+   * Opens the modal view that holds the edit cluster component
+   */
+  openStatusCluster() {
+    const initialState = {
+      organizationId: this.organizationId
+    };
+    this.modalRef = this.modalService.show(ClusterStatusInfoComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
+    this.modalRef.content.closeBtnName = 'Close';
+    this.modalService.onHide.subscribe((reason: string) => {
+    });
   }
   /**
    * Sortby pipe in the component
@@ -767,7 +791,7 @@ export class ApplicationsComponent extends ToolsComponent implements OnInit, OnD
       if (this.filters.clusters && this.filters.instances) {
         if ((this.areIncludedInstancesWithError
             && instance.status_name.toLowerCase() !== AppStatus.Error
-            && instance.status_name.toLowerCase() !== AppStatus.DeploymentError)
+            && instance.status_name.toLowerCase() !== AppStatus.Deployment_error)
             || !this.areIncludedInstancesWithError) {
           this.setLinksInGraph(
               instance['app_instance_id'],

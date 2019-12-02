@@ -53,6 +53,7 @@
 }
 .graph {
 	height: 100%;
+	position: relative;
 }
 .graph-search-box {
 	display: flex;
@@ -108,9 +109,9 @@
 	}
 }
 .explore-btn {
-	position: fixed;
-	right: 73px;
-	bottom: 87px;
+	position: absolute;
+	right: 29px;
+	bottom: 12px;
 	width: 33px;
 	height: 33px;
 	cursor: pointer;
@@ -135,11 +136,4 @@
 		text-align: right;
 		padding: 2.4px 0;
 	}
-}
-.cluster-status-dot {
-	width: 10px;
-	height: 10px;
-	border-radius: 50%;
-	display: inline-block;
-	margin-right: 6px;
 }

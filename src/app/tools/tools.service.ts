@@ -13,27 +13,39 @@
 
 import { Injectable } from '@angular/core';
 import { ToolsComponent } from './tools.component';
+import { ClusterStatus } from '../definitions/enums/cluster-status.enum';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ToolsService {
-
-  constructor() { }
-
   /**
    * Return an specific dot color depending on the node status
    * @param status Status name
+   * @param cluster cluster
    */
-  getStatusDotColor(status: string): {'background-color': string, border?: string} {
+  getStatusDotColor(status: string, cluster?: any): {'background-color': string, border?: string} {
+    const finalStatus = this.getStatusOrState(status, cluster);
     const basicColor = {
-      'background-color': ToolsComponent.STATUS_COLORS[status.toUpperCase()]
+      'background-color': ToolsComponent.STATUS_COLORS[finalStatus.toUpperCase()]
     };
-    const basicBorderColor = ToolsComponent.STATUS_BORDER_COLORS[status.toUpperCase()];
+    const basicBorderColor = ToolsComponent.STATUS_BORDER_COLORS[finalStatus.toUpperCase()];
     if (basicBorderColor) {
-      basicColor['border'] = '1px ' + basicBorderColor + ' solid';
+      basicColor['border'] = '2px ' + basicBorderColor + ' solid';
     }
     return basicColor;
+  }
+  /**
+   * Return the status if the state is installed
+   * @param status Status name
+   * @param cluster cluster
+   */
+  getStatusOrState(status: string, cluster?: any): string {
+    const clusterStatus = cluster && cluster.state ?
+    (cluster.state === ClusterStatus.Installed.toUpperCase() ? cluster.status_name : cluster.state)
+    : (cluster ? cluster.status_name : status);
+    const finalStatus = cluster ? clusterStatus : status;
+    return finalStatus;
   }
   /**
    * Filters the backend incoming status to display it in removing the underscore "_" between words
