@@ -46,15 +46,8 @@
 	color: $white;
 	font-size: 15px;
 	font-weight: 500;
-	.cluster-status-dot {
-		width: 10px;
-		height: 10px;
-		border-radius: 50%;
-		display: inline-block;
-		margin-right: 6px;
-	}
 	.cluster-status-item {
-		padding: 5px;
+		padding: 6px;
 		text-transform: lowercase;
 	}
 }

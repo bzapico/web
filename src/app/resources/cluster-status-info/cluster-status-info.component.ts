@@ -14,7 +14,6 @@
 import { Component } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap';
 import { ClusterStatus } from '../../definitions/enums/cluster-status.enum';
-import { ToolsComponent } from 'src/app/tools/tools.component';
 import { AppStatus } from 'src/app/definitions/enums/app-status.enum';
 import { ToolsService } from 'src/app/tools/tools.service';
 
@@ -39,7 +38,7 @@ export class ClusterStatusInfoComponent {
   keys = Object.keys;
   constructor(
     public bsModalRef: BsModalRef,
-    private toolsService: ToolsService,
+    private toolsService: ToolsService
   ) { }
 
   /**
@@ -48,5 +47,12 @@ export class ClusterStatusInfoComponent {
    */
   getStatusDotColor(status: string): {'background-color': string, border?: string} {
     return this.toolsService.getStatusDotColor(status);
+  }
+  /**
+   * Filters the backend incoming status to display it in removing the underscore "_" between words
+   * @param rawStatus string containing the status that the backend is sending
+   */
+  getStatusUnderscoreRemoved(rawStatus: string): string {
+    return this.toolsService.getStatusUnderscoreRemoved(rawStatus);
   }
 }

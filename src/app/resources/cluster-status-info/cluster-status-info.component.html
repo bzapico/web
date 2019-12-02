@@ -25,14 +25,14 @@
 					<p class="status-class-title">{{'resources.cluster' | translate}}</p>
 					<div *ngFor="let status of keys(clusterStatusList)" class="cluster-status-item">
 						<div class="cluster-status-dot" [ngStyle]="getStatusDotColor(status)"></div>
-							{{ status }}
+							{{getStatusUnderscoreRemoved(status)}}
 					</div>
 				</div>
 				<div class="cluster-status-list">
 					<p class="status-class-title">{{'apps.instance.idInstance' | translate}}</p>
 					<div *ngFor="let status of keys(appStatusList)" class="cluster-status-item">
 						<div class="cluster-status-dot" [ngStyle]="getStatusDotColor(status)"></div>
-							{{ status }}
+							{{getStatusUnderscoreRemoved(status)}}
 					</div>
 				</div>
 			</div>

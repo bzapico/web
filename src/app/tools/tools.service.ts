@@ -21,7 +21,7 @@ export class ToolsService {
 
   constructor() { }
 
-    /**
+  /**
    * Return an specific dot color depending on the node status
    * @param status Status name
    */
@@ -34,5 +34,21 @@ export class ToolsService {
       basicColor['border'] = '1px ' + basicBorderColor + ' solid';
     }
     return basicColor;
+  }
+  /**
+   * Filters the backend incoming status to display it in removing the underscore "_" between words
+   * @param rawStatus string containing the status that the backend is sending
+   */
+  getStatusUnderscoreRemoved(rawStatus: string): string {
+    if (rawStatus.toLowerCase().replace('_', ' ')) {
+      if (rawStatus.toLowerCase() === 'install_in_progress') {
+        return rawStatus.toLowerCase().replace('install_in_progress', 'installing');
+      }
+      if (rawStatus.toLowerCase() === 'installed') {
+        return rawStatus.toLowerCase().replace('installed', ' ');
+      }
+      return rawStatus.replace('_', ' ');
+    }
+    return rawStatus;
   }
 }

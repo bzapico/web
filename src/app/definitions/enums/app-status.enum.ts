@@ -19,8 +19,8 @@ export enum AppStatus {
     Running = 'running',
     Terminating = 'terminating',
     Incomplete = 'incomplete',
-    PlanningError = 'planning_error',
-    DeploymentError = 'deployment_error',
+    Planning_error = 'planning_error',
+    Deployment_error = 'deployment_error',
     Error = 'error',
     Terminated = 'terminated'
 }
