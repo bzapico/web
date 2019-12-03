@@ -233,8 +233,6 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
     };
     this.modalRef = this.modalService.show(ClusterStatusInfoComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName = 'Close';
-    this.modalService.onHide.subscribe((reason: string) => {
-    });
   }
   /**
    * Sortby pipe in the component
@@ -510,7 +508,7 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
     if (clusters) {
       clusters.forEach(cluster => {
         if (cluster.status_name === 'ONLINE' || 'ONLINE_CORDON') {
-          online += 1;
+          online ++;
         }
       });
       this.countOnline = online;
@@ -570,7 +568,7 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
         }
         if ((this.areIncludedInstancesWithError
             && instance.status_name.toLowerCase() !== AppStatus.Error
-            && instance.status_name.toLowerCase() !== AppStatus.Deployment_error)
+            && instance.status_name.toLowerCase() !== AppStatus.DeploymentError)
             || !this.areIncludedInstancesWithError) {
           this.graphData.links.push({
             source: cluster.cluster_id,

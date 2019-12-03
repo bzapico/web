@@ -14,10 +14,10 @@
 export enum ClusterStatus {
     Provisioning = 'provisioning',
     Provisioned = 'provisioned',
-    Install_in_progress = 'install_in_progress',
+    InstallInProgress = 'install_in_progress',
     Online = 'online',
-    Online_cordon = 'online_cordon',
-    Offline_cordon = 'offline_cordon',
+    OnlineCordon = 'online_cordon',
+    OfflineCordon = 'offline_cordon',
     Offline = 'offline',
     Scaling = 'scaling',
     Uninstalling = 'uninstalling',

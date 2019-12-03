@@ -187,14 +187,14 @@ export class ClusterComponent implements OnInit {
     status = status || '';
     switch (status.toLowerCase()) {
       case ClusterStatus.Scaling:
-      case ClusterStatus.Online_cordon:
-      case ClusterStatus.Install_in_progress:
+      case ClusterStatus.OnlineCordon:
+      case ClusterStatus.InstallInProgress:
       case ClusterStatus.Online:
-      case ClusterStatus.Online_cordon:
+      case ClusterStatus.OnlineCordon:
         return className.toLowerCase() === ClusterStatus.Online;
       case ClusterStatus.Failure:
       case ClusterStatus.Offline:
-      case ClusterStatus.Offline_cordon:
+      case ClusterStatus.OfflineCordon:
       case ClusterStatus.Uninstalling:
         return className.toLowerCase() === ClusterStatus.Failure;
       default:
