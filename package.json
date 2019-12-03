@@ -26,6 +26,7 @@
     "start": "run-s lint style-lint serve",
     "style-lint": "stylelint 'src/app/**/*.scss' --config .stylelintrc.json",
     "style-lint-fix": "stylelint 'src/app/**/*.scss' --fix",
+    "test-ci": "ng run nalej:test-ci --watch=false --code-coverage",
     "test": "ng test"
   },
   "private": true,
