@@ -69,6 +69,7 @@ export class AppInfoComponent implements OnChanges {
   isFirstOpen = true;
   basicParameters: any[];
   advancedParameters: any[];
+  inboundConnections: any[];
 
   constructor(
     private translateService: TranslateService,
@@ -90,10 +91,12 @@ export class AppInfoComponent implements OnChanges {
     this.searchTerm = '';
     this.basicParameters = [];
     this.advancedParameters = [];
+    this.inboundConnections = [];
   }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.loadedData && !changes.loadedData.firstChange && changes.loadedData.currentValue) {
+      this.inboundConnections = this.getInboundConnections();
       this.addServiceAndGroupToInterfaces();
       this.addServiceAndGroupToInterfacesInstance();
       this.generateParameters();
@@ -370,7 +373,9 @@ export class AppInfoComponent implements OnChanges {
   /**
   * Get inbound connections
   */
-  getInboundConnections(): any {
+  getInboundConnections(): any[] {
+    console.log('this.instance ', this.instance);
+    console.log('get inbound connections ::: ', this.instance.inbound_connections);
     const inbounds = [];
     if (this.instance.inbound_connections) {
       this.instance.inbound_connections.forEach(connection => {
@@ -381,6 +386,7 @@ export class AppInfoComponent implements OnChanges {
           });
       });
     }
+    console.log('get inbound net interfaces ::: ', this.instance.inbound_net_interfaces);
     if (this.instance.inbound_net_interfaces) {
       this.instance.inbound_net_interfaces.forEach(inboundInterface => {
         let found = false;
