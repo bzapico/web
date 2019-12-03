@@ -163,6 +163,7 @@ export class AppInfoComponent implements OnChanges {
    */
   disconnectInstance(connection, type, nameType, instance) {
     const fullConnection = this.getConnection(instance, type, nameType, connection.name)[0];
+    console.log('FULL CONNECTION ::: ', fullConnection);
     const deleteConfirm = confirm(this.translateService.instant('apps.manageConnections.disconnectConfirm'));
     if (deleteConfirm) {
       this.backend.removeConnection(instance.organization_id, {
@@ -189,6 +190,11 @@ export class AppInfoComponent implements OnChanges {
    * @param name  name
    * */
   getConnection(instance, type: string, nameType: string, name: string): any {
+    console.log('instance ', instance);
+    console.log('type ', type);
+    console.log('NAME TYPE :: ', nameType);
+    console.log('NAME ::: ', name);
+    console.log('concrete data ', instance[type]);
     return instance[type].filter(inbound => inbound[nameType] === name);
   }
   /**

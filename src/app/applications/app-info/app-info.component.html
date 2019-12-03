@@ -328,7 +328,7 @@
                     <div class="col-4 text-right px-4">
                       <button
                         *ngIf="getTarget(interface.name).instance_name"
-                        (click)="disconnectInstance(interface, 'inbound_connections', 'inbound_name', instance)"
+                        (click)="disconnectInstance(interface, 'outbound_connections', 'outbound_name', instance)"
                         tooltip="{{'apps.manageConnections.disconnect' | translate}}"
                         placement="left"
                         class="action-btn-red">
