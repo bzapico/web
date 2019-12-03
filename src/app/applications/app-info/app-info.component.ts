@@ -165,7 +165,8 @@ export class AppInfoComponent implements OnChanges {
    * @param connection connections
    */
   disconnectInstance(connection, type, nameType, instance) {
-    const fullConnection = this.getConnection(instance, type, nameType, connection.name)[0];
+    console.log('CONNECTION ', connection);
+    const fullConnection = this.getConnection(instance, type, nameType, connection.inbound_name)[0];
     console.log('FULL CONNECTION ::: ', fullConnection);
     const deleteConfirm = confirm(this.translateService.instant('apps.manageConnections.disconnectConfirm'));
     if (deleteConfirm) {
