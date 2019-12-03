@@ -35,7 +35,7 @@ export class ClusterStatusInfoComponent {
   /**
    * Method that returns an array of a given clusters and instances' enums property
    */
-  keys = Object.keys;
+  values = Object.values;
 
   constructor(
     public bsModalRef: BsModalRef,

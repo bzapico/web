@@ -1,4 +1,4 @@
-<!-- 
+<!--
   Copyright 2019 Nalej
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
@@ -23,14 +23,14 @@
 			<div class="cluster-status-list-box">
 				<div class="cluster-status-list">
 					<p class="status-class-title">{{'resources.cluster' | translate}}</p>
-					<div *ngFor="let status of keys(clusterStatusList)" class="cluster-status-item">
+					<div *ngFor="let status of values(clusterStatusList)" class="cluster-status-item">
 						<div class="cluster-status-dot" [ngStyle]="getStatusDotColor(status)"></div>
 							{{getStatusUnderscoreRemoved(status)}}
 					</div>
 				</div>
 				<div class="cluster-status-list">
 					<p class="status-class-title">{{'apps.instance.idInstance' | translate}}</p>
-					<div *ngFor="let status of keys(appStatusList)" class="cluster-status-item">
+					<div *ngFor="let status of values(appStatusList)" class="cluster-status-item">
 						<div class="cluster-status-dot" [ngStyle]="getStatusDotColor(status)"></div>
 							{{getStatusUnderscoreRemoved(status)}}
 					</div>
