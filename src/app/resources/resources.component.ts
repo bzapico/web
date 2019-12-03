@@ -273,7 +273,7 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
           clusterId: entity.cluster_id,
           remove_labels: true,
           labels: this.selectedLabels[index].labels
-        }).subscribe(updateClusterResponse => {
+        }).subscribe(() => {
           this.selectedLabels.splice(index, 1);
           this.updateClusterList();
         });
@@ -355,17 +355,21 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
         this.backend.getResourcesSummary(this.organizationId).toPromise(),
       ])
           .then(([clusters, instances, summary]) => {
-            this.clusters = clusters.clusters;
-            this.instances = instances.instances;
+            this.clusters = clusters.clusters || [];
+            this.instances = instances.instances || [];
             this.getProcessedClusterList();
             this.clustersCount = summary['total_clusters'] || 0 ;
             if (!this.loadedData) {
               this.loadedData = true;
             }
             this.updatePieChartStats();
-            this.toGraphData();
+            if (this.clusters && this.clusters.length > 0
+                || this.instances && this.instances.length > 0) {
+              this.toGraphData();
+            }
           })
           .catch(errorResponse => {
+            console.log('ERROR RESPONSE ', errorResponse);
             this.loadedData = false;
             this.requestError = errorResponse.error.message;
           });

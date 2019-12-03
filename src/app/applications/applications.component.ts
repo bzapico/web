@@ -880,20 +880,24 @@ export class ApplicationsComponent extends ToolsComponent implements OnInit, OnD
           this.backend.getInstances(this.organizationId).toPromise(),
           this.backend.getRegisteredApps(this.organizationId).toPromise()])
             .then(([clusters, instances, registered]) => {
-              clusters.clusters.forEach(cluster => {
-                cluster.total_nodes = parseInt(cluster.total_nodes, 10);
-              });
               this.clusters = clusters.clusters || [];
               this.instances = instances.instances || [];
               this.registered = registered.descriptors || [];
-              if (this.instances) {
+              this.clusters.forEach(cluster => {
+                cluster.total_nodes = cluster.total_nodes || 0;
+              });
+              if (this.instances && this.instances.length > 0) {
                 this.processedRegisteredList();
               }
               this.updatePieChartStats(this.instances);
               if (!this.loadedData) {
                 this.loadedData = true;
               }
-              this.toGraphData();
+              if (this.clusters && this.clusters.length > 0
+                || this.registered && this.registered.length > 0
+                || this.instances && this.instances.length > 0) {
+                this.toGraphData();
+              }
             })
             .catch(errorResponse => {
               this.loadedData = false;
