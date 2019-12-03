@@ -16,26 +16,48 @@
 import { KeyValue } from '@angular/common';
 
 export interface InstanceMetadata {
-    // OrganizationId with the organization identifier.
+    /**
+   * OrganizationId with the organization identifier.
+   */
     organization_id?: string;
-    // AppDescriptorId with the application descriptor identifier.
+    /**
+     * AppDescriptorId with the application descriptor identifier.
+     */
     app_descriptor_id?: string;
-    // AppInstanceId with the application instance identifier.
+    /**
+     * AppInstanceId with the application instance identifier.
+     */
     app_instance_id?: string;
-    // Identifier of the monitored entity. This generic id can be used to monitor different kinds of objects.
+    /**
+     * Identifier of the monitored entity. This generic id can be used to monitor different kinds of objects.
+     */
     monitored_instance_id?: string;
-    // Type of instance this metadata refers to
+    /**
+     * Type of instance this metadata refers to
+     */
     type_name?: string;
-    // List of instances supervised by this metadata structure
+    /**
+     * List of instances supervised by this metadata structure
+     */
     instances_id?: string[];
-    // Number of desired replicas specified in the descriptor
+    /**
+     * Number of desired replicas specified in the descriptor
+     */
     desired_replicas?: number;
-    // Number of available replicas for this instance
+    /**
+     * Number of available replicas for this instance
+     */
     available_replicas?: number;
-    // Number of unavailable replicas for this descriptor
+    /**
+     * Number of unavailable replicas for this descriptor
+     */
     unavailable_replicas?: number;
-    // Status of every item monitored by this metadata entry
+    /**
+     * Status of every item monitored by this metadata entry
+     */
     status_name?: KeyValue<string, string>;
-    // Relevant information for every monitored instance
+    /**
+     * Relevant information for every monitored instance
+     */
     info?: KeyValue<string, string>;
 }
