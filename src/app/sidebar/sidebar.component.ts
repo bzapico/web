@@ -62,7 +62,7 @@ export class SidebarComponent implements OnInit {
     private modalService: BsModalService,
     private auth: AuthService,
     private updateService: UpdateEventsService,
-    private translateService: TranslateService,
+    private translateService: TranslateService
   ) {
     const mock = localStorage.getItem(LocalStorageKeys.sidebarMock) || null;
     // check which backend is required (fake or real)
@@ -74,7 +74,6 @@ export class SidebarComponent implements OnInit {
     this.name = this.translateService.instant('organization.loading'); // Default initialization
     this.role = this.translateService.instant('organization.loading'); // Default initialization
     this.email = this.translateService.instant('organization.loading'); // Default initialization
-    console.log(versionData.version);
     this.version = versionData.version;
 
   }
