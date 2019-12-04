@@ -12,6 +12,7 @@
  */
 
 import { Observable } from 'rxjs';
+import { SearchRequest } from './search-request';
 
 export interface Backend {
     // Login
@@ -73,5 +74,6 @@ export interface Backend {
     addGroup(organizationId: string, groupData: any);
     deleteGroup(organizationId: string, groupId: any);
     updateGroup(organizationId: string, groupData: any);
-
+    // Unified Logging
+    search(searchRequest: SearchRequest);
 }

@@ -17,6 +17,7 @@ import { environment } from 'src/environments/environment';
 import { Backend } from '../definitions/interfaces/backend';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
+import { SearchRequest } from '../definitions/interfaces/search-request';
 
 /**
  * URL of the public API
@@ -768,6 +769,21 @@ export class BackendService implements Backend {
     return this.post(
       API_URL + 'device/' + organizationId + '/label/remove',
       changes
+    );
+  }
+
+  /********************
+   * Logs
+   ********************/
+
+  // POST: '/v1/apps/inst/{organization_id}/logs'
+  /**
+  * Search for log entries matching a query
+  * @param searchRequest Search for log entries matching a query
+  */
+  search(searchRequest: SearchRequest) {
+    return this.post(
+      API_URL + 'apps/inst' + searchRequest.organization_id + '/logs',
     );
   }
 }
