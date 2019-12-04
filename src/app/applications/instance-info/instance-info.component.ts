@@ -530,7 +530,9 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
         !instanceOutdated.groups ||
         !instanceUpdated ||
         !instanceUpdated.groups ||
-        (instanceOutdated.groups.length !== instanceUpdated.groups.length)) {
+        (instanceOutdated.groups.length !== instanceUpdated.groups.length) ||
+        instanceOutdated.inbound_connections !== instanceUpdated.inbound_connections ||
+        instanceOutdated.outbound_connections !== instanceUpdated.outbound_connections) {
       return true;
     }
     // Creating arrays of services to compare

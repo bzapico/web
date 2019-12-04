@@ -386,10 +386,6 @@ export class InfrastructureComponent implements OnInit, OnDestroy  {
    * @param labelValue label value from selected label
    */
   onLabelClick(item: Item, labelKey: string | number, labelValue: string) {
-    console.log('ON LABEL CLICK ::: ', labelKey);
-    console.log('ON LABEL CLICK ::: typeof ::: ', typeof labelKey);
-    console.log('ON LABEL CLICK ::: V ::: ', labelValue);
-    console.log('ON LABEL CLICK ::: V ::: typeof ::: ', typeof labelValue);
     const selectedIndex = this.indexOfLabelSelected(item.id, labelKey, labelValue);
     const newLabel = {
       id: item.id,

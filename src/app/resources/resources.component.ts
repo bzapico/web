@@ -369,7 +369,6 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
             }
           })
           .catch(errorResponse => {
-            console.log('ERROR RESPONSE ', errorResponse);
             this.loadedData = false;
             this.requestError = errorResponse.error.message;
           });

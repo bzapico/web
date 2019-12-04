@@ -100,6 +100,11 @@ export class AppInfoComponent implements OnChanges {
       this.addServiceAndGroupToInterfaces();
       this.addServiceAndGroupToInterfacesInstance();
       this.generateParameters();
+    } else if (changes.instance
+        && !changes.instance.firstChange
+        && changes.instance.previousValue
+        && changes.instance.currentValue !== changes.instance.previousValue) {
+      this.inboundConnections = this.getInboundConnections();
     }
   }
 
@@ -165,9 +170,7 @@ export class AppInfoComponent implements OnChanges {
    * @param connection connections
    */
   disconnectInstance(connection, type, nameType, instance) {
-    console.log('CONNECTION ', connection);
-    const fullConnection = this.getConnection(instance, type, nameType, connection.inbound_name)[0];
-    console.log('FULL CONNECTION ::: ', fullConnection);
+    const fullConnection = this.getConnection(instance, type, nameType, connection.inbound_name || connection.name)[0];
     const deleteConfirm = confirm(this.translateService.instant('apps.manageConnections.disconnectConfirm'));
     if (deleteConfirm) {
       this.backend.removeConnection(instance.organization_id, {
@@ -194,11 +197,6 @@ export class AppInfoComponent implements OnChanges {
    * @param name  name
    * */
   getConnection(instance, type: string, nameType: string, name: string): any {
-    console.log('instance ', instance);
-    console.log('type ', type);
-    console.log('NAME TYPE :: ', nameType);
-    console.log('NAME ::: ', name);
-    console.log('concrete data ', instance[type]);
     return instance[type].filter(inbound => inbound[nameType] === name);
   }
   /**
@@ -375,8 +373,6 @@ export class AppInfoComponent implements OnChanges {
   * Get inbound connections
   */
   getInboundConnections(): any[] {
-    console.log('this.instance ', this.instance);
-    console.log('get inbound connections ::: ', this.instance.inbound_connections);
     const inbounds = [];
     if (this.instance.inbound_connections) {
       this.instance.inbound_connections.forEach(connection => {
@@ -387,7 +383,6 @@ export class AppInfoComponent implements OnChanges {
           });
       });
     }
-    console.log('get inbound net interfaces ::: ', this.instance.inbound_net_interfaces);
     if (this.instance.inbound_net_interfaces) {
       this.instance.inbound_net_interfaces.forEach(inboundInterface => {
         let found = false;
