@@ -11,6 +11,7 @@
  *  limitations under the License.
  */
 
+// tslint:disable:no-any
 import { Component, OnInit } from '@angular/core';
 import { Backend } from '../../definitions/interfaces/backend';
 import { BsModalRef } from 'ngx-bootstrap';
@@ -18,6 +19,9 @@ import { BackendService } from '../../services/backend.service';
 import { MockupBackendService } from '../../services/mockup-backend.service';
 import { LocalStorageKeys } from '../../definitions/const/local-storage-keys';
 import { InventoryType } from '../../definitions/enums/inventory-type.enum';
+import { Controller } from '../../definitions/models/controller';
+import { KeyValue } from '../../definitions/interfaces/key-value';
+import { Item } from '../../definitions/models/item';
 
 @Component({
   selector: 'app-asset-info',
@@ -40,8 +44,8 @@ export class AssetInfoComponent implements OnInit {
   agentId: string;
   assetIp: string;
   show: string;
-  created: string;
-  labels: any;
+  created: number;
+  labels: KeyValue;
   class: string;
   version: string;
   architecture: string;
@@ -51,7 +55,6 @@ export class AssetInfoComponent implements OnInit {
   capacity: string;
   eic: string;
   status: string;
-  summary: any;
   lastAlive: number;
   /**
    * Models that hold the Edge Controller name
@@ -64,7 +67,7 @@ export class AssetInfoComponent implements OnInit {
   /**
    * Models that hold all inventory list
    */
-  inventory: any[];
+  inventory: Item[];
   /**
    * Models that removes the possibility for the user to close the modal by clicking outside the content card
    */
@@ -102,17 +105,17 @@ export class AssetInfoComponent implements OnInit {
   /**
    * Gets the Edge Controller name
    */
-  getECname() {
-    let edgeControllerName: any;
+  getECname(): string {
+    let edgeControllerName = '';
     for (let index = 0; index < this.inventory.length; index++) {
-      if (
-        this.inventory[index].edge_controller_id &&
-        this.inventory[index].name &&
-        this.inventory[index].edge_controller_id === this.edgeControllerId
-        ) {
-      edgeControllerName = this.inventory[index].name;
+      if (this.inventory[index].type === InventoryType.Ec
+        && (this.inventory[index] as Controller).edge_controller_id
+        && (this.inventory[index] as Controller).name
+        && (this.inventory[index] as Controller).edge_controller_id === this.edgeControllerId) {
+      edgeControllerName = (this.inventory[index] as Controller).name;
       }
-    } return edgeControllerName;
+    }
+    return edgeControllerName;
   }
   /**
    * Create a new JavaScript Date object based on the timestamp
@@ -132,16 +135,15 @@ export class AssetInfoComponent implements OnInit {
    * component to open the Edge Controller Info modal window
    */
   openEdgeControllerInfo() {
-    let controller: any;
+    let controller: Controller;
     let ecIndexFound;
     for (let i = 0; i < this.inventory.length; i++) {
-      if (this.inventory[i].edge_controller_id === this.edgeControllerId &&
-        this.inventory[i].type === InventoryType.Ec
-        ) {
+      if (this.inventory[i].type === InventoryType.Ec
+        && (this.inventory[i] as Controller).edge_controller_id === this.edgeControllerId) {
         ecIndexFound = i;
       }
     }
-    controller = this.inventory[ecIndexFound];
+    controller = this.inventory[ecIndexFound] as Controller;
     this.onClose(controller);
     this.bsModalRef.hide();
   }

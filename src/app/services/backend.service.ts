@@ -15,9 +15,18 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Backend } from '../definitions/interfaces/backend';
-import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
+import { AddUserRequest } from '../definitions/interfaces/add-user-request';
+import { UserChanges } from '../definitions/interfaces/user-changes';
+import { InstallAgentRequest } from '../definitions/interfaces/install-agent-request';
+import { AddAppDescriptorRequest } from '../definitions/interfaces/add-app-descriptor-request';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
+import { RemoveConnectionRequest } from '../definitions/interfaces/remove-connection-request';
+import { AddConnectionRequest } from '../definitions/interfaces/add-connection-request';
+import { LoginResponse } from '../definitions/interfaces/login-response';
+import { UpdateAssetRequest } from '../definitions/interfaces/update-asset-request';
 
+// tslint:disable:no-any
 /**
  * URL of the public API
  */
@@ -47,8 +56,8 @@ export class BackendService implements Backend {
    * @param email User Id / email
    * @param password string containing the user password
    */
-  login(email: string, password: string): Observable<any> {
-    return this.http.post(
+  login(email: string, password: string): Observable<LoginResponse> {
+    return this.http.post<LoginResponse>(
       // URL
       // environment.apiUrl + ':30210/v1/login',
       API_URL + 'login',
@@ -127,7 +136,7 @@ export class BackendService implements Backend {
    * @param organizationId Organization identifier
    * @param user New user data
    */
-  addUser(organizationId: string, user: any) {
+  addUser(organizationId: string, user: AddUserRequest) {
     return this.post(
       API_URL + 'users/' + organizationId + '/add',
       user
@@ -154,7 +163,7 @@ export class BackendService implements Backend {
    * @param organizationId Organization identifier
    * @param user Object containing user data
    */
-  saveUserChanges(organizationId: string, user: any) {
+  saveUserChanges(organizationId: string, user: UserChanges) {
     return this.post(
       API_URL + 'users/' + organizationId + '/update',
       user
@@ -224,16 +233,16 @@ export class BackendService implements Backend {
    * @param edgeControllerId Edge controller id
    * @param agent Agent installer
    */
-  installAgent(organizationId: string, edgeControllerId: string, agent: any) {
+  installAgent(agent: InstallAgentRequest) {
     const installAgentRequestObj = {
-      organization_id: organizationId,
-      edge_controller_id: edgeControllerId,
+      organization_id: agent.organization_id,
+      edge_controller_id: agent.edge_controller_id,
       agent_type: agent.agent_type,
-      credentials: {username: agent.username, password: agent.password},
+      credentials: {username: agent.credentials.username, password: agent.credentials.credentials, is_sudoer: agent.credentials.is_sudoer},
       target_host: agent.target_host
     };
     return this.post(
-      API_URL + 'ec/' + organizationId + '/agent/install', installAgentRequestObj
+      API_URL + 'ec/' + agent.organization_id + '/agent/install', installAgentRequestObj
     );
   }
   // POST '/v1/agent/{organization_id}/{edge_controller_id}/uninstall'
@@ -243,7 +252,7 @@ export class BackendService implements Backend {
    * @param edgeControllerId Edge controller id
    * @param assetId Asset identifier
    */
-  uninstallAgent(organizationId: string, edgeControllerId: string, assetId: any) {
+  uninstallAgent(organizationId: string, edgeControllerId: string, assetId: string) {
     return this.post(
       API_URL + 'agent/' + organizationId + '/' + assetId + '/uninstall',
       {
@@ -285,7 +294,7 @@ export class BackendService implements Backend {
    * @param ecId Edge controller id
    * @param ec Edge controller updated object
    */
-  updateEC(organizationId: string, ecId: any, ec: any) {
+  updateEC(organizationId: string, ecId: string, ec: any) {
     return this.post(
       API_URL + 'inventory/' + organizationId + '/ec/' + ecId + '/update',
       ec
@@ -314,7 +323,7 @@ export class BackendService implements Backend {
    * @param assetId Edge controller id
    * @param asset Asset object updated
    */
-  updateAsset(organizationId: string, assetId: any, asset: any) {
+  updateAsset(organizationId: string, assetId: string, asset: UpdateAssetRequest) {
     return this.post(
       API_URL + 'inventory/' + organizationId + '/asset/' + assetId + '/update',
       asset
@@ -426,7 +435,7 @@ export class BackendService implements Backend {
    * @param organizationId Organization identifier
    * @param descriptor Descriptor object
    */
-  addAppDescriptor(organizationId: string, descriptor: any) {
+  addAppDescriptor(organizationId: string, descriptor: AddAppDescriptorRequest) {
     return this.post(
       API_URL + 'apps/desc/' + organizationId + '/add',
       descriptor
@@ -533,10 +542,10 @@ export class BackendService implements Backend {
    * Adds a new connection between one outbound and one inbound
    * @param organizationId Organization identifier
    */
-  addConnection(organizationId: string, connection: any) {
+  addConnection(organizationId: string, addConnectionRequest: AddConnectionRequest) {
     return this.post(
       API_URL + 'appnet/connection/' + organizationId + '/add',
-      connection
+        addConnectionRequest
     );
   }
   // POST 'appnet/connection/{organization_id}/remove'
@@ -544,10 +553,10 @@ export class BackendService implements Backend {
    * Operation that removes a connection
    * @param organizationId Organization identifier
    */
-  removeConnection(organizationId: string, connection: any) {
+  removeConnection(organizationId: string, removeConnectionRequest: RemoveConnectionRequest) {
     return this.post(
       API_URL + 'appnet/connection/' + organizationId + '/remove',
-      connection
+        removeConnectionRequest
     );
   }
   // GET '/appnet/connection/{organization_id}/list'
@@ -672,7 +681,7 @@ export class BackendService implements Backend {
    * @param groupId Device Group identifier
    * @param deviceId device identifier
    */
-  removeDevice(organizationId: string, groupId: string, deviceId: any) {
+  removeDevice(organizationId: string, groupId: string, deviceId: string) {
     return this.post(
       API_URL + 'device/' + organizationId + '/remove',
       {
@@ -688,7 +697,7 @@ export class BackendService implements Backend {
    * @param organizationId Organization identifier
    * @param deviceId device identifier
    */
-    removeDeviceFromInventoryMockup(organizationId: string, deviceId: any) {
+    removeDeviceFromInventoryMockup(organizationId: string, deviceId: string) {
       return this.post(
         API_URL + 'device/' + organizationId + '/remove',
         {

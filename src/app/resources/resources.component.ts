@@ -12,7 +12,6 @@
  */
 
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { mockClusterChart } from '../services/utils/clusters.mock';
 import { BackendService } from '../services/backend.service';
 import { MockupBackendService } from '../services/mockup-backend.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
@@ -24,6 +23,8 @@ import { Subscription, timer } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 import { ToolsComponent } from '../tools/tools.component';
 import { AppStatus } from '../definitions/enums/app-status.enum';
+import { NameValue } from '../definitions/interfaces/name-value';
+import { GraphData } from '../definitions/models/graph-data';
 
 @Component({
   selector: 'app-resources',
@@ -42,11 +43,11 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
   /**
    * List of processed clusters list with its associated instances
    */
-  clusterWithInstancesList: any[];
+  clusterWithInstancesList: (Cluster & {instances: number})[];
   /**
    * Array containing charts data in the required format for NGX-Charts library rendering
    */
-  pieChartData: any[];
+  pieChartData: NameValue[];
   /**
    * Count of total clusters
    */
@@ -60,14 +61,9 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
    */
   requestError: string;
   /**
-   * NGX-Charts object-assign required object references (for rendering)
-   */
-  mockClusterChart: any;
-  /**
    * Graph options
    */
   graphDataLoaded: boolean;
-  graphData: any;
   /**
    * Reference for the service that allows the user info component
    */
@@ -129,14 +125,7 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
     this.filterFieldClusters = false;
     // Graph initialization
     this.graphDataLoaded = false;
-    this.graphData = {
-      nodes: [],
-      links: []
-    };
-    /**
-     * Mocked Charts
-     */
-    Object.assign(this, {mockClusterChart});
+    this.graphData = new GraphData([], []);
   }
 
   ngOnInit() {
@@ -156,7 +145,7 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
    * @param total Number of total nodes in a cluster
    * @returns anonym array with the required object structure for pie chart rendering
    */
-  generateClusterChartData(running: number, total: number): any[] {
+  generateClusterChartData(running: number): NameValue[] {
     return [
       {
         name: 'Running',
@@ -164,7 +153,7 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
       },
       {
         name: 'Stopped',
-        value: total - running
+        value: this.clusters.length - running
       }
     ];
   }
@@ -257,7 +246,7 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
    * Opens the modal view that holds add label component
    * @param entity selected label entity
    */
-  addLabel(entity: { name: any; }) {
+  addLabel(entity: { name: string; }) {
     const initialState = {
       organizationId: this.organizationId,
       entityType: 'cluster',
@@ -266,7 +255,7 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
     };
     this.modalRef = this.modalService.show(AddLabelComponent, {initialState, backdrop: 'static', ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName = 'Close';
-    this.modalService.onHide.subscribe((reason: string) => {this.updateClusterList(); });
+    this.modalService.onHide.subscribe(() => {this.updateClusterList(); });
   }
   /**
    * Deletes a selected label
@@ -284,7 +273,7 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
           clusterId: entity.cluster_id,
           remove_labels: true,
           labels: this.selectedLabels[index].labels
-        }).subscribe(updateClusterResponse => {
+        }).subscribe(() => {
           this.selectedLabels.splice(index, 1);
           this.updateClusterList();
         });
@@ -296,7 +285,7 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
    * @param labelKey label key from selected label
    * @param labelValue label value from selected label
    */
-  onLabelClick(entityId: any, labelKey: string | number, labelValue: any) {
+  onLabelClick(entityId: string, labelKey: string | number, labelValue: string) {
     const selectedIndex = this.indexOfLabelSelected(entityId, labelKey, labelValue);
     const newLabel = {
       entityId: entityId,
@@ -324,7 +313,7 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
   * @param labelKey label key from selected label
   * @param labelValue label value from selected label
   */
-  indexOfLabelSelected(entityId: any, labelKey: string | number, labelValue: any) {
+  indexOfLabelSelected(entityId: string, labelKey: string | number, labelValue: string) {
     for (let index = 0; index < this.selectedLabels.length; index++) {
       if (this.selectedLabels[index].entityId === entityId &&
           this.selectedLabels[index].labels[labelKey] === labelValue
@@ -338,7 +327,7 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
    * Check if any label is selected to change the state of add/delete buttons and to change class when a new label is about to be selected
    * @param entityId entity from selected label
    */
-  isAnyLabelSelected(entityId: any) {
+  isAnyLabelSelected(entityId: string) {
     if (this.selectedLabels.length > 0) {
       const indexSelected = this.selectedLabels.map(x => x.entityId).indexOf(entityId);
       if (indexSelected >= 0) {
@@ -366,15 +355,18 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
         this.backend.getResourcesSummary(this.organizationId).toPromise(),
       ])
           .then(([clusters, instances, summary]) => {
-            this.clusters = clusters.clusters;
-            this.instances = instances.instances;
+            this.clusters = clusters.clusters || [];
+            this.instances = instances.instances || [];
             this.getProcessedClusterList();
             this.clustersCount = summary['total_clusters'] || 0 ;
             if (!this.loadedData) {
               this.loadedData = true;
             }
-            this.updatePieChartStats(this.clusters);
-            this.toGraphData();
+            this.updatePieChartStats();
+            if (this.clusters && this.clusters.length > 0
+                || this.instances && this.instances.length > 0) {
+              this.toGraphData();
+            }
           })
           .catch(errorResponse => {
             this.loadedData = false;
@@ -385,17 +377,16 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
   }
   /**
    * Updates the pieChartsData status
-   * @param clusters Array containing the cluster list that sources the chart values
    */
-  private updatePieChartStats(clusters: any[]) {
+  private updatePieChartStats() {
     let online = 0;
-    if (clusters) {
-      clusters.forEach(cluster => {
+    if (this.clusters) {
+      this.clusters.forEach(cluster => {
         if (cluster.status_name === 'ONLINE') {
-          online += 1;
+          online++;
         }
       });
-      this.pieChartData = this.generateClusterChartData(online, clusters.length);
+      this.pieChartData = this.generateClusterChartData(online);
     }
   }
   /**
@@ -425,10 +416,8 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
    * Transforms the data needed to create the graph
    */
   private toGraphData() {
-    this.graphData = {
-      nodes: [],
-      links: []
-    };
+    this.graphData.nodes = [];
+    this.graphData.links = [];
     if (this.searchTermGraph) {
       this.searchTermGraph = this.searchTermGraph.toLowerCase();
     }
@@ -453,11 +442,8 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
             && instance.status_name.toLowerCase() !== AppStatus.Error
             && instance.status_name.toLowerCase() !== AppStatus.DeploymentError)
             || !this.areIncludedInstancesWithError) {
-          this.graphData.links.push({
-            source: cluster.cluster_id,
-            target: instance['app_instance_id'],
-            is_between_apps: false
-          });
+          this.graphData
+            .links.push({ source: cluster.cluster_id, target: instance.app_instance_id, notMarker: false, isBetweenApps: false});
         }
       });
     });

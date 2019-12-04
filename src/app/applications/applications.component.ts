@@ -15,7 +15,6 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { BackendService } from '../services/backend.service';
 import { MockupBackendService } from '../services/mockup-backend.service';
 import { NotificationsService } from '../services/notifications.service';
-import { mockAppChart, mockAppPieChart } from '../services/utils/mocks';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { AddLabelComponent } from '../add-label/add-label.component';
@@ -34,6 +33,10 @@ import { AppStatus } from '../definitions/enums/app-status.enum';
 import { ToolsComponent } from '../tools/tools.component';
 import { Cluster } from '../definitions/interfaces/cluster';
 import { ApplicationDescriptor } from '../definitions/models/application-descriptor';
+import { NameValue } from '../definitions/interfaces/name-value';
+import { ApplicationInstance } from '../definitions/models/application-instance';
+import { GraphNode } from '../definitions/interfaces/graph-node';
+import { StyledNode } from '../definitions/interfaces/styled-node';
 
 @Component({
   selector: 'applications',
@@ -53,53 +56,6 @@ export class ApplicationsComponent extends ToolsComponent implements OnInit, OnD
    * It sets a color for registered nodes
    */
   private static readonly REGISTERED_NODES_TEXT_COLOR = '#FFFFFF';
-
-  constructor(
-    private modalService: BsModalService,
-    private backendService: BackendService,
-    private applicationsService: ApplicationsService,
-    private mockupBackendService: MockupBackendService,
-    private notificationsService: NotificationsService,
-    private translateService: TranslateService,
-    private router: Router) {
-    super();
-    const mock = localStorage.getItem(LocalStorageKeys.appsMock) || null;
-    // Check which backend is required (fake or real)
-    if (mock && mock === 'true') {
-      this.backend = this.mockupBackendService;
-    } else {
-      this.backend = this.backendService;
-    }
-    this.registered = [];
-    this.labels = [];
-    this.countRegistered = 0;
-    this.loadedData = false;
-    this.appsChart = [{name: 'Running apps %', series: []}];
-    this.requestError = '';
-    this.activeContextMenuId = '';
-     // SortBy
-    this.sortedBy = '';
-    this.sortedByRegistered = '';
-    this.reverse = false;
-    this.reverseRegistered = false;
-    this.searchTerm = '';
-    this.searchTermRegistered = '';
-    this.showInstances = true;
-    this.quickFilter = '';
-    // Filter field
-    this.filterField = false;
-    this.filterFieldRegistered = false;
-    // Graph initialization
-    this.graphDataLoaded = false;
-    this.searchGraphData = new GraphData({}, {});
-    this.foundOccurrenceInCluster = false;
-    this.foundOccurrenceInInstance = false;
-    this.foundOccurrenceInRegistered = false;
-    /**
-     * Charts reference init
-     */
-    Object.assign(this, {mockAppChart, mockAppPieChart});
-  }
   /**
    * Loaded Data status
    */
@@ -115,7 +71,7 @@ export class ApplicationsComponent extends ToolsComponent implements OnInit, OnD
   /**
    * List of labels
    */
-  labels: any[];
+  labels: KeyValue;
   /**
    * List of selected labels from an entity
    */
@@ -138,12 +94,6 @@ export class ApplicationsComponent extends ToolsComponent implements OnInit, OnD
    */
   refreshIntervalRef: Subscription;
   /**
-   * Charts references
-   */
-  mockAppChart: any;
-  mockAppPieChart: any;
-  appsChart: any;
-  /**
    * Reference for the service that allows the modal component
    */
   modalRef: BsModalRef;
@@ -155,11 +105,11 @@ export class ApplicationsComponent extends ToolsComponent implements OnInit, OnD
    * Graph options
    */
   graphDataLoaded: boolean;
-  searchGraphData: GraphData<KeyValue>;
+  searchGraphData: GraphData;
   /**
    * NGX-Charts object-assign required object references (for rendering)
    */
-  instancesPieChart: any;
+  instancesPieChart: NameValue[];
   /**
    * Models that hold the sort info needed to sortBy pipe
    */
@@ -210,6 +160,48 @@ export class ApplicationsComponent extends ToolsComponent implements OnInit, OnD
    * Subscription for showing/hiding process for the manage subscription dialog
    */
   showManageSubscription: Subscription;
+
+  constructor(
+    private modalService: BsModalService,
+    private backendService: BackendService,
+    private applicationsService: ApplicationsService,
+    private mockupBackendService: MockupBackendService,
+    private notificationsService: NotificationsService,
+    private translateService: TranslateService,
+    private router: Router) {
+    super();
+    const mock = localStorage.getItem(LocalStorageKeys.appsMock) || null;
+    // Check which backend is required (fake or real)
+    if (mock && mock === 'true') {
+      this.backend = this.mockupBackendService;
+    } else {
+      this.backend = this.backendService;
+    }
+    this.registered = [];
+    this.labels = [];
+    this.countRegistered = 0;
+    this.loadedData = false;
+    this.requestError = '';
+    this.activeContextMenuId = '';
+     // SortBy
+    this.sortedBy = '';
+    this.sortedByRegistered = '';
+    this.reverse = false;
+    this.reverseRegistered = false;
+    this.searchTerm = '';
+    this.searchTermRegistered = '';
+    this.showInstances = true;
+    this.quickFilter = '';
+    // Filter field
+    this.filterField = false;
+    this.filterFieldRegistered = false;
+    // Graph initialization
+    this.graphDataLoaded = false;
+    this.searchGraphData = new GraphData([], []);
+    this.foundOccurrenceInCluster = false;
+    this.foundOccurrenceInInstance = false;
+    this.foundOccurrenceInRegistered = false;
+  }
 
   ngOnInit() {
     super.ngOnInit();
@@ -282,7 +274,7 @@ export class ApplicationsComponent extends ToolsComponent implements OnInit, OnD
    * Updates pie chart status
    * @param instances Array of instance objects
    */
-  updatePieChartStats(instances: any[]) {
+  updatePieChartStats(instances: ApplicationInstance[]) {
     let running = 0;
     if (instances) {
       instances.forEach(app => {
@@ -300,7 +292,7 @@ export class ApplicationsComponent extends ToolsComponent implements OnInit, OnD
    * @param total Number of total nodes in a cluster
    * @returns anonym array with the required object structure for pie chart rendering
    */
-  private generateSummaryChartData(running: number, total: number): any[] {
+  private generateSummaryChartData(running: number, total: number): NameValue[] {
     return [{name: 'Running', value: running}, {name: 'Stopped', value: total - running}];
   }
   /**
@@ -423,7 +415,7 @@ export class ApplicationsComponent extends ToolsComponent implements OnInit, OnD
     };
     this.modalRef = this.modalService.show(AddLabelComponent, {initialState, backdrop: 'static', ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName = 'Close';
-    this.modalService.onHide.subscribe((reason: string) => {
+    this.modalService.onHide.subscribe(() => {
       this.updateRegisteredInstances(this.organizationId);
     } );
   }
@@ -630,7 +622,7 @@ export class ApplicationsComponent extends ToolsComponent implements OnInit, OnD
    * Opens application instances context menu
    * @param instance application instances
    */
-  openInstanceContextualMenu(event, instance: any) {
+  openInstanceContextualMenu(event, instance: ApplicationInstance) {
     event.stopPropagation();
     if (instance.app_instance_id === this.activeContextMenuId) {
       this.activeContextMenuId = '';
@@ -642,7 +634,7 @@ export class ApplicationsComponent extends ToolsComponent implements OnInit, OnD
    * Opens registered apps context menu
    * @param registered registered app
    */
-  openRegisteredContextualMenu(event, registered: any) {
+  openRegisteredContextualMenu(event, registered: ApplicationDescriptor) {
     event.stopPropagation();
     if (registered.app_descriptor_id === this.activeContextMenuId) {
       this.activeContextMenuId = '';
@@ -668,7 +660,7 @@ export class ApplicationsComponent extends ToolsComponent implements OnInit, OnD
    */
   toGraphData() {
     this.graphData.reset([], []);
-    this.searchGraphData.reset({}, {});
+    this.searchGraphData.reset([], []);
     this.foundOccurrenceInCluster = false;
     this.foundOccurrenceInInstance = false;
     this.foundOccurrenceInRegistered = false;
@@ -729,7 +721,7 @@ export class ApplicationsComponent extends ToolsComponent implements OnInit, OnD
     };
     this.modalRef = this.modalService.show(ManageConnectionsComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName = 'Close';
-    this.modalRef.content.onClose = (cancelled: boolean) => {
+    this.modalRef.content.onClose = () => {
       this.updateAppInstances(this.organizationId);
     };
   }
@@ -737,7 +729,7 @@ export class ApplicationsComponent extends ToolsComponent implements OnInit, OnD
    * It sets clusters nodes to add them in the graph
    * @param cluster current cluster to generate related data to this.
    */
-  private setClusters(cluster: any) {
+  private setClusters(cluster: Cluster) {
     const clusterName = cluster.name.toLowerCase();
     const nodeGroup = this.generateClusterNode(
       cluster,
@@ -752,7 +744,7 @@ export class ApplicationsComponent extends ToolsComponent implements OnInit, OnD
    * It sets registered apps, instances and its relations
    * @param cluster current cluster to generate related data to this.
    */
-  private setRegisteredAndInstances(cluster: any) {
+  private setRegisteredAndInstances(cluster: Cluster) {
     const instancesInCluster = this.getAppsInCluster(cluster.cluster_id);
     instancesInCluster.forEach(instance => {
       const registeredApp = this.getRegisteredApp(this.addNodeInstance(instance, cluster));
@@ -782,7 +774,7 @@ export class ApplicationsComponent extends ToolsComponent implements OnInit, OnD
    * @param cluster Cluster for relate with our node registered
    * @param registeredApp Registered app for generate node registered
    */
-  private addNodeRegistered(cluster, registeredApp) {
+  private addNodeRegistered(cluster: Cluster, registeredApp: ApplicationDescriptor[]) {
     const registeredName = registeredApp[0]['name'].toLowerCase();
     const nodeRegistered = {
       ...{
@@ -816,7 +808,7 @@ export class ApplicationsComponent extends ToolsComponent implements OnInit, OnD
    * @param instance Instance to generate the node instance
    * @param cluster Cluster for relate with our node instance
    */
-  private addNodeInstance(instance, cluster): any {
+  private addNodeInstance(instance: ApplicationInstance, cluster: Cluster): GraphNode & StyledNode {
     const instanceName = instance['name'].toLowerCase();
     const nodeInstance = this.generateInstanceNode(
       instance,
@@ -855,9 +847,11 @@ export class ApplicationsComponent extends ToolsComponent implements OnInit, OnD
         && this.initialState.showRelatedNodes) {
       this.graphData.nodes
         .map(node => {
-          this.searchGraphData.links[node.id].forEach(searchNode => {
-            relatedNodes[node.id] = this.graphData.nodes[searchNode];
-          });
+          if (this.searchGraphData.links[node.id]) {
+            this.searchGraphData.links[node.id].forEach(searchNode => {
+              relatedNodes[node.id] = this.graphData.nodes[searchNode];
+            });
+          }
         });
       const uniqueNodes = {};
       this.graphData.nodes.concat(Object.values(relatedNodes)).map(item => {
@@ -886,20 +880,24 @@ export class ApplicationsComponent extends ToolsComponent implements OnInit, OnD
           this.backend.getInstances(this.organizationId).toPromise(),
           this.backend.getRegisteredApps(this.organizationId).toPromise()])
             .then(([clusters, instances, registered]) => {
-              clusters.clusters.forEach(cluster => {
-                cluster.total_nodes = parseInt(cluster.total_nodes, 10);
-              });
               this.clusters = clusters.clusters || [];
               this.instances = instances.instances || [];
               this.registered = registered.descriptors || [];
-              if (this.instances) {
+              this.clusters.forEach(cluster => {
+                cluster.total_nodes = cluster.total_nodes || 0;
+              });
+              if (this.instances && this.instances.length > 0) {
                 this.processedRegisteredList();
               }
               this.updatePieChartStats(this.instances);
               if (!this.loadedData) {
                 this.loadedData = true;
               }
-              this.toGraphData();
+              if (this.clusters && this.clusters.length > 0
+                || this.registered && this.registered.length > 0
+                || this.instances && this.instances.length > 0) {
+                this.toGraphData();
+              }
             })
             .catch(errorResponse => {
               this.loadedData = false;
@@ -917,7 +915,7 @@ export class ApplicationsComponent extends ToolsComponent implements OnInit, OnD
     if ((!this.foundOccurrenceInRegistered && !this.foundOccurrenceInInstance && !this.foundOccurrenceInCluster)
         || ((this.foundOccurrenceInRegistered || this.foundOccurrenceInInstance || this.foundOccurrenceInCluster)
             && !this.initialState.showOnlyNodes)) {
-      this.graphData.links.push({source: source, target: target, is_between_apps: false});
+      this.graphData.links.push({source: source, target: target, notMarker: false, isBetweenApps: false});
     }
     if (!this.searchGraphData.links[source]) {
       this.searchGraphData.links[source] = [];

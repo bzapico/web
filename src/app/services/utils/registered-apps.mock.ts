@@ -802,7 +802,8 @@ export const mockRegisteredAppsList = [
         'app_descriptor_id': 'dbdb6e77-245d-460d-b735-2f825421e41d',
         'name': 'Kuard',
         'labels': {
-            'app': 'gaizkuarduple'
+            'app': 'gaizkuarduple',
+            'app2': 'value2'
         },
         'rules': [
             {
@@ -914,8 +915,6 @@ export const mockRegisteredAppsList = [
                     'num_replicas': 1
                 }
             }
-        ],
-        'status_name': 'RUNNING',
-
+        ]
     }
 ];
