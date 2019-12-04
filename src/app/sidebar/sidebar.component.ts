@@ -23,6 +23,7 @@ import { EditUserComponent } from '../edit-user/edit-user.component';
 import { UpdateEventsService } from '../services/update-events.service';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import * as versionData from '../../../.nalej-component.json';
 
 @Component({
   selector: 'nalej-sidebar',
@@ -46,6 +47,10 @@ export class SidebarComponent implements OnInit {
   userId: string;
   organizationId: string;
   /**
+   * Model for the webUI version
+   */
+  version: string;
+  /**
    * Reference for the service that allows to open debug panel and profile modal view
    */
   modalRef: BsModalRef;
@@ -57,7 +62,7 @@ export class SidebarComponent implements OnInit {
     private modalService: BsModalService,
     private auth: AuthService,
     private updateService: UpdateEventsService,
-    private translateService: TranslateService
+    private translateService: TranslateService,
   ) {
     const mock = localStorage.getItem(LocalStorageKeys.sidebarMock) || null;
     // check which backend is required (fake or real)
@@ -69,6 +74,9 @@ export class SidebarComponent implements OnInit {
     this.name = this.translateService.instant('organization.loading'); // Default initialization
     this.role = this.translateService.instant('organization.loading'); // Default initialization
     this.email = this.translateService.instant('organization.loading'); // Default initialization
+    console.log(versionData.version);
+    this.version = versionData.version;
+
   }
 
   ngOnInit() {

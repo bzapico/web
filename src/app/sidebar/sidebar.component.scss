@@ -85,7 +85,7 @@ a {
 	}
 }
 .nav-profile-info {
-	padding: 6em 0;
+	padding: 6em 0 0 0;
 	width: 100%;
 	font-weight: 500;
 	cursor: pointer;
@@ -144,34 +144,42 @@ a {
 		}
 	}
 }
-.logout-btn-box {
+.logout {
+	width: 100%;
+	margin-top: 1.5em;
+	margin-bottom: 5.5em;
+	margin-left: -0.2em; // Font fix
+	text-align: center;
+	font-size: 0.8em;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	color: $base-light-grey;
+	cursor: pointer;
+	&:hover {
+		color: $hover-red;
+		transition: 0.3s;
+	}
+	i {
+		margin-right: 0.5em;
+		font-size: 1.6em;
+	}
+}
+.version-box {
 	position: relative;
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
 	margin-bottom: auto;
 }
-.logout-btn {
-	width: 112px;
-	font-size: 0.8em;
-	color: $white;
-	border: 0;
-	border-radius: 5px;
-	position: fixed;
-	bottom: 32px;
-	background: $base-red;
+.version {
 	font-weight: 500;
+	width: 152px;
+	color: $base-grey;
 	padding: 0.5em;
-	cursor: pointer;
-	&:focus {
-		outline: none;
-		box-shadow: none;
-	}
-	&:hover {
-		color: $white;
-		transition: 0.3s;
-		background-color: $hover-red;
-	}
+	position: fixed;
+	bottom: 24px;
+	text-align: center;
 }
 .user-img {
 	display: block;
@@ -179,3 +187,4 @@ a {
 	height: 43px;
 	margin: 36px auto;
 }
+
