@@ -374,32 +374,34 @@ export class AppInfoComponent implements OnChanges {
   */
   getInboundConnections(): any[] {
     const inbounds = [];
-    if (this.instance.inbound_connections) {
-      this.instance.inbound_connections.forEach(connection => {
-        inbounds.push({
-          inbound_name: connection.inbound_name,
-          outbound_name: connection.outbound_name,
-          instance_name: connection.source_instance_name
-          });
-      });
-    }
-    if (this.instance.inbound_net_interfaces) {
-      this.instance.inbound_net_interfaces.forEach(inboundInterface => {
-        let found = false;
-        for (let index = 0; index < inbounds.length && !found; index++) {
-          const inbound = inbounds[index];
-          if ( inbound.inbound_name === inboundInterface.name) {
-            found = true;
-          }
-        }
-        if (!found) {
+    if (this.instance) {
+      if (this.instance.inbound_connections) {
+        this.instance.inbound_connections.forEach(connection => {
           inbounds.push({
-            inbound_name: inboundInterface.name,
-            outbound_name: '',
-            instance_name: ''
+            inbound_name: connection.inbound_name,
+            outbound_name: connection.outbound_name,
+            instance_name: connection.source_instance_name
+          });
+        });
+      }
+      if (this.instance.inbound_net_interfaces) {
+        this.instance.inbound_net_interfaces.forEach(inboundInterface => {
+          let found = false;
+          for (let index = 0; index < inbounds.length && !found; index++) {
+            const inbound = inbounds[index];
+            if ( inbound.inbound_name === inboundInterface.name) {
+              found = true;
+            }
+          }
+          if (!found) {
+            inbounds.push({
+              inbound_name: inboundInterface.name,
+              outbound_name: '',
+              instance_name: ''
             });
-        }
-      });
+          }
+        });
+      }
     }
     return inbounds;
   }
