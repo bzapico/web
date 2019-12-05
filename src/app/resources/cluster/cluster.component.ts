@@ -17,13 +17,12 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { BackendService } from '../../services/backend.service';
 import { MockupBackendService } from '../../services/mockup-backend.service';
 import { LocalStorageKeys } from '../../definitions/const/local-storage-keys';
-import { mockNodesChart } from '../../services/utils/mocks';
-import { mockClusterChart } from '../../services/utils/clusters.mock';
 import { ActivatedRoute } from '@angular/router';
 import { Cluster } from '../../definitions/interfaces/cluster';
 import { AddLabelComponent } from '../../add-label/add-label.component';
 import { ClusterStatus } from '../../definitions/enums/cluster-status.enum';
 import { TranslateService } from '@ngx-translate/core';
+import { NameValue } from '../../definitions/interfaces/name-value';
 
 @Component({
   selector: 'app-cluster',
@@ -52,13 +51,9 @@ export class ClusterComponent implements OnInit {
    */
   clusterData: Cluster;
   /**
-   * List of available clusters
-   */
-  clusters: any[];
-  /**
    * List of available nodes
    */
-  nodes: any[];
+  nodes: Node[];
   /**
    * Count of total nodes
    */
@@ -79,23 +74,10 @@ export class ClusterComponent implements OnInit {
   colorScheme = {
     domain: ['#5800FF', '#828282']
   };
-  customColors = [
-    {
-      name: 'Running',
-      value: '#0000ff'
-    },
-    {
-      name: 'error',
-      value: '#00ff00'
-    }
-  ];
   /**
    * NGX-Charts object-assign required object references (for rendering)
    */
-  mockClusterChart: any;
-  mockNodesChart: any;
-  autoScale: any;
-  clusterPieChart: any;
+  clusterPieChart: NameValue[];
   /**
    * Reference for the service that allows the user info component
    */
@@ -134,7 +116,6 @@ export class ClusterComponent implements OnInit {
     }
     // Default initialization
     this.loadedData = false;
-    this.clusters = [];
     this.nodes = [];
     this.nodesCount = 0;
     this.clustersCount = 0;
@@ -146,10 +127,6 @@ export class ClusterComponent implements OnInit {
     this.searchTerm = '';
     // Filter field
     this.filterField = false;
-  /**
-   * Mocked Charts
-   */
-    Object.assign(this, {mockClusterChart, mockNodesChart});
   }
 
   ngOnInit() {
@@ -247,7 +224,6 @@ export class ClusterComponent implements OnInit {
     };
     this.modalRef = this.modalService.show(AddLabelComponent, {initialState, backdrop: 'static', ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName = 'Close';
-    this.modalService.onHide.subscribe((reason: string) => { });
   }
   /**
    * Deletes a selected label
@@ -265,7 +241,7 @@ export class ClusterComponent implements OnInit {
           nodeId: entity.node_id,
           remove_labels: true,
           labels: this.selectedLabels[index].labels
-        }).subscribe(updateNodeResponse => {
+        }).subscribe(() => {
           this.selectedLabels.splice(index, 1);
           this.updateNodesList();
         });
@@ -366,7 +342,7 @@ export class ClusterComponent implements OnInit {
    * @param total Number of total nodes in a cluster
    * @returns anonym array with the required object structure for pie chart rendering
    */
-  private generateSummaryChartData(running: number, total: number): any[] {
+  private generateSummaryChartData(running: number, total: number): NameValue[] {
     return [
       {
         name: this.translateService.instant('status.runningUp'),

@@ -11,6 +11,7 @@
  *  limitations under the License.
  */
 
+// tslint:disable:no-any
 import { Component, OnInit } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap';
 import { ServicesStatus } from '../../../definitions/enums/services-status.enum';
@@ -32,7 +33,7 @@ export class InstanceServiceGroupInfoComponent implements OnInit {
   serviceGroupId: string;
   serviceGroupInstanceId: string;
   serviceInstances: any;
-  status: any;
+  status: string;
   globalFqdn: string;
   metadata: any;
   /**

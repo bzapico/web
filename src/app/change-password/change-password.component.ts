@@ -102,7 +102,7 @@ export class ChangePasswordComponent implements OnInit {
         email: this.email
       };
       this.backend.resetPassword(this.organizationId, passwordChange)
-        .subscribe(response => {
+        .subscribe(() => {
           this.loading = false;
           this.notificationsService.add({
             message: this.translateService.instant('changePass.passChanged'),

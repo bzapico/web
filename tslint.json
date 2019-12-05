@@ -1,4 +1,7 @@
 {
+  "rulesDirectory": [
+    "node_modules/codelyzer"
+  ],
   "rules": {
     "arrow-return-shorthand": true,
     "callable-types": true,
@@ -50,13 +53,6 @@
           "static-method",
           "instance-method"
         ]
-      }
-    ],
-    "naming-convention": [
-      true,
-      {
-        "type": "enumMember",
-        "format": "PascalCase"
       }
     ],
     "no-arg": true,
@@ -141,8 +137,5 @@
       "check-separator",
       "check-type"
     ]
-  },
-  "rulesDirectory": [
-    "node_modules/codelyzer"
-  ]
+  }
 }

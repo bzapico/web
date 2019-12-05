@@ -11,6 +11,7 @@
  *  limitations under the License.
  */
 
+// tslint:disable:no-any
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
@@ -70,8 +71,7 @@ export class ManageConnectionsComponent implements OnInit, OnDestroy {
   organizationId: string;
   title: string;
   connections: any[];
-  copyConnections: any[];
-  selectedApp: any;
+  selectedApp: string;
   /**
    * Model that hold the search term in search box
    */
@@ -85,8 +85,7 @@ export class ManageConnectionsComponent implements OnInit, OnDestroy {
   /**
    * NGX-select-dropdown
    */
-  tab = 1;
-  appDropdownOptions: any[];
+  appDropdownOptions: {name: string, id: string}[];
   selectConfig = {};
   /**
    * Reference for the service that allows the modal component
@@ -152,7 +151,7 @@ export class ManageConnectionsComponent implements OnInit, OnDestroy {
   /**
    * Returns app instances names and ids in an object array
    */
-  getAppInstancesOptions() {
+  getAppInstancesOptions(): {name: string, id: string}[] {
     const instances = [];
     if (this.connections && this.connections !== []) {
       this.connections.forEach(connectionName => {
@@ -186,9 +185,7 @@ export class ManageConnectionsComponent implements OnInit, OnDestroy {
       this.backend.removeConnection(this.organizationId, {
         organization_id: this.organizationId,
         source_instance_id: connection.source_instance_id,
-        source_instance_name: connection.source_instance_name,
         target_instance_id: connection.target_instance_id,
-        target_instance_name: connection.target_instance_name,
         inbound_name: connection.inbound_name,
         outbound_name: connection.outbound_name,
         user_confirmation: true

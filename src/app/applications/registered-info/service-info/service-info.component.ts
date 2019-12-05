@@ -11,12 +11,14 @@
  *  limitations under the License.
  */
 
+// tslint:disable:no-any
 import { Component } from '@angular/core';
 import { Backend } from '../../../definitions/interfaces/backend';
 import { BsModalRef } from 'ngx-bootstrap';
 import { BackendService } from '../../../services/backend.service';
 import { MockupBackendService } from '../../../services/mockup-backend.service';
 import { LocalStorageKeys } from '../../../definitions/const/local-storage-keys';
+import { KeyValue } from '../../../definitions/interfaces/key-value';
 
 @Component({
   selector: 'app-service-info',
@@ -36,7 +38,7 @@ export class ServiceInfoComponent {
   endpoints: any;
   groupId: string;
   appDescriptorId: string;
-  labels: any;
+  labels: KeyValue;
   environmentVariables: string;
   /**
    * Loaded Data status

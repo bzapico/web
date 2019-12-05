@@ -23,6 +23,8 @@ import { EditUserComponent } from '../edit-user/edit-user.component';
 import { UpdateEventsService } from '../services/update-events.service';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { Subscription } from 'rxjs';
+import { User } from '../definitions/interfaces/user';
 
 @Component({
   selector: 'organization',
@@ -39,7 +41,7 @@ export class OrganizationComponent implements OnInit {
    */
   organizationId: string;
   organizationName: string;
-  users: any[];
+  users: User[];
   profileRole: string;
   userId: string;
   /**
@@ -50,7 +52,7 @@ export class OrganizationComponent implements OnInit {
    * Reference for the service that allows the user info component
    */
   modalRef: BsModalRef;
-  modalRefOnHide: any;
+  modalRefOnHide: Subscription;
   /**
    * Hold request error message or undefined
    */
@@ -135,7 +137,7 @@ export class OrganizationComponent implements OnInit {
     };
     this.modalRef = this.modalService.show(UserInfoComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName = 'Close';
-    this.modalRefOnHide = this.modalService.onHide.subscribe((reason: string) => {this.updateUserList(); });
+    this.modalRefOnHide = this.modalService.onHide.subscribe(() => {this.updateUserList(); });
   }
   /**
    * Opens the modal view that holds the user info and editable component
@@ -154,7 +156,7 @@ export class OrganizationComponent implements OnInit {
     };
     this.modalRef = this.modalService.show(EditUserComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName = 'Close';
-    this.modalService.onHide.subscribe((reason: string) => {
+    this.modalService.onHide.subscribe(() => {
         if (this.router.url === '/organization') {
         this.updateUserList();
       }

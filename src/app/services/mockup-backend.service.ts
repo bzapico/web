@@ -11,6 +11,7 @@
  *  limitations under the License.
  */
 
+// tslint:disable:no-any
 import { Injectable } from '@angular/core';
 import { Backend } from '../definitions/interfaces/backend';
 import { Observable, of } from 'rxjs';
@@ -28,7 +29,6 @@ import {
   mockUserList
 } from './utils/mocks';
 import { Group } from '../definitions/interfaces/group';
-import { Asset } from '../definitions/interfaces/asset';
 import { HttpResponse } from '@angular/common/http';
 import { mockInventoryList, mockInventorySummary } from './utils/inventory.mock';
 import { mockClusterList, mockResourcesSummary } from './utils/clusters.mock';
@@ -37,12 +37,20 @@ import { mockRegisteredAppsList } from './utils/registered-apps.mock';
 import { mockAppsInstancesList } from './utils/instances-apps.mock';
 import { OperatingSystemClass } from '../definitions/enums/operating-system-class.enum';
 import { OpStatus } from '../definitions/enums/op-status.enum';
+import { AddUserRequest } from '../definitions/interfaces/add-user-request';
+import { PasswordChange } from '../definitions/interfaces/password-change';
+import { UserChanges } from '../definitions/interfaces/user-changes';
+import { InstallAgentRequest } from '../definitions/interfaces/install-agent-request';
+import { RemoveConnectionRequest } from '../definitions/interfaces/remove-connection-request';
+import { AddConnectionRequest } from '../definitions/interfaces/add-connection-request';
+import { LoginResponse } from '../definitions/interfaces/login-response';
+import { UpdateAssetRequest } from '../definitions/interfaces/update-asset-request';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MockupBackendService implements Backend {
-  mockGroupList: any;
+  mockGroupList: Group;
 
   constructor() {
   }
@@ -57,11 +65,11 @@ export class MockupBackendService implements Backend {
    * @param password String that holds the user password
    */
   login(email: string, password: string): Observable<any> {
-    return of (new HttpResponse({
-      body: JSON.stringify({
+    return of (new HttpResponse<LoginResponse>({
+      body: {
         token: mockJwtToken,
         refresh_token: '018e42cf-9acb-4b4c-8804-6c54334d6947'
-      }),
+      },
       status: 200
     }));
   }
@@ -110,16 +118,16 @@ export class MockupBackendService implements Backend {
     }));
   }
   /**
-  * Simulates adding a user
-  */
-  addUser(organizationId: string, user: any) {
+   * Simulates adding a user
+   */
+  addUser(organizationId: string, user: AddUserRequest) {
     const index = mockUserList.map(x => x.email).indexOf(user.email);
     if (index === -1) {
       mockUserList.push(user);
       return of (new HttpResponse({
         status: 200
       })).pipe(
-        map(response => response)
+          map(response => response)
       );
     } else {
       return of (new HttpResponse({
@@ -129,8 +137,8 @@ export class MockupBackendService implements Backend {
     }
   }
   /**
-  * Simulates delete user
-  */
+   * Simulates delete user
+   */
   deleteUser(organizationId: string, userId: string) {
     const index = mockUserList.map(x => x.email).indexOf(userId);
     if (index !== -1) {
@@ -141,9 +149,9 @@ export class MockupBackendService implements Backend {
     }));
   }
   /**
-  * Simulates reset password
-  */
-  resetPassword(organizationId: string, passwordChange: any) {
+   * Simulates reset password
+   */
+  resetPassword(organizationId: string, passwordChange: PasswordChange) {
     return of (new HttpResponse({
       body: passwordChange,
       status: 200
@@ -153,7 +161,7 @@ export class MockupBackendService implements Backend {
    * Simulates save user changes
    * @param userId String containing the user identifier - used to replicate expected backend behavior
    */
-  saveUserChanges(organizationId: string, user: any) {
+  saveUserChanges(organizationId: string, user: UserChanges) {
     const index = mockUserList.map(x => x.email).indexOf(user.email);
     if (index !== -1) {
       mockUserList[index].name = user.name;
@@ -195,20 +203,21 @@ export class MockupBackendService implements Backend {
    * @param edgeControllerId Edge Controller identifier
    * @param agent Agent identifier
    */
-  installAgent(organizationId: string, edgeControllerId: any, agent: any) {
-    const asset: Asset = {
-      organization_id: organizationId,
-      edge_controller_id: edgeControllerId,
+  installAgent(agent: InstallAgentRequest) {
+    const asset = {
+      organization_id: agent.organization_id,
+      edge_controller_id: agent.edge_controller_id,
       asset_id: this.uuidv4(),
       agent_id: this.uuidv4(),
       eic_net_ip: agent.target_host,
       show: true,
       created: 1550746520,
-      labels: {},
+      labels: null,
       os: {
         name: 'petra',
         version: 'v1',
         class: OperatingSystemClass.Linux,
+        class_name: 'LINUX',
         architecture: 'chagal'
       },
       hardware: {
@@ -236,7 +245,7 @@ export class MockupBackendService implements Backend {
       },
       last_alive_timestamp: '654654654'
     };
-    for (let index = 0; index < mockInventoryList.controllers.length; index++) {
+    /*for (let index = 0; index < mockInventoryList.controllers.length; index++) {
       const controllersIds = mockInventoryList.controllers[index].edge_controller_id;
       if (controllersIds === asset.edge_controller_id) {
         mockInventoryList.controllers[index].assets.push({
@@ -244,7 +253,7 @@ export class MockupBackendService implements Backend {
           status: 'online'
         });
       }
-    }
+    }*/
     mockInventoryList.assets.push(asset);
     return of (new HttpResponse({
       body: JSON.stringify(asset),
@@ -257,7 +266,7 @@ export class MockupBackendService implements Backend {
    * @param assetId Asset identifier
    * @param asset Asset updated object
    */
-  updateAsset(organizationId: string, assetId: string, asset: any) {
+  updateAsset(organizationId: string, assetId: string, asset: UpdateAssetRequest) {
     const index = mockInventoryList.assets.map(x => x.asset_id).indexOf(assetId);
     if (index !== -1) {
       if (asset.remove_labels) {
@@ -307,7 +316,7 @@ export class MockupBackendService implements Backend {
    * @param edgeControllerId Edge Controller identifier
    * @param assetId Asset identifier
    */
-  uninstallAgent(organizationId: string, edgeControllerId: string, assetId: any) {
+  uninstallAgent(organizationId: string, edgeControllerId: string, assetId: string) {
     for (let indexEc = 0; indexEc < mockInventoryList.controllers.length; indexEc++) {
       const controllersIds = mockInventoryList.controllers[indexEc].edge_controller_id;
       if (controllersIds === edgeControllerId) {
@@ -315,12 +324,12 @@ export class MockupBackendService implements Backend {
       }
     }
     const indexAsset = mockInventoryList.assets.map(x => x.asset_id).indexOf(assetId);
-      if (indexAsset !== -1) {
-        mockInventoryList.assets.splice(indexAsset, 1);
-      }
-      return of (new HttpResponse({
-        status: 200
-      }));
+    if (indexAsset !== -1) {
+      mockInventoryList.assets.splice(indexAsset, 1);
+    }
+    return of (new HttpResponse({
+      status: 200
+    }));
   }
   /**
    * Creates a new token for an EIC to join the platform
@@ -420,23 +429,23 @@ export class MockupBackendService implements Backend {
   listRoles(organizationId: string) {
     return of (new HttpResponse({
       body: JSON.stringify({roles: [
-        {
-          'organization_id': '2a95fe95-eade-4622-836f-e85d789024bf',
-          'role_id': '268d7644-bb17-48f2-815b-19a8ab6c7e83',
-          'name': 'NalejAdmin',
-          'primitives': ['ORG']
-        },
-        {
-          'organization_id': '2a95fe95-eade-4622-836f-e85d789024bf',
-          'role_id': 'a354bf26-2fb4-4d9e-bef0-427e25b52ba7',
-          'name': 'Developer', 'primitives': ['PROFILE', 'APPS']
-        },
-        {
-          'organization_id': '2a95fe95-eade-4622-836f-e85d789024bf',
-          'role_id': 'df00f420-8658-4c2e-8941-0e947aaeffe7',
-          'name': 'Operator',
-          'primitives': ['PROFILE', 'RESOURCES']
-        }]
+          {
+            'organization_id': '2a95fe95-eade-4622-836f-e85d789024bf',
+            'role_id': '268d7644-bb17-48f2-815b-19a8ab6c7e83',
+            'name': 'NalejAdmin',
+            'primitives': ['ORG']
+          },
+          {
+            'organization_id': '2a95fe95-eade-4622-836f-e85d789024bf',
+            'role_id': 'a354bf26-2fb4-4d9e-bef0-427e25b52ba7',
+            'name': 'Developer', 'primitives': ['PROFILE', 'APPS']
+          },
+          {
+            'organization_id': '2a95fe95-eade-4622-836f-e85d789024bf',
+            'role_id': 'df00f420-8658-4c2e-8941-0e947aaeffe7',
+            'name': 'Operator',
+            'primitives': ['PROFILE', 'RESOURCES']
+          }]
       }),
       status: 200
     }));
@@ -632,7 +641,7 @@ export class MockupBackendService implements Backend {
     }));
   }
 
-    /********************
+  /********************
    * Application Network
    ********************/
 
@@ -660,18 +669,19 @@ export class MockupBackendService implements Backend {
   /**
    * Simulates to add a new connection between one outbound and one inbound
    * @param organizationId Organization identifier
+   * @param addConnectionRequest has the necessary data to add a connection
    */
-  addConnection(organizationId: string, connection: any) {
+  addConnection(organizationId: string, addConnectionRequest: AddConnectionRequest) {
     const newConnection = {
-        organization_id: '3bc6a816-bbb8-4b5f-a2b7-23921dde4146',
-        connection_id: '3bc6a816-6548-4b5f-a2b7-23921dd6548b',
-        source_instance_id: '3bc6a816-6548-4b5f-a2b7-239121',
-        source_instance_name: 'Wordpress1',
-        target_instance_id: '3bc6a816-6548-4b5f-a2b7-239455',
-        target_instance_name: 'Wordpress5',
-        inbound_name: connection.inbound_name,
-        outbound_name: connection.outbound_name,
-        outbound_required: true
+      organization_id: '3bc6a816-bbb8-4b5f-a2b7-23921dde4146',
+      connection_id: '3bc6a816-6548-4b5f-a2b7-23921dd6548b',
+      source_instance_id: '3bc6a816-6548-4b5f-a2b7-239121',
+      source_instance_name: 'Wordpress1',
+      target_instance_id: '3bc6a816-6548-4b5f-a2b7-239455',
+      target_instance_name: 'Wordpress5',
+      inbound_name: addConnectionRequest.inbound_name,
+      outbound_name: addConnectionRequest.outbound_name,
+      outbound_required: true
     };
     mockConnectionsList.push(newConnection);
     return of (new HttpResponse({
@@ -681,18 +691,19 @@ export class MockupBackendService implements Backend {
   /**
    * Operation that allows to remove a connection
    * @param organizationId Organization identifier
+   * @param removeConnectionRequest indicates the necessary data to remove any connection
    */
-  removeConnection(organizationId: string, connection: any) {
+  removeConnection(organizationId: string, removeConnectionRequest: RemoveConnectionRequest) {
     let found = false;
     for (let index = 0; index < mockConnectionsList.length && !found; index++) {
       const element = mockConnectionsList[index];
-      if (element.source_instance_id === connection.source_instance_id &&
-          element.target_instance_id === connection.target_instance_id &&
-          element.outbound_name === connection.outbound_name &&
-          element.inbound_name === connection.inbound_name) {
-          found = true;
-          mockConnectionsList.splice(index, 1);
-        }
+      if (element.source_instance_id === removeConnectionRequest.source_instance_id &&
+          element.target_instance_id === removeConnectionRequest.target_instance_id &&
+          element.outbound_name === removeConnectionRequest.outbound_name &&
+          element.inbound_name === removeConnectionRequest.inbound_name) {
+        found = true;
+        mockConnectionsList.splice(index, 1);
+      }
     }
     return of (new HttpResponse({
       status: 200
@@ -760,8 +771,8 @@ export class MockupBackendService implements Backend {
       if (mockDevicesList[index] &&
           mockDevicesList[index].length > 0 &&
           mockDevicesList[index][0].device_group_id === groupId) {
-            found = true;
-            devicesArray = mockDevicesList[index];
+        found = true;
+        devicesArray = mockDevicesList[index];
       }
     }
     return of (new HttpResponse({
@@ -785,7 +796,7 @@ export class MockupBackendService implements Backend {
    * @param organizationId Organization identifier
    * @param deviceId device identifier
    */
-  removeDevice(organizationId: string, groupId: string, deviceId: any) {
+  removeDevice(organizationId: string, groupId: string, deviceId: string) {
     for (let index = 0; index < mockDevicesList.length; index++) {
       for (let indexDevice = 0; indexDevice < mockDevicesList[index].length; indexDevice++) {
         if (mockDevicesList[index][indexDevice].device_id === deviceId) {
@@ -799,17 +810,17 @@ export class MockupBackendService implements Backend {
   }
   /**
    * Operation that allows to remove a device from the system
-  * @param organizationId Organization identifier
-  * @param deviceId device identifier
+   * @param organizationId Organization identifier
+   * @param deviceId device identifier
    */
-  removeDeviceFromInventoryMockup(organizationId: string, deviceId: any) {
+  removeDeviceFromInventoryMockup(organizationId: string, deviceId: string) {
     const index = mockInventoryList.devices.map(x => x.device_id).indexOf(deviceId);
-      if (index !== -1) {
-        mockInventoryList.devices.splice(index, 1);
-      }
-      return of (new HttpResponse({
-        status: 200
-      }));
+    if (index !== -1) {
+      mockInventoryList.devices.splice(index, 1);
+    }
+    return of (new HttpResponse({
+      status: 200
+    }));
   }
   /**
    * Simulates to request the groups list
@@ -818,7 +829,7 @@ export class MockupBackendService implements Backend {
   getGroups(organizationId: string) {
     return of (new HttpResponse({
       body: JSON.stringify({
-      groups: mockGroupList}),
+        groups: mockGroupList}),
       status: 200,
     })).pipe(map(response => JSON.parse(response.body)));
   }
@@ -832,12 +843,12 @@ export class MockupBackendService implements Backend {
       return Math.floor(Math.random() * Math.floor(1000000)).toString();
     }
     const group: Group = {
-        name: groupData.name,
-        device_group_id: generateRandomString(),
-        organization_id: 'b792989c-4ae4-460f-92b5-bca7ed36f016',
-        enabled: groupData.enabled,
-        default_device_connectivity: groupData.default_device_connectivity,
-        device_group_api_key: '7bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3c11ac797c77'
+      name: groupData.name,
+      device_group_id: generateRandomString(),
+      organization_id: 'b792989c-4ae4-460f-92b5-bca7ed36f016',
+      enabled: groupData.enabled,
+      default_device_connectivity: groupData.default_device_connectivity,
+      device_group_api_key: '7bd7d59cfe90e4d32b1d2f20d39c86df-fbaa8670-1008-ac7a-398a-3c11ac797c77'
     };
     mockGroupList.push(group);
     return of (new HttpResponse({
@@ -892,7 +903,7 @@ export class MockupBackendService implements Backend {
     for (let index = 0; index < mockInventoryList.devices.length; index++) {
       if (mockInventoryList.devices[index].device_id === changes.device_id) {
         if (!mockInventoryList.devices[index].labels) {
-          mockInventoryList.devices[index].labels = {};
+          mockInventoryList.devices[index].labels = null;
         }
         const keys = Object.keys(changes.labels);
         keys.forEach(key => {

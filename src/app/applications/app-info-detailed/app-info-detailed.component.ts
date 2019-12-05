@@ -11,9 +11,12 @@
  *  limitations under the License.
  */
 
+// tslint:disable:no-any
 import { Component } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap';
 import { ServicesStatus } from '../../definitions/enums/services-status.enum';
+import { KeyValue } from '../../definitions/interfaces/key-value';
+import { SecurityRule } from '../../definitions/interfaces/security-rule';
 
 @Component({
   selector: 'app-info-detailed',
@@ -30,8 +33,8 @@ export class AppInfoDetailedComponent {
   name: string;
   groups: any[];
   statusName: string;
-  labels: any;
-  rules: any[];
+  labels: KeyValue;
+  rules: SecurityRule[];
   openFromInstance: boolean;
   openFromRegistered: boolean;
   /**

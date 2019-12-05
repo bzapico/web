@@ -28,8 +28,8 @@
           <div *ngIf="ecsTotal > 0" class="summary-box">
             <div class="donut-chart">
               <ngx-charts-pie-chart
-                [scheme]="colorScheme" 
-                [results]="infrastructurePieChart" 
+                [scheme]="colorScheme"
+                [results]="infrastructurePieChart"
                 [doughnut]= "doughnut"
                 [gradient]="gradient"
                 [explodeSlices]="false">
@@ -47,25 +47,25 @@
               <span>{{cpuCores}}</span>
               <span class="circle-measure">{{'infrastructure.summary.cores' | translate}}</span>
             </div>
-            <span class="circle-name-sm">{{'infrastructure.summary.overall' | translate}}</span> 
+            <span class="circle-name-sm">{{'infrastructure.summary.overall' | translate}}</span>
             <p class="circle-name">{{'infrastructure.summary.cpu' | translate}}</p>
-          </div>  
+          </div>
           <div class="summary-box">
             <div class="circle">
               <span>{{RAM}}</span>
               <span class="circle-measure">{{'infrastructure.summary.gb' | translate}}</span>
             </div>
-            <span class="circle-name-sm">{{'infrastructure.summary.overall' | translate}}</span> 
+            <span class="circle-name-sm">{{'infrastructure.summary.overall' | translate}}</span>
             <p class="circle-name">{{'infrastructure.summary.ram' | translate}}</p>
-          </div> 
+          </div>
           <div class="summary-box">
             <div class="circle">
               <span>{{storage}}</span>
               <span class="circle-measure">{{'infrastructure.summary.gb' | translate}}</span>
             </div>
-            <span class="circle-name-sm">{{'infrastructure.summary.overall' | translate}}</span> 
+            <span class="circle-name-sm">{{'infrastructure.summary.overall' | translate}}</span>
             <p class="circle-name">{{'infrastructure.summary.storage' | translate}}</p>
-          </div> 
+          </div>
         </div>
       </div>
     </div>
@@ -78,19 +78,13 @@
           <h5>{{'infrastructure.inventory.title' | translate}}</h5>
         </div>
         <div class="install-options">
-          <button
-            (click)="installAgent()"
-            [ngClass]= 
-            "{
-              'install-options-btn': ecsTotal > 0,
-              'install-options-btn-disabled': ecsTotal === 0
-            }"
+          <button (click)="installAgent()"
+            [ngClass]="{'install-options-btn': ecsTotal > 0, 'install-options-btn-disabled': ecsTotal === 0}"
             [disabled]="ecsTotal===0">
             <i class="material-icons i-options">publish</i>
             {{'infrastructure.inventory.installAgent' | translate}}
           </button>
-          <button
-            class="install-options-btn d-none">
+          <button class="install-options-btn d-none">
             <i class="material-icons i-options">publish</i>
             {{'infrastructure.inventory.installNalej' | translate}}
           </button>
@@ -98,42 +92,27 @@
         <div class="row">
           <div class="col">
             <div class="quick-filters-title">{{'infrastructure.quickFilters.title' | translate}}</div>
-            <button 
-              (click)="addQuickFilter('EC')"
-              [ngClass]=
-              "{
-                'quick-filters-btn-selected': quickFilter === 'EC',
-                'quick-filters-btn': '!quickFilter'
-              }" 
-              tooltip="{{'infrastructure.quickFilters.tooltipECs' | translate}}" 
+            <button (click)="addQuickFilter('ec')"
+              [ngClass]="{'quick-filters-btn-selected': quickFilter === 'ec', 'quick-filters-btn': '!quickFilter'}"
+              tooltip="{{'infrastructure.quickFilters.tooltipECs' | translate}}"
               placement="bottom"
               class="quick-filters-btn">
               <i class="material-icons i-filters">device_hub</i>
               <span>{{'infrastructure.quickFilters.ecs' | translate}}</span>
             </button>
-            <button
-              (click)="addQuickFilter('ASSET')"
-              [ngClass]=
-              "{
-                'quick-filters-btn-selected': quickFilter === 'ASSET',
-                'quick-filters-btn': '!quickFilter'
-              }"    
-              tooltip="{{'infrastructure.quickFilters.tooltipAssets' | translate}}"  
+            <button (click)="addQuickFilter('asset')"
+              [ngClass]="{'quick-filters-btn-selected': quickFilter === 'asset', 'quick-filters-btn': '!quickFilter'}"
+              tooltip="{{'infrastructure.quickFilters.tooltipAssets' | translate}}"
               placement="bottom"
               class="quick-filters-btn">
               <i class="material-icons i-filters">memory</i>
               <span>{{'infrastructure.quickFilters.assets' | translate}}</span>
             </button>
-            <button
-              (click)="addQuickFilter('DEVICE')"
-              [ngClass]=
-              "{
-                'quick-filters-btn-selected': quickFilter === 'DEVICE',
-                'quick-filters-btn': '!quickFilter'
-              }"    
+            <button (click)="addQuickFilter('device')"
+              [ngClass]="{'quick-filters-btn-selected': quickFilter === 'device', 'quick-filters-btn': '!quickFilter'}"
               tooltip="{{'infrastructure.quickFilters.tooltipDevices' | translate}}"
               placement="bottom"
-              class="quick-filters-btn"> 
+              class="quick-filters-btn">
               <i class="material-icons i-filters">devices_other</i>
               <span>{{'infrastructure.quickFilters.devices' | translate}}</span>
             </button>
@@ -141,72 +120,76 @@
           <div class="col-4">
             <form>
               <div class="search-box">
-                <input 
-                  name="searchTerm"
+                <input name="searchTerm"
                   [(ngModel)]="searchTerm"
-                  type="text" 
+                  type="text"
                   placeholder="{{'searcher.placeholder' | translate }}"
-                  class="form-control"> 
-                  <div *ngIf="searchTerm === ''" class="search-icon">
-                    <i class="material-icons">search</i>
-                </div>     
+                  class="form-control">
+                <div *ngIf="searchTerm === ''" class="search-icon">
+                  <i class="material-icons">search</i>
+                </div>
                 <div *ngIf="searchTerm !== ''" class="close-icon">
-                  <i (click)="resetFilters(filterField)" class="material-icons">close</i>
+                  <i (click)="resetFilters()" class="material-icons">close</i>
                 </div>
               </div>
             </form>
-          </div>      
+          </div>
         </div>
         <!-- Sorting messages -->
-        <div class="row row-sorting-lg">      
-          <div class="col">  
+        <div class="row row-sorting-lg">
+          <div class="col">
             <p *ngIf="searchTerm && !filterField && !quickFilter" class="sorting-message">
-              {{ ( inventory | filter : quickFilter : ['type'] | filter : searchTerm : ['type', 'id', 'location', 'labels', 'status'])?.length }} 
+              {{ ( plainInventory | filter : quickFilter : ['type']
+                | filter : searchTerm : ['type', 'id', 'itemLocation', 'labels', 'itemStatus'])?.length }}
               {{'sortingMessage.resultsFilteredBy' | translate:{value: searchTerm} }}
-              <span (click)="resetFilters(filterField)" class="reset-search">{{'sortingMessage.reset' | translate}}</span>
+              <span (click)="resetFilters()" class="reset-search">{{'sortingMessage.reset' | translate}}</span>
             </p>
             <p *ngIf="filterField && !searchTerm && !quickFilter" class="sorting-message">
               {{'sortingMessage.sortedBy' | translate:{value: sortedBy} }},
               <span *ngIf="reverse">{{'sortingMessage.ascendant' | translate:{value: '. '} }} </span>
               <span *ngIf="!reverse">{{'sortingMessage.descendant' | translate:{value: '. '} }} </span>
-              <span (click)="resetFilters(filterField)" class="reset-search">{{'sortingMessage.reset' | translate}}</span>
+              <span (click)="resetFilters()" class="reset-search">{{'sortingMessage.reset' | translate}}</span>
             </p>
             <p *ngIf="quickFilter && !filterField && !searchTerm" class="sorting-message">
-              {{ ( inventory | filter : quickFilter : ['type'] | filter : searchTerm : ['type', 'id', 'location', 'labels', 'status'])?.length }} 
+              {{ ( plainInventory | filter : quickFilter : ['type']
+                | filter : searchTerm : ['type', 'id', 'itemLocation', 'labels', 'itemStatus'])?.length }}
               {{'sortingMessage.resultsFilteredBy' | translate:{value: quickFilter} }}
-              <span (click)="resetFilters(filterField)" class="reset-search">{{'sortingMessage.reset' | translate}}</span>
-            </p> 
+              <span (click)="resetFilters()" class="reset-search">{{'sortingMessage.reset' | translate}}</span>
+            </p>
             <p *ngIf="filterField && searchTerm" class="sorting-message">
-              {{ ( inventory | filter : quickFilter : ['type'] | filter : searchTerm : ['type', 'id', 'location', 'labels', 'status'])?.length }} 
-              {{'sortingMessage.resultsFound' | translate }} 
+              {{ ( plainInventory | filter : quickFilter : ['type']
+                | filter : searchTerm : ['type', 'id', 'itemLocation', 'labels', 'itemStatus'])?.length }}
+              {{'sortingMessage.resultsFound' | translate }}
               {{'sortingMessage.sortedBy' | translate:{value: sortedBy} }},
               <span *ngIf="reverse">{{'sortingMessage.ascendant' | translate:{value: ', '} }} </span>
               <span *ngIf="!reverse">{{'sortingMessage.descendant' | translate:{value: ', '} }} </span>
-              {{'sortingMessage.andFilteredBy' | translate:{value: searchTerm} }} 
-              <span (click)="resetFilters(filterField)" class="reset-search">{{'sortingMessage.reset' | translate}}</span>
-            </p> 
+              {{'sortingMessage.andFilteredBy' | translate:{value: searchTerm} }}
+              <span (click)="resetFilters()" class="reset-search">{{'sortingMessage.reset' | translate}}</span>
+            </p>
             <p *ngIf="filterField && quickFilter && !searchTerm" class="sorting-message">
-              {{ ( inventory | filter : quickFilter : ['type'] | filter : searchTerm : ['type', 'id', 'location', 'labels', 'status'])?.length }}
-              {{'sortingMessage.resultsFound' | translate }} 
+              {{ ( plainInventory | filter : quickFilter : ['type']
+                | filter : searchTerm : ['type', 'id', 'itemLocation', 'labels', 'itemStatus'])?.length }}
+              {{'sortingMessage.resultsFound' | translate }}
               {{'sortingMessage.sortedBy' | translate:{value: sortedBy} }},
               <span *ngIf="reverse">{{'sortingMessage.ascendant' | translate:{value: ', '} }} </span>
               <span *ngIf="!reverse">{{'sortingMessage.descendant' | translate:{value: ', '} }} </span>
               {{'sortingMessage.andFilteredBy' | translate:{value: quickFilter } }}
-              <span (click)="resetFilters(filterField)" class="reset-search">{{'sortingMessage.reset' | translate}}</span>
-            </p> 
+              <span (click)="resetFilters()" class="reset-search">{{'sortingMessage.reset' | translate}}</span>
+            </p>
             <p *ngIf="quickFilter && searchTerm && !filterField" class="sorting-message">
-              {{ ( inventory | filter : quickFilter : ['type'] | filter : searchTerm : ['type', 'id', 'location', 'labels', 'status'])?.length }} 
-              {{'sortingMessage.resultsFilteredBy' | translate:{value: searchTerm} }} 
+              {{ ( plainInventory | filter : quickFilter : ['type']
+                | filter : searchTerm : ['type', 'id', 'itemLocation', 'labels', 'itemStatus'])?.length }}
+              {{'sortingMessage.resultsFilteredBy' | translate:{value: searchTerm} }}
               {{'sortingMessage.resultsFilteredBy' | translate:{value: quickFilter} }}
-              <span (click)="resetFilters(filterField)" class="reset-search">{{'sortingMessage.reset' | translate}}</span>
-            </p> 
+              <span (click)="resetFilters()" class="reset-search">{{'sortingMessage.reset' | translate}}</span>
+            </p>
           </div>
         </div>
         <!-- Inventory table -->
         <div *ngIf=
           "loadedData && 
-          inventory && 
-          inventory.length > 0 && 
+          plainInventory &&
+          plainInventory.length > 0 &&
           !requestError" 
           class="nalej-table-box">
           <div class="nalej-table no-p-col no-m-row">
@@ -214,11 +197,10 @@
               <div 
                 (click)="setOrder('type')"            
                 [ngClass]="getCategoryCSSClass('type')"
-                scope="col" 
+                scope="col"
                 class="label-th col-2">
-                <span 
-                  tooltip="{{'tables.tableType' | translate}}" 
-                  placement="bottom">
+                <span tooltip="{{'tables.tableType' | translate}}"
+                        placement="bottom">
                   {{'tables.tableType' | translate}}
                 </span>
                 <span *ngIf="sortedBy === 'type' && !reverse" class="expand-chevron">
@@ -230,13 +212,13 @@
               </div>
               <div class="col-9">
                 <div class="row">
-                  <div 
+                  <div
                     (click)="setOrder('id')"
                     [ngClass]="getCategoryCSSClass('id')"
-                    scope="col" 
+                    scope="col"
                     class="label-th col-4">
-                    <span 
-                      tooltip="{{'tables.tableID' | translate}}" 
+                    <span
+                      tooltip="{{'tables.tableID' | translate}}"
                       placement="bottom">
                       {{'tables.tableID' | translate}}
                     </span>
@@ -247,13 +229,13 @@
                       <i class="material-icons">expand_less</i>
                     </span>
                   </div>
-                  <div 
-                    (click)="setOrder('status')" 
+                  <div
+                    (click)="setOrder('status')"
                     [ngClass]="getCategoryCSSClass('status')"
-                    scope="col" 
+                    scope="col"
                     class="label-th col-4 text-center">
-                    <span 
-                      tooltip="{{'tables.tableStatus' | translate}}" 
+                    <span
+                      tooltip="{{'tables.tableStatus' | translate}}"
                       placement="bottom">
                       {{'tables.tableStatus' | translate}}
                     </span>
@@ -264,14 +246,15 @@
                       <i class="material-icons">expand_less</i>
                     </span>
                   </div>
-                  <div 
+                  <div
                     (click)="setOrder('location')"
                     [ngClass]="getCategoryCSSClass('location')"
-                    scope="col" 
+                    scope="col"
                     class="label-th col-4">
-                    <span 
-                      tooltip="{{'tables.tableLocation' | translate}}" 
-                      placement="bottom">{{'tables.tableLocation' | translate}}
+                    <span
+                      tooltip="{{'tables.tableLocation' | translate}}"
+                      placement="bottom">
+                      {{'tables.tableLocation' | translate}}
                     </span>
                     <span *ngIf="sortedBy === 'location' && !reverse" class="expand-chevron">
                       <i class="material-icons">expand_more</i>
@@ -280,13 +263,13 @@
                       <i class="material-icons">expand_less</i>
                     </span>
                   </div>
-                  <div 
+                  <div
                     (click)="setOrder('labels')"
                     [ngClass]="getCategoryCSSClass('labels')"
-                    scope="col" 
+                    scope="col"
                     class="label-th col-12">
-                    <span 
-                      tooltip="{{'tables.tableLabels' | translate}}" 
+                    <span
+                      tooltip="{{'tables.tableLabels' | translate}}"
                       placement="bottom">
                       {{'tables.tableLabels' | translate}}
                     </span>
@@ -299,20 +282,19 @@
                   </div>
                 </div>
               </div>
-              <div 
-                tooltip="{{'tables.tableActions' | translate}}" 
+              <div
+                tooltip="{{'tables.tableActions' | translate}}"
                 placement="bottom"
-                scope="col" 
+                scope="col"
                 class="label-th col-1 text-center infrastructure-actions-initial-text">
                 <span class="infrastructure-actions-full-text">{{'tables.tableActions' | translate}}</span>
               </div>
             </div>
-            <div *ngFor=
-              "let item of inventory |
-              sortBy : sortedBy : reverse : 'case-insensitive' |
-              filter : searchTerm : ['type', 'id', 'location', 'labels', 'status']|
+            <div *ngFor="let item of plainInventory |
+              sortBy : sortedBy : reverse : true |
+              filter : searchTerm : ['type', 'id', 'itemLocation', 'labels', 'itemStatus']|
               filter : quickFilter : ['type']"  class="nalej-tbody row">
-              <div class="col-2 nalej-td-flex-text">
+              <div class="col-2 label-td-flex-text nalej-td">
                 <span tooltip="{{'tables.tableType' | translate}}" placement="top">{{item.type}}</span>
               </div>
               <div class="col-9">
@@ -320,52 +302,47 @@
                   <div class="col-4 nalej-td">
                     <span tooltip="{{'tables.tableID' | translate}}" placement="top">{{item.id}}</span>
                   </div>
-                  <div class="col-4 nalej-td col-center-lowercase"> 
-                    <span *ngIf="item.status"
-                      [ngClass]=
-                        "{
-                          'status-dot': classStatusCheck(item.status, 'online'),
-                          'status-dot-error': classStatusCheck(item.status, 'offline'),
-                          'status-dot-process': classStatusCheck(item.status, 'process')
-                        }"
-                      tooltip="{{item.status}}" 
+                  <div class="col-4 label-td col-center-lowercase">
+                    <span *ngIf="item.itemStatus"
+                      [ngClass]="{
+                      'status-dot': classStatusCheck(item.itemStatus, 'online'),
+                      'status-dot-error': classStatusCheck(item.itemStatus, 'offline'),
+                      'status-dot-process': classStatusCheck(item.itemStatus, 'process')}"
+                      tooltip="{{item.itemStatus}}"
                       placement="bottom"
                       class="status-dot">
                     </span>
-                    <span *ngIf="item.status" class="hide-lg">
-                      {{item.status}}
+                    <span *ngIf="item.itemStatus" class="hide-lg nalej-td">
+                      {{item.itemStatus}}
                     </span>
                   </div>
                   <div class="col-4 nalej-td">
                     <span tooltip="{{'tables.tableLocation' | translate}}" placement="top">
-                      {{item.location}}
+                      {{item.itemLocation}}
                     </span>
                   </div>
                 </div>
                 <div class="row">
                   <div *ngIf="item.labels" class="col-12">
-                    <div 
-                      *ngFor="let label of item.labels | keyvalue" 
+                    <div *ngFor="let label of item.labels | keyvalue"
                       (click)="onLabelClick(item, label.key, label.value)"
-                      [ngClass]=
-                      "{
-                        'label-content-selected': indexOfLabelSelected(item.id, label.key, label.value) >= 0 ,
-                        'label-content': indexOfLabelSelected(item.id, label.key, label.value) === -1
-                      }" 
-                      class="label-content">
-                        {{label.key}}: {{label.value}}
+                      [ngClass]="
+                        {'label-content-selected': indexOfLabelSelected(item.id, label.key, label.value) >= 0 ,
+                        'label-content': indexOfLabelSelected(item.id, label.key, label.value) === -1}"
+                    class="label-content">
+                      {{label.key}}: {{label.value}}
                     </div>
                     <div class="label-btns">
                       <div
-                        *ngIf="isAnyLabelSelected(item.id) === false"
+                        *ngIf="!isAnyLabelSelected(item.id)"
                         (click)="addLabel(item)"
-                        tooltip="{{'infrastructure.label.add' | translate}}" 
+                        tooltip="{{'infrastructure.label.add' | translate}}"
                         placement="right"
                         class="label-btn-blue">
                         <i class="material-icons i-add">add</i>
                       </div>
                       <div
-                        *ngIf="isAnyLabelSelected(item.id) === true"
+                        *ngIf="isAnyLabelSelected(item.id)"
                         (click)="deleteLabel(item)"
                         tooltip="{{'infrastructure.label.delete' | translate}}"
                         placement="right"
@@ -373,22 +350,17 @@
                         <i class="material-icons i-delete">delete</i>
                       </div>
                     </div>
-                  </div> 
+                  </div>
                 </div>
               </div>
-              <div class="col-1 text-center nalej-td-flex">
-                <button 
-                  (click)="openContextualMenu($event, item)"
-                  [ngClass]=
-                    "{
-                      'action-btn-grey': item.id !== activeContextMenuItemId,
-                      'action-btn-grey-selected': item.id === activeContextMenuItemId
-                    }" 
-                  class="action-btn-grey position-relative"
-                  >
+              <div class="col-1 text-center label-td-flex">
+                <button (click)="openContextualMenu($event, item)"
+                    [ngClass]="{'action-btn-grey': item.id !== activeContextMenuItemId,
+                    'action-btn-grey-selected': item.id === activeContextMenuItemId}"
+                    class="action-btn-grey position-relative">
                   <i class="material-icons i-black">more_vert</i>
-                  <app-contextual-menu 
-                    [visible]="item.id === activeContextMenuItemId" 
+                  <app-contextual-menu
+                    [visible]="item.id === activeContextMenuItemId"
                     [options]="getItemOptions(item)"
                     (closed)="onContextualMenuClose(item)">
                   </app-contextual-menu>
@@ -397,11 +369,11 @@
             </div>
           </div>
         </div>
-        <div *ngIf=
-          "loadedData &&
-          inventory.length === 0 &&
-          !requestError" 
-          class="no-elements">
+        <!-- No info to show -->
+        <div *ngIf="loadedData &&
+          plainInventory.length === 0 &&
+          !requestError"
+             class="no-elements">
           {{'infrastructure.inventory.noInfo' | translate}}
         </div>
         <div *ngIf="loadedData && requestError" class="no-elements">
@@ -410,13 +382,13 @@
         <div *ngIf="!loadedData" class="nalej-loader-box">
           <div class="loader">
             <svg class="circular" viewBox="25 25 50 50">
-              <circle 
-                class="path" 
-                cx="50" 
-                cy="50" 
-                r="20" 
-                fill="none" 
-                stroke-width="2" 
+              <circle
+                class="path"
+                cx="50"
+                cy="50"
+                r="20"
+                fill="none"
+                stroke-width="2"
                 stroke-miterlimit="10"/>
             </svg>
           </div>

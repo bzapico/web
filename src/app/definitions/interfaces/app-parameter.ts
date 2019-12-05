@@ -40,6 +40,11 @@ export interface AppParameter {
      */
     default_value?: string;
     /**
+     * Value of the field
+     * It only applies to Application Instance
+     */
+    value?: string;
+    /**
      * Category indicates if the parameter is basic or advanced
      */
     category?: ParamCategory;
