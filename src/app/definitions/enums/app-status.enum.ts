@@ -12,16 +12,15 @@
  */
 
 export enum AppStatus {
+    Queued = 'queued',
+    Planning = 'planning',
+    Scheduled = 'scheduled',
+    Deploying = 'deploying',
+    Running = 'running',
+    Terminating = 'terminating',
+    Incomplete = 'incomplete',
+    PlanningError = 'planning_error',
     DeploymentError = 'deployment_error',
     Error = 'error',
-    Incomplete = 'incomplete',
-    Offline = 'offline',
-    Online = 'online',
-    Planning = 'planning',
-    PlanningError = 'planning_error',
-    Process = 'process',
-    Running = 'running',
-    Scheduled = 'scheduled',
-    Queued = 'queued',
-    Deploying = 'deploying'
+    Terminated = 'terminated'
 }

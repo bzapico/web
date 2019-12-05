@@ -43,19 +43,8 @@
       <div *ngIf="openFromInstance" class="summary-table-tr">
         <div class="summary-table-th">{{'tables.tableStatus' | translate}}</div> 
         <div id="summary-status" class="summary-table-td">
-          <span 
-            *ngIf="instance && instance.status_name"
-            [ngClass]=
-              "{
-                'big-status-dot':classInstanceStatusCheck(instance.status_name, 'status.running' | translate),
-                'big-status-dot-error':classInstanceStatusCheck(instance.status_name, 'status.error' | translate),
-                'big-status-dot-process':classInstanceStatusCheck(instance.status_name, 'status.process' | translate)
-              }"
-            tooltip="{{instance.status_name}}" 
-            placement="bottom"
-            class="big-status-dot">
-            {{instance.status_name}}
-          </span>
+          <div class="cluster-status-dot" [ngStyle]="getStatusDotColor(instance.status_name, cluster)"></div>
+          {{ instance.status_name }}
         </div>
       </div>
       <div *ngIf="openFromInstance" class="summary-table-tr">
@@ -223,9 +212,9 @@
                     </span>
                   </div>
                 </div>
-                <div *ngIf="getInboundConnections().length > 0" class="scroll-accordion-info">
+                <div *ngIf="inboundConnections.length > 0" class="scroll-accordion-info">
                   <div *ngFor=
-                    "let connection of getInboundConnections() |
+                    "let connection of inboundConnections |
                     filter : searchTerm; let i = index">
                     <span class="nalej-tbody row">
                       <div class="col-4">
@@ -249,7 +238,7 @@
                     </span>
                   </div>
                 </div>
-                <div *ngIf="!instance.inbound_net_interfaces" class="scroll-accordion-info">
+                <div *ngIf="inboundConnections.length === 0" class="scroll-accordion-info">
                   <p class="grey">{{'apps.registered.noInboundInterfaces' | translate}}</p>
                 </div>
               </div>
@@ -328,7 +317,7 @@
                     <div class="col-4 text-right px-4">
                       <button
                         *ngIf="getTarget(interface.name).instance_name"
-                        (click)="disconnectInstance(interface, 'inbound_connections', 'inbound_name', instance)"
+                        (click)="disconnectInstance(interface, 'outbound_connections', 'outbound_name', instance)"
                         tooltip="{{'apps.manageConnections.disconnect' | translate}}"
                         placement="left"
                         class="action-btn-red">

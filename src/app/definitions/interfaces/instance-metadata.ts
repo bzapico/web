@@ -13,7 +13,8 @@
 
 // This is a common metadata entity that collects information for a deployed instance. This instance can be a
 // service instance or a service group instance.
-import { KeyValue } from '@angular/common';
+
+import { KeyValue } from './key-value';
 
 export interface InstanceMetadata {
     /**
@@ -55,9 +56,9 @@ export interface InstanceMetadata {
     /**
      * Status of every item monitored by this metadata entry
      */
-    status_name?: KeyValue<string, string>;
+    status_name?: KeyValue;
     /**
      * Relevant information for every monitored instance
      */
-    info?: KeyValue<string, string>;
+    info?: KeyValue;
 }

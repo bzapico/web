@@ -11,6 +11,7 @@
  *  limitations under the License.
  */
 
+// tslint:disable:no-any
 import { Component, OnInit } from '@angular/core';
 import { Backend } from '../../definitions/interfaces/backend';
 import { BsModalRef } from 'ngx-bootstrap';
@@ -19,6 +20,8 @@ import { MockupBackendService } from '../../services/mockup-backend.service';
 import { NotificationsService } from '../../services/notifications.service';
 import { LocalStorageKeys } from '../../definitions/const/local-storage-keys';
 import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@angular/forms';
+import { ApplicationInstance } from '../../definitions/models/application-instance';
+import { ApplicationDescriptor } from '../../definitions/models/application-descriptor';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
@@ -48,10 +51,11 @@ export class DeployInstanceComponent implements OnInit {
   registeredId: string;
   registeredName: string;
   openFromRegistered: boolean;
-  registeredApps: any[];
+  registeredApps: ApplicationDescriptor[];
   instanceName: string;
-  selectedApp: any;
-  appFromRegistered: any;
+  selectedApp: ApplicationInstance;
+  appFromRegistered: ApplicationInstance;
+  fakeValue: ApplicationDescriptor;
   /**
    * Models that removes the possibility for the user to close the modal by clicking outside the content card
    */
@@ -98,7 +102,7 @@ export class DeployInstanceComponent implements OnInit {
    */
   requiredConnections: any[];
   areRequiredConnections: boolean;
-  instances: any[];
+  instances: ApplicationInstance[];
   instancesNames: string[];
   targetInstance: FormControl;
   targetInterface: FormControl;
@@ -162,6 +166,8 @@ export class DeployInstanceComponent implements OnInit {
     this.connections = [];
     this.areRequiredConnections = false;
     this.requiredConnections = [];
+    this.fakeValue =
+      new ApplicationDescriptor('', '-1', this.translateService.instant('deploy.selectAnyRegistered'));
   }
 
   ngOnInit() {
@@ -176,7 +182,7 @@ export class DeployInstanceComponent implements OnInit {
     this.backend.getRegisteredApps(this.organizationId)
     .subscribe(response => {
         this.registeredApps = response.descriptors || [];
-        this.registeredApps.unshift({id: -1, name: this.translateService.instant('deploy.selectAnyRegistered')});
+        this.registeredApps.unshift(this.fakeValue);
         this.loadedData = true;
     });
     if (this.openFromRegistered && this.appFromRegistered) {
@@ -413,7 +419,7 @@ export class DeployInstanceComponent implements OnInit {
   isInactiveNext(f) {
     let isInactiveNext = false;
     if (this.conditionExpression === 'basic') {
-      isInactiveNext = !this.selectedApp || this.selectedApp.id === -1 || !f.instanceName.value;
+      isInactiveNext = !this.selectedApp || this.selectedApp.id === '-1' || !f.instanceName.value;
     } else if (this.conditionExpression === 'parameters') {
       this.selectedApp.parameters.map(param => {
           if (!param.category && !param.value) {
@@ -482,7 +488,7 @@ export class DeployInstanceComponent implements OnInit {
     this.showBack = false;
     this.showDeploy = false;
     this.showNext = true;
-    this.deployInstanceForm.controls.selectDrop.setValue({id: -1, name: this.translateService.instant('deploy.selectAnyRegistered')});
+    this.deployInstanceForm.controls.selectDrop.setValue(this.fakeValue);
     if (!(this.openFromRegistered && this.appFromRegistered)) {
       this.selectedApp = null;
     }

@@ -89,6 +89,8 @@ import { GraphComponent } from './applications/graph/graph.component';
 import { ServicesCardComponent } from './applications/services-card/services-card.component';
 import { ActionButtonsCardComponent } from './applications/action-buttons-card/action-buttons-card.component';
 import { ToolsComponent } from './tools/tools.component';
+import { LogsComponent } from './logs/logs.component';
+import { ClusterStatusInfoComponent } from './resources/cluster-status-info/cluster-status-info.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -149,7 +151,9 @@ export function createTranslateLoader(http: HttpClient) {
     GraphComponent,
     ServicesCardComponent,
     ActionButtonsCardComponent,
-    ToolsComponent
+    ToolsComponent,
+    LogsComponent,
+    ClusterStatusInfoComponent
   ],
   entryComponents: [
     DebugPanelComponent,
@@ -179,7 +183,8 @@ export function createTranslateLoader(http: HttpClient) {
     RegisteredServiceGroupInfoComponent,
     ManageConnectionsComponent,
     AddConnectionsComponent,
-    AppInfoDetailedComponent
+    AppInfoDetailedComponent,
+    ClusterStatusInfoComponent
   ],
   imports: [
     BrowserModule,

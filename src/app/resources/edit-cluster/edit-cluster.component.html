@@ -13,7 +13,6 @@
 
 <div class="modal-card">
   <div class="modal-content">
-  
     <div class="modal-header">
       <h3 class="nalej-form-title">{{'resources.edit' | translate}} {{clusterName}}</h3>
       <button 
@@ -24,7 +23,6 @@
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
-  
     <div class="modal-body">
       <form [formGroup]="editClusterForm" (ngSubmit)="saveClusterChanges(f)">
         <div class="form-group">

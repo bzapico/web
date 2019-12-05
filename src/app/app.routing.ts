@@ -25,6 +25,7 @@ import { DevicesComponent } from './devices/devices.component';
 import { RegisteredInfoComponent } from './applications/registered-info/registered-info.component';
 import { InstanceInfoComponent } from './applications/instance-info/instance-info.component';
 import { InfrastructureComponent } from './infrastructure/infrastructure.component';
+import { LogsComponent } from './logs/logs.component';
 
 const appRoutes: Routes = [
     {
@@ -76,6 +77,11 @@ const appRoutes: Routes = [
             {
                 path: 'infrastructure',
                 component: InfrastructureComponent,
+                canActivate: [AuthGuard]
+            },
+            {
+                path: 'logs',
+                component: LogsComponent,
                 canActivate: [AuthGuard]
             },
         ]

@@ -117,7 +117,7 @@ export class UserInfoComponent implements OnInit {
     if (deleteConfirm) {
       if (this.organizationId !== null && this.email !== null) {
         this.backend.deleteUser(this.organizationId, this.email)
-          .subscribe(response => {
+          .subscribe(() => {
             if (this.email === this.userId) {
               this.auth.logout();
             }

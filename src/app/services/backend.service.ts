@@ -15,10 +15,19 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Backend } from '../definitions/interfaces/backend';
-import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import { SearchRequest } from '../definitions/interfaces/search-request';
+import { AddUserRequest } from '../definitions/interfaces/add-user-request';
+import { UserChanges } from '../definitions/interfaces/user-changes';
+import { InstallAgentRequest } from '../definitions/interfaces/install-agent-request';
+import { AddAppDescriptorRequest } from '../definitions/interfaces/add-app-descriptor-request';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
+import { RemoveConnectionRequest } from '../definitions/interfaces/remove-connection-request';
+import { AddConnectionRequest } from '../definitions/interfaces/add-connection-request';
+import { LoginResponse } from '../definitions/interfaces/login-response';
+import { UpdateAssetRequest } from '../definitions/interfaces/update-asset-request';
 
+// tslint:disable:no-any
 /**
  * URL of the public API
  */
@@ -42,14 +51,14 @@ export class BackendService implements Backend {
    * Login
    ********************/
 
-  // POST '/login'
+  // POST: '/login'
   /**
    * Request to log into the app
    * @param email User Id / email
    * @param password string containing the user password
    */
-  login(email: string, password: string): Observable<any> {
-    return this.http.post(
+  login(email: string, password: string): Observable<LoginResponse> {
+    return this.http.post<LoginResponse>(
       // URL
       // environment.apiUrl + ':30210/v1/login',
       API_URL + 'login',
@@ -122,19 +131,19 @@ export class BackendService implements Backend {
       API_URL + 'users/' + organizationId + '/list'
     );
   }
-  // POST 'users/{organizationId}/add'
+  // POST: 'users/{organizationId}/add'
   /**
    * Requests to add a new user
    * @param organizationId Organization identifier
    * @param user New user data
    */
-  addUser(organizationId: string, user: any) {
+  addUser(organizationId: string, user: AddUserRequest) {
     return this.post(
       API_URL + 'users/' + organizationId + '/add',
       user
     );
   }
-  // POST 'users/{organizationId}/delete'
+  // POST: 'users/{organizationId}/delete'
   /**
    * Requests to delete the provided userId user
    * @param organizationId Organization identifier
@@ -149,13 +158,13 @@ export class BackendService implements Backend {
       }
     );
   }
-  // POST 'users/{organization_id}/update
+  // POST: 'users/{organization_id}/update
   /**
    * Requests to update an specific user
    * @param organizationId Organization identifier
    * @param user Object containing user data
    */
-  saveUserChanges(organizationId: string, user: any) {
+  saveUserChanges(organizationId: string, user: UserChanges) {
     return this.post(
       API_URL + 'users/' + organizationId + '/update',
       user
@@ -203,7 +212,7 @@ export class BackendService implements Backend {
       API_URL + 'inventory/' + organizationId + '/list'
     );
   }
-  // GET '/v1/inventory/{organization_id}/summary'
+  // GET: '/v1/inventory/{organization_id}/summary'
   /**
    * Requests to get the infrastructure inventory summary
    * @param organizationId Organization identifier
@@ -218,33 +227,33 @@ export class BackendService implements Backend {
    * Infrastructure - Agent
    ********************/
 
-  // POST '/v1/agent/{organization_id}/{edge_controller_id}/install'
+  // POST: '/v1/agent/{organization_id}/{edge_controller_id}/install'
   /**
    * Requests to install an agent
    * @param organizationId Organization identifier
    * @param edgeControllerId Edge controller id
    * @param agent Agent installer
    */
-  installAgent(organizationId: string, edgeControllerId: string, agent: any) {
+  installAgent(agent: InstallAgentRequest) {
     const installAgentRequestObj = {
-      organization_id: organizationId,
-      edge_controller_id: edgeControllerId,
+      organization_id: agent.organization_id,
+      edge_controller_id: agent.edge_controller_id,
       agent_type: agent.agent_type,
-      credentials: {username: agent.username, password: agent.password},
+      credentials: {username: agent.credentials.username, password: agent.credentials.credentials, is_sudoer: agent.credentials.is_sudoer},
       target_host: agent.target_host
     };
     return this.post(
-      API_URL + 'ec/' + organizationId + '/agent/install', installAgentRequestObj
+      API_URL + 'ec/' + agent.organization_id + '/agent/install', installAgentRequestObj
     );
   }
-  // POST '/v1/agent/{organization_id}/{edge_controller_id}/uninstall'
+  // POST: '/v1/agent/{organization_id}/{edge_controller_id}/uninstall'
   /**
    * Requests to uninstall an agent
    * @param organizationId Organization identifier
    * @param edgeControllerId Edge controller id
    * @param assetId Asset identifier
    */
-  uninstallAgent(organizationId: string, edgeControllerId: string, assetId: any) {
+  uninstallAgent(organizationId: string, edgeControllerId: string, assetId: string) {
     return this.post(
       API_URL + 'agent/' + organizationId + '/' + assetId + '/uninstall',
       {
@@ -253,7 +262,7 @@ export class BackendService implements Backend {
       }
     );
   }
-  // POST '/v1/agent/{organization_id}/{edge_controller_id}/token/create'
+  // POST: '/v1/agent/{organization_id}/{edge_controller_id}/token/create'
   /**
    * Agent related operation to EIC token creation
    * @param organizationId Organization identifier
@@ -269,7 +278,7 @@ export class BackendService implements Backend {
    * Infrastructure - Edge Controller
    ********************/
 
-  // POST '/v1/ec/{organization_id}/token/create'
+  // POST: '/v1/ec/{organization_id}/token/create'
   /**
    * Creates a new token for an EIC to join the platform
    * @param organizationId Organization identifier
@@ -279,20 +288,20 @@ export class BackendService implements Backend {
       API_URL + 'ec/' + organizationId + '/token/create'
     );
   }
-  // POST '/v1/inventory/{organization_id}/ec/{ec_id}/update'
+  // POST: '/v1/inventory/{organization_id}/ec/{ec_id}/update'
   /**
    * Requests to uninstall an agent
    * @param organizationId Organization identifier
    * @param ecId Edge controller id
    * @param ec Edge controller updated object
    */
-  updateEC(organizationId: string, ecId: any, ec: any) {
+  updateEC(organizationId: string, ecId: string, ec: any) {
     return this.post(
       API_URL + 'inventory/' + organizationId + '/ec/' + ecId + '/update',
       ec
     );
   }
-  // POST '/v1/ec/{organization_id}/unlink'
+  // POST: '/v1/ec/{organization_id}/unlink'
   /**
    * Operation to remove/uninstall an EIC
    * @param organizationId Organization identifier
@@ -305,17 +314,17 @@ export class BackendService implements Backend {
     );
   }
 
-    /********************
+  /********************
    * Infrastructure - Asset
    ********************/
-    // POST '/v1/inventory/{organization_id}/asset/{asset_id}/update'
+  // POST: '/v1/inventory/{organization_id}/asset/{asset_id}/update'
   /**
    * Requests to uninstall an agent
    * @param organizationId Organization identifier
    * @param assetId Edge controller id
    * @param asset Asset object updated
    */
-  updateAsset(organizationId: string, assetId: any, asset: any) {
+  updateAsset(organizationId: string, assetId: string, asset: UpdateAssetRequest) {
     return this.post(
       API_URL + 'inventory/' + organizationId + '/asset/' + assetId + '/update',
       asset
@@ -326,7 +335,7 @@ export class BackendService implements Backend {
    * Resources
    ********************/
 
-  // GET 'resources/{organization_id}/summary'
+  // GET: 'resources/{organization_id}/summary'
   /**
    * Requests to get the resources summary for an specific organization
    * @param organizationId Organization identifier
@@ -336,7 +345,7 @@ export class BackendService implements Backend {
       API_URL + 'resources/' + organizationId + '/summary'
     );
   }
-  // GET 'clusters/{organization_id}/list'
+  // GET: 'clusters/{organization_id}/list'
   /**
    * Requests to get the cluster list for an specific organization
    * @param organizationId Organization identifier
@@ -346,8 +355,7 @@ export class BackendService implements Backend {
       API_URL + 'clusters/' + organizationId + '/list'
     );
   }
-
-  // POST '/v1/clusters/{organization_id}/{cluster_id}/update'
+  // POST: '/v1/clusters/{organization_id}/{cluster_id}/update'
   /**
    * Request to modify cluster data
    * @param organizationId Organization identifier
@@ -360,8 +368,7 @@ export class BackendService implements Backend {
       changes
     );
   }
-
-    // POST '/v1/nodes/{organization_id}/{node_id}/update'
+  // POST: '/v1/nodes/{organization_id}/{node_id}/update'
   /**
    * Request to modify cluster data
    * @param organizationId Organization identifier
@@ -374,12 +381,45 @@ export class BackendService implements Backend {
       changes
     );
   }
+  // POST: '/v1/clusters/{organization_id}/{cluster_id}/cordon'
+  /**
+   * Cordon prevents the scheduler to deploy user applications on the target cluster
+   * @param organizationId Organization identifier
+   * @param clusterId Cluster identifier
+   */
+  cordon(organizationId: string, clusterId: string) {
+    return this.post(
+      API_URL + 'clusters/' + organizationId + '/' + clusterId + '/cordon'
+    );
+  }
+  // POST: '/v1/clusters/{organization_id}/{cluster_id}/uncordon'
+  /**
+   * Uncordon enables the scheduler to deploy user applications on the target cluster
+   * @param organizationId Organization identifier
+   * @param clusterId Cluster identifier
+   */
+  uncordon(organizationId: string, clusterId: string) {
+    return this.post(
+      API_URL + 'clusters/' + organizationId + '/' + clusterId + '/uncordon'
+    );
+  }
+  // POST: '/v1/clusters/{organization_id}/{cluster_id}/uncordon'
+  /**
+   * Drain operation to reschedule all applications deployed in a given cluster
+   * @param organizationId Organization identifier
+   * @param clusterId Cluster identifier
+   */
+  drain(organizationId: string, clusterId: string) {
+    return this.post(
+      API_URL + 'clusters/' + organizationId + '/' + clusterId + '/drain'
+    );
+  }
 
   /********************
    * Applications
    ********************/
 
-  // GET 'apps/inst/{organization_id}/list'
+  // GET: 'apps/inst/{organization_id}/list'
   /**
    * Requests application instances list
    * @param organizationId Organization identifier
@@ -389,7 +429,7 @@ export class BackendService implements Backend {
       API_URL + 'apps/inst/' + organizationId + '/list'
     );
   }
-  // GET 'apps/desc/{organization_id}/list'
+  // GET: 'apps/desc/{organization_id}/list'
   /**
    * Requests registered applications list (descriptors)
    * @param organizationId Organization identifier
@@ -399,7 +439,7 @@ export class BackendService implements Backend {
       API_URL + 'apps/desc/' + organizationId + '/list'
     );
   }
-  // GET 'apps/inst/{organization_id}/{app_instance_id}/get'
+  // GET: 'apps/inst/{organization_id}/{app_instance_id}/get'
   /**
    * Requests application instance info
    * @param organizationId Organization identifier
@@ -410,7 +450,7 @@ export class BackendService implements Backend {
       API_URL + 'apps/inst/' + organizationId + '/' + instanceId + '/get'
     );
   }
-  // GET 'apps/inst/{organization_id}/{app_descriptor_id}/get'
+  // GET: 'apps/inst/{organization_id}/{app_descriptor_id}/get'
   /**
    * Requests application descriptor (registered app) info
    * @param organizationId Organization identifier
@@ -427,7 +467,7 @@ export class BackendService implements Backend {
    * @param organizationId Organization identifier
    * @param descriptor Descriptor object
    */
-  addAppDescriptor(organizationId: string, descriptor: any) {
+  addAppDescriptor(organizationId: string, descriptor: AddAppDescriptorRequest) {
     return this.post(
       API_URL + 'apps/desc/' + organizationId + '/add',
       descriptor
@@ -509,7 +549,7 @@ export class BackendService implements Backend {
    * Application network
    ********************/
 
-  // GET '/appnet/inbound/{organization_id}/available'
+  // GET: '/appnet/inbound/{organization_id}/available'
   /**
    * Retrieves a list of available inbounds of an organization
    * @param organizationId Organization identifier
@@ -519,7 +559,7 @@ export class BackendService implements Backend {
       API_URL + 'appnet/inbound/' + organizationId + '/available'
     );
   }
-  // GET '/appnet/outbound/{organization_id}/available'
+  // GET: '/appnet/outbound/{organization_id}/available'
   /**
    * Retrieves a list of available outbounds of an organization
    * @param organizationId Organization identifier
@@ -534,10 +574,10 @@ export class BackendService implements Backend {
    * Adds a new connection between one outbound and one inbound
    * @param organizationId Organization identifier
    */
-  addConnection(organizationId: string, connection: any) {
+  addConnection(organizationId: string, addConnectionRequest: AddConnectionRequest) {
     return this.post(
       API_URL + 'appnet/connection/' + organizationId + '/add',
-      connection
+        addConnectionRequest
     );
   }
   // POST 'appnet/connection/{organization_id}/remove'
@@ -545,13 +585,13 @@ export class BackendService implements Backend {
    * Operation that removes a connection
    * @param organizationId Organization identifier
    */
-  removeConnection(organizationId: string, connection: any) {
+  removeConnection(organizationId: string, removeConnectionRequest: RemoveConnectionRequest) {
     return this.post(
       API_URL + 'appnet/connection/' + organizationId + '/remove',
-      connection
+        removeConnectionRequest
     );
   }
-  // GET '/appnet/connection/{organization_id}/list'
+  // GET: '/appnet/connection/{organization_id}/list'
   /**
    * Retrieves a list all the established connections of an organization
    * @param organizationId Organization identifier
@@ -561,7 +601,7 @@ export class BackendService implements Backend {
       API_URL + 'appnet/connection/' + organizationId + '/list'
     );
   }
-  // GET /v1/apps/desc/{organization_id}/{app_instance_id}/parameters
+  // GET: /v1/apps/desc/{organization_id}/{app_instance_id}/parameters
   /**
    * Retrieves a list of available parameters of an instance
    * @param organizationId Organization identifier
@@ -577,7 +617,7 @@ export class BackendService implements Backend {
    * Cluster
    ********************/
 
-  // GET 'nodes/{organization_id}/{cluster_id}/list'
+  // GET: 'nodes/{organization_id}/{cluster_id}/list'
   /**
    * Requests to get the list of nodes for an specific cluster
    * @param organizationId Organization identifier
@@ -588,7 +628,7 @@ export class BackendService implements Backend {
       API_URL + 'nodes/' + organizationId + '/' + clusterId + '/list'
     );
   }
-  // GET 'clusters/{organization_id}/{cluster_id}/info'
+  // GET: 'clusters/{organization_id}/{cluster_id}/info'
   /**
    * Requests to get the detail of an specific cluster
    * @param organizationId Organization identifier
@@ -600,7 +640,7 @@ export class BackendService implements Backend {
     );
   }
   /**
-   * GET request with custom authorization headers
+   * GET: request with custom authorization headers
    * @param url URL address
    */
   get(url: string) {
@@ -666,14 +706,14 @@ export class BackendService implements Backend {
       deviceData
     );
   }
-  // POST '/v1/device/{organization_id}/remove'
+  // POST: '/v1/device/{organization_id}/remove'
   /**
    * Operation that allows to remove a device from the system
    * @param organizationId Organization identifier
    * @param groupId Device Group identifier
    * @param deviceId device identifier
    */
-  removeDevice(organizationId: string, groupId: string, deviceId: any) {
+  removeDevice(organizationId: string, groupId: string, deviceId: string) {
     return this.post(
       API_URL + 'device/' + organizationId + '/remove',
       {
@@ -683,13 +723,13 @@ export class BackendService implements Backend {
       }
     );
   }
-  // POST '/v1/device/{organization_id}/remove'
+  // POST: '/v1/device/{organization_id}/remove'
   /**
    * Operation that allows to remove a device from the system (Temporary mock response)
    * @param organizationId Organization identifier
    * @param deviceId device identifier
    */
-    removeDeviceFromInventoryMockup(organizationId: string, deviceId: any) {
+    removeDeviceFromInventoryMockup(organizationId: string, deviceId: string) {
       return this.post(
         API_URL + 'device/' + organizationId + '/remove',
         {

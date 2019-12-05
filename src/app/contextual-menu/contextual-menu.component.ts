@@ -11,6 +11,7 @@
  *  limitations under the License.
  */
 
+// tslint:disable:no-any
 import { Component, Input, HostListener, Output, EventEmitter } from '@angular/core';
 
 @Component({
@@ -25,7 +26,7 @@ export class ContextualMenuComponent {
   constructor() {}
 
   @Input() visible: boolean;
-  @Input() options: any[];
+  @Input() options: {action: any, item: any, name: string}[];
   @Output() closed = new EventEmitter<boolean>();
 
   onClick(option) {

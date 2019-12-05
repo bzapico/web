@@ -58,7 +58,7 @@ export class ApplicationInstance extends Application {
   // (https://daisho.atlassian.net/browse/NP-1679
   undeploying?: boolean;
 
-  getId(): string {
+  get id(): string {
     return this.app_instance_id;
   }
 }

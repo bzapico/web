@@ -292,14 +292,11 @@
                         {{app.name}}
                       </span>
                     </div>
-                    <div [ngClass]=
-                      "{'status-dot':classStatusCheck(app.status_name, 'running'),
-                        'status-dot-error':classStatusCheck(app.status_name, 'error'),
-                        'status-dot-process':classStatusCheck(app.status_name, 'process')
-                      }"
-                      tooltip="{{app.status_name | lowercase}}" 
+                    <div 
+                      tooltip="{{getStatusOrState(app.status_name, cluster) | lowercase}}" 
                       placement="bottom"
                       class="col-6 nalej-td col-center-lowercase"> 
+                      <div class="cluster-status-dot" [ngStyle]="getStatusDotColor(app.status_name, cluster)"></div>
                     </div>
                   </div>
                   <div class="row">
@@ -715,6 +712,9 @@
                   </ng-template>
                 </ngx-graph>
               </div>
+              <div (click)="openStatusCluster()" class="explore-btn">
+                  <i class="material-icons explore-icon">explore</i>
+                </div>
               <div *ngIf="!graphDataLoaded" class="loader"></div>
               <!-- No info to show -->
               <div *ngIf="graphDataLoaded && (!instances || (instances && instances.length === 0))" class="no-elements">

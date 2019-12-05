@@ -15,7 +15,7 @@
  * Interface that defines the Cluster info needed for creating the Cluster object instance
  */
 import { ClusterStatus } from '../enums/cluster-status.enum';
-import { KeyValue } from '@angular/common';
+import { KeyValue } from './key-value';
 
 export interface Cluster {
   /**
@@ -49,7 +49,7 @@ export interface Cluster {
   /**
    * Labels for the cluster.
    */
-  labels?: KeyValue<string, string>;
+  labels?: KeyValue;
   /**
    * TotalNodes contains the total number of nodes in the cluster.
    */

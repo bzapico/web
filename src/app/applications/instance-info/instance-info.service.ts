@@ -11,10 +11,13 @@
  *  limitations under the License.
  */
 
+// tslint:disable:no-any
 import { Injectable } from '@angular/core';
 import { AccessType } from '../../definitions/enums/access-type.enum';
 import { TranslateService } from '@ngx-translate/core';
 import { ServicesStatus } from '../../definitions/enums/services-status.enum';
+import { GraphData } from '../../definitions/models/graph-data';
+import { SecurityRule } from '../../definitions/interfaces/security-rule';
 /**
  * It sets the status colors for nodes
  */
@@ -74,11 +77,11 @@ export class InstanceInfoService {
     this._publicRule = value;
   }
 
-  get graphData(): any {
+  get graphData(): GraphData {
     return this._graphData;
   }
 
-  set graphData(value: any) {
+  set graphData(value: GraphData) {
     this._graphData = value;
   }
 
@@ -406,7 +409,7 @@ export class InstanceInfoService {
    * Sets public rules nodes
    * @param rule rule object
    */
-  private setPublicRulesNodes(rule) {
+  private setPublicRulesNodes(rule: SecurityRule) {
     const ruleNode = {
       id: rule.rule_id,
       label: this.translateService.instant('graph.publicAccessLabel'),
