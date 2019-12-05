@@ -18,10 +18,10 @@ import { Backend } from '../../definitions/interfaces/backend';
 import { NotificationsService } from '../../services/notifications.service';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { AppInfoDetailedComponent } from '../app-info-detailed/app-info-detailed.component';
-import { AppStatus } from '../../definitions/enums/app-status.enum';
 import { BackendService } from '../../services/backend.service';
 import { MockupBackendService } from '../../services/mockup-backend.service';
 import { LocalStorageKeys } from '../../definitions/const/local-storage-keys';
+import { ToolsService } from 'src/app/tools/tools.service';
 import { ApplicationDescriptor } from '../../definitions/models/application-descriptor';
 import { ParamCategory } from '../../definitions/enums/param-category.enum';
 import { ApplicationInstance } from '../../definitions/models/application-instance';
@@ -76,7 +76,8 @@ export class AppInfoComponent implements OnChanges {
     private notificationsService: NotificationsService,
     private modalService: BsModalService,
     private backendService: BackendService,
-    private mockupBackendService: MockupBackendService
+    private mockupBackendService: MockupBackendService,
+    private toolsService: ToolsService
   ) {
     const mock = localStorage.getItem(LocalStorageKeys.appsMock) || null;
     // Check which backend is required (fake or real)
@@ -107,28 +108,21 @@ export class AppInfoComponent implements OnChanges {
       this.inboundConnections = this.getInboundConnections();
     }
   }
-
   /**
-   * Checks if the instances status requires an special css class
-   * @param status instances status name
-   * @param className CSS class name
+   * Return an specific dot color depending on the node status
+   * @param status Status name
+   * @param cluster cluster
    */
-  classInstanceStatusCheck(status: string, className: string): boolean {
-    switch (status.toLowerCase()) {
-      case AppStatus.Running:
-        return className.toLowerCase() === AppStatus.Running;
-      case AppStatus.DeploymentError:
-      case AppStatus.PlanningError:
-      case AppStatus.Incomplete:
-      case AppStatus.Error:
-        return className.toLowerCase() === AppStatus.Error;
-      case AppStatus.Queued:
-      case AppStatus.Planning:
-      case AppStatus.Scheduled:
-        return className.toLowerCase() === AppStatus.Process;
-      default:
-        return className.toLowerCase() === AppStatus.Process;
-    }
+  getStatusDotColor(status: string, cluster: any): {'background-color': string, border?: string} {
+    return this.toolsService.getStatusDotColor(status, cluster);
+  }
+  /**
+   * Return the status if the state is installed
+   * @param status Status name
+   * @param cluster cluster
+   */
+  getStatusOrState(status: string, cluster: any): string {
+    return this.toolsService.getStatusOrState(status, cluster);
   }
   /**
    * Changes to active list

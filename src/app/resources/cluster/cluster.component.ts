@@ -163,14 +163,17 @@ export class ClusterComponent implements OnInit {
   classStatusCheck(status: string, className: string): boolean {
     status = status || '';
     switch (status.toLowerCase()) {
-      case ClusterStatus.Running:
+      case ClusterStatus.Scaling:
+      case ClusterStatus.OnlineCordon:
+      case ClusterStatus.InstallInProgress:
       case ClusterStatus.Online:
       case ClusterStatus.OnlineCordon:
-        return className.toLowerCase() === ClusterStatus.Running;
-      case ClusterStatus.Error:
+        return className.toLowerCase() === ClusterStatus.Online;
+      case ClusterStatus.Failure:
       case ClusterStatus.Offline:
       case ClusterStatus.OfflineCordon:
-        return className.toLowerCase() === ClusterStatus.Error;
+      case ClusterStatus.Uninstalling:
+        return className.toLowerCase() === ClusterStatus.Failure;
       default:
         return className.toLowerCase() === ClusterStatus.Unknown;
     }

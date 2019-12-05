@@ -23,6 +23,9 @@ import { Subscription, timer } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 import { ToolsComponent } from '../tools/tools.component';
 import { AppStatus } from '../definitions/enums/app-status.enum';
+import { ClusterStatusInfoComponent } from './cluster-status-info/cluster-status-info.component';
+import { ToolsService } from '../tools/tools.service';
+import { NotificationsService } from '../services/notifications.service';
 import { NameValue } from '../definitions/interfaces/name-value';
 import { GraphData } from '../definitions/models/graph-data';
 
@@ -52,6 +55,10 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
    * Count of total clusters
    */
   clustersCount: number;
+  /**
+   * Number of online clusters
+   */
+  countOnline: number;
   /**
    * Holds the reference of the interval that refreshes the lists
    */
@@ -95,12 +102,19 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
    * Boolean variable for indicate when it is searching in the graph
    */
   isSearchingInGraph: boolean;
+  /**
+   * Active context menu item ID
+   */
+  activeContextMenuId: string;
 
   constructor(
     private modalService: BsModalService,
     private backendService: BackendService,
     private mockupBackendService: MockupBackendService,
-    private translateService: TranslateService) {
+    private translateService: TranslateService,
+    private toolsService: ToolsService,
+    private notificationsService: NotificationsService
+    ) {
     super();
     const mock = localStorage.getItem(LocalStorageKeys.resourcesMock) || null;
     // check which backend is required (fake or real)
@@ -115,6 +129,7 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
     this.clustersCount = 0;
     this.pieChartData = [];
     this.requestError = '';
+    this.activeContextMenuId = '';
     // SortBy
     this.sortedBy = '';
     this.reverse = false;
@@ -141,19 +156,19 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
 
   /**
    * Generates the NGX-Chart required JSON object for pie chart rendering
-   * @param running Number of running nodes in a cluster
+   * @param online Number of online nodes in a cluster
    * @param total Number of total nodes in a cluster
    * @returns anonym array with the required object structure for pie chart rendering
    */
-  generateClusterChartData(running: number): NameValue[] {
+  generateClusterChartData(online: number): NameValue[] {
     return [
       {
-        name: 'Running',
-        value: running
+        name: 'Online',
+        value: online
       },
       {
         name: 'Stopped',
-        value: this.clusters.length - running
+        value: this.clusters.length - online
       }
     ];
   }
@@ -197,6 +212,16 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
     this.modalService.onHide.subscribe((reason: string) => {
       this.updateClusterList();
     });
+  }
+  /**
+   * Opens the modal view that holds the edit cluster component
+   */
+  openStatusCluster() {
+    const initialState = {
+      organizationId: this.organizationId
+    };
+    this.modalRef = this.modalService.show(ClusterStatusInfoComponent, { initialState, backdrop: 'static', ignoreBackdropClick: false });
+    this.modalRef.content.closeBtnName = 'Close';
   }
   /**
    * Sortby pipe in the component
@@ -307,7 +332,7 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
       }
     }
   }
- /**
+  /**
   * Check if the label is selected. Return index number in selected labels or -1 if the label is not found.
   * @param entityId entity from selected label
   * @param labelKey label key from selected label
@@ -345,6 +370,34 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
     this.occurrencesGraphCounter();
   }
   /**
+   * Opens clusters context menu
+   * @param cluster cluster
+   */
+  openContextualMenu(event, cluster: any) {
+    event.stopPropagation();
+    if (cluster.cluster_id === this.activeContextMenuId) {
+      this.activeContextMenuId = '';
+    } else {
+      this.activeContextMenuId = cluster.cluster_id;
+    }
+  }
+  /**
+   * Return an specific dot color depending on the node status
+   * @param status Status name
+   * @param cluster cluster
+   */
+  getStatusDotColor(status: string, cluster: any): {'background-color': string, border?: string} {
+    return this.toolsService.getStatusDotColor(status, cluster);
+  }
+  /**
+   * Return the status if the state is installed
+   * @param status Status name
+   * @param cluster cluster
+   */
+  getStatusOrState(status: string, cluster: any): string {
+    return this.toolsService.getStatusOrState(status, cluster);
+  }
+  /**
    * Refresh all resources data as clusters list, instances, and cluster count and it updates it considering the REFRESH_INTERVAL
    */
   private refreshData() {
@@ -376,16 +429,80 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
     });
   }
   /**
+   * Requests to cordon that prevents the scheduler to deploy user applications on the target cluster
+   * @param cluster cluster
+   */
+  cordon(cluster) {
+    const uncordonConfirm = confirm(this.translateService.instant('resources.cordonConfirm', { clusterName: cluster.name }));
+    if (uncordonConfirm) {
+      this.backend.cordon(this.organizationId, cluster.cluster_id)
+        .subscribe(() => {
+          this.notificationsService.add({
+            message:  this.translateService.instant('resources.cordonMessage', { clusterName: cluster.name })
+          });
+          this.refreshData();
+        }, error => {
+          this.notificationsService.add({
+            message: error.error.message,
+            type: 'warning'
+          });
+        });
+    }
+  }
+  /**
+   * Requests to uncordon that enables the scheduler to deploy user applications on the target cluster
+   * @param cluster cluster
+   */
+  uncordon(cluster) {
+    const uncordonConfirm = confirm(this.translateService.instant('resources.uncordonConfirm', { clusterName: cluster.name }));
+    if (uncordonConfirm) {
+      this.backend.uncordon(this.organizationId, cluster.cluster_id)
+        .subscribe(() => {
+          this.notificationsService.add({
+            message:  this.translateService.instant('resources.uncordonMessage', { clusterName: cluster.name })
+          });
+          this.refreshData();
+        }, error => {
+          this.notificationsService.add({
+            message: error.error.message,
+            type: 'warning'
+          });
+        });
+    }
+  }
+  /**
+   * Requests to drain that reschedules all applications deployed in a given cluster
+   * @param cluster cluster
+   */
+  drain(cluster) {
+    const uncordonConfirm = confirm(this.translateService.instant('resources.drainConfirm', { clusterName: cluster.name }));
+    if (uncordonConfirm) {
+      this.backend.drain(this.organizationId, cluster.cluster_id)
+        .subscribe(() => {
+          this.notificationsService.add({
+            message:  this.translateService.instant('resources.drainMessage', { clusterName: cluster.name })
+          });
+          this.refreshData();
+        }, error => {
+          this.notificationsService.add({
+            message: error.error.message,
+            type: 'warning'
+          });
+        });
+    }
+  }
+  /**
    * Updates the pieChartsData status
    */
   private updatePieChartStats() {
     let online = 0;
     if (this.clusters) {
       this.clusters.forEach(cluster => {
-        if (cluster.status_name === 'ONLINE') {
+        if (cluster.status_name === 'ONLINE' || 'ONLINE_CORDON') {
           online++;
         }
       });
+      this.countOnline = online;
       this.pieChartData = this.generateClusterChartData(online);
     }
   }

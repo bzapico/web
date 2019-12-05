@@ -471,7 +471,6 @@ export class MockupBackendService implements Backend {
       status: 200
     })).pipe(map(summary => JSON.parse(summary.body)));
   }
-
   /**
    * Simulates to request clusters list
    * @param organizationId Organization identifier
@@ -481,6 +480,36 @@ export class MockupBackendService implements Backend {
       body: JSON.stringify({clusters: mockClusterList}),
       status: 200
     })).pipe(map(clusters => JSON.parse(clusters.body)));
+  }
+  /**
+   * Simulates to cordon that prevents the scheduler to deploy user applications on the target cluster
+   * @param organizationId Organization identifier
+   * @param clusterId Cluster identifier
+   */
+  cordon(organizationId: string, clusterId: string) {
+    return of(new HttpResponse({
+      status: 200
+    }));
+  }
+  /**
+   * Simulates to uncordon that enables the scheduler to deploy user applications on the target cluster
+   * @param organizationId Organization identifier
+   * @param clusterId Cluster identifier
+   */
+  uncordon(organizationId: string, clusterId: string) {
+    return of(new HttpResponse({
+      status: 200
+    }));
+  }
+  /**
+   * Simulates to drain that reschedules all applications deployed in a given cluster
+   * @param organizationId Organization identifier
+   * @param clusterId Cluster identifier
+   */
+  drain(organizationId: string, clusterId: string) {
+    return of(new HttpResponse({
+      status: 200
+    }));
   }
 
   /********************

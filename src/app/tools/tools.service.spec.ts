@@ -11,29 +11,15 @@
  *  limitations under the License.
  */
 
-import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { TestBed } from '@angular/core/testing';
 
-@Injectable({
-  providedIn: 'root'
-})
-export class ApplicationsService {
+import { ToolsService } from './tools.service';
 
-  showManageConnections = new Subject();
+describe('ToolsService', () => {
+  beforeEach(() => TestBed.configureTestingModule({}));
 
-  constructor() {}
-
-  /**
-   * Returns the length of the services in registered list. Represents the number of available services
-   * @param app selected app
-   */
-  getServicesCount(app): number {
-    let temporalCount = 0;
-    app.groups.forEach(group => {
-      if (group.services) {
-        temporalCount = group.services.length + temporalCount;
-      }
-    });
-    return temporalCount;
-  }
-}
+  it('should be created', () => {
+    const service: ToolsService = TestBed.get(ToolsService);
+    expect(service).toBeTruthy();
+  });
+});

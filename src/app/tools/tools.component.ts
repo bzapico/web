@@ -47,19 +47,47 @@ export class ToolsComponent implements OnInit {
    * It sets the status colors for nodes
    */
   static readonly STATUS_COLORS = {
+    // Clusters
+    PROVISIONING: '#5800FF',
+    PROVISIONED: '#009DFF',
+    INSTALL_IN_PROGRESS: '#00FFF5',
+    ONLINE: '#00E6A0',
+    ONLINE_CORDON: '#EEEEEE',
+    OFFLINE_CORDON: '#EEEEEE',
+    OFFLINE: '#949494',
+    SCALING: '#E5FF79',
+    UNINSTALLING: '#FFEB6C',
+    DECOMISIONING: '#FF9898',
+    FAILURE: '#F7478A',
+    UNKNOWN: '#151515',
+    // Instances
+    QUEUED: '#5800FF',
+    PLANNING: '#009DFF',
+    SCHEDULED: '#00FFF5',
+    DEPLOYING: '#FFEB6C',
     RUNNING: '#00E6A0',
+    TERMINATING: '#FF9898',
+    INCOMPLETE: '#F7478A',
+    PLANNING_ERROR: '#F7478A',
+    DEPLOYMENT_ERROR: '#F7478A',
     ERROR: '#F7478A',
-    OTHER: '#FFEB6C',
-    OFFLINE: '#949494'
+    TERMINATED: '#949494',
+    OTHER: '#FFEB6C'
   };
   /**
-   * It sets the status colors for nodes
+   * It sets the status text colors for nodes
    */
   static readonly STATUS_TEXT_COLORS = {
-    RUNNING: '#FFFFFF',
-    ERROR: '#FFFFFF',
-    OTHER: '#444444',
-    OFFLINE: '#FFFFFF'
+    BLACK: '#444444',
+    WHITE: '#FFFFFF',
+  };
+  /**
+   * It sets the status border colors for nodes
+   */
+  static readonly STATUS_BORDER_COLORS = {
+    ONLINE_CORDON: '#00E6A0',
+    OFFLINE_CORDON: '#949494',
+    UNKNOWN: '#BFBFBF',
   };
   /**
    * It sets a height for clusters nodes in the graph
@@ -136,31 +164,41 @@ export class ToolsComponent implements OnInit {
    */
   getNodeColor(status: string): string {
     switch (status.toLowerCase()) {
-      case ClusterStatus.Running:
+      case ClusterStatus.Provisioning:
+      case AppStatus.Queued:
+        return ToolsComponent.STATUS_COLORS.PROVISIONING;
+      case ClusterStatus.Provisioned:
+      case AppStatus.Planning:
+        return ToolsComponent.STATUS_COLORS.PROVISIONED;
+      case ClusterStatus.InstallInProgress:
+      case AppStatus.Scheduled:
+        return ToolsComponent.STATUS_COLORS.INSTALL_IN_PROGRESS;
       case ClusterStatus.Online:
-      case ClusterStatus.OnlineCordon:
-      case ClusterStatus.Installed:
+      case AppStatus.Running:
         return ToolsComponent.STATUS_COLORS.RUNNING;
-      case ClusterStatus.Error:
+      case ClusterStatus.OnlineCordon:
+        return ToolsComponent.STATUS_COLORS.ONLINE_CORDON;
+      case ClusterStatus.OfflineCordon:
+        return ToolsComponent.STATUS_COLORS.OFFLINE_CORDON;
+      case ClusterStatus.Offline:
+      case AppStatus.Terminated:
+        return ToolsComponent.STATUS_COLORS.OFFLINE;
+      case ClusterStatus.Scaling:
+        return ToolsComponent.STATUS_COLORS.SCALING;
+      case ClusterStatus.Uninstalling:
+      case AppStatus.Deploying:
+        return ToolsComponent.STATUS_COLORS.UNINSTALLING;
+      case ClusterStatus.Decomisioning:
+      case AppStatus.Terminating:
+        return ToolsComponent.STATUS_COLORS.DECOMISIONING;
+      case ClusterStatus.Failure:
       case AppStatus.DeploymentError:
       case AppStatus.Incomplete:
       case AppStatus.PlanningError:
       case AppStatus.Error:
         return ToolsComponent.STATUS_COLORS.ERROR;
-      case ClusterStatus.Provisioning:
-      case ClusterStatus.Provisioned:
-      case ClusterStatus.Installing:
-      case ClusterStatus.Uninstalling:
-      case ClusterStatus.Decommissioning:
-      case AppStatus.Queued:
-      case AppStatus.Deploying:
-      case AppStatus.Scheduled:
-      case AppStatus.Planning:
-        return ToolsComponent.STATUS_COLORS.OTHER;
-      case ClusterStatus.Offline:
-      case ClusterStatus.OfflineCordon:
       case ClusterStatus.Unknown:
-        return ToolsComponent.STATUS_COLORS.OFFLINE;
+        return ToolsComponent.STATUS_COLORS.UNKNOWN;
       default:
         return ToolsComponent.STATUS_COLORS.OTHER;
     }
@@ -171,33 +209,63 @@ export class ToolsComponent implements OnInit {
    */
   getNodeTextColor(status: string): string {
     switch (status.toLowerCase()) {
-      case ClusterStatus.Running:
-      case ClusterStatus.Online:
+      case ClusterStatus.Scaling:
+      case ClusterStatus.Uninstalling:
       case ClusterStatus.OnlineCordon:
-      case ClusterStatus.Installed:
-        return ToolsComponent.STATUS_TEXT_COLORS.RUNNING;
-      case ClusterStatus.Error:
+      case ClusterStatus.InstallInProgress:
+      case ClusterStatus.OfflineCordon:
+      case AppStatus.Scheduled:
+      case AppStatus.Deploying:
+        return ToolsComponent.STATUS_TEXT_COLORS.BLACK;
+      case ClusterStatus.Provisioning:
+      case AppStatus.Queued:
+      case ClusterStatus.Provisioned:
+      case AppStatus.Planning:
+      case ClusterStatus.Online:
+      case AppStatus.Running:
+      case ClusterStatus.Offline:
+      case AppStatus.Terminated:
+      case ClusterStatus.Decomisioning:
+      case AppStatus.Terminating:
+      case ClusterStatus.Failure:
       case AppStatus.DeploymentError:
       case AppStatus.Incomplete:
       case AppStatus.PlanningError:
       case AppStatus.Error:
-        return ToolsComponent.STATUS_TEXT_COLORS.ERROR;
-      case ClusterStatus.Provisioning:
-      case ClusterStatus.Provisioned:
-      case ClusterStatus.Installing:
-      case ClusterStatus.Uninstalling:
-      case ClusterStatus.Decommissioning:
-      case AppStatus.Queued:
-      case AppStatus.Deploying:
-      case AppStatus.Scheduled:
-      case AppStatus.Planning:
-        return ToolsComponent.STATUS_TEXT_COLORS.OTHER;
-      case ClusterStatus.Offline:
+        case ClusterStatus.Unknown:
+        return ToolsComponent.STATUS_TEXT_COLORS.WHITE;
+      default:
+        return ToolsComponent.STATUS_TEXT_COLORS.WHITE;
+    }
+  }
+  /**
+   * Return an specific border color depending on the node status
+   * @param status Status name
+   */
+  getBorderColor(status: string): string {
+    switch (status.toLowerCase()) {
+      case ClusterStatus.OnlineCordon:
+        return ToolsComponent.STATUS_BORDER_COLORS.ONLINE_CORDON;
+      case ClusterStatus.OfflineCordon:
+        return ToolsComponent.STATUS_BORDER_COLORS.OFFLINE_CORDON;
+      case ClusterStatus.Unknown:
+        return ToolsComponent.STATUS_BORDER_COLORS.UNKNOWN;
+      default:
+        return '';
+    }
+  }
+  /**
+   * Return an the border size needed to paint online-cordon, offline-cordon and unknown status
+   * @param status Status name
+   */
+  getBorderSize(status: string): number {
+    switch (status.toLowerCase()) {
+      case ClusterStatus.OnlineCordon:
       case ClusterStatus.OfflineCordon:
       case ClusterStatus.Unknown:
-        return ToolsComponent.STATUS_TEXT_COLORS.OFFLINE;
+        return 2;
       default:
-        return ToolsComponent.STATUS_TEXT_COLORS.OTHER;
+        return 0;
     }
   }
   /**
@@ -305,7 +373,8 @@ export class ToolsComponent implements OnInit {
   }
   generateClusterNode(cluster: Cluster, tooltip: string): GraphNode & StyledNode {
     const clusterName = cluster.name.toLowerCase();
-    const status = cluster.state ? (cluster.state === ClusterStatus.Installed ? cluster.status_name : cluster.state) : cluster.status_name;
+    const status = cluster.state ?
+    (cluster.state === ClusterStatus.Installed.toUpperCase() ? cluster.status_name : cluster.state) : cluster.status_name;
     return {
       ...{
         id: cluster.cluster_id,
@@ -318,9 +387,9 @@ export class ToolsComponent implements OnInit {
           this.getNodeColor(status),
           this.getNodeTextColor(status),
           (this.searchTermGraph && clusterName.includes(this.searchTermGraph)) ?
-                            ToolsComponent.FOUND_NODES_BORDER_COLOR : '',
+                            ToolsComponent.FOUND_NODES_BORDER_COLOR : this.getBorderColor(status),
           (this.searchTermGraph && clusterName.includes(this.searchTermGraph)) ?
-                            ToolsComponent.FOUND_NODES_BORDER_SIZE : 0,
+                            ToolsComponent.FOUND_NODES_BORDER_SIZE : this.getBorderSize(status),
           ToolsComponent.CUSTOM_HEIGHT_CLUSTERS)
     };
   }

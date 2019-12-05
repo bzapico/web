@@ -1,0 +1,51 @@
+/*
+ *  Copyright 2019 Nalej
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
+
+@import '../../scss/variables/colors';
+@import '../../scss/variables/mixins';
+.modal-card {
+	min-width: 498px;
+	background-color: $dark-grey;
+	.modal-header {
+		background-color: $dark-grey;
+		.nalej-form-title {
+			color: $white;
+		}
+		.close {
+			color: $white;
+			padding: 0.5rem 1rem;
+		}
+	}
+}
+.modal-body {
+	background-color: $dark-grey;
+}
+.cluster-status-list-box {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	.status-class-title {
+		font-size: 12px;
+	}
+}
+.cluster-status-list {
+	margin: 0 auto;
+	padding-top: 1em;
+	color: $white;
+	font-size: 15px;
+	font-weight: 500;
+	.cluster-status-item {
+		padding: 6px;
+		text-transform: lowercase;
+	}
+}

@@ -184,8 +184,11 @@
 		"addGroup": "Add group",
 		"contextMenu": {
 			"configuration": "Configuration",
+			"cordon": "Cordon",
 			"deleteGroup": "Delete group",
-			"moreInfo": "More Info"
+			"drain": "Drain",
+			"moreInfo": "More Info",
+			"uncordon": "Uncordon"
 		},
 		"default": "default",
 		"deleteGroup": "Delete group?",
@@ -419,7 +422,11 @@
 		"cluster": "CLUSTER ",
 		"clusterInstances": "CLUSTERS-INSTANCES",
 		"clusters": "CLUSTERS",
-		"clustersRunning": "clusters running",
+		"clustersOnline": "clusters online",
+		"cordonConfirm": "Cordon {{clusterName}}?",
+		"cordonMessage": "{{clusterName}} has been cordoned",
+		"drainConfirm": "Drain {{clusterName}}?",
+		"drainMessage": "{{clusterName}} has been drained",
 		"edit": "Edit",
 		"instances": "INSTANCES",
 		"list": "LIST",
@@ -429,8 +436,11 @@
 		"noNodes": "There are not registered nodes in this cluster",
 		"nodes": "NODES",
 		"saveChanges": "The cluster {{cluster}} has been edited",
+		"statusInfo": "STATUS INFO",
 		"summary": "SUMMARY",
-		"title": "RESOURCES"
+		"title": "RESOURCES",
+		"uncordonConfirm": "Uncordon {{clusterName}}?",
+		"uncordonMessage": "{{clusterName}} has been uncordoned"
 	},
 	"searcher": {
 		"placeholder": "Search..."
@@ -457,7 +467,6 @@
 		"sortedBy": "Sorted by {{value}}"
 	},
 	"status": {
-		"error": "error",
 		"offline": "offline",
 		"online": "online",
 		"process": "process",
