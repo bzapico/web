@@ -16,10 +16,15 @@ import { ClusterStatus } from '../definitions/enums/cluster-status.enum';
 import { AppStatus } from '../definitions/enums/app-status.enum';
 import { GraphData } from '../definitions/models/graph-data';
 import { NodeType } from '../definitions/enums/node-type.enum';
-import * as shape from 'd3-shape';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import { Backend } from '../definitions/interfaces/backend';
 import { ApplicationInstance } from '../definitions/models/application-instance';
+import { Cluster } from '../definitions/interfaces/cluster';
+import { StyledNode } from '../definitions/interfaces/styled-node';
+import { GraphNode } from '../definitions/interfaces/graph-node';
+import { ColorScheme } from '../definitions/interfaces/color-scheme';
+import * as shape from 'd3-shape';
+import { GraphLink } from '../definitions/interfaces/graph-link';
 
 @Component({
   selector: 'tools',
@@ -42,19 +47,47 @@ export class ToolsComponent implements OnInit {
    * It sets the status colors for nodes
    */
   static readonly STATUS_COLORS = {
+    // Clusters
+    PROVISIONING: '#5800FF',
+    PROVISIONED: '#009DFF',
+    INSTALL_IN_PROGRESS: '#00FFF5',
+    ONLINE: '#00E6A0',
+    ONLINE_CORDON: '#EEEEEE',
+    OFFLINE_CORDON: '#EEEEEE',
+    OFFLINE: '#949494',
+    SCALING: '#E5FF79',
+    UNINSTALLING: '#FFEB6C',
+    DECOMISIONING: '#FF9898',
+    FAILURE: '#F7478A',
+    UNKNOWN: '#151515',
+    // Instances
+    QUEUED: '#5800FF',
+    PLANNING: '#009DFF',
+    SCHEDULED: '#00FFF5',
+    DEPLOYING: '#FFEB6C',
     RUNNING: '#00E6A0',
+    TERMINATING: '#FF9898',
+    INCOMPLETE: '#F7478A',
+    PLANNING_ERROR: '#F7478A',
+    DEPLOYMENT_ERROR: '#F7478A',
     ERROR: '#F7478A',
-    OTHER: '#FFEB6C',
-    OFFLINE: '#949494'
+    TERMINATED: '#949494',
+    OTHER: '#FFEB6C'
   };
   /**
-   * It sets the status colors for nodes
+   * It sets the status text colors for nodes
    */
   static readonly STATUS_TEXT_COLORS = {
-    RUNNING: '#FFFFFF',
-    ERROR: '#FFFFFF',
-    OTHER: '#444444',
-    OFFLINE: '#FFFFFF'
+    BLACK: '#444444',
+    WHITE: '#FFFFFF',
+  };
+  /**
+   * It sets the status border colors for nodes
+   */
+  static readonly STATUS_BORDER_COLORS = {
+    ONLINE_CORDON: '#00E6A0',
+    OFFLINE_CORDON: '#949494',
+    UNKNOWN: '#BFBFBF',
   };
   /**
    * It sets a height for clusters nodes in the graph
@@ -64,26 +97,6 @@ export class ToolsComponent implements OnInit {
    * It sets a height for instances nodes in the graph
    */
   static readonly CUSTOM_HEIGHT_INSTANCES = 32;
-
-  constructor() {
-    this.graphData = new GraphData([], []);
-    this.graphReset = false;
-    this.instances = [];
-    this.orientation = 'TB';
-    this.curve = shape.curveBasis;
-    this.autoZoom = true;
-    this.autoCenter = true;
-    this.enableZoom = true;
-    this.draggingEnabled = false;
-    this.organizationId = null;
-    this.gradient = true;
-    this.doughnut = true;
-    this.colorScheme = {
-      domain: ['#5800FF', '#828282']
-    };
-    this.searchTermGraph = '';
-    this.areIncludedInstancesWithError = true;
-  }
   /**
    * Backend reference
    */
@@ -91,10 +104,10 @@ export class ToolsComponent implements OnInit {
   /**
    * Graph options
    */
-  graphData: GraphData<any[]>;
+  graphData: GraphData;
   graphReset: boolean;
   orientation: string;
-  curve: any;
+  curve = shape.curveBasis;
   autoZoom: boolean;
   autoCenter: boolean;
   enableZoom: boolean;
@@ -113,11 +126,30 @@ export class ToolsComponent implements OnInit {
    */
   gradient: boolean;
   doughnut: boolean;
-  colorScheme: any;
+  colorScheme: ColorScheme;
   /**
    * Search process
    */
   searchTermGraph: string;
+
+  constructor() {
+    this.graphData = new GraphData([], []);
+    this.graphReset = false;
+    this.instances = [];
+    this.orientation = 'TB';
+    this.autoZoom = true;
+    this.autoCenter = true;
+    this.enableZoom = true;
+    this.draggingEnabled = false;
+    this.organizationId = null;
+    this.gradient = true;
+    this.doughnut = true;
+    this.colorScheme = {
+      domain: ['#5800FF', '#828282']
+    };
+    this.searchTermGraph = '';
+    this.areIncludedInstancesWithError = true;
+  }
 
   ngOnInit() {
     // Get User data from localStorage
@@ -132,31 +164,41 @@ export class ToolsComponent implements OnInit {
    */
   getNodeColor(status: string): string {
     switch (status.toLowerCase()) {
-      case ClusterStatus.Running:
+      case ClusterStatus.Provisioning:
+      case AppStatus.Queued:
+        return ToolsComponent.STATUS_COLORS.PROVISIONING;
+      case ClusterStatus.Provisioned:
+      case AppStatus.Planning:
+        return ToolsComponent.STATUS_COLORS.PROVISIONED;
+      case ClusterStatus.InstallInProgress:
+      case AppStatus.Scheduled:
+        return ToolsComponent.STATUS_COLORS.INSTALL_IN_PROGRESS;
       case ClusterStatus.Online:
-      case ClusterStatus.OnlineCordon:
-      case ClusterStatus.Installed:
+      case AppStatus.Running:
         return ToolsComponent.STATUS_COLORS.RUNNING;
-      case ClusterStatus.Error:
+      case ClusterStatus.OnlineCordon:
+        return ToolsComponent.STATUS_COLORS.ONLINE_CORDON;
+      case ClusterStatus.OfflineCordon:
+        return ToolsComponent.STATUS_COLORS.OFFLINE_CORDON;
+      case ClusterStatus.Offline:
+      case AppStatus.Terminated:
+        return ToolsComponent.STATUS_COLORS.OFFLINE;
+      case ClusterStatus.Scaling:
+        return ToolsComponent.STATUS_COLORS.SCALING;
+      case ClusterStatus.Uninstalling:
+      case AppStatus.Deploying:
+        return ToolsComponent.STATUS_COLORS.UNINSTALLING;
+      case ClusterStatus.Decomisioning:
+      case AppStatus.Terminating:
+        return ToolsComponent.STATUS_COLORS.DECOMISIONING;
+      case ClusterStatus.Failure:
       case AppStatus.DeploymentError:
       case AppStatus.Incomplete:
       case AppStatus.PlanningError:
       case AppStatus.Error:
         return ToolsComponent.STATUS_COLORS.ERROR;
-      case ClusterStatus.Provisioning:
-      case ClusterStatus.Provisioned:
-      case ClusterStatus.Installing:
-      case ClusterStatus.Uninstalling:
-      case ClusterStatus.Decommissioning:
-      case AppStatus.Queued:
-      case AppStatus.Deploying:
-      case AppStatus.Scheduled:
-      case AppStatus.Planning:
-        return ToolsComponent.STATUS_COLORS.OTHER;
-      case ClusterStatus.Offline:
-      case ClusterStatus.OfflineCordon:
       case ClusterStatus.Unknown:
-        return ToolsComponent.STATUS_COLORS.OFFLINE;
+        return ToolsComponent.STATUS_COLORS.UNKNOWN;
       default:
         return ToolsComponent.STATUS_COLORS.OTHER;
     }
@@ -167,33 +209,63 @@ export class ToolsComponent implements OnInit {
    */
   getNodeTextColor(status: string): string {
     switch (status.toLowerCase()) {
-      case ClusterStatus.Running:
-      case ClusterStatus.Online:
+      case ClusterStatus.Scaling:
+      case ClusterStatus.Uninstalling:
       case ClusterStatus.OnlineCordon:
-      case ClusterStatus.Installed:
-        return ToolsComponent.STATUS_TEXT_COLORS.RUNNING;
-      case ClusterStatus.Error:
+      case ClusterStatus.InstallInProgress:
+      case ClusterStatus.OfflineCordon:
+      case AppStatus.Scheduled:
+      case AppStatus.Deploying:
+        return ToolsComponent.STATUS_TEXT_COLORS.BLACK;
+      case ClusterStatus.Provisioning:
+      case AppStatus.Queued:
+      case ClusterStatus.Provisioned:
+      case AppStatus.Planning:
+      case ClusterStatus.Online:
+      case AppStatus.Running:
+      case ClusterStatus.Offline:
+      case AppStatus.Terminated:
+      case ClusterStatus.Decomisioning:
+      case AppStatus.Terminating:
+      case ClusterStatus.Failure:
       case AppStatus.DeploymentError:
       case AppStatus.Incomplete:
       case AppStatus.PlanningError:
       case AppStatus.Error:
-        return ToolsComponent.STATUS_TEXT_COLORS.ERROR;
-      case ClusterStatus.Provisioning:
-      case ClusterStatus.Provisioned:
-      case ClusterStatus.Installing:
-      case ClusterStatus.Uninstalling:
-      case ClusterStatus.Decommissioning:
-      case AppStatus.Queued:
-      case AppStatus.Deploying:
-      case AppStatus.Scheduled:
-      case AppStatus.Planning:
-        return ToolsComponent.STATUS_TEXT_COLORS.OTHER;
-      case ClusterStatus.Offline:
+        case ClusterStatus.Unknown:
+        return ToolsComponent.STATUS_TEXT_COLORS.WHITE;
+      default:
+        return ToolsComponent.STATUS_TEXT_COLORS.WHITE;
+    }
+  }
+  /**
+   * Return an specific border color depending on the node status
+   * @param status Status name
+   */
+  getBorderColor(status: string): string {
+    switch (status.toLowerCase()) {
+      case ClusterStatus.OnlineCordon:
+        return ToolsComponent.STATUS_BORDER_COLORS.ONLINE_CORDON;
+      case ClusterStatus.OfflineCordon:
+        return ToolsComponent.STATUS_BORDER_COLORS.OFFLINE_CORDON;
+      case ClusterStatus.Unknown:
+        return ToolsComponent.STATUS_BORDER_COLORS.UNKNOWN;
+      default:
+        return '';
+    }
+  }
+  /**
+   * Return an the border size needed to paint online-cordon, offline-cordon and unknown status
+   * @param status Status name
+   */
+  getBorderSize(status: string): number {
+    switch (status.toLowerCase()) {
+      case ClusterStatus.OnlineCordon:
       case ClusterStatus.OfflineCordon:
       case ClusterStatus.Unknown:
-        return ToolsComponent.STATUS_TEXT_COLORS.OFFLINE;
+        return 2;
       default:
-        return ToolsComponent.STATUS_TEXT_COLORS.OTHER;
+        return 0;
     }
   }
   /**
@@ -219,7 +291,7 @@ export class ToolsComponent implements OnInit {
    * It returns filtered app instances avoiding duplicated instances by cluster ID
    * @param clusterId Identifier for the cluster
    */
-  getAppsInCluster(clusterId: string): any[] {
+  getAppsInCluster(clusterId: string): ApplicationInstance[] {
     const appsInCluster = {};
     if (this.instances) {
       for (let indexInstance = 0, instancesLength = this.instances.length; indexInstance < instancesLength; indexInstance++) {
@@ -246,10 +318,10 @@ export class ToolsComponent implements OnInit {
    * Return if the marker is required
    * @param link Link object
    */
-  getMarker(link: { [x: string]: any; is_between_apps: any; }, origin: string) {
-    const index = this.graphData.nodes.map((x: { id: any; }) => x.id).indexOf(link[origin]);
+  getMarker(link: GraphLink, origin: string): string {
+    const index = this.graphData.nodes.map((x: { id: string; }) => x.id).indexOf(link[origin]);
     if (index !== -1) {
-      if (link.is_between_apps) {
+      if (link.isBetweenApps) {
         return 'url(#arrow)';
       } else {
         return '';
@@ -265,7 +337,7 @@ export class ToolsComponent implements OnInit {
    * @param customBorderWidth Border width for the node
    * @param customHeight Height for the node
    */
-  getStyledNode(color: string, textColor: string, customBorderColor: string, customBorderWidth: number, customHeight: number): {} {
+  getStyledNode(color: string, textColor: string, customBorderColor: string, customBorderWidth: number, customHeight: number): StyledNode {
     return {
       color: color,
       text: textColor,
@@ -283,27 +355,26 @@ export class ToolsComponent implements OnInit {
     this.graphData.nodes.forEach(node => {
       if (node.type === NodeType.Instances) {
         connections.forEach(connection_type => {
-          node[connection_type].forEach((connection: { source_instance_id: any; target_instance_id: any; }) => {
+          node[connection_type].forEach((connection: { source_instance_id: string; target_instance_id: string; }) => {
             const source = connection.source_instance_id;
             const target = connection.target_instance_id;
             const isSourceNode = this.graphData.nodes.filter(item => item.id === source).length > 0;
             const isTargetNode = this.graphData.nodes.filter(item => item.id === target).length > 0;
             if (isSourceNode && isTargetNode) {
-              linksBetweenApps[ source + '_' + target] = {
-                source: source,
-                target: target,
-                is_between_apps: true
-              };
+              linksBetweenApps[ source + '_' + target] = {source: source, target: target, notMarker: false, isBetweenApps: true};
             }
           });
         });
       }
     });
-    this.graphData.links.push(...Object.values(linksBetweenApps));
+    Object.values(linksBetweenApps).map((item: GraphLink) => {
+      this.graphData.links.push({source: item.source, target: item.target, notMarker: false, isBetweenApps: item.isBetweenApps});
+    });
   }
-  generateClusterNode(cluster: any, tooltip: string): any {
+  generateClusterNode(cluster: Cluster, tooltip: string): GraphNode & StyledNode {
     const clusterName = cluster.name.toLowerCase();
-    const status = cluster.state ? (cluster.state === ClusterStatus.Installed ? cluster.status_name : cluster.state) : cluster.status_name;
+    const status = cluster.state ?
+    (cluster.state === ClusterStatus.Installed.toUpperCase() ? cluster.status_name : cluster.state) : cluster.status_name;
     return {
       ...{
         id: cluster.cluster_id,
@@ -316,13 +387,13 @@ export class ToolsComponent implements OnInit {
           this.getNodeColor(status),
           this.getNodeTextColor(status),
           (this.searchTermGraph && clusterName.includes(this.searchTermGraph)) ?
-                            ToolsComponent.FOUND_NODES_BORDER_COLOR : '',
+                            ToolsComponent.FOUND_NODES_BORDER_COLOR : this.getBorderColor(status),
           (this.searchTermGraph && clusterName.includes(this.searchTermGraph)) ?
-                            ToolsComponent.FOUND_NODES_BORDER_SIZE : 0,
+                            ToolsComponent.FOUND_NODES_BORDER_SIZE : this.getBorderSize(status),
           ToolsComponent.CUSTOM_HEIGHT_CLUSTERS)
     };
   }
-  generateInstanceNode(instance: ApplicationInstance, cluster: any, tooltip: string): any {
+  generateInstanceNode(instance: ApplicationInstance, cluster: Cluster, tooltip: string): GraphNode & StyledNode {
     const instanceName = instance.name.toLowerCase();
     return {
     ...{

@@ -33,9 +33,9 @@
                 [gradient]="gradient"
                 [explodeSlices]="false">
               </ngx-charts-pie-chart>
-              <div class="donut-number">{{clustersCount}}/{{clusters.length}}</div>
+              <div class="donut-number">{{countOnline}}/{{clusters.length}}</div>
             </div>
-            <p class="clusters-run">{{clustersCount}} {{'resources.clustersRunning' | translate}}</p>
+            <p class="clusters-run">{{clustersCount}} {{'resources.clustersOnline' | translate}}</p>
             <p *ngIf="clustersCount === 0" class="circle-name no-deployed">{{'resources.noClusters' | translate}}</p>
             <p class="circle-name circle-name-mt">{{'resources.clusters' | translate}}</p>
           </div>
@@ -123,15 +123,15 @@
                     </span>
                   </div>
                   <div 
-                    (click)="setOrder('clusters','instances')"
-                    [ngClass]="getCategoryCSSClass('instances')"
+                    (click)="setOrder('clusters','status')"
+                    [ngClass]="getCategoryCSSClass('status')"
                     scope="col" 
                     class="col-6 text-center label-th">
-                    <span tooltip="{{'tables.tableInstances' | translate}}" placement="bottom">{{'tables.tableInstances' | translate}}</span>
-                    <span *ngIf="sortedBy === 'instances' && !reverse" class="expand-chevron">
+                    <span tooltip="{{'tables.tableStatus' | translate}}" placement="bottom">{{'tables.tableStatus' | translate}}</span>
+                    <span *ngIf="sortedBy === 'status' && !reverse" class="expand-chevron">
                       <i class="material-icons">expand_more</i>
                     </span>
-                    <span *ngIf="sortedBy === 'instances' && reverse" class="expand-chevron">
+                    <span *ngIf="sortedBy === 'status' && reverse" class="expand-chevron">
                       <i class="material-icons">expand_less</i>
                     </span>
                   </div>
@@ -172,7 +172,11 @@
                       {{cluster.name}}
                     </a>
                   </div>
-                  <div class="col-6 text-center nalej-td">{{cluster.instances}}
+                  <div 
+                    tooltip="{{getStatusOrState(cluster.status, cluster) | lowercase}}" 
+                    placement="bottom"
+                    class="col-6 nalej-td col-center-lowercase"> 
+                    <div class="cluster-status-dot" [ngStyle]="getStatusDotColor(cluster.status, cluster)"></div>
                   </div>
                 </div>
                 <div class="row">
@@ -220,8 +224,35 @@
                 </div>
               </div>
               <div class="col-2 text-center nalej-td-flex">
-                <button (click)="openEditCluster(cluster)" class="action-btn-blue">
-                  <i class="material-icons i-white">edit</i>
+                <button
+                  (click)="openContextualMenu($event, cluster)"
+                  [ngClass]= 
+                    "{
+                      'action-btn-grey': cluster.cluster_id !== activeContextMenuId,
+                      'action-btn-grey-selected': cluster.cluster_id === activeContextMenuId
+                    }"
+                  class="action-btn-grey position-relative">
+                  <i class="material-icons i-black">more_vert</i>
+                  <!-- Temporal workaround, in the future we should use the contextual menu component -->
+                  <!-- https://nalej.atlassian.net/browse/NP-2005 -->
+                  <div *ngIf="cluster.cluster_id === activeContextMenuId"
+                    class="contextual-menu-wrapper">
+                    <div [routerLink]="['cluster', cluster.cluster_id]">
+                      {{'devices.contextMenu.moreInfo' | translate}}
+                    </div>
+                    <div (click)="openEditCluster(cluster)">
+                      {{'resources.edit' | translate}}
+                    </div>
+                    <div (click)="cordon(cluster)">
+                      {{'devices.contextMenu.cordon' | translate}}
+                    </div>
+                    <div (click)="uncordon(cluster)">
+                      {{'devices.contextMenu.uncordon' | translate}}
+                    </div>
+                    <div (click)="drain(cluster)">
+                      {{'devices.contextMenu.drain' | translate}}
+                    </div>
+                  </div>
                 </button>
               </div>
             </div>
@@ -355,21 +386,12 @@
                 </ng-template>
               </ngx-graph>
             </div>
+            <div (click)="openStatusCluster()" class="explore-btn">
+              <i class="material-icons explore-icon">explore</i>
+            </div>
             <div *ngIf="!graphDataLoaded" class="loader"></div>
             <div *ngIf="graphDataLoaded && clusters.length === 0" class="no-elements">
               {{'resources.NoAvailableClusters' | translate }}
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col">
-            <div *ngIf="!graphReset" class="text-right">
-              <div class="graph-subtext">
-                {{'graph.autoRefresh' | translate}}
-                <a (click)="resetGraphZoom()" class="blue cursor-pointer">
-                  {{'sortingMessage.reset' | translate}}
-                </a>
-              </div>
             </div>
           </div>
         </div>

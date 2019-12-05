@@ -11,6 +11,7 @@
  *  limitations under the License.
  */
 
+// tslint:disable:no-any
 import { Component, OnInit } from '@angular/core';
 import { Backend } from '../../definitions/interfaces/backend';
 import { BsModalRef } from 'ngx-bootstrap';
@@ -78,7 +79,7 @@ export class AgentJoinTokenInfoComponent implements OnInit {
       .subscribe((agent: any[]) => {
         this.agent = agent || [];
         this.loadedData = true;
-    }, errorResponse => {
+    }, () => {
       this.loadedData = true;
     });
     }

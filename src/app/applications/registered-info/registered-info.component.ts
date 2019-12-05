@@ -11,6 +11,7 @@
  *  limitations under the License.
  */
 
+// tslint:disable:no-any
 import { Component, OnInit } from '@angular/core';
 import { Backend } from '../../definitions/interfaces/backend';
 import { BackendService } from '../../services/backend.service';
@@ -20,7 +21,6 @@ import { LocalStorageKeys } from '../../definitions/const/local-storage-keys';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap';
 import { DeployInstanceComponent } from '../deploy-instance/deploy-instance.component';
 import { ActivatedRoute, Router } from '@angular/router';
-import * as shape from 'd3-shape';
 import { ApplicationDescriptor } from '../../definitions/models/application-descriptor';
 import { RuleInfoComponent } from '../rule-info/rule-info.component';
 import { ServiceInfoComponent } from './service-info/service-info.component';
@@ -29,6 +29,8 @@ import { TranslateService } from '@ngx-translate/core';
 import { AddLabelComponent } from '../../add-label/add-label.component';
 import { RegisteredInfoService } from './registered-info.service';
 import { KeyValue } from '../../definitions/interfaces/key-value';
+import { SecurityRule } from '../../definitions/interfaces/security-rule';
+import { GraphData } from '../../definitions/models/graph-data';
 
 @Component({
   selector: 'app-registered-info',
@@ -113,10 +115,8 @@ export class RegisteredInfoComponent implements OnInit {
    */
   graphDataLoaded: boolean;
   graphReset: boolean;
-  graphData: any;
+  graphData: GraphData;
   orientation: string;
-  curve: any;
-  view: any[];
   autoZoom: boolean;
   autoCenter: boolean;
   enableZoom: boolean;
@@ -148,7 +148,7 @@ export class RegisteredInfoComponent implements OnInit {
     this.isOpenFromRegistered = true;
     this.requestError = '';
     this.showGraph = true;
-    this.registeredData = new ApplicationDescriptor();
+    this.registeredData = new ApplicationDescriptor('', '');
     // SortBy
     this.sortedBy = '';
     this.sortedByRules = '';
@@ -161,15 +161,11 @@ export class RegisteredInfoComponent implements OnInit {
     this.filterFieldRules = false;
      // Graph initialization
     this.orientation = 'TB';
-    this.curve = shape.curveBasis;
     this.autoZoom = true;
     this.autoCenter = true;
     this.enableZoom = true;
     this.graphDataLoaded = false;
-    this.graphData = {
-      nodes: [],
-      links: []
-    };
+    this.graphData = new GraphData([], []);
     this.graphReset = false;
     this.whiteColor = '#FFFFFF';
   }
@@ -356,11 +352,11 @@ export class RegisteredInfoComponent implements OnInit {
   * Open rules info modal window
   *  @param rule rule object
   */
-  openRulesInfo(rule) {
+  openRulesInfo(rule: SecurityRule) {
     const initialState = {
       organizationId: this.organizationId,
       ruleId: rule.rule_id,
-      access: rule.access,
+      access: rule.access_name,
       appDescriptorId: rule.app_descriptor_id,
       authServices: rule.auth_services,
       authServiceGroupName: rule.auth_service_group_name,

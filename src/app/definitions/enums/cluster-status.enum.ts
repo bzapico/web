@@ -12,19 +12,17 @@
  */
 
 export enum ClusterStatus {
-    // STATUS_NAME
-    Online = 'online',
-    Offline = 'offline',
-    OnlineCordon = 'online_cordon',
-    OfflineCordon = 'offline_cordon',
-    Error = 'error',
-    // STATE
-    Running = 'running',
-    Unknown = 'unknown',
     Provisioning = 'provisioning',
     Provisioned = 'provisioned',
-    Installing = 'installing',
-    Installed = 'installed',
+    InstallInProgress = 'install_in_progress',
+    Online = 'online',
+    OnlineCordon = 'online_cordon',
+    OfflineCordon = 'offline_cordon',
+    Offline = 'offline',
+    Scaling = 'scaling',
     Uninstalling = 'uninstalling',
-    Decommissioning = 'decommissioning'
+    Decomisioning = 'decomisioning',
+    Failure = 'failure',
+    Unknown = 'unknown',
+    Installed = 'installed'
 }

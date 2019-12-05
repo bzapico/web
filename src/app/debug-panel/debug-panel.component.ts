@@ -77,7 +77,7 @@ export class DebugPanelComponent implements OnInit {
    * List of components available to mock up
    */
   components: ComponentMockOption[] = [];
-  notificationsMock: any;
+  notificationsMock: boolean;
   url: string;
 
   constructor(

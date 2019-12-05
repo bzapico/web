@@ -18,10 +18,12 @@ import { BackendService } from '../../services/backend.service';
 import { MockupBackendService } from '../../services/mockup-backend.service';
 import { NotificationsService } from '../../services/notifications.service';
 import { LocalStorageKeys } from '../../definitions/const/local-storage-keys';
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { InventoryType } from '../../definitions/enums/inventory-type.enum';
 import { TranslateService } from '@ngx-translate/core';
-import { ArchitectureType } from '../../definitions/enums/architecture-type.enum';
+import { Controller } from '../../definitions/models/controller';
+import { Item } from '../../definitions/models/item';
+import { AgentType } from '../../definitions/enums/agent-type.enum';
 
 @Component({
   selector: 'app-install-agent',
@@ -49,14 +51,14 @@ export class InstallAgentComponent implements OnInit {
   targetHost: FormControl;
   architecture: FormControl;
   type: FormControl;
-  controllersList: any[];
+  controllersList: Controller[];
   openFromEc: boolean;
   ecCount: number;
   edgeControllerFromEC: string;
   /**
    * Models that hold all inventory list
    */
-  inventory: any[];
+  inventory: Item[];
   /**
    * Models that removes the possibility for the user to close the modal by clicking outside the content card
    */
@@ -70,11 +72,9 @@ export class InstallAgentComponent implements OnInit {
   tab = 1;
   options = [];
   selectConfig = {};
-  agentTypeOptions: any[];
+  agentTypeOptions: {name: AgentType, code: number}[];
   agentTypeSelectConfig = {};
-  architectureOptions: any[];
   architectureSelectConfig = {};
-  edgeControllerOptions: any[];
   edgeControllerSelectConfig = {};
 
   constructor(
@@ -102,17 +102,20 @@ export class InstallAgentComponent implements OnInit {
       )
     };
     this.agentTypeOptions = [{
-      name: ArchitectureType.LinAmd64,
+      name: AgentType.LINUX_AMD64,
       code: 0
     }, {
-      name: ArchitectureType.LinArm32,
+      name: AgentType.LINUX_ARM32,
       code: 1
     }, {
-      name: ArchitectureType.LinArm64,
+      name: AgentType.LINUX_ARM64,
       code: 2
     }, {
-      name: ArchitectureType.WinAmd64,
+      name: AgentType.WINDOWS_AMD64,
       code: 3
+    }, {
+      name: AgentType.DARWIN_AMD64,
+      code: 4
     }];
     //  edgeControllerId
     this.edgeControllerId = null;
@@ -186,17 +189,23 @@ export class InstallAgentComponent implements OnInit {
         return;
     }
     const agent = {
+      organization_id: this.organizationId,
       agent_type: f.type.value.code,
       edge_controller_id: this.edgeControllerId,
-      username: f.sshUsername.value,
-      password: f.sshPassword.value,
-      target_host: f.target.value
+      credentials: {
+        username: f.sshUsername.value,
+        credentials: {password: f.sshPassword.value},
+        is_sudoer: false
+      },
+      target_host: f.target.value,
+      ca_cert: ''
     };
-    this.backend.installAgent(this.organizationId, this.edgeControllerId, agent)
+    this.backend.installAgent(agent)
       .subscribe(() => {
         this.loading = false;
         this.notificationsService.add({
-          message: this.translateService.instant('infrastructure.install-agent.message', {targetHost: agent.target_host }),
+          message:
+            this.translateService.instant('infrastructure.install-agent.message', {targetHost: agent.target_host }),
         });
         this.bsModalRef.hide();
       }, error => {

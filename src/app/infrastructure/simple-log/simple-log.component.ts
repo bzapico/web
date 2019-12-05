@@ -18,6 +18,7 @@ import { BackendService } from '../../services/backend.service';
 import { MockupBackendService } from '../../services/mockup-backend.service';
 import { LocalStorageKeys } from '../../definitions/const/local-storage-keys';
 import { TranslateService } from '@ngx-translate/core';
+import { AgentOpSummary } from '../../definitions/interfaces/agent-op-summary';
 
 @Component({
   selector: 'app-simple-log',
@@ -37,7 +38,7 @@ export class SimpleLogComponent  {
    * Model that hold organization ID and last operations summary
    */
   organizationId: string;
-  lastOpSummary: any;
+  lastOpSummary: AgentOpSummary;
   /**
    * Models that removes the possibility for the user to close the modal by clicking outside the content card
    */
@@ -60,9 +61,9 @@ export class SimpleLogComponent  {
       this.backend = this.backendService;
     }
     this.lastOpSummary = {
-      timestamp: 0,
+      timestamp: '0',
       info: this.translateService.instant('infrastructure.asset.noInfo'),
-      status: '-'
+      status: null
     };
   }
 
@@ -73,13 +74,13 @@ export class SimpleLogComponent  {
    */
   parseTimestampToDate() {
     if (this.lastOpSummary && this.lastOpSummary.timestamp) {
-      const date = new Date(this.lastOpSummary.timestamp * 1000);
+      const date = new Date(parseInt(this.lastOpSummary.timestamp, 10) * 1000);
       const year = date.getFullYear();
       const month = date.getMonth();
       const day = date.getDate();
-      let hour: any = date.getHours();
-      let min: any = date.getMinutes();
-      let sec: any = date.getSeconds();
+      let hour: number | string = date.getHours();
+      let min: number | string = date.getMinutes();
+      let sec: number | string = date.getSeconds();
       if (hour < 10) {
         hour = '0' + hour;
       }

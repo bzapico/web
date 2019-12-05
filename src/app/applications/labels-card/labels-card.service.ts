@@ -25,9 +25,9 @@ export class LabelsCardService {
    * @param label label entity
    * @param selectedLabels selected labels array
    */
-  onLabelClick(label: {}, selectedLabels: {}[]) {
-    label['selected'] = !label['selected'];
-    if (label['selected']) {
+  onLabelClick(label: {key: string, value: string, selected?: boolean}, selectedLabels: {}[]) {
+    label.selected = !label.selected;
+    if (label.selected) {
       selectedLabels.push(label);
     } else {
       selectedLabels.pop();

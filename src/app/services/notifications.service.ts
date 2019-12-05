@@ -18,32 +18,31 @@ import { Notification } from '../definitions/interfaces/notification';
   providedIn: 'root',
 })
 export class NotificationsService {
-    /**
-	 * It sets the timeout in actions like undeploying or deleting
-	 */
+  /**
+   * It sets the timeout in actions like undeploying or deleting
+   */
   private static readonly TIMEOUT_ACTION = 3000;
-    /**
+  /**
 	 * It sets the timeout for errors
 	 */
   private static readonly TIMEOUT_ERROR = 5000;
-    /**
+  /**
 	 * Notifications
 	 */
-  private _notifications: any[];
+  private _notifications: Notification[];
 
   constructor() {
     this._notifications = [];
   }
-    /**
-	 * Get notifications list
-	 */
+  /**
+   * Get notifications list
+   */
   get notifications() {
     return this._notifications;
   }
-
-    /**
-	 * add()
-	 */
+  /**
+   * add()
+   */
   add(notificationInstance: Notification) {
     if (notificationInstance.type) {
       if (notificationInstance.type === 'warning' && !notificationInstance.timeout) {
@@ -56,16 +55,16 @@ export class NotificationsService {
     }
     this._notifications.push(notificationInstance);
   }
-    /**
-	 * onClosed() will show close button to the right of the alert for dismiss option
-	 */
-  onClosed(dismissedNotification) {
+  /**
+   * onClosed() will show close button to the right of the alert for dismiss option
+   */
+  onClosed(dismissedNotification: Notification) {
     const index = this._notifications.map(x => x.id).indexOf(dismissedNotification.id);
     if (index !== -1) {
       this._notifications.splice(index, 1);
     }
   }
-    /**
+  /**
 	 * Generates UUID v4
 	 * https://stackoverflow.com/questions/105034/create-guid-uuid-in-javascript
 	 */

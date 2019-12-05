@@ -10,10 +10,9 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
-import { Controller } from './controller';
-import { Asset } from './asset';
-import { Device } from './device';
+import { Device } from '../models/device';
+import { Asset } from '../models/asset';
+import { Controller } from '../models/controller';
 
 /**
  * Interface that defines the Inventory info needed for creating the Inventory object instance
@@ -23,7 +22,3 @@ export interface Inventory {
     assets: Asset[];
     controllers: Controller[];
 }
-
-
-
-

@@ -20,6 +20,7 @@ import { BsModalRef } from 'ngx-bootstrap';
 import { LocalStorageKeys } from '../../definitions/const/local-storage-keys';
 import { UploadFile, UploadEvent, FileSystemFileEntry } from 'ngx-file-drop';
 import { TranslateService } from '@ngx-translate/core';
+import { KeyValue } from '../../definitions/interfaces/key-value';
 
 @Component({
   selector: 'app-register-application',
@@ -42,11 +43,11 @@ export class RegisterApplicationComponent {
   /**
    * File array that would contain the required file to register an application
    */
-  public files: UploadFile[] = [];
+  files: UploadFile[] = [];
   /**
    * File that holds the descriptor to register
    */
-  jsonFile: any;
+  jsonFile: KeyValue;
   /**
    * Placeholder for the file name/extension
    */
@@ -144,7 +145,7 @@ export class RegisterApplicationComponent {
    */
   fileSelectorChange(e) {
     const fileReader = new FileReader();
-    fileReader.onload = (event) => {
+    fileReader.onload = () => {
       try {
         this.jsonFile = JSON.parse(fileReader.result as string);
         this.readyToUpload = true;

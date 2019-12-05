@@ -10,8 +10,6 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
-import { Inventory } from '../../definitions/interfaces/inventory';
 import { OperatingSystemClass } from '../../definitions/enums/operating-system-class.enum';
 import { OpStatus } from '../../definitions/enums/op-status.enum';
 
@@ -27,7 +25,7 @@ export const mockInventorySummary = {
 /**
  * Mocked inventory list
  */
-export const mockInventoryList: Inventory = {
+export const mockInventoryList = {
     devices: [
         {
             organization_id: 'a6ccf95e-2ed7-41c1-90fb-f561eb81ea42',
@@ -68,7 +66,7 @@ export const mockInventoryList: Inventory = {
                 lab39: 'label22',
                 lab40: 'label2298754',
                 lab41: 'label22',
-                lab42: 'label22',
+                lab42: 'label22'
             },
             enabled: true,
             device_status_name : 'ONLINE'
@@ -214,49 +212,48 @@ export const mockInventoryList: Inventory = {
             last_alive_timestamp: '654654654'
         },
     ],
-    controllers:
-        [
-            {
-                organization_id: '8888-2ed7-41c1-90fb-f561eb81ea42',
-                edge_controller_id: '7777-0fef-41b0-bb7c-adf0055274cd',
-                show: true,
-                created: 1563298074,
-                name: 'edge25',
-                labels: {
-                    lab1: 'label1',
-                    lab2: 'label2'
-                },
-                assets:  [
-                    {
-                        eic_net_ip: '10.253.10.78',
-                        status: 'OFFLINE',
-                        asset_id: '4320957c-5377-4a8b-98e4-b6f988646be7',
-                        edge_controller_id: '7777-0fef-41b0-bb7c-adf0055274cd'
-                    }
-                ],
-                location: 'OR, USA',
-                status_name: 'ONLINE'
+    controllers: [
+        {
+            organization_id: '8888-2ed7-41c1-90fb-f561eb81ea42',
+            edge_controller_id: '7777-0fef-41b0-bb7c-adf0055274cd',
+            show: true,
+            created: 1563298074,
+            name: 'edge25',
+            labels: {
+                lab1: 'label1',
+                lab2: 'label2'
             },
-            {
-                organization_id: '999-2ed7-41c1-90fb-f561eb81ea42',
-                edge_controller_id: '1010101-0fef-41b0-bb7c-adf0055274cd',
-                show: true,
-                created: 1550746676,
-                name: 'edge65',
-                labels: {
-                    'lab334': 'label344',
-                    'lab244': 'label244'
-                },
-                assets:  [
-                    {
-                        eic_net_ip: '98.105.55.18',
-                        status: 'ONLINE',
-                        asset_id: 'e94ac398-5555-4937-b7f7-9fa0ff8b1eab1',
-                        edge_controller_id: '1010101-0fef-41b0-bb7c-adf0055274cd'
-                    }
-                ],
-                location: 'OR, USA',
-                status_name: 'ONLINE'
-            }
-        ]
+            assets:  [
+                {
+                    eic_net_ip: '10.253.10.78',
+                    status: 'OFFLINE',
+                    asset_id: '4320957c-5377-4a8b-98e4-b6f988646be7',
+                    edge_controller_id: '7777-0fef-41b0-bb7c-adf0055274cd'
+                }
+            ],
+            location: 'OR, USA',
+            status_name: 'ONLINE'
+        },
+        {
+            organization_id: '999-2ed7-41c1-90fb-f561eb81ea42',
+            edge_controller_id: '1010101-0fef-41b0-bb7c-adf0055274cd',
+            show: true,
+            created: 1550746676,
+            name: 'edge65',
+            labels: {
+                'lab334': 'label344',
+                'lab244': 'label244'
+            },
+            assets:  [
+                {
+                    eic_net_ip: '98.105.55.18',
+                    status: 'ONLINE',
+                    asset_id: 'e94ac398-5555-4937-b7f7-9fa0ff8b1eab1',
+                    edge_controller_id: '1010101-0fef-41b0-bb7c-adf0055274cd'
+                }
+            ],
+            location: 'OR, USA',
+            status_name: 'ONLINE'
+        }
+    ]
 };
