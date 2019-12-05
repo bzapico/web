@@ -63,7 +63,8 @@ export const AvailableComponents = {
   agentJoinTokenInfo: 'Agent Join Token Info',
   addConnections: 'Add connections',
   advancedFilterOptions: 'Advanced filter options',
-  manageConnections: 'Manage Connections'
+  manageConnections: 'Manage Connections',
+  logs: 'Logs'
 };
 
 @Component({
@@ -220,6 +221,10 @@ export class DebugPanelComponent implements OnInit {
       name: AvailableComponents.manageConnections,
       mock: localStorage.getItem(LocalStorageKeys.manageConnectionsMock) === 'false' ? 'false' : 'true'
     });
+    this.components.push({
+      name: AvailableComponents.logs,
+      mock: localStorage.getItem(LocalStorageKeys.logsMock) === 'false' ? 'false' : 'true'
+    });
   }
   /**
    * Modifies all components mocks values
@@ -264,6 +269,7 @@ export class DebugPanelComponent implements OnInit {
     localStorage.setItem(LocalStorageKeys.addConnectionsMock, newValue);
     localStorage.setItem(LocalStorageKeys.advancedFilterOptions, newValue);
     localStorage.setItem(LocalStorageKeys.manageConnectionsMock, newValue);
+    localStorage.setItem(LocalStorageKeys.logsMock, newValue);
   }
   /**
    * Persist the modifications on the local storage
@@ -373,6 +379,9 @@ export class DebugPanelComponent implements OnInit {
       break;
       case AvailableComponents.manageConnections:
         localStorage.setItem(LocalStorageKeys.manageConnectionsMock, componentMockOption.mock);
+      break;
+      case AvailableComponents.logs:
+        localStorage.setItem(LocalStorageKeys.logsMock, componentMockOption.mock);
       break;
       default:
         console.log('Selected option not registered as available component');

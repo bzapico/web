@@ -89,6 +89,7 @@ import { GraphComponent } from './applications/graph/graph.component';
 import { ServicesCardComponent } from './applications/services-card/services-card.component';
 import { ActionButtonsCardComponent } from './applications/action-buttons-card/action-buttons-card.component';
 import { ToolsComponent } from './tools/tools.component';
+import { LogsComponent } from './logs/logs.component';
 import { ClusterStatusInfoComponent } from './resources/cluster-status-info/cluster-status-info.component';
 
 export function createTranslateLoader(http: HttpClient) {
@@ -151,6 +152,7 @@ export function createTranslateLoader(http: HttpClient) {
     ServicesCardComponent,
     ActionButtonsCardComponent,
     ToolsComponent,
+    LogsComponent,
     ClusterStatusInfoComponent
   ],
   entryComponents: [

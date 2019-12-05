@@ -47,6 +47,7 @@ a {
 	color: $super-dark-grey;
 	font-weight: 700;
 	margin-bottom: 0;
+	text-transform: uppercase;
 	@include for-desktop-only  {
 		font-size: 1.5rem;
 	}

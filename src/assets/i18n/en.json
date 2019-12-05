@@ -453,7 +453,8 @@
 		"logout": "Logout",
 		"nalej": "NALEJ",
 		"organization": "Organization",
-		"resources": "Resources"
+		"resources": "Resources",
+		"logs": "Logs"
 	},
 	"sortingMessage": {
 		"andFiltered": "and filtered by term \"{{ value }}\".",
