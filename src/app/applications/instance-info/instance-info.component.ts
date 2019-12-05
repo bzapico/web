@@ -19,7 +19,6 @@ import { NotificationsService } from '../../services/notifications.service';
 import { MockupBackendService } from '../../services/mockup-backend.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LocalStorageKeys } from '../../definitions/const/local-storage-keys';
-import * as shape from 'd3-shape';
 import { ServiceInstancesInfoComponent } from './service-instances-info/service-instances-info.component';
 import { RuleInfoComponent } from '../rule-info/rule-info.component';
 import { TranslateService } from '@ngx-translate/core';
@@ -28,6 +27,12 @@ import { ServicesStatus } from '../../definitions/enums/services-status.enum';
 import { InstanceInfoService } from './instance-info.service';
 import { ApplicationDescriptor } from '../../definitions/models/application-descriptor';
 import { ServiceGroupInstance } from '../../definitions/interfaces/service-group-instance';
+import { ApplicationInstance } from '../../definitions/models/application-instance';
+import { Subscription, timer } from 'rxjs';
+import { GraphData } from '../../definitions/models/graph-data';
+import { ColorScheme } from '../../definitions/interfaces/color-scheme';
+import { KeyValue } from '../../definitions/interfaces/key-value';
+import { ServiceInstance } from '../../definitions/interfaces/service-instance';
 
 @Component({
   selector: 'app-instance-info',
@@ -35,6 +40,10 @@ import { ServiceGroupInstance } from '../../definitions/interfaces/service-group
   styleUrls: ['./instance-info.component.scss']
 })
 export class InstanceInfoComponent implements OnInit, OnDestroy {
+  /**
+   * Refresh ratio reference
+   */
+  private static REFRESH_RATIO = 5000;
   /**
    * Backend reference
    */
@@ -54,7 +63,7 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
   /**
    * Model that hold instance
    */
-  instance: any;
+  instance: ApplicationInstance;
   enabled: boolean;
   openFromInstance: boolean;
   /**
@@ -68,7 +77,7 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
   /**
    * List of labels
    */
-  labels: any[];
+  labels: KeyValue;
   isSelectableLabel: boolean;
   /**
    * Open form registered reference
@@ -77,11 +86,7 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
   /**
    * Interval reference
    */
-  refreshIntervalRef: any;
-  /**
-   * Refresh ratio reference
-   */
-  REFRESH_RATIO = 5000;
+  refreshIntervalRef: Subscription;
   /**
    * Hold request error message or undefined
    */
@@ -121,14 +126,12 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
    */
   graphReset: boolean;
   graphDataLoaded: boolean;
-  graphData: any;
+  graphData: GraphData;
   orientation: string;
-  curve: any;
   autoZoom: boolean;
   autoCenter: boolean;
   enableZoom: boolean;
-  colorScheme: any;
-  view: any[];
+  colorScheme: ColorScheme;
   width: number;
   height: number;
   draggingEnabled: boolean;
@@ -157,11 +160,7 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
     this.isSelectableLabel = false;
     this.isOpenFromRegistered = false;
     this.groups = [];
-    this.instance = {
-        groups: [],
-        environment_variables: {},
-        configuration_options: {}
-      };
+    this.instance = new ApplicationInstance('', '', '');
     this.registered = [];
     this.requestError = '';
     this.showGraph = true;
@@ -179,7 +178,6 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
      // Graph initialization
     this.graphReset = false;
     this.orientation = 'TB';
-    this.curve = shape.curveBasis;
     this.autoZoom = true;
     this.autoCenter = true;
     this.enableZoom = true;
@@ -188,10 +186,7 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
       domain: ['#6C86F7']
     };
     this.graphDataLoaded = false;
-    this.graphData = {
-      nodes: [],
-      links: []
-    };
+    this.graphData = new GraphData([], []);
     this.nextColorIndex = 0;
     this.loadedData = false;
   }
@@ -205,17 +200,17 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
     if (jwtData !== null) {
       this.organizationId = JSON.parse(jwtData).organizationID;
         if (this.organizationId !== null) {
-          this.updateInfo();
+          this.refreshIntervalRef
+            = timer(0, InstanceInfoComponent.REFRESH_RATIO)
+              .subscribe(() => {
+                this.updateInfo();
+              });
         }
     }
-    this.refreshIntervalRef = setInterval(() => {
-      this.updateInfo();
-    }, this.REFRESH_RATIO); // Refresh each 5 seconds
   }
 
   ngOnDestroy() {
-    clearInterval(this.refreshIntervalRef);
-    this.refreshIntervalRef = null;
+    this.refreshIntervalRef.unsubscribe();
   }
   /**
    * Sortby pipe in the component
@@ -283,7 +278,7 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
    * Returns the descriptor
    * @param instance Instance app
    */
-  getDescriptorFromInstance(instance): any {
+  getDescriptorFromInstance(instance: ApplicationInstance): ApplicationDescriptor[] {
     return this.registered.filter(x => x.app_descriptor_id === instance.app_descriptor_id);
   }
   /**
@@ -441,14 +436,14 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
    * Return the list of group services
    * @param groupId Group identifier
    */
-  getGroupServices(groupId: string) {
+  getGroupServices(groupId: string): ServiceInstance[] {
     const index = this.groups
-    .map(x => x.service_group_instance_id)
-    .indexOf(groupId);
-    if (index !== -1) {
-      return this.groups[index].service_instances;
-    } else {
+      .map(x => x.service_group_instance_id)
+      .indexOf(groupId);
+    if (index === -1) {
       return [];
+    } else {
+      return this.groups[index].service_instances;
     }
   }
   /**
@@ -535,7 +530,9 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
         !instanceOutdated.groups ||
         !instanceUpdated ||
         !instanceUpdated.groups ||
-        (instanceOutdated.groups.length !== instanceUpdated.groups.length)) {
+        (instanceOutdated.groups.length !== instanceUpdated.groups.length) ||
+        instanceOutdated.inbound_connections !== instanceUpdated.inbound_connections ||
+        instanceOutdated.outbound_connections !== instanceUpdated.outbound_connections) {
       return true;
     }
     // Creating arrays of services to compare

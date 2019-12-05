@@ -49,6 +49,7 @@ export const LocalStorageKeys = {
     addConnectionsMock: 'add_connections_mock',
     advancedFilterOptions: 'advanced_filter_options',
     manageConnectionsMock: 'manage_connections_mock',
+    logsMock: 'logs_mock',
 
     // Data
     jwt: 'jwt',
@@ -57,4 +58,3 @@ export const LocalStorageKeys = {
     refreshToken: 'refresh_token',
     url: 'url'
 };
-

@@ -146,6 +146,7 @@
 }
 .graph {
 	height: 97%;
+	position: relative;
 }
 .advanced-filter-box {
 	width: 100%;
@@ -255,4 +256,15 @@
 }
 .nalej-table-box.no-p-col.no-m-row div:first-child {
 	border: none;
+}
+.explore-btn {
+	position: absolute;
+	right: 29px;
+	bottom: 29px;
+	width: 33px;
+	height: 33px;
+	cursor: pointer;
+	.explore-icon {
+		font-size: 32px;
+	}
 }

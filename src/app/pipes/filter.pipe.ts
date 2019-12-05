@@ -11,6 +11,7 @@
  *  limitations under the License.
  */
 
+// tslint:disable:no-any
 import { Pipe, PipeTransform, Injectable } from '@angular/core';
 
 @Pipe({

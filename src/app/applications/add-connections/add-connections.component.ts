@@ -11,6 +11,7 @@
  *  limitations under the License.
  */
 
+// tslint:disable:no-any
 import { Component, OnInit } from '@angular/core';
 import { Backend } from '../../definitions/interfaces/backend';
 import { BsModalRef } from 'ngx-bootstrap';
@@ -235,7 +236,7 @@ export class AddConnectionsComponent implements OnInit {
       // Request to add a connection
       this.backend
         .addConnection(this.organizationId, connectionRequest)
-        .subscribe(result => {
+        .subscribe(() => {
           this.notificationsService.add({
             message: this.translateService.instant('apps.manageConnections.createdConnection')
           });

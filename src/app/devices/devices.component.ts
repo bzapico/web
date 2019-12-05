@@ -11,6 +11,7 @@
  *  limitations under the License.
  */
 
+// tslint:disable:no-any
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { Backend } from '../definitions/interfaces/backend';
@@ -18,17 +19,16 @@ import { BackendService } from '../services/backend.service';
 import { MockupBackendService } from '../services/mockup-backend.service';
 import { NotificationsService } from '../services/notifications.service';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
-import { mockDevicesChart } from '../services/utils/mocks';
 import { AddDevicesGroupComponent } from './add-devices-group/add-devices-group.component';
 import { GroupConfigurationComponent } from './group-configuration/group-configuration.component';
 import { AddLabelComponent } from '../add-label/add-label.component';
 import { DeviceGroupInfoComponent } from './device-group-info/device-group-info.component';
 import { TranslateService } from '@ngx-translate/core';
 import { InventoryStatus } from '../definitions/enums/inventory-status.enum';
-/**
- * Refresh ratio reference
- */
-const REFRESH_RATIO = 20000; // 20 seconds
+import { Subscription, timer } from 'rxjs';
+import { Device } from '../definitions/models/device';
+import { Group } from '../definitions/interfaces/group';
+import { KeyValue } from '../definitions/interfaces/key-value';
 
 @Component({
   selector: 'app-devices',
@@ -36,6 +36,10 @@ const REFRESH_RATIO = 20000; // 20 seconds
   styleUrls: ['./devices.component.scss']
 })
 export class DevicesComponent implements OnInit, OnDestroy  {
+  /**
+   * Refresh ratio reference
+   */
+  private static REFRESH_RATIO = 20000;
   /**
    * Backend reference
    */
@@ -51,11 +55,11 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   /**
    * List of available devices
    */
-  devices: any[];
+  devices: Device[][];
   /**
    * List of available devices groups
    */
-  groups: any[];
+  groups: Group[];
   /**
    *  Models that hold group data
    */
@@ -67,12 +71,11 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   /**
    * List of active displayed group
    */
-  displayedGroups: any[];
-  devicesOnTimeline: any[];
+  devicesOnTimeline: Device[];
   /**
    * List of labels
    */
-  labels: any[];
+  labels: KeyValue;
   /**
    * Count of total devices for summary card
    */
@@ -80,12 +83,11 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   /**
    * Interval reference
    */
-  refreshIntervalRef: any;
+  refreshIntervalRef: Subscription;
   /**
    * Charts references
    */
-  mockDevicesChart: any;
-  devicesChart: any;
+  devicesChart: any[];
   /**
    * Reference for the service that allows the add group component
    */
@@ -157,9 +159,8 @@ export class DevicesComponent implements OnInit, OnDestroy  {
       this.backend = this.backendService;
     }
     // Default initialization
-    this.devices = [];
+    this.devices = [[]];
     this.groups = [];
-    this.displayedGroups = [];
     this.labels = [];
     this.loadedData = false;
     this.activeContextMenuGroupId = '';
@@ -180,10 +181,6 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     this.searchTerm = '';
     // Filter field
     this.filterField = false;
-    /**
-     * Charts reference init
-     */
-    Object.assign(this, { mockDevicesChart });
   }
 
   ngOnInit() {
@@ -191,23 +188,21 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     const jwtData = localStorage.getItem(LocalStorageKeys.jwtData) || null;
     if (jwtData !== null) {
       this.organizationId = JSON.parse(jwtData).organizationID;
-      this.updateGroupsList(this.organizationId);
-        this.refreshIntervalRef = setInterval(() => {
-          this.updateGroupsList(this.organizationId);
-        },
-        REFRESH_RATIO); // Refresh each 60 seconds
+      this.refreshIntervalRef = timer(0, DevicesComponent.REFRESH_RATIO).subscribe(() => {
+        this.updateGroupsList(this.organizationId);
+      });
     }
   }
 
   ngOnDestroy() {
-    clearInterval(this.refreshIntervalRef);
+    this.refreshIntervalRef.unsubscribe();
   }
   /**
    * Translates timestamps to the wish date
    * @param timestamp is an integer that represents the number of seconds elapsed
    */
-  parseTimestampToDate(timestamp: any) {
-    return new Date(Number.parseInt(timestamp, 10) * 1000);
+  parseTimestampToDate(timestamp: number) {
+    return new Date(timestamp * 1000);
   }
   /**
    * Method that counts the number of devices
@@ -279,7 +274,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
    * Checkbox switcher statement to select one of enabled device to be executed.
    * @param device device data to update
    */
-  enableSwitcher(device: { enabled: boolean; device_group_id: any; device_id: any; }) {
+  enableSwitcher(device: { enabled: boolean; device_group_id: string; device_id: string; }) {
     device.enabled = !device.enabled;
    // backend call
     this.backend.updateDevice(this.organizationId, {
@@ -287,7 +282,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
       deviceGroupId: device.device_group_id,
       deviceId: device.device_id,
       enabled: device.enabled
-    }).subscribe( updateDeviceResponse => {
+    }).subscribe( () => {
       let notificationText = this.translateService.instant('devices.enabled');
       if (!device.enabled) {
       notificationText = this.translateService.instant('devices.disabled');
@@ -332,7 +327,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
    * Opens the modal view that holds add label component
    * @param device Device object
    */
-  addLabel(device: { device_id: any; }) {
+  addLabel(device: { device_id: string; }) {
     const initialState = {
       organizationId: this.organizationId,
       entityType: this.translateService.instant('label.entityTypeDevice'),
@@ -341,13 +336,12 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     };
     this.modalRef = this.modalService.show(AddLabelComponent, {initialState, backdrop: 'static', ignoreBackdropClick: false });
     this.modalRef.content.closeBtnName = 'Close';
-    this.modalService.onHide.subscribe((reason: string) => { });
   }
   /**
    * Deletes a selected label
    * @param entity selected label entity
    */
-  deleteLabel(entity: { device_id: any; device_group_id: any; }) {
+  deleteLabel(entity: { device_id: string; device_group_id: string; }) {
     const deleteConfirm = confirm(this.translateService.instant('label.deleteLabels'));
     if (deleteConfirm) {
       const index = this.selectedLabels.map(x => x.entityId).indexOf(entity.device_id);
@@ -358,7 +352,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
           device_id: entity.device_id,
           device_group_id: entity.device_group_id,
           labels: this.selectedLabels[index].labels
-        }).subscribe(deleteLabelResponse => {
+        }).subscribe(() => {
           this.selectedLabels.splice(index, 1);
           this.updateDevicesList(this.organizationId);
         });
@@ -370,7 +364,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
    * @param labelKey label key from selected label
    * @param labelValue label value from selected label
    */
-  onLabelClick(entityId: any, labelKey: string | number, labelValue: any) {
+  onLabelClick(entityId: string, labelKey: string | number, labelValue: string) {
     const selectedIndex = this.indexOfLabelSelected(entityId, labelKey, labelValue);
     const newLabel = {
       entityId: entityId,
@@ -398,7 +392,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   * @param labelKey label key from selected label
   * @param labelValue label value from selected label
   */
-  indexOfLabelSelected(entityId: any, labelKey: string | number, labelValue: any) {
+  indexOfLabelSelected(entityId: string, labelKey: string | number, labelValue: string) {
     for (let index = 0; index < this.selectedLabels.length; index++) {
       if (this.selectedLabels[index].entityId === entityId &&
           this.selectedLabels[index].labels[labelKey] === labelValue
@@ -412,7 +406,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
    * Check if any label is selected to change the state of add/delete buttons and to change class when a new label is about to be selected
    * @param entityId entity from selected label
    */
-  isAnyLabelSelected(entityId: any) {
+  isAnyLabelSelected(entityId: string) {
     if (this.selectedLabels.length > 0) {
       const indexSelected = this.selectedLabels.map(x => x.entityId).indexOf(entityId);
       if (indexSelected >= 0) {
@@ -439,12 +433,12 @@ export class DevicesComponent implements OnInit, OnDestroy  {
    * Requests to unlink the selected device
    * @param device device item
    */
-  unlinkDevice(device: any) {
+  unlinkDevice(device: Device) {
     const unlinkConfirm =
     confirm(this.translateService.instant('devices.unlinkDeviceConfirm', {deviceId : device.device_id }));
     if (unlinkConfirm) {
       this.backend.removeDevice(this.organizationId, device.device_group_id, device.device_id)
-      .subscribe(unlinkResponse => {
+      .subscribe(() => {
         this.notificationsService.add({
           message: this.translateService.instant('devices.unlinkDeviceMessage',  {deviceId : device.device_id })
         });
@@ -513,18 +507,18 @@ export class DevicesComponent implements OnInit, OnDestroy  {
     if (organizationId !== null) {
       // Requests an updated devices group list
       this.backend.getGroups(this.organizationId)
-      .subscribe(response => {
-        if (response.groups) {
-          response.groups.forEach(group => {
-            group.isFirstOpen = true;
+        .subscribe(response => {
+          if (response.groups) {
+            response.groups.forEach(group => {
+              group.isFirstOpen = true;
+            });
+          }
+          this.groups = response.groups || [];
+          this.updateDevicesList(this.organizationId);
+        }, errorResponse => {
+            this.loadedData = true;
+            this.requestError = errorResponse.error.message;
           });
-        }
-        this.groups = response.groups || [];
-        this.updateDevicesList(this.organizationId);
-      }, errorResponse => {
-          this.loadedData = true;
-          this.requestError = errorResponse.error.message;
-        });
     }
   }
   /**
@@ -579,8 +573,8 @@ export class DevicesComponent implements OnInit, OnDestroy  {
       });
     }
     const now = new Date(Date.now());
-    let minutes: any = now.getMinutes();
-    let seconds: any = now.getSeconds();
+    let minutes: string | number = now.getMinutes();
+    let seconds: string | number = now.getSeconds();
     if (minutes < 10) {
       minutes = '0' + now.getMinutes();
     }
@@ -606,7 +600,7 @@ export class DevicesComponent implements OnInit, OnDestroy  {
   * Open device group info modal window
   *  @param group group object
   */
-  private openDeviceGroupInfo(group: any) {
+  private openDeviceGroupInfo(group: Group) {
     const initialState = {
       organizationId: this.organizationId,
       name: group.name,

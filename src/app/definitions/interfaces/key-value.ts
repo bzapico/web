@@ -11,6 +11,7 @@
  *  limitations under the License.
  */
 
+// tslint:disable:no-any
 export interface KeyValue {
     [key: string]: any;
 }

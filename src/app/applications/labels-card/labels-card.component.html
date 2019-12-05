@@ -17,9 +17,9 @@
   </div>
   <!-- Show selectable label -->
   <div *ngIf="isSelectableLabel">
-    <div *ngIf="labelsData && labelsData['labels']">
+    <div *ngIf="labelsData && labelsData.labels">
       <button 
-        *ngFor="let label of labelsData['labels']"
+        *ngFor="let label of labelsData.labels"
         [ngClass]=
           "{
             'label-content-selected': label.selected,

@@ -58,7 +58,7 @@ export class AddUserComponent implements OnInit {
   selectedOptions = [];
   options = [];
   selectConfig = {};
-  roleOptions: any[];
+  roleOptions: RoleOptions[];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -109,7 +109,7 @@ export class AddUserComponent implements OnInit {
   samePasswords(group: FormGroup) {
     const password = group.controls.password.value;
     const passwordConfirm = group.controls.passwordConfirm.value;
-    return password === passwordConfirm ? true : false;
+    return password === passwordConfirm;
   }
   /**
    * Convenience getter for easy access to form fields
@@ -138,7 +138,7 @@ export class AddUserComponent implements OnInit {
     }
     this.loading = true;
     this.backend.addUser(this.organizationId, user)
-      .subscribe(response => {
+      .subscribe(() => {
         this.loading = false;
         this.notificationsService.add({
           message: this.translateService.instant('organization.userCreated', {user: user.email}),

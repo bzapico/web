@@ -1,4 +1,4 @@
-<!-- 
+<!--
   Copyright 2019 Nalej
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
@@ -13,9 +13,9 @@
 
 <nav class="sidebar">
   <div class="nalej-nav">
-    <div 
+    <div
       (click)="openDebugPanel()"
-      class="nav-company-name" 
+      class="nav-company-name"
       style="visibility: hidden;">
       {{'sidebar.nalej' | translate}}
     </div>
@@ -33,8 +33,8 @@
     </p>
     <div *ngIf="role === 'NalejAdmin'" class="nav-item">
       <a
-        routerLinkActive="active" 
-        routerLink="/organization" 
+        routerLinkActive="active"
+        routerLink="/organization"
         class="nav-link">
         <i class="material-icons">group_work</i>
         {{'sidebar.organization' | translate}}
@@ -42,8 +42,8 @@
     </div>
     <div *ngIf="role === 'NalejAdmin'" class="nav-item">
       <a
-        routerLinkActive="active" 
-        routerLink="/infrastructure" 
+        routerLinkActive="active"
+        routerLink="/infrastructure"
         class="nav-link">
         <i class="material-icons">dns</i>
         {{'sidebar.infrastructure' | translate}}
@@ -51,17 +51,17 @@
     </div>
     <div *ngIf="role === 'NalejAdmin' || role === 'Operator'" class="nav-item">
       <a
-        routerLinkActive="active" 
-        routerLink="/resources" 
+        routerLinkActive="active"
+        routerLink="/resources"
         class="nav-link">
         <i class="material-icons">layers</i>
         {{'sidebar.resources' | translate}}
       </a>
     </div>
     <div *ngIf="role === 'NalejAdmin' || role === 'Developer'" class="nav-item">
-      <a         
-        routerLinkActive="active" 
-        routerLink="/devices" 
+      <a
+        routerLinkActive="active"
+        routerLink="/devices"
         class="nav-link">
         <i class="material-icons">devices_other</i>
         {{'sidebar.devices' | translate}}
@@ -70,10 +70,19 @@
     <div *ngIf="role === 'NalejAdmin' || role === 'Developer'" class="nav-item">
       <a
         routerLinkActive="active"
-        routerLink="/applications" 
+        routerLink="/applications"
         class="nav-link">
         <i class="material-icons">apps</i>
         {{'sidebar.applications' | translate}}
+      </a>
+    </div>
+    <div *ngIf="role === 'NalejAdmin' || role === 'Developer'" class="nav-item">
+      <a
+        routerLinkActive="active"
+        routerLink="/logs"
+        class="nav-link">
+        <i class="material-icons">bug_report</i>
+        {{'sidebar.logs' | translate}}
       </a>
     </div>
   </div>

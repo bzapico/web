@@ -14,22 +14,23 @@
 import { Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { AccessType } from '../../definitions/enums/access-type.enum';
+import { GraphData } from '../../definitions/models/graph-data';
+import { SecurityRule } from '../../definitions/interfaces/security-rule';
+import { GraphNode } from '../../definitions/interfaces/graph-node';
+import { StyledNode } from '../../definitions/interfaces/styled-node';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RegisteredInfoService {
 
-  private _graphData: any;
+  private _graphData: GraphData;
   private _isGeneratedPublicRule: boolean;
-  private _publicRule: any;
+  private _publicRule: SecurityRule;
 
   constructor(
       private translateService: TranslateService) {
-    this._graphData = {
-      nodes: [],
-      links: []
-    };
+    this._graphData = new GraphData([], []);
     this._isGeneratedPublicRule = false;
     this._publicRule = null;
   }
@@ -42,27 +43,24 @@ export class RegisteredInfoService {
     this._isGeneratedPublicRule = value;
   }
 
-  get publicRule(): any {
+  get publicRule(): SecurityRule {
     return this._publicRule;
   }
 
-  set publicRule(value: any) {
+  set publicRule(value: SecurityRule) {
     this._publicRule = value;
   }
 
-  get graphData(): any {
+  get graphData(): GraphData {
     return this._graphData;
   }
 
-  set graphData(value: any) {
+  set graphData(value: GraphData) {
     this._graphData = value;
   }
 
   toGraphData(registered) {
-    this._graphData = {
-      nodes: [],
-      links: []
-    };
+    this._graphData.reset([], []);
     this._isGeneratedPublicRule = false;
     this._publicRule = null;
     if (registered && registered.groups) {
@@ -128,11 +126,10 @@ export class RegisteredInfoService {
             }
             sourcesIndex.forEach(indexSource => {
               targetsIndex.forEach(indexTarget => {
-                const link = {
-                  source: this._graphData.nodes[indexSource].id,
-                  target: this._graphData.nodes[indexTarget].id,
-                };
-                this._graphData.links.push(link);
+                this._graphData.links.push({source: this._graphData.nodes[indexSource].id,
+                    target: this._graphData.nodes[indexTarget].id,
+                    notMarker: false,
+                    isBetweenApps: false});
               });
             });
           });
@@ -156,16 +153,16 @@ export class RegisteredInfoService {
         group: group.service_group_id
       };
       this._graphData.nodes.push(nodeService);
-      this._graphData.links.push({
-        source: group.service_group_id,
-        target: group.service_group_id + '-s-' + service.service_id
-      });
+      this._graphData.links.push({source: group.service_group_id,
+        target: group.service_group_id + '-s-' + service.service_id,
+        notMarker: false,
+        isBetweenApps: false});
     });
   }
 
   private setInboundConnections(registered) {
     if (registered.inbound_net_interfaces && registered.inbound_net_interfaces.length > 0 ) {
-      const inbounds = {};
+      const inbounds: GraphNode[] = [];
       registered.inbound_net_interfaces.forEach(inbound => {
         inbounds[inbound.name + '_i_' + registered.app_descriptor_id] = {
           id: inbound.name + '_i_' + registered.app_descriptor_id,
@@ -206,7 +203,7 @@ export class RegisteredInfoService {
 
   private generateOutboundConnections( registered) {
     if (registered.outbound_net_interfaces && registered.outbound_net_interfaces.length > 0 ) {
-      const outbounds = {};
+      const outbounds: GraphNode[] = [];
       registered.outbound_net_interfaces.forEach(outbound => {
         outbounds[outbound.name + '_i_' + registered.app_descriptor_id] = {
           id: outbound.name + '_i_' + registered.app_descriptor_id,
@@ -271,13 +268,12 @@ export class RegisteredInfoService {
     inbounds.forEach(inbound => {
       const filteredData = registered.rules.filter(rule => inbound.label === rule.inbound_net_interface);
       if (filteredData.length > 0) {
-        const nodeTarget =  this._graphData.nodes.filter(node => node.label === filteredData[0]['target_service_name']);
+        const nodeTarget = this._graphData.nodes.filter(node => node.label === filteredData[0]['target_service_name']);
         if (nodeTarget.length > 0) {
-          this._graphData.links.push({
-            source: inbound.id,
+          this._graphData.links.push({source: inbound.id,
             target: nodeTarget[0].id,
-            notMarker: true
-          });
+            notMarker: true,
+            isBetweenApps: false});
         }
       }
     });
@@ -289,18 +285,17 @@ export class RegisteredInfoService {
       if (filteredData.length > 0) {
         const nodeTarget = this._graphData.nodes.filter(node => node.label === filteredData[0]['target_service_name']);
         if (nodeTarget.length > 0) {
-          this._graphData.links.push({
-            source: outbound.id,
+          this._graphData.links.push({source: outbound.id,
             target: nodeTarget[0].id,
-            notMarker: true
-          });
+            notMarker: true,
+            isBetweenApps: false});
         }
       }
     });
   }
 
   private setPublicRulesNodes(rule) {
-    const ruleNode = {
+    const ruleNode: GraphNode & StyledNode = {
       id: rule.rule_id,
       label: '',
       tooltip: this.translateService.instant('graph.rule') + rule.name,
@@ -340,11 +335,11 @@ export class RegisteredInfoService {
   private setRulesLinks(rule, group) {
     group.services.forEach(service => {
       if (service.name === rule.target_service_name) {
-        this._graphData.links.push({
-          source: this._publicRule ? this._publicRule.rule_id : rule.rule_id,
-          target: group.service_group_id + '-s-' + service.service_id,
-          notMarker: true
-        });
+        this._graphData
+          .links.push({source: this._publicRule ? this._publicRule.rule_id : rule.rule_id,
+            target: group.service_group_id + '-s-' + service.service_id,
+            notMarker: true,
+            isBetweenApps: false});
         if (!this._publicRule) {
           this._publicRule = rule;
         }

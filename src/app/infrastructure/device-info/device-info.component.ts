@@ -11,6 +11,7 @@
  *  limitations under the License.
  */
 
+// tslint:disable:no-any
 import { Component, OnInit } from '@angular/core';
 import { Backend } from '../../definitions/interfaces/backend';
 import { BsModalRef } from 'ngx-bootstrap';
@@ -18,6 +19,7 @@ import { BackendService } from '../../services/backend.service';
 import { MockupBackendService } from '../../services/mockup-backend.service';
 import { LocalStorageKeys } from '../../definitions/const/local-storage-keys';
 import { TranslateService } from '@ngx-translate/core';
+import { KeyValue } from '../../definitions/interfaces/key-value';
 
 @Component({
   selector: 'app-device-info',
@@ -34,8 +36,8 @@ export class DeviceInfoComponent implements OnInit {
   organizationId: string;
   deviceGroupId: string;
   deviceId: string;
-  created: string;
-  labels: any;
+  created: number;
+  labels: KeyValue;
   status: string;
   enabled: boolean;
   groupName: string;
@@ -111,7 +113,7 @@ export class DeviceInfoComponent implements OnInit {
    * and multiplied by 1000 so that the argument is in milliseconds, not seconds.
    * @param timestamp is an integer that represents the number of seconds elapsed
    */
-  parseTimestampToDate(timestamp: any) {
+  parseTimestampToDate(timestamp: number) {
       const date = new Date(timestamp * 1000);
       const year = date.getFullYear();
       const month = date.getMonth();
