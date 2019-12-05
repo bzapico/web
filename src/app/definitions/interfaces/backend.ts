@@ -12,6 +12,7 @@
  */
 
 import { Observable } from 'rxjs';
+import { SearchRequest } from './search-request';
 import { PasswordChange } from './password-change';
 import { AddUserRequest } from './add-user-request';
 import { UserChanges } from './user-changes';
@@ -86,4 +87,6 @@ export interface Backend {
     addGroup(organizationId: string, groupData: any);
     deleteGroup(organizationId: string, groupId: string);
     updateGroup(organizationId: string, groupData: any);
+    // Unified Logging
+    search(searchRequest: SearchRequest);
 }

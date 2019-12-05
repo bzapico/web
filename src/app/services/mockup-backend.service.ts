@@ -37,6 +37,8 @@ import { mockRegisteredAppsList } from './utils/registered-apps.mock';
 import { mockAppsInstancesList } from './utils/instances-apps.mock';
 import { OperatingSystemClass } from '../definitions/enums/operating-system-class.enum';
 import { OpStatus } from '../definitions/enums/op-status.enum';
+import { SearchRequest } from '../definitions/interfaces/search-request';
+import { mockLogsList } from './utils/logs.mocks';
 import { AddUserRequest } from '../definitions/interfaces/add-user-request';
 import { PasswordChange } from '../definitions/interfaces/password-change';
 import { UserChanges } from '../definitions/interfaces/user-changes';
@@ -950,5 +952,20 @@ export class MockupBackendService implements Backend {
       const r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
       return v.toString(16);
     });
+  }
+
+  /********************
+   * Logs
+   ********************/
+
+  /**
+  * Simulates to search for log entries matching a query
+  * @param searchRequest Search for log entries matching a query
+  */
+  search(searchRequest: SearchRequest) {
+    return of (new HttpResponse({
+      body: JSON.stringify(mockLogsList),
+      status: 200,
+    })).pipe(map(response => JSON.parse(response.body)));
   }
 }

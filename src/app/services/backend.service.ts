@@ -16,6 +16,7 @@ import { Observable, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Backend } from '../definitions/interfaces/backend';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
+import { SearchRequest } from '../definitions/interfaces/search-request';
 import { AddUserRequest } from '../definitions/interfaces/add-user-request';
 import { UserChanges } from '../definitions/interfaces/user-changes';
 import { InstallAgentRequest } from '../definitions/interfaces/install-agent-request';
@@ -808,6 +809,21 @@ export class BackendService implements Backend {
     return this.post(
       API_URL + 'device/' + organizationId + '/label/remove',
       changes
+    );
+  }
+
+  /********************
+   * Logs
+   ********************/
+
+  // POST: '/v1/apps/inst/{organization_id}/logs'
+  /**
+  * Search for log entries matching a query
+  * @param searchRequest Search for log entries matching a query
+  */
+  search(searchRequest: SearchRequest) {
+    return this.post(
+      API_URL + 'apps/inst' + searchRequest.organization_id + '/logs',
     );
   }
 }
