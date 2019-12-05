@@ -27,6 +27,10 @@
       <p class="type">{{role}}</p>
       <p class="email">{{email}}</p>
     </div>
+    <p (click)="logout()" class="logout" >
+      <i class="material-icons">exit_to_app</i>
+      {{'sidebar.logout' | translate}}
+    </p>
     <div *ngIf="role === 'NalejAdmin'" class="nav-item">
       <a
         routerLinkActive="active"
@@ -82,9 +86,9 @@
       </a>
     </div>
   </div>
-  <div (click)="logout()" class="logout-btn-box">
-    <button class="logout-btn">
-      {{'sidebar.logout' | translate}}
-    </button>
+  <div class="version-box">
+    <div class="version">
+    {{version}}
+    </div>
   </div>
 </nav>

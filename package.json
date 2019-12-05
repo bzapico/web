@@ -104,7 +104,7 @@
     "stylelint-declaration-use-variable": "^1.7.0",
     "stylelint-scss": "^3.11.1",
     "ts-node": "~7.0.0",
-    "tslint": "~5.11.0",
+    "tslint": "~5.20.1",
     "typescript": "~3.2.4"
   },
   "lint-staged": {
