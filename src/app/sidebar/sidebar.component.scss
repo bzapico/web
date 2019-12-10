@@ -25,6 +25,8 @@
 	// W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+
 	filter: progid:dximagetransform.microsoft.gradient( startColorstr='#828282', endColorstr='$black', GradientType=0 );
 	width: 290px;
+	margin-left: 0;
+	float: left;
 	@include for-md-desktop-only {
 		width: 220px;
 	}
@@ -33,10 +35,6 @@
 	width: 100%;
 	min-height: 100vh;
 	position: relative;
-}
-nav.sidebar {
-	margin-left: 0;
-	float: left;
 }
 .active {
 	background-color: $base-violet;
@@ -53,7 +51,7 @@ a {
 	color: $light-grey;
 	letter-spacing: 34px;
 	padding-top: 10px;
-	@include for-desktop-only {
+	@include for-desktop-sidebar {
 		font-size: 13px;
 		letter-spacing: 26px;
 	}
@@ -104,6 +102,14 @@ a {
 		margin-right: 0.5em;
 		font-size: 1.6em;
 	}
+	@include for-desktop-only  {
+		margin-top: .5em;
+		margin-bottom: 1.5em;
+	}
+	@include for-desktop-sidebar {
+		margin-top: 0;
+		margin-bottom: 0;
+	}
 }
 .nav-profile-info {
 	padding: 4em 0 0;
@@ -111,7 +117,7 @@ a {
 	font-weight: 500;
 	cursor: pointer;
 	position: relative;
-	@include for-desktop-only {
+	@include for-desktop-sidebar {
 		padding: 1em 0 2em;
 	}
 	.name,
@@ -124,7 +130,7 @@ a {
 		padding-top: 1em;
 		color: $white;
 		font-size: 24px;
-		@include for-desktop-only {
+		@include for-desktop-sidebar {
 			font-size: 21px;
 			padding-top: 0.5em;
 		}
@@ -132,14 +138,14 @@ a {
 	.type {
 		color: $base-pink;
 		font-size: 18px;
-		@include for-desktop-only {
+		@include for-desktop-sidebar {
 			font-size: 16px;
 		}
 	}
 	.email {
 		color: $base-light-grey;
 		font-size: 18px;
-		@include for-desktop-only {
+		@include for-desktop-sidebar {
 			font-size: 15px;
 		}
 	}
@@ -168,15 +174,18 @@ a {
 	flex-direction: row;
 	justify-content: center;
 	margin-bottom: auto;
-}
-.version {
-	font-weight: 500;
-	width: 152px;
-	color: $base-grey;
-	padding: 0.5em;
-	position: fixed;
-	bottom: 24px;
-	text-align: center;
+	@include for-sm-desktop-h {
+		display: none;
+	}
+	.version {
+		font-weight: 500;
+		width: 152px;
+		color: $base-grey;
+		padding: 0.5em;
+		position: fixed;
+		bottom: 24px;
+		text-align: center;
+	}
 }
 .user-img {
 	display: block;
