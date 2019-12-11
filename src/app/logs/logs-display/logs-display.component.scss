@@ -29,6 +29,9 @@
 	.logs-display-title {
 		font-weight: 500;
 	}
+	.logs-display-text {
+		display: block;
+	}
 	code {
 		cursor: pointer;
 		padding: 2px 4px;
@@ -37,4 +40,8 @@
 		background-color: $base-violet;
 		border-radius: 4px;
 	}
+}
+.no-elements{
+	color: $white;
+	height: 100%;
 }

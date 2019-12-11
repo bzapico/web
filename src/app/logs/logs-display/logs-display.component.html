@@ -1,11 +1,50 @@
+<!--
+  Copyright 2019 Nalej
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+      http://www.apache.org/licenses/LICENSE-2.0
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+
 <div class="logs-display-box">
-	<div class="logs">
-		<span class="logs-display-title">
-			<span class="logs-display-date">[Thu Oct 24 13:43:01 2019]</span> [<em>DESCRIPTOR</em>-<code>DescriptorName</code>][<em>INSTANCE</em>-<code>InstanceName</code>][<em>SERVICE GROUP</em> - <code>Service Group Name</code>][<em>SERVICE</em> -
-			<code>ServiceName</code>]:
-		</span>
-		<span class="logs-display-text">
-			rqst=track&tv=2.3.1.3&b=ZTE4ZjFlY2VhYQ__&pc=MzE1&i=NWQwNjE4ODc2ZQ__&rf=aHR0cDovL2xvY2FsaG9zdDo0MjAwLw__&di=dcca48101505dd86b703689a604fe3c4&dc=TmFsZWo_&ue=YUhSMGNEb3ZMMnh2WTJGc2FHOXpkRG8wTWpBd0x5TXZiRzluYVc0Xw__&ovlts=MA__&ovlv=djI_&ovlapo=MQ__&ovlc=MQ__&ovlmr=NDA_&full=1&eg=support
-		</span>
-  </div>
+	<div *ngIf="logsEntry.entries">
+		<div *ngFor="let entry of logsEntry.entries" class="logs">
+			<span class="logs-display-title">
+				<span class="logs-display-date">
+					{{entry.timestamp/ 1000000 | date: 'EEE MMM d h:mm:ss y'}}
+				</span>
+				[<em>{{'app-info.registeredTitle' | translate}}</em> -
+				<code
+					[routerLink]="['/applications/registered', entry.app_descriptor_id]"
+					routerLinkActive="active">
+					{{entry.app_descriptor_name}}</code>]
+				[<em>{{'apps.instance.idInstance' | translate}}</em>-
+				<code
+					[routerLink]="['/applications/instance', entry.app_instance_id]"
+					routerLinkActive="active">
+					{{entry.app_instance_name}}</code>]
+				[<em>{{'logs.serviceGroup' | translate}}</em> -
+				<code
+					[routerLink]="['/applications/instance', entry.app_instance_id]"
+					routerLinkActive="active">
+					{{entry.service_group_name}}</code>]
+				[<em>{{'graph.service' | translate}}</em>-
+				<code
+				[routerLink]="['/applications/instance', entry.app_instance_id]"
+				routerLinkActive="active">
+					{{entry.service_name}}</code>]:
+			</span>
+			<span class="logs-display-text">
+				{{entry.msg}}
+			</span>
+		</div>
+	</div>
+	<div *ngIf="!logsEntry.entries" class="no-elements">
+		{{'logs.noLogs' | translate}}
+	</div>
 </div>
