@@ -18,6 +18,7 @@ import { createTranslateLoader } from '../app.module';
 import { HttpClient } from '@angular/common/http';
 
 import { LogsComponent } from './logs.component';
+import { SearchLogsComponent } from './search-logs/search-logs.component';
 
 describe('LogsComponent', () => {
   let component: LogsComponent;
@@ -25,7 +26,7 @@ describe('LogsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LogsComponent ],
+      declarations: [ LogsComponent, SearchLogsComponent ],
       imports: [
         HttpClientTestingModule,
         TranslateModule.forRoot({
