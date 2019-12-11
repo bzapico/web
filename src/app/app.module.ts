@@ -91,6 +91,7 @@ import { ActionButtonsCardComponent } from './applications/action-buttons-card/a
 import { ToolsComponent } from './tools/tools.component';
 import { LogsComponent } from './logs/logs.component';
 import { ClusterStatusInfoComponent } from './resources/cluster-status-info/cluster-status-info.component';
+import { SearchLogsComponent } from './logs/search-logs/search-logs.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -153,7 +154,8 @@ export function createTranslateLoader(http: HttpClient) {
     ActionButtonsCardComponent,
     ToolsComponent,
     LogsComponent,
-    ClusterStatusInfoComponent
+    ClusterStatusInfoComponent,
+    SearchLogsComponent
   ],
   entryComponents: [
     DebugPanelComponent,
