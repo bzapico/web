@@ -34,7 +34,7 @@ export interface LogResponse {
   /**
    * Entries with the captured log entries.
    */
-  LogEntryResponse?: LogEntryResponse[];
+  entries?: LogEntryResponse[];
   /**
    * AppDescriptorLogSummary contains an array with the log summary of an app descriptor
    */

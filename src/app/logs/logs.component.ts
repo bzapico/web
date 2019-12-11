@@ -12,6 +12,11 @@
  */
 
 import { Component, OnInit } from '@angular/core';
+import { BackendService } from '../services/backend.service';
+import { MockupBackendService } from '../services/mockup-backend.service';
+import { Backend } from '../definitions/interfaces/backend';
+import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
+import { LogEntryResponse } from '../definitions/interfaces/log-entry-response';
 
 @Component({
   selector: 'logs',
@@ -19,10 +24,32 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./logs.component.scss']
 })
 export class LogsComponent implements OnInit {
+  /**
+   * Backend reference
+   */
+  backend: Backend;
+  /**
+   * Model that hold organization ID
+   */
+  organizationId: string;
+  /**
+   * Model that hold logs entry
+   */
+  logsEntry: LogEntryResponse;
 
-  constructor() { }
+  constructor(
+    private backendService: BackendService,
+    private mockupBackendService: MockupBackendService,
+  ) {
+    const mock = localStorage.getItem(LocalStorageKeys.logsMock) || null;
+    // Check which backend is required (fake or real)
+    if (mock && mock === 'true') {
+      this.backend = this.mockupBackendService;
+    } else {
+      this.backend = this.backendService;
+    }
+  }
 
   ngOnInit() {
   }
-
 }

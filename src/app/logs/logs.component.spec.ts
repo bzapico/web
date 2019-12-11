@@ -16,8 +16,10 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
 import { createTranslateLoader } from '../app.module';
 import { HttpClient } from '@angular/common/http';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { LogsComponent } from './logs.component';
+import { LogsDisplayComponent } from './logs-display/logs-display.component';
 
 describe('LogsComponent', () => {
   let component: LogsComponent;
@@ -25,8 +27,12 @@ describe('LogsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LogsComponent ],
+      declarations: [
+        LogsComponent,
+        LogsDisplayComponent
+      ],
       imports: [
+        RouterTestingModule,
         HttpClientTestingModule,
         TranslateModule.forRoot({
           loader: {
