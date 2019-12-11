@@ -10,3 +10,16 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
+
+@import '../../scss/variables/colors';
+@import '../../scss/variables/mixins';
+.search-logs-box {
+	background-color: $super-light-grey;
+	border-radius: 10px 0 0 10px;
+	border: 0;
+	overflow: hidden;
+	padding: 1.5rem;
+	height: 100%;
+	font-size: 14px;
+	width: 301px;
+}

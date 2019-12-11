@@ -12,8 +12,13 @@
  */
 
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
+import { HttpClient } from '@angular/common/http';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { SearchLogsComponent } from './search-logs.component';
+import { createTranslateLoader } from 'src/app/app.module';
 
 describe('SearchLogsComponent', () => {
   let component: SearchLogsComponent;
@@ -21,7 +26,21 @@ describe('SearchLogsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SearchLogsComponent ]
+      declarations: [ SearchLogsComponent ],
+      imports: [
+        RouterTestingModule,
+        HttpClientTestingModule,
+        TranslateModule.forRoot({
+          loader: {
+            provide: TranslateLoader,
+            useFactory: (createTranslateLoader),
+            deps: [HttpClient]
+          }
+        })
+      ],
+      providers: [
+        TranslateService
+      ]
     })
     .compileComponents();
   }));
