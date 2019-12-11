@@ -237,7 +237,6 @@
 		"typeGraph": "graph",
 		"typeList": "list"
 	},
-	"helpCenter": "Help center",
 	"infrastructure": {
 		"EIC": {
 			"unlinkEIC": "Unlink Edge Controller?",
@@ -387,6 +386,10 @@
 		"passwordRequired": "Password is required",
 		"passwordValid": "Password must be at least 6 characters"
 	},
+	"logs": {
+		"noLogs": "No logs available at this moment",
+		"serviceGroup": "SERVICE GROUP"
+	},
 	"modals": {
 		"discardChanges": "Discard changes?"
 	},
@@ -451,10 +454,10 @@
 		"editProfile": "Edit profile",
 		"infrastructure": "Infrastructure",
 		"logout": "Logout",
+		"logs": "Logs",
 		"nalej": "NALEJ",
 		"organization": "Organization",
-		"resources": "Resources",
-		"logs": "Logs"
+		"resources": "Resources"
 	},
 	"sortingMessage": {
 		"andFiltered": "and filtered by term \"{{ value }}\".",

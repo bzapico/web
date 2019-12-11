@@ -12,47 +12,42 @@
  */
 
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { LogsDisplayComponent } from './logs-display.component';
 import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
-import { createTranslateLoader } from '../app.module';
 import { HttpClient } from '@angular/common/http';
+import { createTranslateLoader } from 'src/app/app.module';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
-import { LogsComponent } from './logs.component';
-import { SearchLogsComponent } from './search-logs/search-logs.component';
-import { LogsDisplayComponent } from './logs-display/logs-display.component';
-
-describe('LogsComponent', () => {
-  let component: LogsComponent;
-  let fixture: ComponentFixture<LogsComponent>;
+describe('LogsDisplayComponent', () => {
+  let component: LogsDisplayComponent;
+  let fixture: ComponentFixture<LogsDisplayComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        LogsComponent,
-        LogsDisplayComponent,
-        SearchLogsComponent
-      ],
-      imports: [
-        RouterTestingModule,
-        HttpClientTestingModule,
-        TranslateModule.forRoot({
-          loader: {
-            provide: TranslateLoader,
-            useFactory: (createTranslateLoader),
-            deps: [HttpClient]
-          }
-        })
-      ],
-      providers: [
-        TranslateService
-      ]
+        LogsDisplayComponent
+    ],
+    imports: [
+      HttpClientTestingModule,
+      RouterTestingModule,
+      TranslateModule.forRoot({
+        loader: {
+          provide: TranslateLoader,
+          useFactory: (createTranslateLoader),
+          deps: [HttpClient]
+        }
+      }),
+    ],
+    providers: [
+      TranslateService
+    ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LogsComponent);
+    fixture = TestBed.createComponent(LogsDisplayComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

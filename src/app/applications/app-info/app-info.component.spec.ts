@@ -34,7 +34,6 @@ describe('AppInfoComponent', () => {
     imports: [
       HttpClientTestingModule,
       FormsModule,
-      ButtonsModule,
       TooltipModule.forRoot(),
       ButtonsModule,
       BrowserAnimationsModule,

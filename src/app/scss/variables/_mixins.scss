@@ -65,6 +65,11 @@
 		@content;
 	}
 }
+@mixin for-desktop-sidebar {
+	@media all and (max-width: 1440px), all and (max-height: 950px) {
+		@content;
+	}
+}
 @mixin for-md-desktop-fix {
 	@media all and (max-width: 1614px) {
 		@content;
