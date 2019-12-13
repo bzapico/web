@@ -377,6 +377,9 @@
 		"noLabels": "No labels",
 		"title": "LABELS"
 	},
+	"log": {
+		"searchError": "500 logs found. Filtered by keyword “ERROR”"
+	},
 	"login": {
 		"email": "Email",
 		"emailRequired": "Email is required",
@@ -387,8 +390,27 @@
 		"passwordValid": "Password must be at least 6 characters"
 	},
 	"logs": {
+		"ascending": "ASCENDING",
+		"chooseADate": "Choose a date",
+		"copy": "Copy",
+		"descending": "DESCENDING",
+		"download": "Download",
+		"entity": "Entity",
+		"filters": "FILTERS",
+		"fiveMins": "5MIN",
+		"from": "From",
+		"lastDay": "LAST DAY",
+		"lastHour": "LAST HOUR",
 		"noLogs": "No logs available at this moment",
-		"serviceGroup": "SERVICE GROUP"
+		"off": "OFF",
+		"oneMin": "1MIN",
+		"refreshRate": "REFRESH RATE",
+		"resetFilter": "Reset filter",
+		"resetSearch": "Reset search",
+		"search": "SEARCH",
+		"serviceGroup": "SERVICE GROUP",
+		"sorting": "SORTING",
+		"to": "To"
 	},
 	"modals": {
 		"discardChanges": "Discard changes?"

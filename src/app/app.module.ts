@@ -93,6 +93,7 @@ import { LogsComponent } from './logs/logs.component';
 import { ClusterStatusInfoComponent } from './resources/cluster-status-info/cluster-status-info.component';
 import { SearchLogsComponent } from './logs/search-logs/search-logs.component';
 import { LogsDisplayComponent } from './logs/logs-display/logs-display.component';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -217,6 +218,7 @@ export function createTranslateLoader(http: HttpClient) {
     CarouselModule.forRoot(),
     TooltipModule.forRoot(),
     AccordionModule.forRoot(),
+    BsDatepickerModule.forRoot(),
     // ROUTES
     routes
   ],
