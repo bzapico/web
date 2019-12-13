@@ -12,6 +12,7 @@
  */
 
 import { Component, OnInit } from '@angular/core';
+import { trigger, state, style, transition, animate } from '@angular/animations';
 import { BackendService } from '../services/backend.service';
 import { MockupBackendService } from '../services/mockup-backend.service';
 import { Backend } from '../definitions/interfaces/backend';
@@ -21,7 +22,19 @@ import { LogEntryResponse } from '../definitions/interfaces/log-entry-response';
 @Component({
   selector: 'logs',
   templateUrl: './logs.component.html',
-  styleUrls: ['./logs.component.scss']
+  styleUrls: ['./logs.component.scss'],
+  animations: [
+    trigger('slideInOut', [
+      state('in', style({
+        transform: 'translate3d(0, 0, 0)'
+      })),
+      state('out', style({
+        transform: 'translate3d(100%, 0, 0)'
+      })),
+      transition('out => in', animate('400ms ease-in-out')),
+      transition('in => out', animate('400ms ease-in-out'))
+    ]),
+  ]
 })
 export class LogsComponent implements OnInit {
   /**
@@ -37,6 +50,8 @@ export class LogsComponent implements OnInit {
    */
   logsEntry: LogEntryResponse;
 
+  menuState: string;
+
   constructor(
     private backendService: BackendService,
     private mockupBackendService: MockupBackendService,
@@ -48,8 +63,14 @@ export class LogsComponent implements OnInit {
     } else {
       this.backend = this.backendService;
     }
+    this.menuState = 'in';
   }
 
   ngOnInit() {
+  }
+
+  toggleMenu() {
+    // 1-line if statement that toggles the value:
+    this.menuState = this.menuState === 'in' ? 'out' : 'in';
   }
 }
