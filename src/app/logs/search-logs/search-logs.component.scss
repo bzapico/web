@@ -1,0 +1,267 @@
+/*
+ *  Copyright 2019 Nalej
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
+
+@import '../../scss/variables/colors';
+@import '../../scss/variables/mixins';
+.search-logs-box,
+%search-logs-box {
+	background-color: $super-light-grey;
+	border-radius: 10px 0 0 10px;
+	border: 0;
+	overflow: hidden;
+	padding: 1.5rem;
+	height: 100%;
+	width: 301px;
+}
+.search-logs {
+	height: 100%;
+	display: flex;
+	justify-content: space-between;
+	flex-direction: column;
+}
+.search-logs-box-sm {
+	@extend %search-logs-box;
+
+	width: 78px;
+	.i-side {
+		color: $base-grey;
+		font-size: 21px;
+		cursor: pointer;
+		&:hover {
+			color: $base-violet;
+		}
+		&:first-child {
+			margin-top: 5em;
+		}
+	}
+	.search-logs {
+		align-items: center;
+	}
+	.action-btn-blue {
+		margin: 10px;
+	}
+}
+.search-title {
+	font-size: 20px;
+	font-weight: 500;
+	padding-bottom: 1em;
+	@include for-desktop-h {
+		font-size: 15px;
+	}
+	.logs-title {
+		display: inline-block;
+	}
+	.reset-btn {
+		cursor: pointer;
+		color: $base-violet;
+		font-weight: 500;
+		font-size: 14px;
+		float: right;
+	}
+	@media all and (max-height: 969px) {
+		padding-bottom: .5em;
+	}
+}
+.search-section {
+	min-height: 120px;
+	@include for-desktop-h {
+		min-height: 100px;
+	}
+}
+.search-box {
+	width: 100%;
+	position: relative;
+	font-size: 1rem;
+	float: right;
+	margin-right: 0;
+	margin-bottom: 5px;
+}
+.search-box > input {
+	background-color: $white;
+}
+.search-msg {
+	color: $base-light-grey;
+	font-weight: 500;
+	font-size: 14px;
+}
+.sorting-message {
+	padding: 2px;
+	margin-bottom: 0;
+	min-height: 0;
+}
+.date-filters-btn {
+	background-color: $dark-grey;
+	border-radius: 10px;
+	width: 113px;
+	height: 32px;
+	font-size: 10px;
+	font-weight: 700;
+	color: $white;
+	text-align: center;
+	transition: all 0.5s;
+	cursor: pointer;
+	padding: 1em;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: center;
+	.i-filter {
+		font-size: 18px;
+	}
+	&:hover {
+		color: $white;
+		transition: 0.3s;
+		background-color: $base-violet;
+		opacity: 0.6;
+	}
+}
+.label-form {
+	font-size: 13px;
+	color: $base-grey;
+	margin: 0.2em 0;
+	font-weight: 500;
+}
+.calendar-btn {
+	background-color: $base-violet;
+	color: $white;
+	width: 40px;
+	border: none;
+	outline: none;
+	border-radius: 5px;
+	i {
+		font-size: 15px;
+	}
+}
+.quick-filters-box {
+	background-color: $light-grey;
+	border-radius: 10px;
+	height: 38px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: center;
+	padding-inline-start: 0;
+	margin-block-end: 0;
+	ul {
+		margin-bottom: 0;
+	}
+	li {
+		&:first-child {
+			cursor: default;
+		}
+
+		list-style-type: none;
+		display: inline-block;
+		margin-right: 20px;
+		cursor: pointer;
+	}
+	.i-filter {
+		color: $base-light-grey;
+		font-size: 22px;
+		margin-left: 8px;
+	}
+	.quick-filters-btn {
+		font-size: 10px;
+		font-weight: 700;
+		color: $base-light-grey;
+	}
+	.quick-filters-btn-selected {
+		font-size: 10px;
+		font-weight: 700;
+		color: $base-violet;
+	}
+}
+.i-scale-rotate {
+	-moz-transform: scale( -1, 1 ) rotate( 180deg );
+	-webkit-transform: scale( -1, 1 ) rotate( 180deg );
+	-o-transform: scale( -1, 1 ) rotate( 180deg );
+	-ms-transform: scale( -1, 1 ) rotate( 180deg );
+	transform: scale( -1, 1 ) rotate( 180deg );
+}
+.search-actions-btn {
+	background-color: $base-violet;
+	border-radius: 5px;
+	font-weight: 500;
+	padding: 0 1em;
+	cursor: pointer;
+	color: $white;
+	border: none;
+	position: relative;
+	font-size: 14px;
+	outline: none;
+	height: 35px;
+	text-align: center;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: center;
+	&:hover {
+		color: $white;
+		transition: 0.3s;
+		background-color: $base-violet;
+		opacity: 0.6;
+	}
+	span {
+		padding-right: 10px;
+	}
+	.i-options {
+		font-size: 19px;
+		margin-right: 13px;
+	}
+}
+.i-down {
+	transform: rotate( 180deg );
+}
+.display-flex-box {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+.double-arrow,
+%double-arrow {
+	height: 50px;
+	width: 50px;
+	position: absolute;
+	top: 38px;
+	z-index: 111;
+	outline: none;
+	background-color: $base-violet;
+	border-radius: 50%;
+	border: none;
+	cursor: pointer;
+	font-size: 39px;
+	.i-arrow {
+		position: absolute;
+		right: 13px;
+		top: 13px;
+		color: $white;
+		transition: all 0.5s;
+		-webkit-transition: all 0.25s;
+	}
+	&:hover {
+		.i-arrow {
+			transform: rotate( 180deg );
+		}
+	}
+}
+.double-arrow-in {
+	@extend %double-arrow;
+
+	left: 300px;
+	transform: rotate( 180deg );
+}
+.double-arrow-out {
+	@extend %double-arrow;
+
+	left: 77px;
+}

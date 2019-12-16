@@ -14,7 +14,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
-import { createTranslateLoader } from '../app.module';
 import { HttpClient } from '@angular/common/http';
 import { RouterTestingModule } from '@angular/router/testing';
 import { TooltipModule, BsDatepickerModule } from 'ngx-bootstrap';
@@ -22,29 +21,24 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SelectDropDownModule } from 'ngx-select-dropdown';
 
-import { LogsComponent } from './logs.component';
-import { SearchLogsComponent } from './search-logs/search-logs.component';
-import { LogsDisplayComponent } from './logs-display/logs-display.component';
+import { SearchLogsComponent } from './search-logs.component';
+import { createTranslateLoader } from 'src/app/app.module';
 
-describe('LogsComponent', () => {
-  let component: LogsComponent;
-  let fixture: ComponentFixture<LogsComponent>;
+describe('SearchLogsComponent', () => {
+  let component: SearchLogsComponent;
+  let fixture: ComponentFixture<SearchLogsComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        LogsComponent,
-        LogsDisplayComponent,
-        SearchLogsComponent
-      ],
+      declarations: [ SearchLogsComponent ],
       imports: [
         RouterTestingModule,
         HttpClientTestingModule,
         BrowserAnimationsModule,
-        SelectDropDownModule,
         TooltipModule.forRoot(),
         FormsModule,
         ReactiveFormsModule,
+        SelectDropDownModule,
         BsDatepickerModule.forRoot(),
         TranslateModule.forRoot({
           loader: {
@@ -62,7 +56,7 @@ describe('LogsComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LogsComponent);
+    fixture = TestBed.createComponent(SearchLogsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
