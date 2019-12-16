@@ -377,9 +377,6 @@
 		"noLabels": "No labels",
 		"title": "LABELS"
 	},
-	"log": {
-		"searchError": "500 logs found. Filtered by keyword “ERROR”"
-	},
 	"login": {
 		"email": "Email",
 		"emailRequired": "Email is required",
@@ -391,11 +388,13 @@
 	},
 	"logs": {
 		"ascending": "ASCENDING",
+		"calendar": "Calendar",
 		"chooseADate": "Choose a date",
 		"copy": "Copy",
 		"descending": "DESCENDING",
 		"download": "Download",
 		"entity": "Entity",
+		"filter": "Filter",
 		"filters": "FILTERS",
 		"fiveMins": "5MIN",
 		"from": "From",

@@ -10,231 +10,318 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 -->
-
-<div class="search-logs-box">
-	<div class="search-logs">
-		<!-- SEARCH -->
-		<div class="search-section">
-			<div (click)="resetFilters('search')" class="search-title">
-				<h5 class="logs-title">{{ 'logs.search' | translate }}</h5>
-				<span class="reset-btn mr-2">
-					{{ 'logs.resetSearch' | translate }}
-				</span>
-			</div>
-			<form>
-				<div class="search-box">
-					<input
-						name="searchTerm"
-						[(ngModel)]="searchTerm"
-						type="text"
-						placeholder="{{ 'searcher.placeholder' | translate }}"
-						class="form-control"
-					/>
-					<div *ngIf="searchTerm === ''" class="search-icon">
-						<i class="material-icons">search</i>
-					</div>
-					<div *ngIf="searchTerm !== ''" class="close-icon">
-						<i (click)="resetFilters('search')" class="material-icons">close</i>
-					</div>
-				</div>
-			</form>
-      <!-- Sorting messages -->
-      <div class="row row-sorting-lg">
-        <div class="col-12">
-          <p *ngIf="searchTerm && !filterField" class="sorting-message">
-            {{'sortingMessage.filteredBy' | translate:{value: searchTerm} }}
-          </p>
-          <p *ngIf="filterField && !searchTerm" class="sorting-message">
-            {{'sortingMessage.sortedBy' | translate:{value: getBeautyCategoryName(sortedBy)} }}
-            <span *ngIf="reverse">{{'sortingMessage.ascendant' | translate:{value: '. '} }} </span>
-            <span *ngIf="!reverse">{{'sortingMessage.descendant' | translate:{value: '. '} }}</span>
-          </p>
-          <p *ngIf="filterField && searchTerm" class="sorting-message">
-            {{'sortingMessage.sortedBy' | translate:{value: getBeautyCategoryName(sortedBy)} }}
-            <span *ngIf="reverse">{{'sortingMessage.ascendant' | translate:{value: ' '} }}</span>
-            <span *ngIf="!reverse">{{'sortingMessage.descendant' | translate:{value: ' '} }}</span>
-            {{'sortingMessage.andFilteredBy' | translate:{value: searchTerm} }}.
-          </p>
+<button
+  (click)="showSearchOptions()"
+  class="double-arrow"
+  [ngClass]="isOpen ? 'double-arrow-in' : 'double-arrow-out'"
+  >
+  <i class="material-icons i-arrow">double_arrow</i>
+</button>
+<ng-container *ngIf="!isOpen">
+  <div class="search-logs-box-sm">
+    <div class="search-logs">
+      <i
+        (click)="showSearchOptions()"
+        class="material-icons i-side"
+        tooltip="{{ 'searcher.placeholder' | translate }}"
+        placement="top">
+        search
+      </i>
+      <i
+        (click)="showSearchOptions()"
+        class="material-icons i-side"
+        tooltip=" {{'logs.filter' | translate}}"
+        placement="top">
+        filter_list
+      </i>
+      <i
+        (click)="showSearchOptions()"
+        class="material-icons i-side"
+        tooltip=" {{'logs.calendar' | translate}}"
+        placement="top">
+        calendar_today
+      </i>
+      <i
+        (click)="showSearchOptions()"
+        class="material-icons i-side"
+        tooltip=" {{'logs.entity' | translate}}"
+        placement="top">
+        apps
+      </i>
+      <i
+        (click)="showSearchOptions()"
+        class="material-icons i-side"
+        tooltip=" {{'logs.sorting' | translate}}"
+        placement="top">
+        sort
+      </i>
+      <i
+        (click)="showSearchOptions()"
+        class="material-icons i-side"
+        tooltip=" {{'logs.refreshRate' | translate}}"
+        placement="top">
+        autorenew
+      </i>
+      <div>
+        <button
+          tooltip=" {{'tables.tableEdit' | translate}}"
+          placement="left"
+          class="action-btn-blue">
+          <i class="material-icons-round i-white">file_copy</i>
+        </button>
+        <button
+          tooltip=" {{'tables.tableEdit' | translate}}"
+          placement="left"
+          class="action-btn-blue">
+          <i class="material-icons-round i-white i-down">publish</i>
+        </button>
+      </div>
+    </div>
+  </div>
+</ng-container>
+<ng-container *ngIf="isOpen">
+  <div class="search-logs-box">
+    <div class="search-logs">
+      <!-- SEARCH -->
+      <div class="search-section">
+        <div (click)="resetFilters('search')" class="search-title">
+          <div class="logs-title">{{ 'logs.search' | translate }}</div>
+          <span class="reset-btn mr-2">
+            {{ 'logs.resetSearch' | translate }}
+          </span>
+        </div>
+        <form>
+          <div class="search-box">
+            <input
+              name="searchTerm"
+              [(ngModel)]="searchTerm"
+              type="text"
+              placeholder="{{ 'searcher.placeholder' | translate }}"
+              class="form-control"
+            />
+            <div *ngIf="searchTerm === ''" class="search-icon">
+              <i class="material-icons">search</i>
+            </div>
+            <div *ngIf="searchTerm !== ''" class="close-icon">
+              <i (click)="resetFilters('search')" class="material-icons">close</i>
+            </div>
+          </div>
+        </form>
+        <!-- Sorting messages -->
+        <div class="row row-sorting-lg">
+          <div class="col-12">
+            <p *ngIf="searchTerm && !filterField" class="sorting-message">
+              {{'sortingMessage.filteredBy' | translate:{value: searchTerm} }}
+            </p>
+            <p *ngIf="filterField && !searchTerm" class="sorting-message">
+              {{'sortingMessage.sortedBy' | translate:{value: getBeautyCategoryName(sortedBy)} }}
+              <span *ngIf="reverse">{{'sortingMessage.ascendant' | translate:{value: '. '} }} </span>
+              <span *ngIf="!reverse">{{'sortingMessage.descendant' | translate:{value: '. '} }}</span>
+            </p>
+            <p *ngIf="filterField && searchTerm" class="sorting-message">
+              {{'sortingMessage.sortedBy' | translate:{value: getBeautyCategoryName(sortedBy)} }}
+              <span *ngIf="reverse">{{'sortingMessage.ascendant' | translate:{value: ' '} }}</span>
+              <span *ngIf="!reverse">{{'sortingMessage.descendant' | translate:{value: ' '} }}</span>
+              {{'sortingMessage.andFilteredBy' | translate:{value: searchTerm} }}.
+            </p>
+          </div>
         </div>
       </div>
-		</div>
-		<!-- FILTERS -->
-		<div class="filters-section">
-			<div (click)="resetFilters('filters')" class="search-title">
-				<h5 class="logs-title">{{ 'logs.filters' | translate }}</h5>
-				<span class="reset-btn">
-					{{ 'logs.resetFilter' | translate }}
-				</span>
-			</div>
-			<!-- DATE PICKER -->
-			<div class="display-flex-box">
-				<div class="date-filters-btn">
-					<i class="material-icons i-filter">filter_list</i>
-					<span>{{ 'logs.lastHour' | translate }}</span>
-				</div>
-				<div class="date-filters-btn">
-					<i class="material-icons i-filter">filter_list</i>
-					<span>{{ 'logs.lastDay' | translate }}</span>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-12 mt-4">
-					<p class="label-form">{{ 'logs.from' | translate }}</p>
-				</div>
-				<div class="col-12 form-group input-group">
-					<input
-						type="text"
-						placeholder="{{ 'logs.chooseADate' | translate }}"
-						class="form-control"
-						bsDatepicker
-						aria-describedby="basic-addon2"
-						[bsConfig]="{
-							dateInputFormat: 'DD-MM-YYYY',
-							containerClass: 'theme-blue'
-						}"
-						[bsValue]="bsInlineValue"
-					/>
-					<div class="input-group-append calendar-btn">
-						<button class="btn calendar-btn" type="button">
-							<i class="material-icons">calendar_today</i>
-						</button>
-					</div>
-				</div>
-				<div class="col-12">
-					<p class="label-form">{{ 'logs.to' | translate }}</p>
-				</div>
-				<div class="col-12 form-group input-group">
-					<input
-						type="text"
-						placeholder="{{ 'logs.chooseADate' | translate }}"
-						class="form-control"
-						bsDaterangepicker
-						aria-describedby="basic-addon2"
-						[bsConfig]="{
-							dateInputFormat: 'DD-MM-YYYY',
-							containerClass: 'theme-blue'
-						}"
-						[bsValue]="bsInlineRangeValue"
-					/>
-					<div class="input-group-append calendar-btn">
-						<button class="btn calendar-btn" type="button">
-							<i class="material-icons">calendar_today</i>
-						</button>
-					</div>
-				</div>
-			</div>
-			<!-- SELECT DROPDOWN -->
-			<div class="form-group form-group-drop">
-				<label class="app-filter-label">{{ 'logs.entity' | translate }}</label>
-        <form [formGroup]="entityFilterForm" id="entity-drop">
-          <ngx-select-dropdown
-            formControlName="entity"
-            [multiple]="false"
-            [ngClass]="{
-              'base-light-grey': !f.entity.value
-            }"
-            [config]="selectConfig"
-            [options]="entityDropdownOptions"
-          >
-        </ngx-select-dropdown>
-        </form>
-			</div>
-		</div>
-		<!-- SORTING -->
-		<div class="sorting-section">
-			<h5 class="search-title">{{ 'logs.sorting' | translate }}</h5>
-			<div class="row">
-				<div class="col">
-					<ul class="quick-filters-box">
-						<i class="material-icons i-filter">sort</i>
-						<li
-							(click)="addSortingFilter('ascend')"
-							[ngClass]="{
-								'quick-filters-btn-selected': sortingFilter.ascend,
-								'quick-filters-btn': !sortingFilter.ascend
-							}"
-							tooltip="{{ 'logs.ascending' | translate }}"
-							placement="bottom"
-							class="quick-filters-btn"
-						>
-							{{ 'logs.ascending' | translate }}
-						</li>
-						<i class="material-icons i-filter">sort</i>
-						<li
-							(click)="addSortingFilter('descend')"
-							[ngClass]="{
-								'quick-filters-btn-selected': sortingFilter.descend,
-								'quick-filters-btn': !sortingFilter.descend
-							}"
-							tooltip="{{ 'logs.descending' | translate }}"
-							placement="bottom"
-							class="quick-filters-btn"
-						>
-							{{ 'logs.descending' | translate }}
-						</li>
-					</ul>
-				</div>
-			</div>
-		</div>
-		<!-- REFRESH RATE -->
-		<div class="refresh-section">
-			<h5 class="search-title">{{ 'logs.refreshRate' | translate }}</h5>
-			<div class="row">
-				<div class="col">
-					<ul class="quick-filters-box">
-						<li
-							(click)="refreshRate('off')"
-							[ngClass]="{
-								'quick-filters-btn-selected': rateRefresh.off,
-								'quick-filters-btn': !rateRefresh.off
-							}"
-							tooltip="{{ 'logs.off' | translate }}"
-							placement="bottom"
-							class="quick-filters-btn"
-						>
-							{{ 'logs.off' | translate }}
-						</li>
-						<li
-							(click)="refreshRate('oneMin')"
-							[ngClass]="{
-								'quick-filters-btn-selected': rateRefresh.oneMin,
-								'quick-filters-btn': !rateRefresh.oneMin
-							}"
-							tooltip="{{ 'logs.oneMin' | translate }}"
-							placement="bottom"
-							class="quick-filters-btn"
-						>
-							{{ 'logs.oneMin' | translate }}
-						</li>
-						<li
-							(click)="refreshRate('fiveMin')"
-							[ngClass]="{
-								'quick-filters-btn-selected': rateRefresh.fiveMin,
-								'quick-filters-btn': !rateRefresh.fiveMin
-							}"
-							tooltip="{{ 'logs.fiveMins' | translate }}"
-							placement="bottom"
-							class="quick-filters-btn"
-						>
-							{{ 'logs.fiveMins' | translate }}
-						</li>
-					</ul>
-				</div>
-			</div>
-		</div>
-		<!-- ACTIONS -->
-		<div class="actions-section">
-			<h5 class="search-title text-uppercase">{{ 'tables.tableActions' | translate }}</h5>
-			<div class="display-flex-box">
-				<button class="search-actions-btn mr-1">
-					<i class="material-icons-round i-options">file_copy</i>
-					<span>{{ 'logs.copy' | translate }}</span>
-				</button>
-				<button class="search-actions-btn">
-					<i class="material-icons-round i-options">publish</i>
-					<span>{{ 'logs.download' | translate }}</span>
-				</button>
-			</div>
-		</div>
-	</div>
-</div>
+      <!-- FILTERS -->
+      <div class="filters-section">
+        <div (click)="resetFilters('filters')" class="search-title">
+          <div class="logs-title">{{ 'logs.filters' | translate }}</div>
+          <span class="reset-btn">
+            {{ 'logs.resetFilter' | translate }}
+          </span>
+        </div>
+        <!-- DATE PICKER -->
+        <div class="display-flex-box">
+          <div class="date-filters-btn">
+            <i class="material-icons i-filter">filter_list</i>
+            <span>{{ 'logs.lastHour' | translate }}</span>
+          </div>
+          <div class="date-filters-btn">
+            <i class="material-icons i-filter">filter_list</i>
+            <span>{{ 'logs.lastDay' | translate }}</span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 mt-4">
+            <p class="label-form">{{ 'logs.from' | translate }}</p>
+          </div>
+          <div class="col-12 form-group input-group">
+            <input
+              type="text"
+              placeholder="{{ 'logs.chooseADate' | translate }}"
+              class="form-control"
+              bsDatepicker
+              aria-describedby="basic-addon2"
+              [bsConfig]="{
+                dateInputFormat: 'DD-MM-YYYY',
+                containerClass: 'theme-blue'
+              }"
+              [bsValue]="bsInlineValue"
+            />
+            <div class="input-group-append calendar-btn">
+              <button class="btn calendar-btn" type="button">
+                <i class="material-icons">calendar_today</i>
+              </button>
+            </div>
+          </div>
+          <div class="col-12">
+            <p class="label-form">{{ 'logs.to' | translate }}</p>
+          </div>
+          <div class="col-12 form-group input-group">
+            <input
+              type="text"
+              placeholder="{{ 'logs.chooseADate' | translate }}"
+              class="form-control"
+              bsDaterangepicker
+              aria-describedby="basic-addon2"
+              [bsConfig]="{
+                dateInputFormat: 'DD-MM-YYYY',
+                containerClass: 'theme-blue'
+              }"
+              [bsValue]="bsInlineRangeValue"
+            />
+            <div class="input-group-append calendar-btn">
+              <button class="btn calendar-btn" type="button">
+                <i class="material-icons">calendar_today</i>
+              </button>
+            </div>
+          </div>
+        </div>
+        <!-- SELECT DROPDOWN -->
+        <div class="form-group form-group-drop">
+          <label class="app-filter-label">{{ 'logs.entity' | translate }}</label>
+          <form [formGroup]="entityFilterForm" id="entity-drop">
+            <ngx-select-dropdown
+              formControlName="entity"
+              [multiple]="false"
+              [ngClass]="{
+                'base-light-grey': !f.entity.value
+              }"
+              [config]="selectConfig"
+              [options]="entityDropdownOptions"
+            >
+          </ngx-select-dropdown>
+          </form>
+        </div>
+      </div>
+      <!-- SORTING -->
+      <div class="sorting-section">
+        <div class="search-title">{{ 'logs.sorting' | translate }}</div>
+        <div class="row">
+          <div class="col">
+            <ul class="quick-filters-box">
+              <i
+                class="material-icons i-filter"
+                [ngClass]="{
+                  'blue': sortingFilter.ascend,
+                  'grey': !sortingFilter.ascend
+                }">sort</i>
+              <li
+                (click)="addSortingFilter('ascend')"
+                [ngClass]="{
+                  'quick-filters-btn-selected': sortingFilter.ascend,
+                  'quick-filters-btn': !sortingFilter.ascend
+                }"
+                tooltip="{{ 'logs.ascending' | translate }}"
+                placement="bottom"
+                class="quick-filters-btn"
+              >
+                {{ 'logs.ascending' | translate }}
+              </li>
+              <i
+                class="material-icons i-filter i-scale-rotate"
+                [ngClass]="{
+                  'blue': sortingFilter.descend,
+                  'grey': !sortingFilter.descend
+                }">sort
+              </i>
+              <li
+                (click)="addSortingFilter('descend')"
+                [ngClass]="{
+                  'quick-filters-btn-selected': sortingFilter.descend,
+                  'quick-filters-btn': !sortingFilter.descend
+                }"
+                tooltip="{{ 'logs.descending' | translate }}"
+                placement="bottom"
+                class="quick-filters-btn"
+              >
+                {{ 'logs.descending' | translate }}
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- REFRESH RATE -->
+      <div class="refresh-section">
+        <div class="search-title">{{ 'logs.refreshRate' | translate }}</div>
+        <div class="row">
+          <div class="col">
+            <ul class="quick-filters-box">
+              <li
+                (click)="refreshRate('off')"
+                [ngClass]="{
+                  'quick-filters-btn-selected': rateRefresh.off,
+                  'quick-filters-btn': !rateRefresh.off
+                }"
+                tooltip="{{ 'logs.off' | translate }}"
+                placement="bottom"
+                class="quick-filters-btn"
+              >
+                {{ 'logs.off' | translate }}
+              </li>
+              <li
+                (click)="refreshRate('oneMin')"
+                [ngClass]="{
+                  'quick-filters-btn-selected': rateRefresh.oneMin,
+                  'quick-filters-btn': !rateRefresh.oneMin
+                }"
+                tooltip="{{ 'logs.oneMin' | translate }}"
+                placement="bottom"
+                class="quick-filters-btn"
+              >
+                {{ 'logs.oneMin' | translate }}
+              </li>
+              <li
+                (click)="refreshRate('fiveMin')"
+                [ngClass]="{
+                  'quick-filters-btn-selected': rateRefresh.fiveMin,
+                  'quick-filters-btn': !rateRefresh.fiveMin
+                }"
+                tooltip="{{ 'logs.fiveMins' | translate }}"
+                placement="bottom"
+                class="quick-filters-btn"
+              >
+                {{ 'logs.fiveMins' | translate }}
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- ACTIONS -->
+      <div class="actions-section">
+        <div class="search-title text-uppercase">{{ 'tables.tableActions' | translate }}</div>
+        <div class="display-flex-box">
+          <button
+            class="search-actions-btn mr-1"
+            tooltip="{{ 'logs.copy' | translate }}"
+            placement="bottom">
+            <i class="material-icons-round i-options">file_copy</i>
+            <span>{{ 'logs.copy' | translate }}</span>
+          </button>
+          <button
+            class="search-actions-btn"
+            tooltip="{{ 'logs.download' | translate }}"
+            placement="bottom">
+            <i class="material-icons-round i-options i-down">publish</i>
+            <span>{{ 'logs.download' | translate }}</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>

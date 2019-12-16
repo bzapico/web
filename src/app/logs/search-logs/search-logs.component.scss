@@ -13,7 +13,8 @@
 
 @import '../../scss/variables/colors';
 @import '../../scss/variables/mixins';
-.search-logs-box {
+.search-logs-box,
+%search-logs-box {
 	background-color: $super-light-grey;
 	border-radius: 10px 0 0 10px;
 	border: 0;
@@ -28,8 +29,35 @@
 	justify-content: space-between;
 	flex-direction: column;
 }
+.search-logs-box-sm {
+	@extend %search-logs-box;
+
+	width: 78px;
+	.i-side {
+		color: $base-grey;
+		font-size: 21px;
+		cursor: pointer;
+		&:hover {
+			color: $base-violet;
+		}
+		&:first-child {
+			margin-top: 5em;
+		}
+	}
+	.search-logs {
+		align-items: center;
+	}
+	.action-btn-blue {
+		margin: 10px;
+	}
+}
 .search-title {
+	font-size: 20px;
+	font-weight: 500;
 	padding-bottom: 1em;
+	@include for-desktop-h {
+		font-size: 15px;
+	}
 	.logs-title {
 		display: inline-block;
 	}
@@ -40,9 +68,15 @@
 		font-size: 14px;
 		float: right;
 	}
+	@media all and (max-height: 969px) {
+		padding-bottom: .5em;
+	}
 }
 .search-section {
 	min-height: 120px;
+	@include for-desktop-h {
+		min-height: 100px;
+	}
 }
 .search-box {
 	width: 100%;
@@ -94,7 +128,7 @@
 .label-form {
 	font-size: 13px;
 	color: $base-grey;
-	margin: .2em 0;
+	margin: 0.2em 0;
 	font-weight: 500;
 }
 .calendar-btn {
@@ -147,6 +181,13 @@
 		color: $base-violet;
 	}
 }
+.i-scale-rotate {
+	-moz-transform: scale( -1, 1 ) rotate( 180deg );
+	-webkit-transform: scale( -1, 1 ) rotate( 180deg );
+	-o-transform: scale( -1, 1 ) rotate( 180deg );
+	-ms-transform: scale( -1, 1 ) rotate( 180deg );
+	transform: scale( -1, 1 ) rotate( 180deg );
+}
 .search-actions-btn {
 	background-color: $base-violet;
 	border-radius: 5px;
@@ -178,8 +219,49 @@
 		margin-right: 13px;
 	}
 }
+.i-down {
+	transform: rotate( 180deg );
+}
 .display-flex-box {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
+}
+.double-arrow,
+%double-arrow {
+	height: 50px;
+	width: 50px;
+	position: absolute;
+	top: 38px;
+	z-index: 111;
+	outline: none;
+	background-color: $base-violet;
+	border-radius: 50%;
+	border: none;
+	cursor: pointer;
+	font-size: 39px;
+	.i-arrow {
+		position: absolute;
+		right: 13px;
+		top: 13px;
+		color: $white;
+		transition: all 0.5s;
+		-webkit-transition: all 0.25s;
+	}
+	&:hover {
+		.i-arrow {
+			transform: rotate( 180deg );
+		}
+	}
+}
+.double-arrow-in {
+	@extend %double-arrow;
+
+	left: 300px;
+	transform: rotate( 180deg );
+}
+.double-arrow-out {
+	@extend %double-arrow;
+
+	left: 77px;
 }

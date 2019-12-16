@@ -10,13 +10,13 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
+$font-12: 12px;
+$font-16: 16px;
 
-@import '../scss/variables/colors';
-@import '../scss/variables/mixins';
-.logs-card {
-	height: 100%;
-	width: 100%;
-	display: flex;
-	flex-direction: row;
-	justify-content: flex-start;
+@mixin my-font-size-mixin($font-12) {
+	font-size: $font-12;
+}
+@mixin font-size-mixin($sizeValue: 1.6) {
+	font-size: ($sizeValue * 10) + px;
+	font-size: $sizeValue + rem;
 }
