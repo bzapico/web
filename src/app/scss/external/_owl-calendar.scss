@@ -30,3 +30,9 @@
 .owl-dt-timer-content .owl-dt-timer-input {
 	border-radius: 10px;
 }
+.owl-dt-calendar-table .owl-dt-calendar-cell-selected.owl-dt-calendar-cell-today {
+  box-shadow: none;
+}
+.owl-dt-container-info {
+	display: none;
+}
