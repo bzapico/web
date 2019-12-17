@@ -12,10 +12,9 @@
  */
 
 // 1. Bootstrap
-@import
-	'~bootstrap/dist/css/bootstrap.css';
-@import
-	'../node_modules/bootstrap/scss/mixins';
+@import '~bootstrap/dist/css/bootstrap.css';
+@import '../node_modules/bootstrap/scss/mixins';
+@import '~ng-pick-datetime/assets/style/picker.min.css';
 
 // 2. Base
 @import
@@ -73,4 +72,5 @@
 	'app/scss/external/ngx-charts',
 	'app/scss/external/ngx-drop-file',
 	'app/scss/external/ngx-graph',
+	'app/scss/external/owl-calendar',
 	'app/scss/external/alerts';
