@@ -14,16 +14,16 @@
 .owl-dt-popup-container {
 	border-radius: 10px;
 }
-.owl-dt-calendar-table .owl-dt-calendar-cell-selected {
-	color: $light-grey;
-	background-color: $base-violet;
+.owl-dt-calendar-table {
+	.owl-dt-calendar-cell-selected {
+		color: $light-grey;
+		background-color: $base-violet;
+	}
+	.owl-dt-calendar-cell-in-range {
+		background: $soft-violet;
+	}
 }
-.owl-dt-calendar-table .owl-dt-calendar-cell-in-range {
-	background: $soft-violet;
-}
-.owl-dt-container-info .owl-dt-container-info-active {
-	color: $base-violet;
-}
+.owl-dt-container-info .owl-dt-container-info-active,
 .owl-dt-container-control-button .owl-dt-control-button-content {
 	color: $base-violet;
 }
@@ -31,7 +31,7 @@
 	border-radius: 10px;
 }
 .owl-dt-calendar-table .owl-dt-calendar-cell-selected.owl-dt-calendar-cell-today {
-  box-shadow: none;
+	box-shadow: none;
 }
 .owl-dt-container-info {
 	display: none;
