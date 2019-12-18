@@ -13,24 +13,11 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
-import { trigger, state, style, transition, animate } from '@angular/animations';
 
 @Component({
   selector: 'search-logs',
   templateUrl: './search-logs.component.html',
-  styleUrls: ['./search-logs.component.scss'],
-  animations: [
-    trigger('slideInOut', [
-      state('in', style({
-        transform: 'translate3d(0, 0, 0)'
-      })),
-      state('out', style({
-        transform: 'translate3d(100%, 0, 0)'
-      })),
-      transition('out => in', animate('400ms ease-in-out')),
-      transition('in => out', animate('400ms ease-in-out'))
-    ]),
-  ]
+  styleUrls: ['./search-logs.component.scss']
 })
 export class SearchLogsComponent implements OnInit {
   /**
@@ -73,6 +60,10 @@ export class SearchLogsComponent implements OnInit {
    * Variable to store the value of menu state
    */
   public isOpen: boolean;
+  /**
+   * Picker with rangeFrom and rangeTo selection
+   */
+  public selectedMoments: any;
 
   constructor(
     private translateService: TranslateService,
@@ -80,7 +71,7 @@ export class SearchLogsComponent implements OnInit {
     ) {
     this.searchTerm = '';
     this.filterField = false;
-    this.isOpen = false;
+    this.isOpen = true;
   }
     /**
    * Convenience getter for easy access to form fields
@@ -154,6 +145,7 @@ export class SearchLogsComponent implements OnInit {
       this.rateRefresh.fiveMin = true;
       this.sortingFilter.ascend = true;
       this.sortingFilter.descend = true;
+      this.selectedMoments = new FormControl([]);
     }
   }
 

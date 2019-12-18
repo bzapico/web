@@ -17,10 +17,11 @@ import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-transla
 import { createTranslateLoader } from '../app.module';
 import { HttpClient } from '@angular/common/http';
 import { RouterTestingModule } from '@angular/router/testing';
-import { TooltipModule, BsDatepickerModule } from 'ngx-bootstrap';
+import { TooltipModule } from 'ngx-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SelectDropDownModule } from 'ngx-select-dropdown';
+import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 
 import { LogsComponent } from './logs.component';
 import { SearchLogsComponent } from './search-logs/search-logs.component';
@@ -45,7 +46,8 @@ describe('LogsComponent', () => {
         TooltipModule.forRoot(),
         FormsModule,
         ReactiveFormsModule,
-        BsDatepickerModule.forRoot(),
+        OwlDateTimeModule,
+        OwlNativeDateTimeModule,
         TranslateModule.forRoot({
           loader: {
             provide: TranslateLoader,
