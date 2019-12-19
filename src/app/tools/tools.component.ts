@@ -294,7 +294,8 @@ export class ToolsComponent implements OnInit {
   getAppsInCluster(clusterId: string): ApplicationInstance[] {
     const appsInCluster = {};
     if (this.instances) {
-      for (let indexInstance = 0, instancesLength = this.instances.length; indexInstance < instancesLength; indexInstance++) {
+      for (let indexInstance = 0, instancesLength = this.instances.length; indexInstance < instancesLength; indexInstance++)
+      {
         if (this.areIncludedInstancesWithError
             && (this.instances[indexInstance].status_name.toLowerCase() === AppStatus.Error
                 || this.instances[indexInstance].status_name.toLowerCase() === AppStatus.DeploymentError)) {

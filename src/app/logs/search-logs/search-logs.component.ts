@@ -13,6 +13,9 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
+import { LogResponse } from 'src/app/definitions/interfaces/log-response';
+import { LogEntryResponse } from 'src/app/definitions/interfaces/log-entry-response';
+import { mockLogsList } from 'src/app/services/utils/logs.mocks';
 
 @Component({
   selector: 'search-logs',
@@ -20,6 +23,8 @@ import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
   styleUrls: ['./search-logs.component.scss']
 })
 export class SearchLogsComponent implements OnInit {
+
+  logsEntry: LogResponse = mockLogsList as LogResponse;
   /**
    * Model that hold the rate refresh
    */
@@ -46,7 +51,7 @@ export class SearchLogsComponent implements OnInit {
   /**
    * NGX-select-dropdown
    */
-  entityDropdownOptions: {name: string, id: string}[];
+  entityDropdownOptions: any[];
   selectConfig = {};
     /**
    * Model that hold the search term in search box
@@ -84,13 +89,41 @@ export class SearchLogsComponent implements OnInit {
     });
     this.selectConfig = {
       displayKey: 'name',
-      search: false,
+      search: true,
+      searchPlaceholder: 'Search',
       height: 'auto',
       placeholder: this.translateService.instant('logs.selectEntity'),
       moreText: 'more',
       noResultsFound: this.translateService.instant('apps.addConnection.noResults')
     };
+    this.formatEntityLogs();
   }
+  /**
+   * Formats entity logs
+   */
+  formatEntityLogs() {
+    const entries = this.logsEntry.entries;
+    const planeEntries = {};
+    this.entityDropdownOptions = [];
+    for (let i = 0; i < entries.length; i++) {
+      const eachEntry = entries[i];
+      // TODO
+      eachEntry.app_descriptor_name = '[descriptor] ' + eachEntry.app_descriptor_name;
+      eachEntry.app_instance_name = '--[instance] ' + eachEntry.app_instance_name;
+      eachEntry.service_group_name = '----[service] ' + eachEntry.service_group_name;
+
+      planeEntries[eachEntry['app_descriptor_id']] = eachEntry;
+      if (!planeEntries[eachEntry['app_descriptor_id']]) {
+        console.log('help');
+        planeEntries[eachEntry['app_descriptor_id']]['instanceList'] = [];
+      }
+      if (eachEntry.app_instance_name) {
+        planeEntries[eachEntry['app_descriptor_id']]['instanceList'].push(eachEntry.app_instance_name);
+      }
+    }
+    this.entityDropdownOptions = Object.values(planeEntries);
+  }
+
   /**
    * Refreshes rate
    */

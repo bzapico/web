@@ -82,7 +82,6 @@
 		color: $light-grey !important;
 	}
 }
-/* stylelint-enable */
 ul.available-items {
 	max-height: 200px;
 }
@@ -94,3 +93,14 @@ label.accordion-foot {
 		text-transform: capitalize;
 	}
 }
+// Search
+.ngx-dropdown-container .ngx-dropdown-list-container .search-container input {
+	border: 1px solid #E8E8E8 !important;
+	border-radius: 20px !important;
+	height: 23px !important;
+	text-indent: 10px;
+}
+.ngx-dropdown-container .ngx-dropdown-list-container .search-container label {
+	display: none !important;
+}
+/* stylelint-enable */
