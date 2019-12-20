@@ -101,6 +101,13 @@ label.accordion-foot {
 	text-indent: 10px;
 }
 .ngx-dropdown-container .ngx-dropdown-list-container .search-container label {
-	display: none !important;
+	// display: none !important;
+	// transform: translateY( 0 ) !important;
+	// transform: translateX( 8px ) !important;
+	font-size: 12px !important;
+	text-indent: 17px !important;
+	font-weight: 100 !important;
+	color: $base-light-grey !important;
+	margin-bottom: 0 !important;
 }
 /* stylelint-enable */

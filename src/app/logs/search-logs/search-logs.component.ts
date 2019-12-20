@@ -10,20 +10,19 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
+
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 import { LogResponse } from 'src/app/definitions/interfaces/log-response';
-import { LogEntryResponse } from 'src/app/definitions/interfaces/log-entry-response';
 import { mockLogsList } from 'src/app/services/utils/logs.mocks';
 
 @Component({
   selector: 'search-logs',
   templateUrl: './search-logs.component.html',
-  styleUrls: ['./search-logs.component.scss']
+  styleUrls: ['./search-logs.component.scss'],
 })
 export class SearchLogsComponent implements OnInit {
-
   logsEntry: LogResponse = mockLogsList as LogResponse;
   /**
    * Model that hold the rate refresh
@@ -32,7 +31,7 @@ export class SearchLogsComponent implements OnInit {
   rateRefresh = {
     off: true,
     oneMin: true,
-    fiveMin: true
+    fiveMin: true,
   };
   /**
    * Model that hold the sorting filter
@@ -48,12 +47,13 @@ export class SearchLogsComponent implements OnInit {
   entityFilterForm: FormGroup;
   entityFilter: FormControl;
   entity: FormControl;
+
   /**
    * NGX-select-dropdown
    */
   entityDropdownOptions: any[];
   selectConfig = {};
-    /**
+  /**
    * Model that hold the search term in search box
    */
   searchTerm: string;
@@ -72,13 +72,13 @@ export class SearchLogsComponent implements OnInit {
 
   constructor(
     private translateService: TranslateService,
-    private formBuilder: FormBuilder
-    ) {
+    private formBuilder: FormBuilder,
+  ) {
     this.searchTerm = '';
     this.filterField = false;
     this.isOpen = true;
   }
-    /**
+  /**
    * Convenience getter for easy access to form fields
    */
   get f() { return this.entityFilterForm.controls; }
@@ -94,17 +94,19 @@ export class SearchLogsComponent implements OnInit {
       height: 'auto',
       placeholder: this.translateService.instant('logs.selectEntity'),
       moreText: 'more',
-      noResultsFound: this.translateService.instant('apps.addConnection.noResults')
+      noResultsFound: this.translateService.instant('apps.addConnection.noResults'),
     };
     this.formatEntityLogs();
   }
   /**
    * Formats entity logs
    */
+  // TODO
   formatEntityLogs() {
     const entries = this.logsEntry.entries;
     const planeEntries = {};
     this.entityDropdownOptions = [];
+    let arraySmall = [];
     for (let i = 0; i < entries.length; i++) {
       const eachEntry = entries[i];
       // TODO
@@ -113,17 +115,27 @@ export class SearchLogsComponent implements OnInit {
       eachEntry.service_group_name = '----[service] ' + eachEntry.service_group_name;
 
       planeEntries[eachEntry['app_descriptor_id']] = eachEntry;
-      if (!planeEntries[eachEntry['app_descriptor_id']]) {
-        console.log('help');
-        planeEntries[eachEntry['app_descriptor_id']]['instanceList'] = [];
-      }
-      if (eachEntry.app_instance_name) {
-        planeEntries[eachEntry['app_descriptor_id']]['instanceList'].push(eachEntry.app_instance_name);
-      }
+      // if (!planeEntries[eachEntry['app_descriptor_id']]) {
+      //   console.log('help');
+      //   planeEntries[eachEntry['app_descriptor_id']]['instanceList'] = [];
+      // }
+      // if (eachEntry.app_instance_name) {
+      //   planeEntries[eachEntry['app_descriptor_id']]['instanceList'].push(eachEntry.app_instance_name);
+      // }
     }
-    this.entityDropdownOptions = Object.values(planeEntries);
-  }
+    // this.entityDropdownOptions = Object.values(planeEntries);
+    arraySmall = Object.values(planeEntries);
+    console.log(' arraySmall ',  arraySmall );
+    arraySmall.forEach(entry => {
+      this.entityDropdownOptions.push(
+          entry.app_descriptor_id,
+          entry.app_instance_name,
+          entry.service_group_name
+      );
+    });
+    console.log('array small 2 ', arraySmall);
 
+  }
   /**
    * Refreshes rate
    */
@@ -150,21 +162,21 @@ export class SearchLogsComponent implements OnInit {
    */
   addSortingFilter(sorting: string) {
     let canApply = false;
-      const auxFilters = { ...this.sortingFilter };
-      auxFilters[sorting] = !auxFilters[sorting];
-      for (const filter in auxFilters) {
-        if (!!!auxFilters[filter]) {
-          continue;
-        }
-        if (auxFilters[filter]) {
-          canApply = true;
-          continue;
-        }
-        if (canApply) {
-          this.sortingFilter[sorting] = !this.sortingFilter[sorting];
-        }
+    const auxFilters = { ...this.sortingFilter };
+    auxFilters[sorting] = !auxFilters[sorting];
+    for (const filter in auxFilters) {
+      if (!!!auxFilters[filter]) {
+        continue;
+      }
+      if (auxFilters[filter]) {
+        canApply = true;
+        continue;
+      }
+      if (canApply) {
+        this.sortingFilter[sorting] = !this.sortingFilter[sorting];
       }
     }
+  }
   /**
    * Reset all the filters fields
    */
@@ -181,7 +193,9 @@ export class SearchLogsComponent implements OnInit {
       this.selectedMoments = new FormControl([]);
     }
   }
-
+  /**
+   * Shows search options
+   */
   showSearchOptions() {
     this.isOpen = !this.isOpen;
   }
