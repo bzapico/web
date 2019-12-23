@@ -80,9 +80,9 @@ export class SearchLogsComponent implements OnInit {
     this.selectConfig = {
       displayKey: 'name',
       search: true,
-      searchPlaceholder: 'Search',
+      searchPlaceholder: this.translateService.instant('logs.searchEntity'),
       height: 'auto',
-      placeholder: 'Select an specific entity',
+      placeholder: this.translateService.instant('logs.selectEntity'),
       moreText: 'more',
       customComparator: () => {},
       noResultsFound: this.translateService.instant('apps.addConnection.noResults'),
