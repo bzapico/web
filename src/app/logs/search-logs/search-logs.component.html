@@ -13,8 +13,7 @@
 <button
   (click)="showSearchOptions()"
   class="double-arrow"
-  [ngClass]="isOpen ? 'double-arrow-in' : 'double-arrow-out'"
-  >
+  [ngClass]="isOpen ? 'double-arrow-in' : 'double-arrow-out'">
   <i class="material-icons i-arrow">double_arrow</i>
 </button>
 <ng-container *ngIf="!isOpen">
@@ -227,8 +226,7 @@
                 }"
                 tooltip="{{ 'logs.ascending' | translate }}"
                 placement="bottom"
-                class="quick-filters-btn"
-              >
+                class="quick-filters-btn">
                 {{ 'logs.ascending' | translate }}
               </li>
               <i
@@ -246,8 +244,7 @@
                 }"
                 tooltip="{{ 'logs.descending' | translate }}"
                 placement="bottom"
-                class="quick-filters-btn"
-              >
+                class="quick-filters-btn">
                 {{ 'logs.descending' | translate }}
               </li>
             </ul>
@@ -268,8 +265,7 @@
                 }"
                 tooltip="{{ 'logs.off' | translate }}"
                 placement="bottom"
-                class="quick-filters-btn"
-              >
+                class="quick-filters-btn">
                 {{ 'logs.off' | translate }}
               </li>
               <li
@@ -280,8 +276,7 @@
                 }"
                 tooltip="{{ 'logs.oneMin' | translate }}"
                 placement="bottom"
-                class="quick-filters-btn"
-              >
+                class="quick-filters-btn">
                 {{ 'logs.oneMin' | translate }}
               </li>
               <li
@@ -292,8 +287,7 @@
                 }"
                 tooltip="{{ 'logs.fiveMins' | translate }}"
                 placement="bottom"
-                class="quick-filters-btn"
-              >
+                class="quick-filters-btn">
                 {{ 'logs.fiveMins' | translate }}
               </li>
             </ul>

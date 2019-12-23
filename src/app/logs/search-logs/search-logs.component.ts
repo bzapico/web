@@ -23,6 +23,7 @@ import { mockLogsList } from 'src/app/services/utils/logs.mocks';
   styleUrls: ['./search-logs.component.scss'],
 })
 export class SearchLogsComponent implements OnInit {
+  // Temporary dummy mode
   logsEntry: LogResponse = mockLogsList as LogResponse;
   /**
    * Model that hold the rate refresh
@@ -47,7 +48,6 @@ export class SearchLogsComponent implements OnInit {
   entityFilterForm: FormGroup;
   entityFilter: FormControl;
   entity: FormControl;
-
   /**
    * NGX-select-dropdown
    */
@@ -77,6 +77,16 @@ export class SearchLogsComponent implements OnInit {
     this.searchTerm = '';
     this.filterField = false;
     this.isOpen = true;
+    this.selectConfig = {
+      displayKey: 'name',
+      search: true,
+      searchPlaceholder: 'Search',
+      height: 'auto',
+      placeholder: 'Select an specific entity',
+      moreText: 'more',
+      customComparator: () => {},
+      noResultsFound: this.translateService.instant('apps.addConnection.noResults'),
+    };
   }
   /**
    * Convenience getter for easy access to form fields
@@ -87,54 +97,53 @@ export class SearchLogsComponent implements OnInit {
     this.entityFilterForm = this.formBuilder.group({
       entity: [null],
     });
-    this.selectConfig = {
-      displayKey: 'name',
-      search: true,
-      searchPlaceholder: 'Search',
-      height: 'auto',
-      placeholder: this.translateService.instant('logs.selectEntity'),
-      moreText: 'more',
-      noResultsFound: this.translateService.instant('apps.addConnection.noResults'),
-    };
     this.formatEntityLogs();
   }
   /**
    * Formats entity logs
    */
-  // TODO
   formatEntityLogs() {
     const entries = this.logsEntry.entries;
-    const planeEntries = {};
     this.entityDropdownOptions = [];
-    let arraySmall = [];
+    const logsEntryList = {};
     for (let i = 0; i < entries.length; i++) {
       const eachEntry = entries[i];
-      // TODO
-      eachEntry.app_descriptor_name = '[descriptor] ' + eachEntry.app_descriptor_name;
-      eachEntry.app_instance_name = '--[instance] ' + eachEntry.app_instance_name;
-      eachEntry.service_group_name = '----[service] ' + eachEntry.service_group_name;
-
-      planeEntries[eachEntry['app_descriptor_id']] = eachEntry;
-      // if (!planeEntries[eachEntry['app_descriptor_id']]) {
-      //   console.log('help');
-      //   planeEntries[eachEntry['app_descriptor_id']]['instanceList'] = [];
-      // }
-      // if (eachEntry.app_instance_name) {
-      //   planeEntries[eachEntry['app_descriptor_id']]['instanceList'].push(eachEntry.app_instance_name);
-      // }
+      const descriptorId = eachEntry.app_descriptor_id;
+      let entry = logsEntryList[descriptorId];
+      if (!entry) {
+        entry = {};
+        logsEntryList[descriptorId] = entry;
+        entry.app_descriptor_name = '[descriptor] ' + eachEntry.app_descriptor_name;
+      }
+      const instanceId = eachEntry.app_instance_id;
+      let arrayIns = entry[instanceId];
+      if (!arrayIns) {
+        arrayIns = {};
+        entry[instanceId] = arrayIns;
+      }
+      arrayIns.app_instance_name = '--[instance] ' + eachEntry.app_instance_name;
+      const service = arrayIns[eachEntry.service_id];
+      if (!service) {
+        arrayIns[eachEntry.service_id] = '----[service] ' + eachEntry.service_group_name;
+      }
     }
-    // this.entityDropdownOptions = Object.values(planeEntries);
-    arraySmall = Object.values(planeEntries);
-    console.log(' arraySmall ',  arraySmall );
-    arraySmall.forEach(entry => {
-      this.entityDropdownOptions.push(
-          entry.app_descriptor_id,
-          entry.app_instance_name,
-          entry.service_group_name
-      );
-    });
-    console.log('array small 2 ', arraySmall);
-
+    for (const log in logsEntryList) {
+      if (logsEntryList.hasOwnProperty(log)) {
+      const logsEntry = logsEntryList[log];
+      this.entityDropdownOptions.push(logsEntry.app_descriptor_name);
+      for (const logIns in logsEntry) {
+          if (logIns !== 'app_descriptor_name') {
+            const instance = logsEntry[logIns];
+            this.entityDropdownOptions.push(instance.app_instance_name);
+            for (const service in instance) {
+              if (service !== 'app_instance_name') {
+                this.entityDropdownOptions.push(instance[service]);
+              }
+            }
+          }
+        }
+      }
+    }
   }
   /**
    * Refreshes rate
