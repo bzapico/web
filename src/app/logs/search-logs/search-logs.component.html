@@ -193,6 +193,10 @@
         <div class="form-group form-group-drop">
           <label class="app-filter-label">{{ 'logs.entity' | translate }}</label>
           <form [formGroup]="entityFilterForm" id="entity-drop">
+            <span class="drop-arrow">
+              <i *ngIf="f.entity.pristine" class="material-icons">arrow_drop_down</i>
+              <i *ngIf="!f.entity.pristine" class="material-icons">arrow_drop_up</i>
+            </span>
             <ngx-select-dropdown
               formControlName="entity"
               [multiple]="false"
