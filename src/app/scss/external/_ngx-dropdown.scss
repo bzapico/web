@@ -107,4 +107,7 @@ label.accordion-foot {
 	color: $base-light-grey !important;
 	margin-bottom: 0 !important;
 }
+.ngx-dropdown-container .ngx-dropdown-list-container ul li {
+	text-align: left;
+}
 /* stylelint-enable */

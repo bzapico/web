@@ -20,7 +20,7 @@ import { mockLogsList } from 'src/app/services/utils/logs.mocks';
 @Component({
   selector: 'search-logs',
   templateUrl: './search-logs.component.html',
-  styleUrls: ['./search-logs.component.scss'],
+  styleUrls: ['./search-logs.component.scss']
 })
 export class SearchLogsComponent implements OnInit {
   // Temporary dummy mode
@@ -32,7 +32,7 @@ export class SearchLogsComponent implements OnInit {
   rateRefresh = {
     off: true,
     oneMin: true,
-    fiveMin: true,
+    fiveMin: true
   };
   /**
    * Model that hold the sorting filter
@@ -72,21 +72,23 @@ export class SearchLogsComponent implements OnInit {
 
   constructor(
     private translateService: TranslateService,
-    private formBuilder: FormBuilder,
+    private formBuilder: FormBuilder
   ) {
     this.searchTerm = '';
     this.filterField = false;
     this.isOpen = true;
-    this.selectConfig = {
-      displayKey: 'name',
-      search: true,
-      searchPlaceholder: this.translateService.instant('logs.searchEntity'),
-      height: 'auto',
-      placeholder: this.translateService.instant('logs.selectEntity'),
-      moreText: 'more',
-      customComparator: () => {},
-      noResultsFound: this.translateService.instant('apps.addConnection.noResults'),
-    };
+    this.translateService.get('logs.selectEntity').subscribe(val => {
+      this.selectConfig = {
+        placeholder: val,
+        search: true,
+        searchPlaceholder: this.translateService.instant('logs.searchEntity'),
+        displayKey: 'name',
+        height: 'auto',
+        moreText: 'more',
+        customComparator: () => {},
+        noResultsFound: this.translateService.instant('apps.addConnection.noResults'),
+      };
+    });
   }
   /**
    * Convenience getter for easy access to form fields
@@ -121,10 +123,10 @@ export class SearchLogsComponent implements OnInit {
         arrayIns = {};
         entry[instanceId] = arrayIns;
       }
-      arrayIns.app_instance_name = '--[instance] ' + eachEntry.app_instance_name;
+      arrayIns.app_instance_name = '··[instance] ' + eachEntry.app_instance_name;
       const service = arrayIns[eachEntry.service_id];
       if (!service) {
-        arrayIns[eachEntry.service_id] = '----[service] ' + eachEntry.service_group_name;
+        arrayIns[eachEntry.service_id] = '····[service] ' + eachEntry.service_group_name;
       }
     }
     for (const log in logsEntryList) {
