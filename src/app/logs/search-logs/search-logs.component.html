@@ -156,7 +156,7 @@
                 [(ngModel)]="selectedMoments"
                 placeholder="{{ 'logs.chooseADate' | translate }}"
                 aria-describedby="calendar-addon"
-                class="form-control">
+                class="form-control text-left">
               <owl-date-time #dt1></owl-date-time>
               <div class="input-group-append calendar-btn">
                 <button
@@ -176,7 +176,7 @@
                 [(ngModel)]="selectedMoments"
                 placeholder="{{ 'logs.chooseADate' | translate }}"
                 aria-describedby="calendar-addon"
-                class="form-control">
+                class="form-control text-left">
               <owl-date-time #dt2></owl-date-time>
               <div class="input-group-append calendar-btn">
                 <button
@@ -194,8 +194,7 @@
           <label class="app-filter-label">{{ 'logs.entity' | translate }}</label>
           <form [formGroup]="entityFilterForm" id="entity-drop">
             <span class="drop-arrow">
-              <i *ngIf="f.entity.pristine" class="material-icons">arrow_drop_down</i>
-              <i *ngIf="!f.entity.pristine" class="material-icons">arrow_drop_up</i>
+              <i class="material-icons">arrow_drop_down</i>
             </span>
             <ngx-select-dropdown
               formControlName="entity"
@@ -204,7 +203,7 @@
                 'base-light-grey': !f.entity.value
               }"
               [config]="selectConfig"
-              [options]="entityDropdownOptions"
+              [options]="entitiesHierarchy"
             >
           </ngx-select-dropdown>
           </form>

@@ -10,7 +10,6 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
@@ -23,8 +22,12 @@ import { mockLogsList } from 'src/app/services/utils/logs.mocks';
   styleUrls: ['./search-logs.component.scss']
 })
 export class SearchLogsComponent implements OnInit {
+  static DESCRIPTOR_HEADER = '[descriptor]';
+  static INSTANCE_HEADER = '··[instance]';
+  static SERVICE_GROUP_HEADER = '····[service-group]';
+  static SERVICE_HEADER = '······[service]';
   // Temporary dummy mode
-  logsEntry: LogResponse = mockLogsList as LogResponse;
+  logs: LogResponse = mockLogsList as LogResponse;
   /**
    * Model that hold the rate refresh
    */
@@ -51,7 +54,6 @@ export class SearchLogsComponent implements OnInit {
   /**
    * NGX-select-dropdown
    */
-  entityDropdownOptions: any[];
   selectConfig = {};
   /**
    * Model that hold the search term in search box
@@ -69,6 +71,10 @@ export class SearchLogsComponent implements OnInit {
    * Picker with rangeFrom and rangeTo selection
    */
   public selectedMoments: any;
+  /**
+   * Object array with entities names with object type to avoid auto array sort
+   */
+  entitiesHierarchy: any[];
 
   constructor(
     private translateService: TranslateService,
@@ -89,6 +95,7 @@ export class SearchLogsComponent implements OnInit {
         noResultsFound: this.translateService.instant('apps.addConnection.noResults'),
       };
     });
+    this.entitiesHierarchy = [];
   }
   /**
    * Convenience getter for easy access to form fields
@@ -99,53 +106,32 @@ export class SearchLogsComponent implements OnInit {
     this.entityFilterForm = this.formBuilder.group({
       entity: [null],
     });
-    this.formatEntityLogs();
+    this.getEntityHierarchy();
   }
   /**
-   * Formats entity logs
-   */
-  formatEntityLogs() {
-    const entries = this.logsEntry.entries;
-    this.entityDropdownOptions = [];
-    const logsEntryList = {};
-    for (let i = 0; i < entries.length; i++) {
-      const eachEntry = entries[i];
-      const descriptorId = eachEntry.app_descriptor_id;
-      let entry = logsEntryList[descriptorId];
-      if (!entry) {
-        entry = {};
-        logsEntryList[descriptorId] = entry;
-        entry.app_descriptor_name = '[descriptor] ' + eachEntry.app_descriptor_name;
-      }
-      const instanceId = eachEntry.app_instance_id;
-      let arrayIns = entry[instanceId];
-      if (!arrayIns) {
-        arrayIns = {};
-        entry[instanceId] = arrayIns;
-      }
-      arrayIns.app_instance_name = '··[instance] ' + eachEntry.app_instance_name;
-      const service = arrayIns[eachEntry.service_id];
-      if (!service) {
-        arrayIns[eachEntry.service_id] = '····[service] ' + eachEntry.service_group_name;
-      }
-    }
-    for (const log in logsEntryList) {
-      if (logsEntryList.hasOwnProperty(log)) {
-      const logsEntry = logsEntryList[log];
-      this.entityDropdownOptions.push(logsEntry.app_descriptor_name);
-      for (const logIns in logsEntry) {
-          if (logIns !== 'app_descriptor_name') {
-            const instance = logsEntry[logIns];
-            this.entityDropdownOptions.push(instance.app_instance_name);
-            for (const service in instance) {
-              if (service !== 'app_instance_name') {
-                this.entityDropdownOptions.push(instance[service]);
-              }
-            }
-          }
-        }
-      }
-    }
+  * Gets the entity hierarchy to order the dropdown options
+  */
+  getEntityHierarchy() {
+    this.logs.app_descriptor_log_summary.forEach(descriptor => {
+      this.entitiesHierarchy.push({
+        name: SearchLogsComponent.DESCRIPTOR_HEADER + descriptor.app_descriptor_name,
+      });
+      descriptor.instances.forEach(instance => {
+        this.entitiesHierarchy.push({
+          name: SearchLogsComponent.INSTANCE_HEADER + instance.app_instance_name,
+        });
+        instance.groups.forEach(serviceGroup => {
+          this.entitiesHierarchy.push({
+            name: SearchLogsComponent.SERVICE_GROUP_HEADER + serviceGroup.name,
+          } );
+          serviceGroup.service_instances.forEach(service => {
+            this.entitiesHierarchy.push({
+              name: SearchLogsComponent.SERVICE_HEADER + service.name,
+            });
+          });
+        });
+      });
+    });
   }
   /**
    * Refreshes rate

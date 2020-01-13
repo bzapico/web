@@ -34,7 +34,7 @@
 		li {
 			text-align: center;
 			font-size: 12px !important;
-			padding: .5em !important;
+			padding: 0.5em !important;
 			color: $base-grey !important;
 			&:hover {
 				background-color: $super-light-grey !important;
@@ -95,7 +95,7 @@ label.accordion-foot {
 }
 // Search
 .ngx-dropdown-container .ngx-dropdown-list-container .search-container input {
-	border: 1px solid #E8E8E8 !important;
+	border: 1px solid #e8e8e8 !important;
 	border-radius: 20px !important;
 	height: 23px !important;
 	text-indent: 10px;
@@ -106,8 +106,12 @@ label.accordion-foot {
 	font-weight: 100 !important;
 	color: $base-light-grey !important;
 	margin-bottom: 0 !important;
+	padding-top: 2px;
 }
-.ngx-dropdown-container .ngx-dropdown-list-container ul li {
-	text-align: left;
+#entity-drop .ngx-dropdown-container {
+	.ngx-dropdown-list-container ul li,
+	button {
+		text-align: left;
+	}
 }
 /* stylelint-enable */
