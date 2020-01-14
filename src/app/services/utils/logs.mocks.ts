@@ -177,12 +177,12 @@ export const mockLogsList = {
                         name: 'group1',
                         service_instances: [
                             {
-                                service_id: '7e88c9c7-9e7d-4ab7-99ad-b708c6486ce9',
+                                service_id: 'b57e4138-a0ed-4804-a0de-3787e5d9e8f3',
                                 service_instance_id: '20d46028-85da-40fe-ae88-69424e83891f',
                                 name: 'simple-mysql'
                             },
                             {
-                                service_id: 'b57e4138-a0ed-4804-a0de-3787e5d9e8ff',
+                                service_id: 'b57e4138-a0ed-4804-a0de-3787e5d9e8f4',
                                 service_instance_id: '4acf9d26-d6d3-4623-b3a8-0401f0b5a5f2',
                                 name: 'simple-wordpress'
                             }
@@ -206,12 +206,12 @@ export const mockLogsList = {
                         name: 'group1',
                         service_instances: [
                             {
-                                service_id: 'b57e4138-a0ed-4804-a0de-3787e5d9e8ff',
+                                service_id: 'b57e4138-a0ed-4804-a0de-3787e5d9e8f3',
                                 service_instance_id: '25256794-3891-4852-8b9f-e221ea0570ce',
                                 name: 'simple-wordpress'
                             },
                             {
-                                service_id: '7e88c9c7-9e7d-4ab7-99ad-b708c6486ce9',
+                                service_id: '7e88c9c7-9e7d-4ab7-99ad-b708c6486ce2',
                                 service_instance_id: 'adcba6e4-782c-4c6d-a323-b62c2674d808',
                                 name: 'simple-mysql'
                             }
@@ -235,12 +235,12 @@ export const mockLogsList = {
                         name: 'group1',
                         service_instances: [
                             {
-                                service_id: '7e88c9c7-9e7d-4ab7-99ad-b708c6486ce9',
+                                service_id: '7e88c9c7-9e7d-4ab7-99ad-b708c6486ce6',
                                 service_instance_id: 'c2b94673-c95f-4131-9b56-dafe56b13b6b',
                                 name: 'simple-mysql'
                             },
                             {
-                                service_id: 'b57e4138-a0ed-4804-a0de-3787e5d9e8ff',
+                                service_id: 'b57e4138-a0ed-4804-a0de-3787e5d9e8f6',
                                 service_instance_id: 'f39ebfaa-5831-43be-b5f8-df0340d33b43',
                                 name: 'simple-wordpress'
                             }

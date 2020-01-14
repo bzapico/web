@@ -204,6 +204,7 @@
               }"
               [config]="selectConfig"
               [options]="entitiesHierarchy"
+              (change)="selectionChanged($event)"
             >
           </ngx-select-dropdown>
           </form>

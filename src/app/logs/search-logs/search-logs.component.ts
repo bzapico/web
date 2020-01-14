@@ -25,10 +25,8 @@ export class SearchLogsComponent implements OnInit {
   /**
    * Headers to show hierarchy in dropdown options
    */
-  private static readonly DESCRIPTOR_HEADER = '[descriptor]';
-  private static readonly INSTANCE_HEADER = '··[instance]';
-  private static readonly SERVICE_GROUP_HEADER = '····[service-group]';
-  private static readonly SERVICE_HEADER = '······[service]';
+  private static readonly INSTANCE_HEADER = '[instance]';
+  private static readonly SERVICE_HEADER = '····[service]';
   // Temporary dummy mode
   logs: LogResponse = mockLogsList as LogResponse;
   /**
@@ -123,11 +121,6 @@ export class SearchLogsComponent implements OnInit {
   */
   getEntityHierarchy(): void {
     this.logs.app_descriptor_log_summary.forEach(descriptor => {
-      this.entitiesHierarchy.push({
-        displayedName: SearchLogsComponent.DESCRIPTOR_HEADER + descriptor.app_descriptor_name,
-        name: descriptor.app_descriptor_name,
-        app_descriptor_id: descriptor.app_descriptor_id,
-      });
       descriptor.instances.forEach(instance => {
         this.entitiesHierarchy.push({
           displayedName: SearchLogsComponent.INSTANCE_HEADER + instance.app_instance_name,
@@ -136,26 +129,31 @@ export class SearchLogsComponent implements OnInit {
           app_instance_id: instance.app_instance_id,
         });
         instance.groups.forEach(serviceGroup => {
-          this.entitiesHierarchy.push({
-            displayedName: SearchLogsComponent.SERVICE_GROUP_HEADER + serviceGroup.name,
-            name: serviceGroup.name,
-            app_descriptor_id: descriptor.app_descriptor_id,
-            app_instance_id: instance.app_instance_id,
-            service_group_id: serviceGroup.service_group_id,
-          } );
           serviceGroup.service_instances.forEach(service => {
-            this.entitiesHierarchy.push({
-              displayedName: SearchLogsComponent.SERVICE_HEADER + service.name,
-              name: service.name,
-              app_descriptor_id: descriptor.app_descriptor_id,
-              app_instance_id: instance.app_instance_id,
-              service_group_id: serviceGroup.service_group_id,
-              service_id: service.service_id,
-            });
+            const serviceArray = this.entitiesHierarchy.filter(a =>
+              a.service_id === service.service_id &&
+              a.app_instance_id === instance.app_instance_id);
+            if (serviceArray.length === 0) {
+              this.entitiesHierarchy.push({
+                displayedName: SearchLogsComponent.SERVICE_HEADER + service.name,
+                name: service.name,
+                app_descriptor_id: descriptor.app_descriptor_id,
+                app_instance_id: instance.app_instance_id,
+                service_group_id: serviceGroup.service_group_id,
+                service_id: service.service_id,
+              });
+            }
           });
         });
       });
     });
+  }
+  /**
+  * Change event when user changes the selected options in dropdown
+  */
+  selectionChanged(e) {
+    // Skeleton
+    console.log('e ', e.value );
   }
   /**
    * Refreshes rate
