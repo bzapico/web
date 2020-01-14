@@ -14,7 +14,8 @@ import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 import { LogResponse } from 'src/app/definitions/interfaces/log-response';
-import { mockLogsList } from 'src/app/services/utils/logs.mocks';
+import { LogsService } from '../logs.service';
+import { timer } from 'rxjs';
 
 @Component({
   selector: 'search-logs',
@@ -27,24 +28,30 @@ export class SearchLogsComponent implements OnInit {
    */
   private static readonly INSTANCE_HEADER = '[instance]';
   private static readonly SERVICE_HEADER = '····[service]';
-  // Temporary dummy mode
-  logs: LogResponse = mockLogsList as LogResponse;
   /**
-   * Model that hold the rate refresh
+   * Model that hold the last day and last hour timing filters
    */
-  rate: string;
-  rateRefresh = {
-    off: true,
-    oneMin: true,
-    fiveMin: true
+  timing: string;
+  timingFilter = {
+    lastHour: false,
+    lastDay: false,
   };
   /**
    * Model that hold the sorting filter
    */
   sorting: string;
   sortingFilter = {
-    ascend: true,
-    descend: true,
+    ascend: false,
+    descend: false,
+  };
+  /**
+   * Model that hold the rate refresh
+   */
+  rate: string;
+  rateFilter = {
+    off: true,
+    oneMin: false,
+    fiveMin: false
   };
   /**
    * Models that holds forms info
@@ -84,13 +91,21 @@ export class SearchLogsComponent implements OnInit {
     service_id?: string,
   }[];
 
+  // TODO
+  logs: LogResponse;
+  private subscription: any;
+
   constructor(
     private translateService: TranslateService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private logsService: LogsService
   ) {
+    // TODO
+    this.logs = this.logsService.getLogsEntry();
     this.searchTerm = '';
     this.filterField = false;
     this.isOpen = true;
+    // Dropdown configuration
     this.translateService.get('logs.selectEntity').subscribe(val => {
       this.selectConfig = {
         placeholder: val,
@@ -117,8 +132,40 @@ export class SearchLogsComponent implements OnInit {
     this.getEntityHierarchy();
   }
   /**
-  * Gets the entity hierarchy to order the dropdown options
-  */
+   * Reset all the filters fields
+   */
+  resetFilters(list: string) {
+    if (list === 'search') {
+      this.filterField = false;
+      this.searchTerm = '';
+    } else if (list === 'filters') {
+      this.timingFilter.lastDay = false;
+      this.timingFilter.lastHour = false;
+      this.sortingFilter.ascend = false;
+      this.sortingFilter.descend = false;
+      this.rateFilter.off = true;
+      this.rateFilter.oneMin = false;
+      this.rateFilter.fiveMin = false;
+      this.selectedMoments = new FormControl([]);
+    }
+  }
+  /**
+   * Gets the last hour logs filtered list
+   */
+  getLastHourLogs() {
+    this.timingFilter.lastDay = false;
+    this.timingFilter.lastHour = true;
+  }
+  /**
+   * Gets the last day logs filtered list
+   */
+  getLastDayLogs() {
+    this.timingFilter.lastDay = true;
+    this.timingFilter.lastHour = false;
+  }
+  /**
+   * Gets the entity hierarchy to order the dropdown options
+   */
   getEntityHierarchy(): void {
     this.logs.app_descriptor_log_summary.forEach(descriptor => {
       descriptor.instances.forEach(instance => {
@@ -149,67 +196,66 @@ export class SearchLogsComponent implements OnInit {
     });
   }
   /**
-  * Change event when user changes the selected options in dropdown
-  */
+   * Change event when user changes the selected options in dropdown
+   */
   selectionChanged(e) {
     // Skeleton
     console.log('e ', e.value );
   }
   /**
-   * Refreshes rate
-   */
-  refreshRate(rate: string) {
-    alert(this.translateService.instant('apps.filters.notAppliedSearching'));
-    let canApply = false;
-    const auxFilters = { ...this.rateRefresh };
-    auxFilters[rate] = !auxFilters[rate];
-    for (const filter in auxFilters) {
-      if (!!!auxFilters[filter]) {
-        continue;
-      }
-      if (auxFilters[filter]) {
-        canApply = true;
-        continue;
-      }
-    }
-    if (canApply) {
-      this.rateRefresh[rate] = !this.rateRefresh[rate];
-    }
-  }
-  /**
    * Adds a quick filter
    */
   addSortingFilter(sorting: string) {
-    let canApply = false;
     const auxFilters = { ...this.sortingFilter };
     auxFilters[sorting] = !auxFilters[sorting];
     for (const filter in auxFilters) {
-      if (!!!auxFilters[filter]) {
-        continue;
-      }
-      if (auxFilters[filter]) {
-        canApply = true;
-        continue;
-      }
-      if (canApply) {
-        this.sortingFilter[sorting] = !this.sortingFilter[sorting];
+      if (auxFilters.hasOwnProperty(filter)) {
+        auxFilters[filter] = false;
       }
     }
+    auxFilters[sorting] = !auxFilters[sorting];
+    this.sortingFilter = auxFilters;
+    // TODO
+    const entries = this.logs.entries;
+    entries.sort((a, b) => {
+      console.log('sorting option  ', a);
+      return a.timestamp - b.timestamp;
+    });
   }
   /**
-   * Reset all the filters fields
+   * Refreshes rate
    */
-  resetFilters(list: string) {
-    if (list === 'search') {
-      this.filterField = false;
-      this.searchTerm = '';
-    } else if (list === 'filters') {
-      this.rateRefresh.off = true;
-      this.rateRefresh.oneMin = true;
-      this.rateRefresh.fiveMin = true;
-      this.sortingFilter.ascend = true;
-      this.sortingFilter.descend = true;
-      this.selectedMoments = new FormControl([]);
+  refreshRate(rate: string) {
+    const auxFilters = { ...this.rateFilter };
+    for (const filter in auxFilters) {
+      if (auxFilters.hasOwnProperty(filter)) {
+        auxFilters[filter] = false;
+      }
+    }
+    auxFilters[rate] = !auxFilters[rate];
+    this.rateFilter = auxFilters;
+    this.setTimer(rate);
+  }
+  // TODO change to minutes
+  /**
+   * Sets a time to emit numbers in sequence every specified duration.
+   */
+  private setTimer(action: string) {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
+    let time = 0;
+    if (action === 'oneMin') {
+      time = 1000;
+    } else if (action === 'fiveMin') {
+      time = 5000;
+    }
+    if (time > 0) {
+      this.subscription = timer(0, time).subscribe(() => {
+        console.log('Each ' + time / 1000 + ' seconds');
+      });
+    } else {
+      console.log('off');
     }
   }
   /**

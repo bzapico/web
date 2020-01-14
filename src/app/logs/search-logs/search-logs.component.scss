@@ -99,7 +99,8 @@
 	margin-bottom: 0;
 	min-height: 0;
 }
-.date-filters-btn {
+.date-filters-btn,
+%date-filters-btn {
 	background-color: $dark-grey;
 	border-radius: 10px;
 	width: 113px;
@@ -124,6 +125,11 @@
 		background-color: $base-violet;
 		opacity: 0.6;
 	}
+}
+.date-filters-btn-selected {
+	@extend %date-filters-btn;
+
+	background-color: $base-violet;
 }
 .label-form {
 	font-size: 13px;

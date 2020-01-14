@@ -13,7 +13,7 @@
 
 import { Component, OnInit } from '@angular/core';
 import { LogResponse } from 'src/app/definitions/interfaces/log-response';
-import { mockLogsList } from 'src/app/services/utils/logs.mocks';
+import { LogsService } from '../logs.service';
 
 @Component({
   selector: 'logs-display',
@@ -21,10 +21,13 @@ import { mockLogsList } from 'src/app/services/utils/logs.mocks';
   styleUrls: ['./logs-display.component.scss']
 })
 export class LogsDisplayComponent implements OnInit {
-  // Temporary dummy mode
-  logsEntry: LogResponse = mockLogsList as LogResponse;
+  logs: LogResponse;
 
-  constructor() {}
+  constructor(
+    private logsService: LogsService
+  ) {
+    this.logs = this.logsService.getLogsEntry();
+  }
 
   ngOnInit() {}
 

@@ -12,8 +12,8 @@
 -->
 
 <div class="logs-display-box">
-	<div *ngIf="logsEntry.entries">
-		<div *ngFor="let entry of logsEntry.entries" class="logs">
+	<div *ngIf="logs.entries">
+		<div *ngFor="let entry of logs.entries" class="logs">
 			<span class="logs-display-title">
 				<span class="logs-display-date">
 					{{entry.timestamp/ 1000000 | date: 'EEE MMM d h:mm:ss y'}}
@@ -44,7 +44,7 @@
 			</span>
 		</div>
 	</div>
-	<div *ngIf="!logsEntry.entries" class="no-elements">
+	<div *ngIf="!logs.entries" class="no-elements">
 		{{'logs.noLogs' | translate}}
 	</div>
 </div>

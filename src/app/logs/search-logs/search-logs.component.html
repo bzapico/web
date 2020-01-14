@@ -134,17 +134,30 @@
             {{ 'logs.resetFilter' | translate }}
           </span>
         </div>
-        <!-- DATE PICKER -->
+        <!-- TIME FILTER -->
         <div class="display-flex-box">
-          <div class="date-filters-btn">
+          <div
+            (click)="getLastHourLogs('lastHour')"
+            class="date-filters-btn"
+            [ngClass]="{
+              'date-filters-btn-selected': timingFilter.lastHour,
+              'date-filters-btn': !timingFilter.lastHour
+            }">
             <i class="material-icons i-filter">filter_list</i>
             <span>{{ 'logs.lastHour' | translate }}</span>
           </div>
-          <div class="date-filters-btn">
+          <div
+            (click)="getLastDayLogs('lastDay')"
+            class="date-filters-btn"
+            [ngClass]="{
+              'date-filters-btn-selected': timingFilter.lastDay,
+              'date-filters-btn': !timingFilter.lastDay
+            }">
             <i class="material-icons i-filter">filter_list</i>
             <span>{{ 'logs.lastDay' | translate }}</span>
           </div>
         </div>
+        <!-- DATE PICKER -->
         <div class="row">
           <div class="col-12 mt-4">
             <p class="label-form">{{ 'logs.from' | translate }}</p>
@@ -264,8 +277,8 @@
               <li
                 (click)="refreshRate('off')"
                 [ngClass]="{
-                  'quick-filters-btn-selected': rateRefresh.off,
-                  'quick-filters-btn': !rateRefresh.off
+                  'quick-filters-btn-selected': rateFilter.off,
+                  'quick-filters-btn': !rateFilter.off
                 }"
                 tooltip="{{ 'logs.off' | translate }}"
                 placement="bottom"
@@ -275,8 +288,8 @@
               <li
                 (click)="refreshRate('oneMin')"
                 [ngClass]="{
-                  'quick-filters-btn-selected': rateRefresh.oneMin,
-                  'quick-filters-btn': !rateRefresh.oneMin
+                  'quick-filters-btn-selected': rateFilter.oneMin,
+                  'quick-filters-btn': !rateFilter.oneMin
                 }"
                 tooltip="{{ 'logs.oneMin' | translate }}"
                 placement="bottom"
@@ -286,8 +299,8 @@
               <li
                 (click)="refreshRate('fiveMin')"
                 [ngClass]="{
-                  'quick-filters-btn-selected': rateRefresh.fiveMin,
-                  'quick-filters-btn': !rateRefresh.fiveMin
+                  'quick-filters-btn-selected': rateFilter.fiveMin,
+                  'quick-filters-btn': !rateFilter.fiveMin
                 }"
                 tooltip="{{ 'logs.fiveMins' | translate }}"
                 placement="bottom"

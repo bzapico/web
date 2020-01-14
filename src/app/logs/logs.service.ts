@@ -12,11 +12,18 @@
  */
 
 import { Injectable } from '@angular/core';
+import { LogResponse } from 'src/app/definitions/interfaces/log-response';
+import { mockLogsList } from 'src/app/services/utils/logs.mocks';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LogsService {
+    // Temporary dummy mode
+    logs: LogResponse = mockLogsList as LogResponse;
 
   constructor() { }
+  public getLogsEntry(): LogResponse {
+    return this.logs;
+  }
 }
