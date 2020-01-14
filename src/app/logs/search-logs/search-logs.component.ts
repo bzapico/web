@@ -22,10 +22,13 @@ import { mockLogsList } from 'src/app/services/utils/logs.mocks';
   styleUrls: ['./search-logs.component.scss']
 })
 export class SearchLogsComponent implements OnInit {
-  static DESCRIPTOR_HEADER = '[descriptor]';
-  static INSTANCE_HEADER = '··[instance]';
-  static SERVICE_GROUP_HEADER = '····[service-group]';
-  static SERVICE_HEADER = '······[service]';
+  /**
+   * Headers to show hierarchy in dropdown options
+   */
+  private static readonly DESCRIPTOR_HEADER = '[descriptor]';
+  private static readonly INSTANCE_HEADER = '··[instance]';
+  private static readonly SERVICE_GROUP_HEADER = '····[service-group]';
+  private static readonly SERVICE_HEADER = '······[service]';
   // Temporary dummy mode
   logs: LogResponse = mockLogsList as LogResponse;
   /**
@@ -66,15 +69,22 @@ export class SearchLogsComponent implements OnInit {
   /**
    * Variable to store the value of menu state
    */
-  public isOpen: boolean;
+  isOpen: boolean;
   /**
    * Picker with rangeFrom and rangeTo selection
    */
-  public selectedMoments: FormControl;
+  selectedMoments: FormControl;
   /**
    * Object array with entities names with object type to avoid auto array sort
    */
-  entitiesHierarchy: {displayedName: string, name: string, id: string}[];
+  entitiesHierarchy: {
+    displayedName: string,
+    name: string,
+    app_descriptor_id: string,
+    app_instance_id?: string,
+    service_group_id?: string,
+    service_id?: string,
+  }[];
 
   constructor(
     private translateService: TranslateService,
@@ -116,25 +126,31 @@ export class SearchLogsComponent implements OnInit {
       this.entitiesHierarchy.push({
         displayedName: SearchLogsComponent.DESCRIPTOR_HEADER + descriptor.app_descriptor_name,
         name: descriptor.app_descriptor_name,
-        id: descriptor.app_descriptor_id,
+        app_descriptor_id: descriptor.app_descriptor_id,
       });
       descriptor.instances.forEach(instance => {
         this.entitiesHierarchy.push({
           displayedName: SearchLogsComponent.INSTANCE_HEADER + instance.app_instance_name,
           name: instance.app_instance_name,
-          id: instance.app_instance_id,
+          app_descriptor_id: descriptor.app_descriptor_id,
+          app_instance_id: instance.app_instance_id,
         });
         instance.groups.forEach(serviceGroup => {
           this.entitiesHierarchy.push({
             displayedName: SearchLogsComponent.SERVICE_GROUP_HEADER + serviceGroup.name,
             name: serviceGroup.name,
-            id: serviceGroup.service_group_id,
+            app_descriptor_id: descriptor.app_descriptor_id,
+            app_instance_id: instance.app_instance_id,
+            service_group_id: serviceGroup.service_group_id,
           } );
           serviceGroup.service_instances.forEach(service => {
             this.entitiesHierarchy.push({
               displayedName: SearchLogsComponent.SERVICE_HEADER + service.name,
               name: service.name,
-              id: service.service_id,
+              app_descriptor_id: descriptor.app_descriptor_id,
+              app_instance_id: instance.app_instance_id,
+              service_group_id: serviceGroup.service_group_id,
+              service_id: service.service_id,
             });
           });
         });

@@ -148,6 +148,11 @@ export const mockLogsList = {
                                 name: 'simple-wordpress'
                             },
                             {
+                                service_id: 'b57e4138-a0ed-4804-a0de-3787e5d9e8ff',
+                                service_instance_id: '9a1c68ba-0bb9-4767-af75-8095f3756589',
+                                name: 'simple-wordpress'
+                            },
+                            {
                                 service_id: '7e88c9c7-9e7d-4ab7-99ad-b708c6486ce9',
                                 service_instance_id: 'f1581e8b-16f2-4d45-a784-f856ee88d6b2',
                                 name: 'simple-mysql'
