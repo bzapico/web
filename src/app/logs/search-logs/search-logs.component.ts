@@ -74,7 +74,7 @@ export class SearchLogsComponent implements OnInit {
   /**
    * Object array with entities names with object type to avoid auto array sort
    */
-  entitiesHierarchy: {name: string}[];
+  entitiesHierarchy: {displayedName: string, name: string, id: string}[];
 
   constructor(
     private translateService: TranslateService,
@@ -88,7 +88,7 @@ export class SearchLogsComponent implements OnInit {
         placeholder: val,
         search: true,
         searchPlaceholder: this.translateService.instant('logs.searchEntity'),
-        displayKey: 'name',
+        displayKey: 'displayedName',
         height: 'auto',
         moreText: 'more',
         customComparator: () => {},
@@ -111,22 +111,30 @@ export class SearchLogsComponent implements OnInit {
   /**
   * Gets the entity hierarchy to order the dropdown options
   */
-  getEntityHierarchy() {
+  getEntityHierarchy(): void {
     this.logs.app_descriptor_log_summary.forEach(descriptor => {
       this.entitiesHierarchy.push({
-        name: SearchLogsComponent.DESCRIPTOR_HEADER + descriptor.app_descriptor_name,
+        displayedName: SearchLogsComponent.DESCRIPTOR_HEADER + descriptor.app_descriptor_name,
+        name: descriptor.app_descriptor_name,
+        id: descriptor.app_descriptor_id,
       });
       descriptor.instances.forEach(instance => {
         this.entitiesHierarchy.push({
-          name: SearchLogsComponent.INSTANCE_HEADER + instance.app_instance_name,
+          displayedName: SearchLogsComponent.INSTANCE_HEADER + instance.app_instance_name,
+          name: instance.app_instance_name,
+          id: instance.app_instance_id,
         });
         instance.groups.forEach(serviceGroup => {
           this.entitiesHierarchy.push({
-            name: SearchLogsComponent.SERVICE_GROUP_HEADER + serviceGroup.name,
+            displayedName: SearchLogsComponent.SERVICE_GROUP_HEADER + serviceGroup.name,
+            name: serviceGroup.name,
+            id: serviceGroup.service_group_id,
           } );
           serviceGroup.service_instances.forEach(service => {
             this.entitiesHierarchy.push({
-              name: SearchLogsComponent.SERVICE_HEADER + service.name,
+              displayedName: SearchLogsComponent.SERVICE_HEADER + service.name,
+              name: service.name,
+              id: service.service_id,
             });
           });
         });
