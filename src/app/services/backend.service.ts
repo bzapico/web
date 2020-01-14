@@ -26,6 +26,8 @@ import { RemoveConnectionRequest } from '../definitions/interfaces/remove-connec
 import { AddConnectionRequest } from '../definitions/interfaces/add-connection-request';
 import { LoginResponse } from '../definitions/interfaces/login-response';
 import { UpdateAssetRequest } from '../definitions/interfaces/update-asset-request';
+import { DownloadRequestId } from '../definitions/interfaces/download-request-id';
+import { DownloadRequest } from '../definitions/interfaces/download-request';
 
 // tslint:disable:no-any
 /**
@@ -816,14 +818,34 @@ export class BackendService implements Backend {
    * Logs
    ********************/
 
-  // POST: '/v1/apps/inst/{organization_id}/logs'
+  // POST: '/v1/log/{organization_id}/search'
   /**
   * Search for log entries matching a query
   * @param searchRequest Search for log entries matching a query
   */
   search(searchRequest: SearchRequest) {
     return this.post(
-      API_URL + 'apps/inst' + searchRequest.organization_id + '/logs',
+      API_URL + 'logs' + searchRequest.organization_id + '/search',
+    );
+  }
+  // POST: '/v1/log/{organization_id}/check'
+  /**
+  * Check checks the state of the download operation
+  * @param downloadRequest DownloadRequestId contains the identifier of an operation
+  */
+  check(downloadRequest: DownloadRequestId) {
+    return this.post(
+      API_URL + 'logs' + downloadRequest.organization_id + '/check',
+    );
+  }
+  // POST: '/v1/log/{organization_id}/download'
+  /**
+  * DownloadLog ask for log entries and store them into a zip file
+  * @param downloadRequest DownloadLogRequest contains a message to request to download logs
+  */
+  DownloadLog(downloadRequest: DownloadRequest) {
+    return this.post(
+      API_URL + 'logs' + downloadRequest.organization_id + '/download',
     );
   }
 }

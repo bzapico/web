@@ -265,3 +265,13 @@
 
 	left: 77px;
 }
+#entity-drop {
+	position: relative;
+}
+.drop-arrow {
+	position: absolute;
+	top: 8px;
+	right: 6px;
+	color: $main-grey;
+	z-index: 1;
+}

@@ -34,8 +34,8 @@
 		li {
 			text-align: center;
 			font-size: 12px !important;
-			padding: .5em !important;
-			color: $base-grey !important;
+			padding: 0.5em !important;
+			color: $dark-grey !important;
 			&:hover {
 				background-color: $super-light-grey !important;
 			}
@@ -82,7 +82,6 @@
 		color: $light-grey !important;
 	}
 }
-/* stylelint-enable */
 ul.available-items {
 	max-height: 200px;
 }
@@ -94,3 +93,25 @@ label.accordion-foot {
 		text-transform: capitalize;
 	}
 }
+// Search
+.ngx-dropdown-container .ngx-dropdown-list-container .search-container input {
+	border: 1px solid $light-grey !important;
+	border-radius: 20px !important;
+	height: 23px !important;
+	text-indent: 10px;
+}
+.ngx-dropdown-container .ngx-dropdown-list-container .search-container label {
+	font-size: 12px !important;
+	text-indent: 17px !important;
+	font-weight: 100 !important;
+	color: $base-light-grey !important;
+	margin-bottom: 0 !important;
+	padding-top: 2px;
+}
+#entity-drop .ngx-dropdown-container {
+	.ngx-dropdown-list-container ul li,
+	button {
+		text-align: left;
+	}
+}
+/* stylelint-enable */
