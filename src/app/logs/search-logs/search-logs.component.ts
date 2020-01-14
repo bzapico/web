@@ -70,11 +70,11 @@ export class SearchLogsComponent implements OnInit {
   /**
    * Picker with rangeFrom and rangeTo selection
    */
-  public selectedMoments: any;
+  public selectedMoments: FormControl;
   /**
    * Object array with entities names with object type to avoid auto array sort
    */
-  entitiesHierarchy: any[];
+  entitiesHierarchy: {name: string}[];
 
   constructor(
     private translateService: TranslateService,
