@@ -47,7 +47,7 @@ import { RemoveConnectionRequest } from '../definitions/interfaces/remove-connec
 import { AddConnectionRequest } from '../definitions/interfaces/add-connection-request';
 import { LoginResponse } from '../definitions/interfaces/login-response';
 import { UpdateAssetRequest } from '../definitions/interfaces/update-asset-request';
-import { DownloadRequest } from '../definitions/interfaces/download-request';
+import { DownloadLogRequest } from '../definitions/interfaces/download-log-request';
 import { DownloadRequestId } from '../definitions/interfaces/download-request-id';
 
 @Injectable({
@@ -971,9 +971,9 @@ export class MockupBackendService implements Backend {
   }
   /**
    * DownloadLog ask for log entries and store them into a zip file
-   * @param downloadRequest DownloadLogRequest contains a message to request to download logs
+   * @param downloadLogRequest DownloadLogRequest contains a message to request to download logs
    */
-  downloadLogs(downloadRequest: DownloadRequest) {
+  downloadLogs(downloadLogRequest: DownloadLogRequest) {
     return of (new HttpResponse({
       body: JSON.stringify(mockLogsList),
       status: 200,
@@ -981,7 +981,7 @@ export class MockupBackendService implements Backend {
   }
   /**
    * Check checks the state of the download operation
-   * @param downloadRequest DownloadRequestId contains the identifier of an operation
+   * @param downloadRequestId DownloadRequestId contains the identifier of an operation
    */
   checkLogs(downloadRequestId: DownloadRequestId) {
     return of (new HttpResponse({

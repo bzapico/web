@@ -27,7 +27,7 @@ import { AddConnectionRequest } from '../definitions/interfaces/add-connection-r
 import { LoginResponse } from '../definitions/interfaces/login-response';
 import { UpdateAssetRequest } from '../definitions/interfaces/update-asset-request';
 import { DownloadRequestId } from '../definitions/interfaces/download-request-id';
-import { DownloadRequest } from '../definitions/interfaces/download-request';
+import { DownloadLogRequest } from '../definitions/interfaces/download-log-request';
 
 // tslint:disable:no-any
 /**
@@ -831,17 +831,17 @@ export class BackendService implements Backend {
   // POST: '/v1/log/{organization_id}/download'
   /**
   * DownloadLog ask for log entries and store them into a zip file
-  * @param downloadRequest DownloadLogRequest contains a message to request to download logs
+  * @param downloadLogRequest DownloadLogRequest contains a message to request to download logs
   */
-  downloadLogs(downloadRequest: DownloadRequest) {
+  downloadLogs(downloadLogRequest: DownloadLogRequest) {
     return this.post(
-      API_URL + 'logs' + downloadRequest.organization_id + '/download',
+      API_URL + 'logs' + downloadLogRequest.organization_id + '/download',
     );
   }
   // GET: '/v1/log/{organization_id}/download/{request_id}/check'
   /**
   * Check checks the state of the download operation
-  * @param downloadRequest DownloadRequestId contains the identifier of an operation
+  * @param downloadRequestId DownloadRequestId contains the identifier of an operation
   */
   checkLogs(downloadRequestId: DownloadRequestId) {
     return this.get(

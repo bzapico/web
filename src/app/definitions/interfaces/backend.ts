@@ -22,7 +22,7 @@ import { AddConnectionRequest } from './add-connection-request';
 import { LoginResponse } from './login-response';
 import { KeyValue } from './key-value';
 import { UpdateAssetRequest } from './update-asset-request';
-import { DownloadRequest } from './download-request';
+import { DownloadLogRequest } from './download-log-request';
 import { DownloadRequestId } from './download-request-id';
 
 // tslint:disable:no-any
@@ -92,6 +92,6 @@ export interface Backend {
     // Unified Logging
     searchLogs(searchRequest: SearchRequest);
     checkLogs(downloadRequestId: DownloadRequestId);
-    downloadLogs(downloadRequest: DownloadRequest);
+    downloadLogs(downloadLogRequest: DownloadLogRequest);
     listLogs(organizationId: string);
 }

@@ -60,4 +60,9 @@ export interface SearchRequest {
    * IncludeMetadata  flag to indicate if the result should not be augmented by adding names, etc.
    */
   include_metadata?: boolean;
+  /**
+   * NFirst is a flag that identifies whether the user expects to receive the first n
+   * results or not if the search must be sorted ascending or descending
+   */
+  n_first?: boolean;
 }
