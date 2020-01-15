@@ -19,6 +19,7 @@ export class EntitiesHierarchy {
   displayedName: string;
   name: string;
   app_descriptor_id: string;
+  id: string;
   app_instance_id?: string;
   service_group_id?: string;
   service_id?: string;
@@ -27,13 +28,15 @@ export class EntitiesHierarchy {
     displayedName: string,
     name: string,
     app_descriptor_id: string,
+    id: string,
     app_instance_id?: string,
     service_group_id?: string,
-    service_id?: string,
+    service_id?: string
   ) {
     this.displayedName = displayedName;
     this.name = name;
     this.app_descriptor_id = app_descriptor_id;
+    this.id = id;
     this.app_instance_id = app_instance_id || '';
     this.service_group_id = service_group_id || '';
     this.service_id = service_id || '';

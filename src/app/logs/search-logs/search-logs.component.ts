@@ -17,6 +17,10 @@ import { LogResponse } from 'src/app/definitions/interfaces/log-response';
 import { LogsService } from '../logs.service';
 import { timer } from 'rxjs';
 import { EntitiesHierarchy } from '../../definitions/models/entities-hierarchy';
+import { BackendService } from 'src/app/services/backend.service';
+import { LocalStorageKeys } from 'src/app/definitions/const/local-storage-keys';
+import { MockupBackendService } from 'src/app/services/mockup-backend.service';
+import { Backend } from 'src/app/definitions/interfaces/backend';
 
 @Component({
   selector: 'search-logs',
@@ -29,6 +33,10 @@ export class SearchLogsComponent implements OnInit {
    */
   private static readonly INSTANCE_HEADER = '[instance]';
   private static readonly SERVICE_HEADER = '····[service]';
+  /**
+   * Backend reference
+   */
+  backend: Backend;
   /**
    * Model that hold the last day and last hour timing filters
    */
@@ -89,10 +97,6 @@ export class SearchLogsComponent implements OnInit {
    */
   entitiesHierarchy: EntitiesHierarchy[];
   fakeValue: EntitiesHierarchy;
-  /**
-   * Options to reload page
-   */
-  reload: boolean;
 
   // TODO
   logs: LogResponse;
@@ -101,16 +105,23 @@ export class SearchLogsComponent implements OnInit {
   constructor(
     private translateService: TranslateService,
     private formBuilder: FormBuilder,
-    private logsService: LogsService
+    private logsService: LogsService,
+    private backendService: BackendService,
+    private mockupBackendService: MockupBackendService,
   ) {
+    const mock = localStorage.getItem(LocalStorageKeys.logsMock) || null;
+    // Check which backend is required (fake or real)
+    if (mock && mock === 'true') {
+      this.backend = this.mockupBackendService;
+    } else {
+      this.backend = this.backendService;
+    }
     // TODO
     this.logs = this.logsService.getLogsEntry();
     this.searchTerm = '';
     this.filterField = false;
     this.isOpen = true;
     this.isSearching = false;
-    this.reload = true;
-
     // Dropdown configuration
     this.translateService.get('logs.selectEntity').subscribe(val => {
       this.selectConfig = {
@@ -126,8 +137,7 @@ export class SearchLogsComponent implements OnInit {
     });
     this.entitiesHierarchy = [];
     this.fakeValue =
-    new EntitiesHierarchy(this.translateService.instant('logs.selectEntity'), '', '');
-    console.log('this.fake ', this.fakeValue);
+    new EntitiesHierarchy(this.translateService.instant('Select an specific entity'), '', '', '-1');
   }
   /**
    * Convenience getter for easy access to form fields
@@ -136,17 +146,9 @@ export class SearchLogsComponent implements OnInit {
 
   ngOnInit() {
     this.entityFilterForm = this.formBuilder.group({
-      entity: [null],
+      entity: [null]
     });
     this.getEntityHierarchy();
-    this.entitiesHierarchy.unshift(this.fakeValue);
-  }
-  private setBasicState() {
-    // TODO
-    this.reload = false;
-    this.ngOnInit();
-    this.reload = true;
-    // this.entityFilterForm.controls.entity.setValue(this.fakeValue);
   }
   /**
    * Reset all the filters fields
@@ -157,9 +159,7 @@ export class SearchLogsComponent implements OnInit {
       this.isSearching = false;
       this.searchTerm = '';
     } else if (list === 'filters') {
-      // TODO
-      this.setBasicState();
-      console.log('this.fake ', this.fakeValue.displayedName);
+      this.resetDropdownOptions();
       this.timingFilter.lastDay = false;
       this.timingFilter.lastHour = false;
       this.sortingFilter.ascend = true;
@@ -169,6 +169,12 @@ export class SearchLogsComponent implements OnInit {
       this.rateFilter.fiveMin = false;
       this.selectedMoments = new FormControl([]);
     }
+  }
+  /**
+   * Shows search options
+   */
+  showSearchOptions() {
+    this.isOpen = !this.isOpen;
   }
   /**
    * Search logs
@@ -204,7 +210,8 @@ export class SearchLogsComponent implements OnInit {
           displayedName: SearchLogsComponent.INSTANCE_HEADER + instance.app_instance_name,
           name: instance.app_instance_name,
           app_descriptor_id: descriptor.app_descriptor_id,
-          app_instance_id: instance.app_instance_id,
+          id: instance.app_instance_id,
+          app_instance_id: instance.app_instance_id
         });
         instance.groups.forEach(serviceGroup => {
           serviceGroup.service_instances.forEach(service => {
@@ -216,9 +223,10 @@ export class SearchLogsComponent implements OnInit {
                 displayedName: SearchLogsComponent.SERVICE_HEADER + service.name,
                 name: service.name,
                 app_descriptor_id: descriptor.app_descriptor_id,
+                id: service.service_id,
                 app_instance_id: instance.app_instance_id,
                 service_group_id: serviceGroup.service_group_id,
-                service_id: service.service_id,
+                service_id: service.service_id
               });
             }
           });
@@ -290,9 +298,12 @@ export class SearchLogsComponent implements OnInit {
     }
   }
   /**
-   * Shows search options
+   * Resets the dropdown options
    */
-  showSearchOptions() {
-    this.isOpen = !this.isOpen;
+  private resetDropdownOptions() {
+    this.entityFilterForm.controls.entity.setValue(this.fakeValue);
+    this.entitiesHierarchy = [];
+    this.ngOnInit();
+    this.entityFilterForm.controls.entity.setValue(null);
   }
 }
