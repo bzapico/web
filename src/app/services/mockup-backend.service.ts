@@ -47,6 +47,8 @@ import { RemoveConnectionRequest } from '../definitions/interfaces/remove-connec
 import { AddConnectionRequest } from '../definitions/interfaces/add-connection-request';
 import { LoginResponse } from '../definitions/interfaces/login-response';
 import { UpdateAssetRequest } from '../definitions/interfaces/update-asset-request';
+import { DownloadRequest } from '../definitions/interfaces/download-request';
+import { DownloadRequestId } from '../definitions/interfaces/download-request-id';
 
 @Injectable({
   providedIn: 'root'
@@ -957,12 +959,41 @@ export class MockupBackendService implements Backend {
   /********************
    * Logs
    ********************/
-
   /**
-  * Simulates to search for log entries matching a query
-  * @param searchRequest Search for log entries matching a query
-  */
-  search(searchRequest: SearchRequest) {
+   * Simulates to search for log entries matching a query
+   * @param searchRequest Search for log entries matching a query
+   */
+  searchLogs(searchRequest: SearchRequest) {
+    return of (new HttpResponse({
+      body: JSON.stringify(mockLogsList),
+      status: 200,
+    })).pipe(map(response => JSON.parse(response.body)));
+  }
+  /**
+   * DownloadLog ask for log entries and store them into a zip file
+   * @param downloadRequest DownloadLogRequest contains a message to request to download logs
+   */
+  downloadLogs(downloadRequest: DownloadRequest) {
+    return of (new HttpResponse({
+      body: JSON.stringify(mockLogsList),
+      status: 200,
+    })).pipe(map(response => JSON.parse(response.body)));
+  }
+  /**
+   * Check checks the state of the download operation
+   * @param downloadRequest DownloadRequestId contains the identifier of an operation
+   */
+  checkLogs(downloadRequestId: DownloadRequestId) {
+    return of (new HttpResponse({
+      body: JSON.stringify(mockLogsList),
+      status: 200,
+    })).pipe(map(response => JSON.parse(response.body)));
+  }
+  /**
+   * List retrieve a list of requests
+   * @param organizationId Organization identifier
+   */
+  listLogs(organizationId: string) {
     return of (new HttpResponse({
       body: JSON.stringify(mockLogsList),
       status: 200,

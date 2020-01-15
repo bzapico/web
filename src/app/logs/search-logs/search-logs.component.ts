@@ -150,6 +150,12 @@ export class SearchLogsComponent implements OnInit {
     }
   }
   /**
+   * Search logs
+   */
+  searchLogs(searchTerm) {
+    console.log('search term', searchTerm);
+  }
+  /**
    * Gets the last hour logs filtered list
    */
   getLastHourLogs() {

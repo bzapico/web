@@ -19,8 +19,8 @@ import { mockLogsList } from 'src/app/services/utils/logs.mocks';
   providedIn: 'root'
 })
 export class LogsService {
-    // Temporary dummy mode
-    logs: LogResponse = mockLogsList as LogResponse;
+  // Temporary dummy mode
+  logs: LogResponse = mockLogsList as LogResponse;
 
   constructor() { }
   public getLogsEntry(): LogResponse {

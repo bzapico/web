@@ -92,6 +92,7 @@
         <form>
           <div class="search-box">
             <input
+              (change)="searchLogs()"
               name="searchTerm"
               [(ngModel)]="searchTerm"
               type="text"

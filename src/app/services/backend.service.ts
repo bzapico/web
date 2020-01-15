@@ -823,19 +823,9 @@ export class BackendService implements Backend {
   * Search for log entries matching a query
   * @param searchRequest Search for log entries matching a query
   */
-  search(searchRequest: SearchRequest) {
+  searchLogs(searchRequest: SearchRequest) {
     return this.post(
       API_URL + 'logs' + searchRequest.organization_id + '/search',
-    );
-  }
-  // POST: '/v1/log/{organization_id}/check'
-  /**
-  * Check checks the state of the download operation
-  * @param downloadRequest DownloadRequestId contains the identifier of an operation
-  */
-  check(downloadRequest: DownloadRequestId) {
-    return this.post(
-      API_URL + 'logs' + downloadRequest.organization_id + '/check',
     );
   }
   // POST: '/v1/log/{organization_id}/download'
@@ -843,9 +833,29 @@ export class BackendService implements Backend {
   * DownloadLog ask for log entries and store them into a zip file
   * @param downloadRequest DownloadLogRequest contains a message to request to download logs
   */
-  DownloadLog(downloadRequest: DownloadRequest) {
+  downloadLogs(downloadRequest: DownloadRequest) {
     return this.post(
       API_URL + 'logs' + downloadRequest.organization_id + '/download',
+    );
+  }
+  // GET: '/v1/log/{organization_id}/download/{request_id}/check'
+  /**
+  * Check checks the state of the download operation
+  * @param downloadRequest DownloadRequestId contains the identifier of an operation
+  */
+  checkLogs(downloadRequestId: DownloadRequestId) {
+    return this.get(
+      API_URL + 'logs' + downloadRequestId.organization_id + '/download/' + downloadRequestId.request_id + '/check',
+    );
+  }
+  // GET: '/v1/log/{organization_id}/download/list'
+  /**
+  * List retrieve a list of requests
+  * @param organizationId Organization identifier
+  */
+  listLogs(organizationId: string) {
+    return this.get(
+      API_URL + 'logs' + organizationId + '/download/list',
     );
   }
 }
