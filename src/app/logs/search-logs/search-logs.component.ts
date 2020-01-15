@@ -68,6 +68,10 @@ export class SearchLogsComponent implements OnInit {
    */
   searchTerm: string;
   /**
+   * Boolean variables for indicate different flags to search/filter in the logs
+   */
+  isSearching = false;
+  /**
    * Variable to store the value of the filter search text and sortBy pipe
    */
   filterField: boolean;
@@ -137,6 +141,7 @@ export class SearchLogsComponent implements OnInit {
   resetFilters(list: string) {
     if (list === 'search') {
       this.filterField = false;
+      this.isSearching = false;
       this.searchTerm = '';
     } else if (list === 'filters') {
       this.timingFilter.lastDay = false;
@@ -153,7 +158,11 @@ export class SearchLogsComponent implements OnInit {
    * Search logs
    */
   searchLogs(searchTerm) {
-    console.log('search term', searchTerm);
+    if (this.searchTerm) {
+      this.isSearching = true;
+      // SKELETON
+      console.log('search term', searchTerm);
+    }
   }
   /**
    * Gets the last hour logs filtered list
