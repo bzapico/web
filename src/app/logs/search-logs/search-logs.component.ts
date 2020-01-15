@@ -16,6 +16,7 @@ import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 import { LogResponse } from 'src/app/definitions/interfaces/log-response';
 import { LogsService } from '../logs.service';
 import { timer } from 'rxjs';
+import { EntitiesHierarchy } from '../../definitions/models/entities-hierarchy';
 
 @Component({
   selector: 'search-logs',
@@ -41,7 +42,7 @@ export class SearchLogsComponent implements OnInit {
    */
   sorting: string;
   sortingFilter = {
-    ascend: false,
+    ascend: true,
     descend: false,
   };
   /**
@@ -70,7 +71,7 @@ export class SearchLogsComponent implements OnInit {
   /**
    * Boolean variables for indicate different flags to search/filter in the logs
    */
-  isSearching = false;
+  isSearching: boolean;
   /**
    * Variable to store the value of the filter search text and sortBy pipe
    */
@@ -86,14 +87,12 @@ export class SearchLogsComponent implements OnInit {
   /**
    * Object array with entities names with object type to avoid auto array sort
    */
-  entitiesHierarchy: {
-    displayedName: string,
-    name: string,
-    app_descriptor_id: string,
-    app_instance_id?: string,
-    service_group_id?: string,
-    service_id?: string,
-  }[];
+  entitiesHierarchy: EntitiesHierarchy[];
+  fakeValue: EntitiesHierarchy;
+  /**
+   * Options to reload page
+   */
+  reload: boolean;
 
   // TODO
   logs: LogResponse;
@@ -109,6 +108,9 @@ export class SearchLogsComponent implements OnInit {
     this.searchTerm = '';
     this.filterField = false;
     this.isOpen = true;
+    this.isSearching = false;
+    this.reload = true;
+
     // Dropdown configuration
     this.translateService.get('logs.selectEntity').subscribe(val => {
       this.selectConfig = {
@@ -123,6 +125,9 @@ export class SearchLogsComponent implements OnInit {
       };
     });
     this.entitiesHierarchy = [];
+    this.fakeValue =
+    new EntitiesHierarchy(this.translateService.instant('logs.selectEntity'), '', '');
+    console.log('this.fake ', this.fakeValue);
   }
   /**
    * Convenience getter for easy access to form fields
@@ -134,6 +139,14 @@ export class SearchLogsComponent implements OnInit {
       entity: [null],
     });
     this.getEntityHierarchy();
+    this.entitiesHierarchy.unshift(this.fakeValue);
+  }
+  private setBasicState() {
+    // TODO
+    this.reload = false;
+    this.ngOnInit();
+    this.reload = true;
+    // this.entityFilterForm.controls.entity.setValue(this.fakeValue);
   }
   /**
    * Reset all the filters fields
@@ -144,9 +157,12 @@ export class SearchLogsComponent implements OnInit {
       this.isSearching = false;
       this.searchTerm = '';
     } else if (list === 'filters') {
+      // TODO
+      this.setBasicState();
+      console.log('this.fake ', this.fakeValue.displayedName);
       this.timingFilter.lastDay = false;
       this.timingFilter.lastHour = false;
-      this.sortingFilter.ascend = false;
+      this.sortingFilter.ascend = true;
       this.sortingFilter.descend = false;
       this.rateFilter.off = true;
       this.rateFilter.oneMin = false;
@@ -215,7 +231,7 @@ export class SearchLogsComponent implements OnInit {
    */
   selectionChanged(e) {
     // Skeleton
-    console.log('e ', e.value );
+    console.log('e ', e );
   }
   /**
    * Adds a quick filter

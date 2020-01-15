@@ -959,6 +959,7 @@ export class MockupBackendService implements Backend {
   /********************
    * Logs
    ********************/
+  // TODO
   /**
    * Simulates to search for log entries matching a query
    * @param searchRequest Search for log entries matching a query
@@ -999,4 +1000,5 @@ export class MockupBackendService implements Backend {
       status: 200,
     })).pipe(map(response => JSON.parse(response.body)));
   }
+// tslint:disable-next-line: max-file-line-count
 }

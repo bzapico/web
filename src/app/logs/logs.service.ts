@@ -23,7 +23,10 @@ export class LogsService {
   logs: LogResponse = mockLogsList as LogResponse;
 
   constructor() { }
-  public getLogsEntry(): LogResponse {
+  // public getLogsEntry(): LogResponse {
+  //   return this.logs;
+  // }
+    public getLogsEntry(): LogResponse {
     return this.logs;
   }
 }

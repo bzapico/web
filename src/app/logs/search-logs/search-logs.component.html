@@ -209,6 +209,7 @@
               <i class="material-icons">arrow_drop_down</i>
             </span>
             <ngx-select-dropdown
+              *ngIf="reload"
               formControlName="entity"
               [multiple]="false"
               [ngClass]="{
