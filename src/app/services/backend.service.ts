@@ -821,11 +821,12 @@ export class BackendService implements Backend {
   // POST: '/v1/log/{organization_id}/search'
   /**
    * Search for log entries matching a query
-   * @param searchRequest Search for log entries matching a query
+   * @param searchRequest message with the query to be resolved
    */
   searchLogs(searchRequest: SearchRequest) {
     return this.post(
       API_URL + 'logs' + searchRequest.organization_id + '/search',
+      searchRequest
     );
   }
   // POST: '/v1/log/{organization_id}/download'
@@ -836,6 +837,7 @@ export class BackendService implements Backend {
   downloadLogs(downloadLogRequest: DownloadLogRequest) {
     return this.post(
       API_URL + 'logs' + downloadLogRequest.organization_id + '/download',
+      downloadLogRequest
     );
   }
   // GET: '/v1/log/{organization_id}/download/{request_id}/check'

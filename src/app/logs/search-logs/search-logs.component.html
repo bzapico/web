@@ -98,6 +98,7 @@
                 type="text"
                 placeholder="{{ 'searcher.placeholder' | translate }}"
                 class="form-control"
+                (keyup.enter)="searchOnKeyUp($event, searchTerm)"
               />
               <div class="advanced-search-icon">
                 <i (click)="searchLogs(searchTerm)" class="material-icons">search</i>
@@ -165,10 +166,11 @@
                 [owlDateTime]="dt1"
                 [owlDateTimeTrigger]="dt1"
                 [selectMode]="'rangeFrom'"
-                [(ngModel)]="selectedMoments"
+                [(ngModel)]="dateFilter"
                 placeholder="{{ 'logs.chooseADate' | translate }}"
                 aria-describedby="calendar-addon"
-                class="form-control text-left">
+                class="form-control text-left"
+                (dateTimeChange)="dateOnChange($event)">
               <owl-date-time #dt1></owl-date-time>
               <div class="input-group-append calendar-btn">
                 <button
@@ -185,10 +187,11 @@
                 [owlDateTime]="dt2"
                 [owlDateTimeTrigger]="dt2"
                 [selectMode]="'rangeTo'"
-                [(ngModel)]="selectedMoments"
+                [(ngModel)]="dateFilter"
                 placeholder="{{ 'logs.chooseADate' | translate }}"
                 aria-describedby="calendar-addon"
-                class="form-control text-left">
+                class="form-control text-left"
+                (dateTimeChange)="dateOnChange($event)">
               <owl-date-time #dt2></owl-date-time>
               <div class="input-group-append calendar-btn">
                 <button
@@ -312,6 +315,8 @@
         <div class="search-title text-uppercase">{{ 'tables.tableActions' | translate }}</div>
         <div class="display-flex-box">
           <button
+            (click)="copyMessage('This goes to Clipboard')"
+            value="click to copy"
             class="search-actions-btn mr-1"
             tooltip="{{ 'logs.copy' | translate }}"
             placement="bottom">

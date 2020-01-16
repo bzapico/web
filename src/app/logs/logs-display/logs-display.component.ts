@@ -26,9 +26,11 @@ export class LogsDisplayComponent implements OnInit {
   constructor(
     private logsService: LogsService
   ) {
-    this.logs = this.logsService.getLogsEntry();
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    // TODO
+    this.logs = this.logsService.logs;
+  }
 
 }

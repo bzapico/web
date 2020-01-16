@@ -21,6 +21,7 @@ import { BackendService } from 'src/app/services/backend.service';
 import { LocalStorageKeys } from 'src/app/definitions/const/local-storage-keys';
 import { MockupBackendService } from 'src/app/services/mockup-backend.service';
 import { Backend } from 'src/app/definitions/interfaces/backend';
+import { SearchRequest } from 'src/app/definitions/interfaces/search-request';
 
 @Component({
   selector: 'search-logs',
@@ -33,6 +34,8 @@ export class SearchLogsComponent implements OnInit {
    */
   private static readonly INSTANCE_HEADER = '[instance]';
   private static readonly SERVICE_HEADER = '····[service]';
+  // TODO
+  currentParameters: SearchRequest;
   /**
    * Backend reference
    */
@@ -91,7 +94,7 @@ export class SearchLogsComponent implements OnInit {
   /**
    * Picker with rangeFrom and rangeTo selection
    */
-  selectedMoments: FormControl;
+  dateFilter: FormControl;
   /**
    * Object array with entities names with object type to avoid auto array sort
    */
@@ -117,7 +120,7 @@ export class SearchLogsComponent implements OnInit {
       this.backend = this.backendService;
     }
     // TODO
-    this.logs = this.logsService.getLogsEntry();
+    this.logs = this.logsService.logs;
     this.searchTerm = '';
     this.filterField = false;
     this.isOpen = true;
@@ -145,6 +148,12 @@ export class SearchLogsComponent implements OnInit {
   get f() { return this.entityFilterForm.controls; }
 
   ngOnInit() {
+    // this.logsService.searchLogsResponse.subscribe(searchResponse => {
+    //   if (searchResponse) {
+    //     this.searchLogs();
+    //     this.logs = this.logsService.logs;
+    //   }
+    // });
     this.entityFilterForm = this.formBuilder.group({
       entity: [null]
     });
@@ -167,7 +176,7 @@ export class SearchLogsComponent implements OnInit {
       this.rateFilter.off = true;
       this.rateFilter.oneMin = false;
       this.rateFilter.fiveMin = false;
-      this.selectedMoments = new FormControl([]);
+      this.dateFilter = new FormControl([]);
     }
   }
   /**
@@ -179,12 +188,25 @@ export class SearchLogsComponent implements OnInit {
   /**
    * Search logs
    */
-  searchLogs(searchTerm) {
-    if (this.searchTerm) {
-      this.isSearching = true;
-      // SKELETON
-      console.log('search term', searchTerm);
-    }
+  searchLogs() {
+    return this.logsService.searchLogs(this.currentParameters);
+  }
+  // searchLogs(searchTerm) {
+  //   if (this.searchTerm) {
+  //     this.isSearching = true;
+  //     // SKELETON
+  //     console.log('search term', searchTerm);
+  //   }
+  // }
+  /**
+   * Binds the keyup event in the template to search logs
+   * @param e event that binds the template
+   * @param searchTerm search term
+   */
+  searchOnKeyUp(e, searchTerm) {
+    this.isSearching = true;
+    this.searchLogs();
+    console.log(e, searchTerm);
   }
   /**
    * Gets the last hour logs filtered list
@@ -192,12 +214,24 @@ export class SearchLogsComponent implements OnInit {
   getLastHourLogs() {
     this.timingFilter.lastDay = false;
     this.timingFilter.lastHour = true;
+    // Empties the selectedMoments form
+    this.dateFilter = new FormControl([]);
   }
   /**
    * Gets the last day logs filtered list
    */
   getLastDayLogs() {
     this.timingFilter.lastDay = true;
+    this.timingFilter.lastHour = false;
+    // Empties the selectedMoments form
+    this.dateFilter = new FormControl([]);
+  }
+  /**
+   * Watches the changes in the calendar/date template using the dateTimeChange callback
+   * @param e event that binds the template to invoke when change event is fired on
+   */
+  dateOnChange(e) {
+    this.timingFilter.lastDay = false;
     this.timingFilter.lastHour = false;
   }
   /**
@@ -306,4 +340,26 @@ export class SearchLogsComponent implements OnInit {
     this.ngOnInit();
     this.entityFilterForm.controls.entity.setValue(null);
   }
+  /**
+   * Copy to clipboard TODO
+   */
+  copyMessage(val: string) {
+    const selBox = document.createElement('textarea');
+    selBox.style.position = 'fixed';
+    selBox.style.left = '0';
+    selBox.style.top = '0';
+    selBox.style.opacity = '0';
+    selBox.value = val;
+    document.body.appendChild(selBox);
+    selBox.focus();
+    selBox.select();
+    document.execCommand('copy');
+    document.body.removeChild(selBox);
+    // TODO
+    console.log('value to copy ', val);
+  }
+
+
+    // habra que tener un current search objeto que coja los que hay y
+  // meta la nueva inf cada vez que se clicke, modificando y pidinedolo al servicio
 }
