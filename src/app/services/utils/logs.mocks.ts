@@ -731,7 +731,7 @@ export const mockLogsList: LogResponse = {
 /**
  * Mocked download logs response
  */
-export const mockDownloadLogs: DownloadLogResponse  = {
+export const mockDownloadLogs: DownloadLogResponse = {
     organization_id: 'c5c289a3-dca0-49ef-973d-40bb554ae0c7',
     request_id: 'b80799bb-ec7a-41d2-b161-0327e01903ca',
     from: 1575457623642000000,
@@ -741,4 +741,33 @@ export const mockDownloadLogs: DownloadLogResponse  = {
     url: 'https://nalej.com/',
     expiration: 6,
     info: 'info'
+};
+/**
+ * Mocked download logs response list
+ */
+export const mockDownloadLogResponseList = {
+    responses: [
+        {
+            organization_id: 'c5c289a3-dca0-49ef-973d-40bb554ae0c7',
+            request_id: 'b80799bb-ec7a-41d2-b161-0327e01903ca',
+            from: 1575457623642000000,
+            to: 1575457623642000000,
+            state: DownloadLogState.Generating,
+            state_name: 'Generating',
+            url: 'https://nalej.com/',
+            expiration: 6,
+            info: 'info'
+        },
+        {
+            organization_id: 'c5c289a3-dca0-49ef-973d-40bb554ae033',
+            request_id: 'b80799bb-ec7a-41d2-b161-0327e0190333',
+            from: 1575457623642000000,
+            to: 1575457623642000000,
+            state: DownloadLogState.Generating,
+            state_name: 'Generating',
+            url: 'https://nalej.com/',
+            expiration: 6,
+            info: 'info'
+        }
+    ]
 };

@@ -38,7 +38,7 @@ import { mockAppsInstancesList } from './utils/instances-apps.mock';
 import { OperatingSystemClass } from '../definitions/enums/operating-system-class.enum';
 import { OpStatus } from '../definitions/enums/op-status.enum';
 import { SearchRequest } from '../definitions/interfaces/search-request';
-import { mockLogsList, mockDownloadLogs } from './utils/logs.mocks';
+import { mockLogsList, mockDownloadLogs, mockDownloadLogResponseList } from './utils/logs.mocks';
 import { AddUserRequest } from '../definitions/interfaces/add-user-request';
 import { PasswordChange } from '../definitions/interfaces/password-change';
 import { UserChanges } from '../definitions/interfaces/user-changes';
@@ -984,13 +984,10 @@ export class MockupBackendService implements Backend {
    * @param downloadRequestId DownloadRequestId contains the identifier of an operation
    */
   checkLogs(downloadRequestId: DownloadRequestId) {
-
-    // setTimeout(() => {
-      return of (new HttpResponse({
-        body: JSON.stringify(mockDownloadLogs),
-        status: 200,
-      })).pipe(map(response => JSON.parse(response.body)));
-    // }, 10000);
+    return of (new HttpResponse({
+      body: JSON.stringify(mockDownloadLogs),
+      status: 200,
+    })).pipe(map(response => JSON.parse(response.body)));
   }
   /**
    * List retrieve a list of requests
@@ -998,7 +995,7 @@ export class MockupBackendService implements Backend {
    */
   listLogs(organizationId: string) {
     return of (new HttpResponse({
-      body: JSON.stringify(mockLogsList),
+      body: JSON.stringify(mockDownloadLogResponseList),
       status: 200,
     })).pipe(map(response => JSON.parse(response.body)));
   }

@@ -10,8 +10,7 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap';
 
 @Component({
@@ -19,7 +18,7 @@ import { BsModalRef } from 'ngx-bootstrap';
   templateUrl: './download-file-info.component.html',
   styleUrls: ['./download-file-info.component.scss']
 })
-export class DownloadFileInfoComponent implements OnInit {
+export class DownloadFileInfoComponent {
   /**
    * Loaded Data status
    */
@@ -28,10 +27,6 @@ export class DownloadFileInfoComponent implements OnInit {
    *  Url is send only if the log is ready to be downloaded
    */
   url: string;
-  /**
-   * Request identifier
-   */
-  requestId: string;
     /**
    * Models that removes the possibility for the user to close the modal by clicking outside the content card
    */
@@ -41,11 +36,8 @@ export class DownloadFileInfoComponent implements OnInit {
   };
 
   constructor(
-    public bsModalRef: BsModalRef,
+    public bsModalRef: BsModalRef
   ) { }
-
-  ngOnInit() {
-  }
 
   /**
    * Close the modal window

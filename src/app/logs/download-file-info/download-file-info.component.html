@@ -21,8 +21,10 @@
         <span class="grey">
           {{'logs.downloadLogUrl' | translate}}
         </span>
-        <span class="blue">
-          {{url}}
+        <span (click)="closeModal()">
+          <a href="{{url}}" target="_blank" class="blue">
+            {{url}}
+          </a>
         </span>
       </div>
       <div class="buttons d-flex flex-row justify-content-center">
