@@ -172,7 +172,7 @@ export class SearchLogsComponent implements OnInit {
     });
     this.entitiesHierarchy = [];
     this.fakeValue =
-    new EntitiesHierarchy(this.translateService.instant('Select an specific entity'), '', '', '-1');
+    new EntitiesHierarchy('Select an specific entity', '', '', '-1');
   }
   /**
    * Convenience getter for easy access to form fields
