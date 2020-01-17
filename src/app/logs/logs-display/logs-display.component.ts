@@ -36,7 +36,6 @@ export class LogsDisplayComponent {
     this.loadedData = false;
     this.logsService.searchLogsResponse.subscribe(searchResponse => {
       this.loadedData = true;
-      console.log('data update displayed ');
       if (searchResponse) {
         searchResponse = searchResponse as LogResponse;
         this.logs = searchResponse;
