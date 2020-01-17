@@ -16,7 +16,9 @@ import { LogResponse } from 'src/app/definitions/interfaces/log-response';
 import { mockLogsList } from 'src/app/services/utils/logs.mocks';
 import { Backend } from '../definitions/interfaces/backend';
 import { Subject } from 'rxjs';
-// import { BackendService } from '../services/backend.service';
+import { LocalStorageKeys } from 'src/app/definitions/const/local-storage-keys';
+import { DownloadLogResponse } from '../definitions/interfaces/download-log-response';
+import { MockupBackendService } from '../services/mockup-backend.service';
 
 @Injectable({
   providedIn: 'root'
@@ -27,77 +29,77 @@ export class LogsService {
    */
   searchLogsResponse = new Subject();
   /**
+   * downloadStatus manages the timing in the BE interaction
+   */
+  downloadStatus = new Subject();
+  /**
    * Backend reference
    */
   backend: Backend;
   /**
+   * Model that hold organization id
+   */
+  organizationId: string;
+  /**
    * LogResponse reference
    */
-  // logs: LogResponse;
   // Temporary dummy mode
   logs: LogResponse = mockLogsList as LogResponse;
+  /**
+   * DownloadLogResponse reference
+   */
+  downloadResponse: DownloadLogResponse;
+  /**
+   * Interval reference
+   */
+  // interval: NodeJS.Timer;
+  interval: any;
 
   constructor(
-    // private backendService: BackendService,
-  ) {}
+    private mockupBackendService: MockupBackendService,
+  ) {
+      this.backend = this.mockupBackendService;
+  }
   /**
    * Search for log entries matching a query
    * @param searchParams message with the query to be resolved
    */
   searchLogs(searchParams) {
-    // searchLogs() {
-    // this.backend.searchLogs(searchParams).subscribe(searchResponse =>  {
-    // // searchResponse es la info relevante se tienen que suscribir los que quieran oir
-    // this.searchLogsResponse.next(searchResponse);
-    // });
     this.searchLogsResponse.next(this.logs);
   }
+  /**
+   * Download ask for log entries and store them into a zip file
+   * @param downloadParams contains a message to request to download logs
+   */
+  download(downloadParams) {
+    // this.downloadStatus.next(this.downloadResponse);
+    this.backend.downloadLogs(downloadParams).subscribe(downloadResponse => {
+      // Get User data from localStorage
+      const jwtData = localStorage.getItem(LocalStorageKeys.jwtData) || null;
+      if (jwtData !== null) {
+        this.organizationId = JSON.parse(jwtData).organizationID;
+        if (this.organizationId !== null) {
+          this.downloadResponse = {
+            organization_id: this.organizationId,
+            request_id: downloadResponse.request_id
+          };
+        }
+      }
+      this.interval = setTimeout(() => {
+        this.checkLogs(downloadResponse.request_id);
+      }, 5);
+      // console.log('interval ', typeof this.interval);
+    });
+  }
 
-
-
-
-
-
-
-
-
-
-
-  // public getLogsEntry(): LogResponse {
-  //   return this.logs;
-  // }
-
-  // SEARCH LOGS con parametros para el search
-  // pasarle un obj en el formato que piden y es el BE el que pone el formato que quieren
-  // this.backend.
-  //n_first siempre a false
-  // include_metadata que siempre venga
-
-  // SEARCH LOGS para el filter
-
-  // ascending cambia el searchreques de order
-  // habra que tener un current search objeto que coja los que hay y
-  // meta la nueva inf cada vez que se clicke, modificando y pidinedolo al servicio (SEARCH-LOGS.COMPONENT)
-
-  // COPY
-  // almacenar la respuesta q se estará mostrando en display
-  // de la ultima reques de searc que amacenamos en los datos, el contenido lo metera al portapapeles
-
-  // Download
-  // cuando pido el download, hay que hacer pull del check cada ratito para saber si está lista la info
-  // ejecuto correctamente,
-  // te da un numero para usar en el check, cuando el check está listo
-  // nos trae un  enlace
-  // tenemos que levantar una modal del estilo de Device group successfully created
-  // "HERE IS THE LINK WITH THE LOGS COMPRESSED FILE"
-
-  // last hour
-  // newdate.now.... me da un timestamp que es el date ctual y
-  //  hay que hacer la cuenta, y añadirselo al objeto que estamos modificando en SEARCHLOGS.COMP
-  // SON NANOSEGUNDOS!!!!
-
-// ESCUCHAR
-  // cuando nos llegue la respuesta del searsch,
-
-
+  /**
+   * Check checks the state of the download operation
+   * @param downloadParams DownloadRequestId contains the identifier of an operation
+   */
+  checkLogs(downloadParams) {
+    this.backend.checkLogs(downloadParams.request_id).subscribe(checkResponse => {
+        this.downloadStatus.next(checkResponse.url);
+        clearTimeout(this.interval);
+      });
+  }
 }

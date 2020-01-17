@@ -101,7 +101,7 @@
                 (keyup.enter)="searchOnKeyUp($event, searchTerm)"
               />
               <div class="advanced-search-icon">
-                <i (click)="searchLogs(searchTerm)" class="material-icons">search</i>
+                <i (click)="searchByTerm(searchTerm)" class="material-icons">search</i>
               </div>
             </div>
           </div>
@@ -170,7 +170,7 @@
                 placeholder="{{ 'logs.chooseADate' | translate }}"
                 aria-describedby="calendar-addon"
                 class="form-control text-left"
-                (dateTimeChange)="dateOnChange($event)">
+                (dateTimeChange)="fromOnChange($event)">
               <owl-date-time #dt1></owl-date-time>
               <div class="input-group-append calendar-btn">
                 <button
@@ -191,7 +191,7 @@
                 placeholder="{{ 'logs.chooseADate' | translate }}"
                 aria-describedby="calendar-addon"
                 class="form-control text-left"
-                (dateTimeChange)="dateOnChange($event)">
+                (dateTimeChange)="toOnChange($event)">
               <owl-date-time #dt2></owl-date-time>
               <div class="input-group-append calendar-btn">
                 <button
@@ -217,7 +217,7 @@
               [ngClass]="{'base-light-grey': !f.entity.value}"
               [config]="selectConfig"
               [options]="entitiesHierarchy"
-              (change)="selectionChanged($event)">
+              (change)="dropdownSelectionChanged($event)">
           </ngx-select-dropdown>
           </form>
         </div>
@@ -235,7 +235,7 @@
                   'grey': !sortingFilter.ascend
                 }">sort</i>
               <li
-                (click)="addSortingFilter('ascend')"
+                (click)="changeSorting('ascend')"
                 [ngClass]="{
                   'quick-filters-btn-selected': sortingFilter.ascend,
                   'quick-filters-btn': !sortingFilter.ascend
@@ -253,7 +253,7 @@
                 }">sort
               </i>
               <li
-                (click)="addSortingFilter('descend')"
+                (click)="changeSorting('descend')"
                 [ngClass]="{
                   'quick-filters-btn-selected': sortingFilter.descend,
                   'quick-filters-btn': !sortingFilter.descend
@@ -274,7 +274,7 @@
           <div class="col">
             <ul class="quick-filters-box">
               <li
-                (click)="refreshRate('off')"
+                (click)="refreshRateChange(0)"
                 [ngClass]="{
                   'quick-filters-btn-selected': rateFilter.off,
                   'quick-filters-btn': !rateFilter.off
@@ -285,7 +285,7 @@
                 {{ 'logs.off' | translate }}
               </li>
               <li
-                (click)="refreshRate('oneMin')"
+                (click)="refreshRateChange(60000)"
                 [ngClass]="{
                   'quick-filters-btn-selected': rateFilter.oneMin,
                   'quick-filters-btn': !rateFilter.oneMin
@@ -296,7 +296,7 @@
                 {{ 'logs.oneMin' | translate }}
               </li>
               <li
-                (click)="refreshRate('fiveMin')"
+                (click)="refreshRateChange(300000)"
                 [ngClass]="{
                   'quick-filters-btn-selected': rateFilter.fiveMin,
                   'quick-filters-btn': !rateFilter.fiveMin
@@ -315,8 +315,7 @@
         <div class="search-title text-uppercase">{{ 'tables.tableActions' | translate }}</div>
         <div class="display-flex-box">
           <button
-            (click)="copyMessage('This goes to Clipboard')"
-            value="click to copy"
+            (click)="copyLogs()"
             class="search-actions-btn mr-1"
             tooltip="{{ 'logs.copy' | translate }}"
             placement="bottom">
@@ -324,6 +323,7 @@
             <span>{{ 'logs.copy' | translate }}</span>
           </button>
           <button
+            (click)="downloadLogs()"
             class="search-actions-btn"
             tooltip="{{ 'logs.download' | translate }}"
             placement="bottom">
