@@ -10,11 +10,13 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
+import { DownloadLogResponse } from 'src/app/definitions/interfaces/download-log-response';
+import { LogResponse } from 'src/app/definitions/interfaces/log-response';
+import { DownloadLogState } from 'src/app/definitions/enums/download-log-state.enum';
 /**
  * Mocked Logs list
  */
-export const mockLogsList = {
+export const mockLogsList: LogResponse = {
     organization_id: 'c5c289a3-dca0-49ef-973d-40bb554ae0c7',
     from: 1575457623642000000,
     to: 1575457623642000000,
@@ -725,4 +727,18 @@ export const mockLogsList = {
             ]
         }
     ]
+};
+/**
+ * Mocked download logs response
+ */
+export const mockDownloadLogs: DownloadLogResponse  = {
+    organization_id: 'c5c289a3-dca0-49ef-973d-40bb554ae0c7',
+    request_id: 'b80799bb-ec7a-41d2-b161-0327e01903ca',
+    from: 1575457623642000000,
+    to: 1575457623642000000,
+    state: DownloadLogState.Generating,
+    state_name: 'Generating',
+    url: 'https://nalej.com/',
+    expiration: 6,
+    info: 'info'
 };

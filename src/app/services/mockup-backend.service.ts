@@ -38,7 +38,7 @@ import { mockAppsInstancesList } from './utils/instances-apps.mock';
 import { OperatingSystemClass } from '../definitions/enums/operating-system-class.enum';
 import { OpStatus } from '../definitions/enums/op-status.enum';
 import { SearchRequest } from '../definitions/interfaces/search-request';
-import { mockLogsList } from './utils/logs.mocks';
+import { mockLogsList, mockDownloadLogs } from './utils/logs.mocks';
 import { AddUserRequest } from '../definitions/interfaces/add-user-request';
 import { PasswordChange } from '../definitions/interfaces/password-change';
 import { UserChanges } from '../definitions/interfaces/user-changes';
@@ -959,7 +959,6 @@ export class MockupBackendService implements Backend {
   /********************
    * Logs
    ********************/
-  // TODO
   /**
    * Simulates to search for log entries matching a query
    * @param searchRequest Search for log entries matching a query
@@ -976,7 +975,7 @@ export class MockupBackendService implements Backend {
    */
   downloadLogs(downloadLogRequest: DownloadLogRequest) {
     return of (new HttpResponse({
-      body: JSON.stringify(mockLogsList),
+      body: JSON.stringify(mockDownloadLogs),
       status: 200,
     })).pipe(map(response => JSON.parse(response.body)));
   }
@@ -985,10 +984,13 @@ export class MockupBackendService implements Backend {
    * @param downloadRequestId DownloadRequestId contains the identifier of an operation
    */
   checkLogs(downloadRequestId: DownloadRequestId) {
-    return of (new HttpResponse({
-      body: JSON.stringify(mockLogsList),
-      status: 200,
-    })).pipe(map(response => JSON.parse(response.body)));
+
+    // setTimeout(() => {
+      return of (new HttpResponse({
+        body: JSON.stringify(mockDownloadLogs),
+        status: 200,
+      })).pipe(map(response => JSON.parse(response.body)));
+    // }, 10000);
   }
   /**
    * List retrieve a list of requests
