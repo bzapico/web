@@ -11,40 +11,56 @@
   limitations under the License.
 -->
 
-<div class="logs-display-box">
-	<div *ngIf="logs.entries">
-		<div *ngFor="let entry of logs.entries" class="logs">
-			<span class="logs-display-title">
-				<span class="logs-display-date">
-					{{entry.timestamp/ 1000000 | date: 'EEE MMM d h:mm:ss y'}}
+<div class="logs-display-box" >
+	<div *ngIf="loadedData">
+		<div *ngIf="logs.entries">
+			<div *ngFor="let entry of logs.entries" class="logs">
+				<span class="logs-display-title">
+					<span class="logs-display-date">
+						{{entry.timestamp/ 1000000 | date: 'EEE MMM d h:mm:ss y'}}
+					</span>
+					[<em>{{'app-info.registeredTitle' | translate}}</em> -
+					<code
+						[routerLink]="['/applications/registered', entry.app_descriptor_id]"
+						routerLinkActive="active">
+						{{entry.app_descriptor_name}}</code>]
+					[<em>{{'apps.instance.idInstance' | translate}}</em>-
+					<code
+						[routerLink]="['/applications/instance', entry.app_instance_id]"
+						routerLinkActive="active">
+						{{entry.app_instance_name}}</code>]
+					[<em>{{'logs.serviceGroup' | translate}}</em> -
+					<code
+						[routerLink]="['/applications/instance', entry.app_instance_id]"
+						routerLinkActive="active">
+						{{entry.service_group_name}}</code>]
+					[<em>{{'graph.service' | translate}}</em>-
+					<code
+					[routerLink]="['/applications/instance', entry.app_instance_id]"
+					routerLinkActive="active">
+						{{entry.service_name}}</code>]:
 				</span>
-				[<em>{{'app-info.registeredTitle' | translate}}</em> -
-				<code
-					[routerLink]="['/applications/registered', entry.app_descriptor_id]"
-					routerLinkActive="active">
-					{{entry.app_descriptor_name}}</code>]
-				[<em>{{'apps.instance.idInstance' | translate}}</em>-
-				<code
-					[routerLink]="['/applications/instance', entry.app_instance_id]"
-					routerLinkActive="active">
-					{{entry.app_instance_name}}</code>]
-				[<em>{{'logs.serviceGroup' | translate}}</em> -
-				<code
-					[routerLink]="['/applications/instance', entry.app_instance_id]"
-					routerLinkActive="active">
-					{{entry.service_group_name}}</code>]
-				[<em>{{'graph.service' | translate}}</em>-
-				<code
-				[routerLink]="['/applications/instance', entry.app_instance_id]"
-				routerLinkActive="active">
-					{{entry.service_name}}</code>]:
-			</span>
-			<span class="logs-display-text">
-				{{entry.msg}}
-			</span>
+				<span class="logs-display-text">
+					{{entry.msg}}
+				</span>
+			</div>
+		</div>
+		<div *ngIf="!logs.entries" class="no-elements">
+			{{'logs.noLogs' | translate}}
 		</div>
 	</div>
-	<div *ngIf="!logs.entries" class="no-elements">
-		{{'logs.noLogs' | translate}}
+	<div *ngIf="!loadedData" class="nalej-loader-box h-100">
+		<div class="loader">
+			<svg class="circular" viewBox="25 25 50 50">
+				<circle
+					class="path"
+					cx="50"
+					cy="50"
+					r="20"
+					fill="none"
+					stroke-width="2"
+					stroke-miterlimit="10"/>
+			</svg>
+		</div>
 	</div>
 </div>

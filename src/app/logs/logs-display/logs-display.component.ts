@@ -11,7 +11,7 @@
  *  limitations under the License.
  */
 
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { LogResponse } from 'src/app/definitions/interfaces/log-response';
 import { LogsService } from '../logs.service';
 
@@ -20,17 +20,27 @@ import { LogsService } from '../logs.service';
   templateUrl: './logs-display.component.html',
   styleUrls: ['./logs-display.component.scss']
 })
-export class LogsDisplayComponent implements OnInit {
+export class LogsDisplayComponent {
+  /**
+   * Logs response
+   */
   logs: LogResponse;
+  /**
+   * Loaded Data status
+   */
+  loadedData: boolean;
 
   constructor(
     private logsService: LogsService
   ) {
+    this.loadedData = false;
+    this.logsService.searchLogsResponse.subscribe(searchResponse => {
+      this.loadedData = true;
+      console.log('data update displayed ');
+      if (searchResponse) {
+        searchResponse = searchResponse as LogResponse;
+        this.logs = searchResponse;
+      }
+    });
   }
-
-  ngOnInit() {
-    // TODO
-    this.logs = this.logsService.logs;
-  }
-
 }
