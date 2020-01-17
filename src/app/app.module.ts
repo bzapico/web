@@ -95,6 +95,7 @@ import { SearchLogsComponent } from './logs/search-logs/search-logs.component';
 import { LogsDisplayComponent } from './logs/logs-display/logs-display.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
+import { DownloadFileInfoComponent } from './logs/download-file-info/download-file-info.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -159,7 +160,8 @@ export function createTranslateLoader(http: HttpClient) {
     LogsComponent,
     ClusterStatusInfoComponent,
     SearchLogsComponent,
-    LogsDisplayComponent
+    LogsDisplayComponent,
+    DownloadFileInfoComponent
   ],
   entryComponents: [
     DebugPanelComponent,
@@ -190,7 +192,8 @@ export function createTranslateLoader(http: HttpClient) {
     ManageConnectionsComponent,
     AddConnectionsComponent,
     AppInfoDetailedComponent,
-    ClusterStatusInfoComponent
+    ClusterStatusInfoComponent,
+    DownloadFileInfoComponent
   ],
   imports: [
     BrowserModule,

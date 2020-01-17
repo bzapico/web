@@ -67,8 +67,7 @@ export interface SearchRequest {
    */
   order?: OrderOptions[];
   /**
-   * NFirst is a flag that identifies whether the user expects to receive the first n
-   * results or not
+   * NFirst is a flag that identifies whether the user expects to receive the first n results or not
    */
   n_first?: boolean;
 }

@@ -1,4 +1,5 @@
 {
+	"Select an specific entity": "",
 	"advancedFilterOptions": {
 		"noFilters": "No filters",
 		"noFiltersDrop": "----- NO FILTER -----",
@@ -393,6 +394,8 @@
 		"copy": "Copy",
 		"descending": "DESCENDING",
 		"download": "Download",
+		"downloadFile": "DOWNLOAD LINK",
+		"downloadLogUrl": "Here is the link with the logs compressed file",
 		"entity": "Entity",
 		"filter": "Filter",
 		"filters": "FILTERS",

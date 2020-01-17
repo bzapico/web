@@ -16,7 +16,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
 import { HttpClient } from '@angular/common/http';
 import { RouterTestingModule } from '@angular/router/testing';
-import { TooltipModule } from 'ngx-bootstrap';
+import { TooltipModule, ModalModule, BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SelectDropDownModule } from 'ngx-select-dropdown';
@@ -42,6 +42,7 @@ describe('SearchLogsComponent', () => {
         SelectDropDownModule,
         OwlDateTimeModule,
         OwlNativeDateTimeModule,
+        ModalModule.forRoot(),
         TranslateModule.forRoot({
           loader: {
             provide: TranslateLoader,
@@ -51,6 +52,8 @@ describe('SearchLogsComponent', () => {
         })
       ],
       providers: [
+        BsModalRef,
+        BsModalService,
         TranslateService
       ]
     })

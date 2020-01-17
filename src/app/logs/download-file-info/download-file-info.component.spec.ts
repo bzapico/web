@@ -12,42 +12,25 @@
  */
 
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { BsModalRef, ModalModule, BsModalService } from 'ngx-bootstrap';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
-import { createTranslateLoader } from '../app.module';
-import { HttpClient } from '@angular/common/http';
 import { RouterTestingModule } from '@angular/router/testing';
-import { TooltipModule, BsModalRef, BsModalService, ModalModule } from 'ngx-bootstrap';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SelectDropDownModule } from 'ngx-select-dropdown';
-import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
+import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
+import { HttpClient } from '@angular/common/http';
+import { createTranslateLoader } from 'src/app/app.module';
 
-import { LogsComponent } from './logs.component';
-import { SearchLogsComponent } from './search-logs/search-logs.component';
-import { LogsDisplayComponent } from './logs-display/logs-display.component';
+import { DownloadFileInfoComponent } from './download-file-info.component';
 
-describe('LogsComponent', () => {
-  let component: LogsComponent;
-  let fixture: ComponentFixture<LogsComponent>;
+describe('DownloadFileInfoComponent', () => {
+  let component: DownloadFileInfoComponent;
+  let fixture: ComponentFixture<DownloadFileInfoComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        LogsComponent,
-        LogsDisplayComponent,
-        SearchLogsComponent
-      ],
+      declarations: [ DownloadFileInfoComponent ],
       imports: [
-        RouterTestingModule,
         HttpClientTestingModule,
-        BrowserAnimationsModule,
-        SelectDropDownModule,
-        TooltipModule.forRoot(),
-        FormsModule,
-        ReactiveFormsModule,
-        OwlDateTimeModule,
-        OwlNativeDateTimeModule,
+        RouterTestingModule,
         ModalModule.forRoot(),
         TranslateModule.forRoot({
           loader: {
@@ -67,7 +50,7 @@ describe('LogsComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LogsComponent);
+    fixture = TestBed.createComponent(DownloadFileInfoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
