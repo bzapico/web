@@ -454,6 +454,10 @@ export class SearchLogsComponent implements OnInit {
    * Download logs ask for log entries and store them into a zip file
    */
   downloadLogs() {
+    this.notificationsService.add({
+      message: this.translateService.instant('logs.downloadPrevMessage'),
+      type: 'important'
+    });
     this.logsService.download(this.currentParameters);
   }
   /**
