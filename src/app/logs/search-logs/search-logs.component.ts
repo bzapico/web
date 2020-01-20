@@ -91,7 +91,8 @@ export class SearchLogsComponent implements OnInit {
   rateFilter = {
     off: true,
     oneMin: false,
-    fiveMin: false
+    fiveMin: false,
+    name: ''
   };
   /**
    * Models that holds forms info
@@ -228,6 +229,9 @@ export class SearchLogsComponent implements OnInit {
       this.resetRateFilter();
       this.resetDateFilter();
     }
+    this.notificationsService.add({
+      message: this.translateService.instant('logs.resetFiltersMessage', {list: list}),
+    });
   }
   /**
    * Shows search options
@@ -244,6 +248,9 @@ export class SearchLogsComponent implements OnInit {
       this.isSearching = true;
       this.currentParameters.msg_query_filter = keyWord;
       this.requestSearchLogs();
+      this.notificationsService.add({
+        message: this.translateService.instant('logs.searchByTermMessage', {keyWord: keyWord}),
+      });
     }
   }
   /**
@@ -266,6 +273,9 @@ export class SearchLogsComponent implements OnInit {
     this.currentParameters.from = dateTime;
     delete this.currentParameters.to;
     this.requestSearchLogs();
+    this.notificationsService.add({
+      message: this.translateService.instant('logs.lastHourMessage'),
+    });
   }
   /**
    * Gets the last day logs filtered list
@@ -279,6 +289,9 @@ export class SearchLogsComponent implements OnInit {
     this.currentParameters.from = dateTime;
     delete this.currentParameters.to;
     this.requestSearchLogs();
+    this.notificationsService.add({
+      message: this.translateService.instant('logs.lastDayMessage'),
+    });
   }
   /**
    * Watches the changes in the calendar/date template using the dateTimeChange callback
@@ -297,6 +310,9 @@ export class SearchLogsComponent implements OnInit {
       selectedDateArray[5]) * 1000000;
       this.currentParameters.from = fromDateTime;
       this.requestSearchLogs();
+      this.notificationsService.add({
+        message: this.translateService.instant('logs.fromDateMessage', {date: selectedDateString}),
+      });
   }
   /**
    * Watches the changes in the calendar/date template using the dateTimeChange callback
@@ -304,7 +320,7 @@ export class SearchLogsComponent implements OnInit {
    */
   toOnChange(e: { value: string[]; }) {
     this.resetTimingFilter();
-    const selectedDateString: string = e.value[0] + '';
+    const selectedDateString: string = e.value[1] + '';
     const selectedDateArray = selectedDateString.split(' ');
     // Parser library time
     const toDateTime = Date.parse(
@@ -315,6 +331,9 @@ export class SearchLogsComponent implements OnInit {
       selectedDateArray[5]) * 1000000;
       this.currentParameters.to = toDateTime;
       this.requestSearchLogs();
+      this.notificationsService.add({
+        message: this.translateService.instant('logs.toDateMessage', {date: selectedDateArray}),
+      });
   }
   /**
    * Change event when user changes the selected options in dropdown
@@ -331,6 +350,9 @@ export class SearchLogsComponent implements OnInit {
       }
       this.requestSearchLogs();
     }
+    this.notificationsService.add({
+      message: this.translateService.instant('logs.changeEntityMessage', {entityName: entityIds.name}),
+    });
   }
   /**
    * Adds a quick filter
@@ -345,6 +367,9 @@ export class SearchLogsComponent implements OnInit {
       this.sortingFilter.descend = true;
       this.currentParameters.order = SearchLogsComponent.orderDesc;
     }
+    this.notificationsService.add({
+      message: this.translateService.instant('logs.sortingMessage', {sorting: sorting}),
+    });
   }
   /**
    * Refreshes rate
@@ -358,25 +383,37 @@ export class SearchLogsComponent implements OnInit {
       this.rateFilter = {
         off: true,
         oneMin: false,
-        fiveMin: false
+        fiveMin: false,
+        name: 'off'
       };
+      this.notificationsService.add({
+        message: this.translateService.instant('logs.refreshRateOffMessage'),
+      });
     } else if (rate === 60000) {
       this.rateFilter = {
         off: false,
         oneMin: true,
-        fiveMin: false
+        fiveMin: false,
+        name: this.translateService.instant('logs.rateOneMin')
       };
       this.refreshIntervalRef = timer(0, rate).subscribe(() => {
         this.requestSearchLogs();
+      });
+      this.notificationsService.add({
+        message: this.translateService.instant('logs.refreshRateMessage', {rate: this.rateFilter.name}),
       });
     } else {
       this.rateFilter = {
         off: false,
         oneMin: false,
-        fiveMin: true
+        fiveMin: true,
+        name: this.translateService.instant('logs.rateFiveMin')
       };
       this.refreshIntervalRef = timer(0, rate).subscribe(() => {
         this.requestSearchLogs();
+      });
+      this.notificationsService.add({
+        message: this.translateService.instant('logs.refreshRateMessage', {rate: this.rateFilter.name}),
       });
     }
   }
@@ -393,7 +430,6 @@ export class SearchLogsComponent implements OnInit {
       let formattedId =
         '[DESCRIPTOR - ' + entry.app_descriptor_name + ']' +
         '[INSTANCE - ' + entry.app_instance_name + ']';
-        console.log('entry ', entry);
         if (entry.service_name) {
           formattedId +=
             '[SERVICE GROUP - ' + entry.service_group_name + ']' +
@@ -410,6 +446,9 @@ export class SearchLogsComponent implements OnInit {
       temporalInput.select();
       document.execCommand('copy');
       document.body.removeChild(temporalInput);
+      this.notificationsService.add({
+        message: this.translateService.instant('logs.copiedMessage'),
+      });
   }
   /**
    * Download logs ask for log entries and store them into a zip file
