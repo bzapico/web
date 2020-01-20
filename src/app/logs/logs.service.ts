@@ -52,7 +52,6 @@ export class LogsService {
   /**
    * Interval reference
    */
-  // interval: NodeJS.Timer;
   interval: any;
 
   constructor(
@@ -72,7 +71,6 @@ export class LogsService {
    * @param downloadParams contains a message to request to download logs
    */
   download(downloadParams) {
-    // this.downloadStatus.next(this.downloadResponse);
     this.backend.downloadLogs(downloadParams).subscribe(downloadResponse => {
       // Get User data from localStorage
       const jwtData = localStorage.getItem(LocalStorageKeys.jwtData) || null;

@@ -738,7 +738,7 @@ export const mockDownloadLogs: DownloadLogResponse = {
     to: 1575457623642000000,
     state: DownloadLogState.Generating,
     state_name: 'Generating',
-    url: 'https://nalej.com/',
+    url: 'https://web.nalej.tech/v1/logs/download/c5c289a3-dca0-49ef-973d-40bb554ae0c7.zip',
     expiration: 6,
     info: 'info'
 };
@@ -754,7 +754,7 @@ export const mockDownloadLogResponseList = {
             to: 1575457623642000000,
             state: DownloadLogState.Generating,
             state_name: 'Generating',
-            url: 'https://nalej.com/',
+            url: 'https://web.nalej.tech/v1/logs/download/0ada41fb-6e2e-4ed7-ba3c-69c73ca8e172.zip',
             expiration: 6,
             info: 'info'
         },
@@ -765,7 +765,7 @@ export const mockDownloadLogResponseList = {
             to: 1575457623642000000,
             state: DownloadLogState.Generating,
             state_name: 'Generating',
-            url: 'https://nalej.com/',
+            url: 'https://web.nalej.tech/v1/logs/download/c5c289a3-dca0-49ef-973d-40bb554ae033.zip',
             expiration: 6,
             info: 'info'
         }
