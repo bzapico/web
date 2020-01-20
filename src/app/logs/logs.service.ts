@@ -13,12 +13,12 @@
 
 import { Injectable } from '@angular/core';
 import { LogResponse } from 'src/app/definitions/interfaces/log-response';
-import { mockLogsList } from 'src/app/services/utils/logs.mocks';
 import { Backend } from '../definitions/interfaces/backend';
 import { Subject } from 'rxjs';
 import { LocalStorageKeys } from 'src/app/definitions/const/local-storage-keys';
 import { DownloadLogResponse } from '../definitions/interfaces/download-log-response';
 import { MockupBackendService } from '../services/mockup-backend.service';
+import { BackendService } from '../services/backend.service';
 
 @Injectable({
   providedIn: 'root'
@@ -43,8 +43,7 @@ export class LogsService {
   /**
    * LogResponse reference
    */
-  // Temporary dummy mode
-  logs: LogResponse = mockLogsList as LogResponse;
+  logs: LogResponse;
   /**
    * DownloadLogResponse reference
    */
@@ -56,15 +55,24 @@ export class LogsService {
 
   constructor(
     private mockupBackendService: MockupBackendService,
+    private backendService: BackendService,
   ) {
+    const mock = localStorage.getItem(LocalStorageKeys.logsMock) || null;
+    // Check which backend is required (fake or real)
+    if (mock && mock === 'true') {
       this.backend = this.mockupBackendService;
+    } else {
+      this.backend = this.backendService;
+    }
   }
   /**
    * Search for log entries matching a query
    * @param searchParams message with the query to be resolved
    */
   searchLogs(searchParams) {
-    this.searchLogsResponse.next(this.logs);
+    this.backend.searchLogs(searchParams).subscribe(searchResponse =>  {
+      this.searchLogsResponse.next(searchResponse);
+    });
   }
   /**
    * Download ask for log entries and store them into a zip file
@@ -81,6 +89,7 @@ export class LogsService {
             organization_id: this.organizationId,
             request_id: downloadResponse.request_id
           };
+          this.downloadStatus.next(downloadResponse);
         }
       }
       this.interval = setTimeout(() => {
@@ -88,7 +97,6 @@ export class LogsService {
       }, 5);
     });
   }
-
   /**
    * Check checks the state of the download operation
    * @param downloadParams DownloadRequestId contains the identifier of an operation

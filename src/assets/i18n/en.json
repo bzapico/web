@@ -420,7 +420,7 @@
 		"resetFiltersMessage": "Reset {{list}}",
 		"resetSearch": "Reset search",
 		"search": "SEARCH",
-		"searchByTermMessage": "Searched by {{keyWord}}",
+		"searchByTermMessage": "Search by {{keyWord}}",
 		"searchEntity": "Search",
 		"selectEntity": "Select an specific entity",
 		"serviceGroup": "SERVICE GROUP",
