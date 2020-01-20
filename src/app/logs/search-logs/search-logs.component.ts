@@ -26,6 +26,7 @@ import { OrderOptions } from 'src/app/definitions/interfaces/order-options';
 import { Order } from 'src/app/definitions/enums/order.enum';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { DownloadFileInfoComponent } from '../download-file-info/download-file-info.component';
+import { NotificationsService } from 'src/app/services/notifications.service';
 
 @Component({
   selector: 'search-logs',
@@ -143,6 +144,7 @@ export class SearchLogsComponent implements OnInit {
     private backendService: BackendService,
     private mockupBackendService: MockupBackendService,
     private modalService: BsModalService,
+    private notificationsService: NotificationsService
   ) {
     const mock = localStorage.getItem(LocalStorageKeys.logsMock) || null;
     // Check which backend is required (fake or real)
@@ -320,13 +322,15 @@ export class SearchLogsComponent implements OnInit {
    */
   dropdownSelectionChanged(e: { value: any; }) {
     const entityIds = e.value;
-    this.currentParameters.app_descriptor_id = entityIds.app_descriptor_id;
-    this.currentParameters.app_instance_id = entityIds.app_instance_id;
-    if (entityIds.service_group_id) {
-      this.currentParameters.service_group_id = entityIds.service_group_id;
-      this.currentParameters.service_id = entityIds.service_id;
+    if (entityIds && entityIds.app_descriptor_id) {
+      this.currentParameters.app_descriptor_id = entityIds.app_descriptor_id;
+      this.currentParameters.app_instance_id = entityIds.app_instance_id;
+      if (entityIds.service_group_id) {
+        this.currentParameters.service_group_id = entityIds.service_group_id;
+        this.currentParameters.service_id = entityIds.service_id;
+      }
+      this.requestSearchLogs();
     }
-    this.requestSearchLogs();
   }
   /**
    * Adds a quick filter
@@ -381,15 +385,28 @@ export class SearchLogsComponent implements OnInit {
    * @param entries entries to be copied
    */
   copyLogs() {
-    let catalogToString: any;
-    catalogToString = this.catalog.entries.map(entries => {
-      const jsonString = JSON.stringify(entries);
-      return jsonString;
+    const logsForCopy: string[] = [];
+    this.catalog.entries.forEach(entry => {
+      const date = new Date(entry.timestamp / 1000000);
+      const splitDate: string[] = date.toString().split(' ');
+      const formattedDate = splitDate[0] + ' ' + splitDate[1] + ' ' + splitDate[2] + ' ' + splitDate[3] + ' ' + splitDate[4] + ' ';
+      let formattedId =
+        '[DESCRIPTOR - ' + entry.app_descriptor_name + ']' +
+        '[INSTANCE - ' + entry.app_instance_name + ']';
+        console.log('entry ', entry);
+        if (entry.service_name) {
+          formattedId +=
+            '[SERVICE GROUP - ' + entry.service_group_name + ']' +
+            '[SERVICE - ' + entry.service_name + ']';
+        }
+      logsForCopy.push(formattedDate + formattedId + ' ' + entry.msg);
     });
+    const fullLogsText = JSON.stringify(logsForCopy);
+
     const temporalInput = document.createElement('input');
       document.body.appendChild(temporalInput);
       temporalInput.setAttribute('id', 'copy_id');
-      (<HTMLInputElement>document.getElementById('copy_id')).value = catalogToString;
+      (<HTMLInputElement>document.getElementById('copy_id')).value = fullLogsText;
       temporalInput.select();
       document.execCommand('copy');
       document.body.removeChild(temporalInput);

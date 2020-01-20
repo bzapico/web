@@ -17,7 +17,7 @@
 			<div *ngFor="let entry of logs.entries" class="logs">
 				<span class="logs-display-title">
 					<span class="logs-display-date">
-						{{entry.timestamp/ 1000000 | date: 'EEE MMM d h:mm:ss y'}}
+						{{entry.timestamp/ 1000000 | date: 'EEE MMM d y h:mm:ss'}}
 					</span>
 					[<em>{{'app-info.registeredTitle' | translate}}</em> -
 					<code
