@@ -23,6 +23,7 @@ export class EntitiesHierarchy {
   app_instance_id?: string;
   service_group_id?: string;
   service_id?: string;
+  service_group_instance_id?: string;
 
   constructor(
     displayedName: string,
@@ -31,7 +32,8 @@ export class EntitiesHierarchy {
     id: string,
     app_instance_id?: string,
     service_group_id?: string,
-    service_id?: string
+    service_id?: string,
+    service_group_instance_id?: string
   ) {
     this.displayedName = displayedName;
     this.name = name;
@@ -40,5 +42,6 @@ export class EntitiesHierarchy {
     this.app_instance_id = app_instance_id || '';
     this.service_group_id = service_group_id || '';
     this.service_id = service_id || '';
+    this.service_group_instance_id = service_group_instance_id || '';
   }
 }

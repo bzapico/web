@@ -213,21 +213,23 @@
           </div>
         </div>
         <!-- SELECT DROPDOWN -->
-        <div class="form-group form-group-drop">
+        <div *ngIf="entityHierarchyLoaded" class="form-group form-group-drop">
           <label class="app-filter-label">{{ 'logs.entity' | translate }}</label>
-          <form [formGroup]="entityFilterForm" id="entity-drop">
-            <span class="drop-arrow">
-              <i class="material-icons">arrow_drop_down</i>
+            <span id="entity-drop">
+              <span class="drop-arrow">
+                <i class="material-icons">arrow_drop_down</i>
+              </span>
+              <ngx-select-dropdown
+                #entityDropdown
+                [multiple]="false"
+                [config]="selectConfig"
+                [ngClass]="{
+                  'base-light-grey': greyClass
+                }"
+                [options]="entitiesHierarchy"
+                (change)="dropdownSelectionChanged($event)">
+              </ngx-select-dropdown>
             </span>
-            <ngx-select-dropdown
-              formControlName="entity"
-              [multiple]="false"
-              [ngClass]="{'base-light-grey': !f.entity.value}"
-              [config]="selectConfig"
-              [options]="entitiesHierarchy"
-              (change)="dropdownSelectionChanged($event)">
-          </ngx-select-dropdown>
-          </form>
         </div>
       </div>
       <!-- SORTING -->
