@@ -94,7 +94,7 @@ export class LogsService {
       }
       this.interval = setTimeout(() => {
         this.checkLogs(downloadResponse.request_id);
-      }, 5);
+      }, 5000);
     });
   }
   /**
