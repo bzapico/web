@@ -63,14 +63,16 @@
       </i>
       <div>
         <button
-          tooltip=" {{'tables.tableEdit' | translate}}"
-          placement="left"
+          (click)="copyLogs()"
+          tooltip="{{ 'logs.copy' | translate }}"
+          placement="bottom"
           class="action-btn-blue">
           <i class="material-icons-round i-white">file_copy</i>
         </button>
         <button
-          tooltip=" {{'tables.tableEdit' | translate}}"
-          placement="left"
+          (click)="downloadLogs()"
+          tooltip="{{ 'logs.download' | translate }}"
+          placement="bottom"
           class="action-btn-blue">
           <i class="material-icons-round i-white i-down">publish</i>
         </button>
@@ -101,7 +103,13 @@
                 (keyup.enter)="searchOnKeyUp($event, searchTerm)"
               />
               <div class="advanced-search-icon">
-                <i (click)="searchByTerm(searchTerm)" class="material-icons">search</i>
+                <i
+                  (click)="searchByTerm(searchTerm)"
+                  class="material-icons"
+                  tooltip="{{ 'logs.search' | translate }}"
+                  placement="bottom">
+                  search
+                </i>
               </div>
             </div>
           </div>
@@ -290,7 +298,7 @@
                   'quick-filters-btn-selected': rateFilter.oneMin,
                   'quick-filters-btn': !rateFilter.oneMin
                 }"
-                tooltip="{{ 'logs.oneMin' | translate }}"
+                tooltip="{{ 'logs.rateOneMin' | translate }}"
                 placement="bottom"
                 class="quick-filters-btn">
                 {{ 'logs.oneMin' | translate }}
@@ -301,7 +309,7 @@
                   'quick-filters-btn-selected': rateFilter.fiveMin,
                   'quick-filters-btn': !rateFilter.fiveMin
                 }"
-                tooltip="{{ 'logs.fiveMins' | translate }}"
+                tooltip="{{ 'logs.rateFiveMin' | translate }}"
                 placement="bottom"
                 class="quick-filters-btn">
                 {{ 'logs.fiveMins' | translate }}

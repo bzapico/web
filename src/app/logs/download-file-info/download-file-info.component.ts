@@ -12,8 +12,6 @@
  */
 import { Component } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap';
-import { NotificationsService } from 'src/app/services/notifications.service';
-import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'download-file-info',
@@ -38,18 +36,16 @@ export class DownloadFileInfoComponent {
   };
 
   constructor(
-    public bsModalRef: BsModalRef,
-    private notificationsService: NotificationsService,
-    private translateService: TranslateService,
-  ) { }
+    public bsModalRef: BsModalRef
+  ) {
+    // Default initialization
+    this.loadedData = true;
+  }
 
   /**
    * Close the modal window
    */
   closeModal() {
     this.bsModalRef.hide();
-    this.notificationsService.add({
-      message: this.translateService.instant('logs.downloadMessage'),
-    });
   }
 }

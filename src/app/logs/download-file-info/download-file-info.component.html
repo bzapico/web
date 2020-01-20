@@ -16,22 +16,38 @@
     <div class="download-log-modal-header">
       <h3 class="nalej-form-title">{{'logs.downloadFile' | translate}}</h3>
     </div>
-    <div class="modal-body">
-      <div class="download-log-url">
-        <span class="grey">
-          {{'logs.downloadLogUrl' | translate}}
-        </span>
-        <span (click)="closeModal()">
-          <a href="{{url}}" target="_blank" class="blue">
-            {{url}}
-          </a>
-        </span>
+    <div *ngIf="loadedData">
+      <div class="modal-body">
+        <div class="download-log-url">
+          <span class="grey">
+            {{'logs.downloadLogUrl' | translate}}
+          </span>
+          <span (click)="closeModal()">
+            <a href="{{url}}" target="_blank" class="blue">
+              {{url}}
+            </a>
+          </span>
+        </div>
       </div>
-      <div class="buttons d-flex flex-row justify-content-center">
-        <button (click)="closeModal()" class="btn btn-primary btn-md">
-          <span class="align-bottom">{{'buttons.close' | translate}}</span>
-        </button>
+    </div>
+    <div *ngIf="!loadedData" class="nalej-loader-box">
+      <div class="loader">
+        <svg class="circular" viewBox="25 25 50 50">
+          <circle
+          class="path"
+          cx="50"
+          cy="50"
+          r="20"
+          fill="none"
+          stroke-width="2"
+          stroke-miterlimit="10"/>
+        </svg>
       </div>
+    </div>
+    <div class="buttons d-flex flex-row justify-content-center">
+      <button (click)="closeModal()" class="btn btn-primary btn-md">
+        <span class="align-bottom">{{'buttons.close' | translate}}</span>
+      </button>
     </div>
   </div>
 </div>
