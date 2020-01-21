@@ -1,4 +1,4 @@
-<!-- 
+<!--
   Copyright 2019 Nalej
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
@@ -15,9 +15,9 @@
   <div class="modal-content">
     <div class="modal-header">
       <h3 class="nalej-form-title">{{'organization.users.add' | translate}}</h3>
-      <button 
+      <button
         (click)="discardChanges(f)"
-        type="button" 
+        type="button"
         aria-label="Close"
         class="close" >
         <span aria-hidden="true">&times;</span>
@@ -27,9 +27,9 @@
       <form [formGroup]="addUserForm" (ngSubmit)="addUser(f)">
         <div class="form-group">
           <label>{{'tables.tableName' | translate}}*</label>
-          <input 
+          <input
             formControlName="userName"
-            type="text" 
+            type="text"
             placeholder="e.g. John"
             pattern="[a-zA-Z0-9]+"
             appAutofocus="true"
@@ -46,12 +46,12 @@
           </div>
         </div>
         <div class="form-group">
-          <label>{{'login.email' | translate}}l*</label>
-          <input 
-            formControlName="email" 
-            type="text" 
+          <label>{{'login.email' | translate}}*</label>
+          <input
+            formControlName="email"
+            type="text"
             placeholder="e.g. john@nalej.com"
-            [ngClass]="{ 'is-invalid': submitted && f.email.errors }" 
+            [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
             pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,5})+$"
             required
             class="form-control">
@@ -64,9 +64,9 @@
         </div>
         <div class="form-group">
           <label>{{'changePass.pass' | translate}}*</label>
-          <input 
-            formControlName="password" 
-            type="password" 
+          <input
+            formControlName="password"
+            type="password"
             placeholder="Type your password here"
             [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
             required
@@ -80,9 +80,9 @@
         </div>
         <div class="form-group">
           <label>{{'changePass.passConfirm' | translate}}*</label>
-          <input 
-            formControlName="passwordConfirm" 
-            type="password" 
+          <input
+            formControlName="passwordConfirm"
+            type="password"
             placeholder="Type your password again"
             [ngClass]="{ 'is-invalid': submitted && !samePasswords(addUserForm) }"
             required
@@ -96,25 +96,25 @@
         <div class="form-group form-group-drop">
           <label>{{'organization.users.role' | translate}}*</label>
           <ngx-select-dropdown
-            formControlName="role" 
+            formControlName="role"
             [multiple]="false"
             [ngClass]=
-              "{ 
+              "{
                 'ngx-error': submitted && f.role.errors && !userRole,
                 'base-light-grey': !f.role.value
               }"
-            [config]="selectConfig" 
+            [config]="selectConfig"
             [options]="roleOptions">
             {{userRole}}
           </ngx-select-dropdown>
-          <div class="form-group-drop-arrow"> 
+          <div class="form-group-drop-arrow">
             <i class="material-icons">arrow_drop_down</i>
           </div>
           <div class="error-h">
             <div *ngIf=
               "submitted &&
               f.role.errors &&
-              !userRole" 
+              !userRole"
               class="error-message">
               <div *ngIf="f.role.errors.required">{{'organization.users.roleReq' | translate}}</div>
             </div>

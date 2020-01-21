@@ -27,6 +27,10 @@ export class NotificationsService {
 	 */
   private static readonly TIMEOUT_ERROR = 5000;
   /**
+	 * It sets the timeout for errors
+	 */
+  private static readonly TIMEOUT_RELEVANT_INFO = 10000;
+  /**
 	 * Notifications
 	 */
   private _notifications: Notification[];
@@ -47,6 +51,9 @@ export class NotificationsService {
     if (notificationInstance.type) {
       if (notificationInstance.type === 'warning' && !notificationInstance.timeout) {
         notificationInstance.timeout = NotificationsService.TIMEOUT_ERROR;
+      }
+      if (notificationInstance.type === 'important' && !notificationInstance.timeout) {
+        notificationInstance.timeout = NotificationsService.TIMEOUT_RELEVANT_INFO;
       }
     } else {
       if (!notificationInstance.timeout) {

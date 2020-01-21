@@ -10,36 +10,42 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
 import { Component } from '@angular/core';
-import { LogResponse } from 'src/app/definitions/interfaces/log-response';
-import { LogsService } from '../logs.service';
+import { BsModalRef } from 'ngx-bootstrap';
 
 @Component({
-  selector: 'logs-display',
-  templateUrl: './logs-display.component.html',
-  styleUrls: ['./logs-display.component.scss']
+  selector: 'download-file-info',
+  templateUrl: './download-file-info.component.html',
+  styleUrls: ['./download-file-info.component.scss']
 })
-export class LogsDisplayComponent {
-  /**
-   * Logs response
-   */
-  logs: LogResponse;
+export class DownloadFileInfoComponent {
   /**
    * Loaded Data status
    */
   loadedData: boolean;
+  /**
+   *  Url is send only if the log is ready to be downloaded
+   */
+  url: string;
+    /**
+   * Models that removes the possibility for the user to close the modal by clicking outside the content card
+   */
+  config = {
+    backdrop: false,
+    ignoreBackdropClick: true
+  };
 
   constructor(
-    private logsService: LogsService
+    public bsModalRef: BsModalRef
   ) {
-    this.loadedData = false;
-    this.logsService.searchLogsResponse.subscribe(searchResponse => {
-      this.loadedData = true;
-      if (searchResponse) {
-        searchResponse = searchResponse as LogResponse;
-        this.logs = searchResponse;
-      }
-    });
+    // Default initialization
+    this.loadedData = true;
+  }
+
+  /**
+   * Close the modal window
+   */
+  closeModal() {
+    this.bsModalRef.hide();
   }
 }

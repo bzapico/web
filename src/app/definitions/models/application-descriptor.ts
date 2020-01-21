@@ -12,7 +12,7 @@
  */
 
 /**
- * Interface that defines the AppDescriptor structure defines the top
+ * Class that defines the AppDescriptor structure defines the top
  * level abstraction for an application and all the associated services.
  */
 import { ServiceGroup } from '../interfaces/service-group';
@@ -24,6 +24,11 @@ import { KeyValue } from '../interfaces/key-value';
 import { SecurityRule } from '../interfaces/security-rule';
 
 export class ApplicationDescriptor extends Application {
+    /**
+     * Groups with the Service collocation strategies.
+     */
+    groups?: ServiceGroup[];
+
     constructor(
         organization_id: string,
         app_descriptor_id: string,
@@ -49,11 +54,6 @@ export class ApplicationDescriptor extends Application {
             parameters);
         this.groups = groups || [];
     }
-    /**
-     * Groups with the Service collocation strategies.
-     */
-    groups?: ServiceGroup[];
-
     get id(): string {
         return this.app_descriptor_id;
     }

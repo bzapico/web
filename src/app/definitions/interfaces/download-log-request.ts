@@ -14,7 +14,7 @@ import { OrderOptions } from './order-options';
 /**
  *  DownloadLogRequest contains a message to request to download logs
  */
-export interface DownloadRequest {
+export interface DownloadLogRequest {
   /**
 	 * OrganizationId with the organization identifier.
 	 */

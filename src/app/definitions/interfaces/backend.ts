@@ -22,6 +22,8 @@ import { AddConnectionRequest } from './add-connection-request';
 import { LoginResponse } from './login-response';
 import { KeyValue } from './key-value';
 import { UpdateAssetRequest } from './update-asset-request';
+import { DownloadLogRequest } from './download-log-request';
+import { DownloadRequestId } from './download-request-id';
 
 // tslint:disable:no-any
 export interface Backend {
@@ -88,5 +90,8 @@ export interface Backend {
     deleteGroup(organizationId: string, groupId: string);
     updateGroup(organizationId: string, groupData: any);
     // Unified Logging
-    search(searchRequest: SearchRequest);
+    searchLogs(searchRequest: SearchRequest);
+    checkLogs(downloadRequestId: DownloadRequestId);
+    downloadLogs(downloadLogRequest: DownloadLogRequest);
+    listLogs(organizationId: string);
 }

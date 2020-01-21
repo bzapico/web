@@ -27,7 +27,7 @@ import { AddConnectionRequest } from '../definitions/interfaces/add-connection-r
 import { LoginResponse } from '../definitions/interfaces/login-response';
 import { UpdateAssetRequest } from '../definitions/interfaces/update-asset-request';
 import { DownloadRequestId } from '../definitions/interfaces/download-request-id';
-import { DownloadRequest } from '../definitions/interfaces/download-request';
+import { DownloadLogRequest } from '../definitions/interfaces/download-log-request';
 
 // tslint:disable:no-any
 /**
@@ -779,10 +779,10 @@ export class BackendService implements Backend {
   }
   // POST: '/v1/device/group/{organization_id}/update'
   /**
-  * Request to modify group data
-  * @param organizationId Organization identifier
-  * @param groupDta group data
-  */
+   * Request to modify group data
+   * @param organizationId Organization identifier
+   * @param groupDta group data
+   */
   updateGroup(organizationId: string, groupData: string) {
     return this.post(
       API_URL + 'device/group/' + organizationId + '/update',
@@ -791,10 +791,10 @@ export class BackendService implements Backend {
   }
   // POST: '/v1/device/group/{organization_id}/label/add'
   /**
-  * Adds label to device
-  * @param organizationId Organization identifier
-  * @param changes changes data
-  */
+   * Adds label to device
+   * @param organizationId Organization identifier
+   * @param changes changes data
+   */
   addLabelToDevice(organizationId: string, changes: any) {
     return this.post(
       API_URL + 'device/' + organizationId + '/label/add',
@@ -803,10 +803,10 @@ export class BackendService implements Backend {
   }
   // POST: '/v1/device/group/{organization_id}/label/remove'
   /**
-  * Remove labels from device
-  * @param organizationId Organization identifier
-  * @param changes changes data
-  */
+   * Remove labels from device
+   * @param organizationId Organization identifier
+   * @param changes changes data
+   */
   removeLabelFromDevice(organizationId: string, changes: any) {
     return this.post(
       API_URL + 'device/' + organizationId + '/label/remove',
@@ -820,32 +820,44 @@ export class BackendService implements Backend {
 
   // POST: '/v1/log/{organization_id}/search'
   /**
-  * Search for log entries matching a query
-  * @param searchRequest Search for log entries matching a query
-  */
-  search(searchRequest: SearchRequest) {
+   * Search for log entries matching a query
+   * @param searchRequest message with the query to be resolved
+   */
+  searchLogs(searchRequest: SearchRequest) {
     return this.post(
       API_URL + 'logs' + searchRequest.organization_id + '/search',
-    );
-  }
-  // POST: '/v1/log/{organization_id}/check'
-  /**
-  * Check checks the state of the download operation
-  * @param downloadRequest DownloadRequestId contains the identifier of an operation
-  */
-  check(downloadRequest: DownloadRequestId) {
-    return this.post(
-      API_URL + 'logs' + downloadRequest.organization_id + '/check',
+      searchRequest
     );
   }
   // POST: '/v1/log/{organization_id}/download'
   /**
-  * DownloadLog ask for log entries and store them into a zip file
-  * @param downloadRequest DownloadLogRequest contains a message to request to download logs
-  */
-  DownloadLog(downloadRequest: DownloadRequest) {
+   * DownloadLog ask for log entries and store them into a zip file
+   * @param downloadLogRequest DownloadLogRequest contains a message to request to download logs
+   */
+  downloadLogs(downloadLogRequest: DownloadLogRequest) {
     return this.post(
-      API_URL + 'logs' + downloadRequest.organization_id + '/download',
+      API_URL + 'logs' + downloadLogRequest.organization_id + '/download',
+      downloadLogRequest
+    );
+  }
+  // GET: '/v1/log/{organization_id}/download/{request_id}/check'
+  /**
+   * Check checks the state of the download operation
+   * @param downloadRequestId DownloadRequestId contains the identifier of an operation
+   */
+  checkLogs(downloadRequestId: DownloadRequestId) {
+    return this.get(
+      API_URL + 'logs' + downloadRequestId.organization_id + '/download/' + downloadRequestId.request_id + '/check',
+    );
+  }
+  // GET: '/v1/log/{organization_id}/download/list'
+  /**
+   * List retrieve a list of requests
+   * @param organizationId Organization identifier
+   */
+  listLogs(organizationId: string) {
+    return this.get(
+      API_URL + 'logs' + organizationId + '/download/list',
     );
   }
 }

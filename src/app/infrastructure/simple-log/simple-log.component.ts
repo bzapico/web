@@ -90,8 +90,8 @@ export class SimpleLogComponent  {
       if (sec < 10) {
         sec = '0' + sec;
       }
-      const formatedDate = month + '/' + day + '/' + year + ' - ' + hour + ':' + min + ':' + sec ;
-      return formatedDate;
+      const formattedDate = month + '/' + day + '/' + year + ' - ' + hour + ':' + min + ':' + sec ;
+      return formattedDate;
     }
     return 'undefined';
   }

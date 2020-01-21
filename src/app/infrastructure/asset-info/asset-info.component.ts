@@ -127,8 +127,8 @@ export class AssetInfoComponent implements OnInit {
       const year = date.getFullYear();
       const month = date.getMonth();
       const day = date.getDate();
-      const formatedDate = month + '/' + day + '/' + year;
-    return formatedDate;
+      const formattedDate = month + '/' + day + '/' + year;
+    return formattedDate;
   }
   /**
    * Gets the return Edge Controller value from the modal and gives it to infrastructure

@@ -38,7 +38,7 @@ import { mockAppsInstancesList } from './utils/instances-apps.mock';
 import { OperatingSystemClass } from '../definitions/enums/operating-system-class.enum';
 import { OpStatus } from '../definitions/enums/op-status.enum';
 import { SearchRequest } from '../definitions/interfaces/search-request';
-import { mockLogsList } from './utils/logs.mocks';
+import { mockLogsList, mockDownloadLogs, mockDownloadLogResponseList } from './utils/logs.mocks';
 import { AddUserRequest } from '../definitions/interfaces/add-user-request';
 import { PasswordChange } from '../definitions/interfaces/password-change';
 import { UserChanges } from '../definitions/interfaces/user-changes';
@@ -47,6 +47,8 @@ import { RemoveConnectionRequest } from '../definitions/interfaces/remove-connec
 import { AddConnectionRequest } from '../definitions/interfaces/add-connection-request';
 import { LoginResponse } from '../definitions/interfaces/login-response';
 import { UpdateAssetRequest } from '../definitions/interfaces/update-asset-request';
+import { DownloadLogRequest } from '../definitions/interfaces/download-log-request';
+import { DownloadRequestId } from '../definitions/interfaces/download-request-id';
 
 @Injectable({
   providedIn: 'root'
@@ -957,15 +959,45 @@ export class MockupBackendService implements Backend {
   /********************
    * Logs
    ********************/
-
   /**
-  * Simulates to search for log entries matching a query
-  * @param searchRequest Search for log entries matching a query
-  */
-  search(searchRequest: SearchRequest) {
+   * Simulates to search for log entries matching a query
+   * @param searchRequest Search for log entries matching a query
+   */
+  searchLogs(searchRequest: SearchRequest) {
     return of (new HttpResponse({
       body: JSON.stringify(mockLogsList),
       status: 200,
     })).pipe(map(response => JSON.parse(response.body)));
   }
+  /**
+   * DownloadLog ask for log entries and store them into a zip file
+   * @param downloadLogRequest DownloadLogRequest contains a message to request to download logs
+   */
+  downloadLogs(downloadLogRequest: DownloadLogRequest) {
+    return of (new HttpResponse({
+      body: JSON.stringify(mockDownloadLogs),
+      status: 200,
+    })).pipe(map(response => JSON.parse(response.body)));
+  }
+  /**
+   * Check checks the state of the download operation
+   * @param downloadRequestId DownloadRequestId contains the identifier of an operation
+   */
+  checkLogs(downloadRequestId: DownloadRequestId) {
+    return of (new HttpResponse({
+      body: JSON.stringify(mockDownloadLogs),
+      status: 200,
+    })).pipe(map(response => JSON.parse(response.body)));
+  }
+  /**
+   * List retrieve a list of requests
+   * @param organizationId Organization identifier
+   */
+  listLogs(organizationId: string) {
+    return of (new HttpResponse({
+      body: JSON.stringify(mockDownloadLogResponseList),
+      status: 200,
+    })).pipe(map(response => JSON.parse(response.body)));
+  }
+// tslint:disable-next-line: max-file-line-count
 }

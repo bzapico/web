@@ -1,3 +1,5 @@
+import { OrderOptions } from './order-options';
+
 /*
  *  Copyright 2019 Nalej
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -60,4 +62,12 @@ export interface SearchRequest {
    * IncludeMetadata  flag to indicate if the result should not be augmented by adding names, etc.
    */
   include_metadata?: boolean;
+  /**
+   *  Order specifies the sort order of the entries (on timestamp)
+   */
+  order?: OrderOptions[];
+  /**
+   * NFirst is a flag that identifies whether the user expects to receive the first n results or not
+   */
+  n_first?: boolean;
 }
