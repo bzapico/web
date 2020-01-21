@@ -355,11 +355,11 @@ export class SearchLogsComponent implements OnInit {
         this.currentParameters.service_group_instance_id = entityIds.service_group_instance_id;
       }
       this.requestSearchLogs();
+      this.greyClass = false;
+      this.notificationsService.add({
+        message: this.translateService.instant('logs.changeEntityMessage', {entityName: entityIds.name}),
+      });
     }
-    this.greyClass = false;
-    this.notificationsService.add({
-      message: this.translateService.instant('logs.changeEntityMessage', {entityName: entityIds.name}),
-    });
   }
   /**
    * Adds a quick filter
