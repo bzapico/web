@@ -127,7 +127,6 @@ export class SearchLogsComponent implements OnInit {
    * Object array with entities names with object type to avoid auto array sort
    */
   entitiesHierarchy: EntitiesHierarchy[];
-  fakeValue: EntitiesHierarchy;
   /**
    * Interval reference
    */
@@ -247,7 +246,7 @@ export class SearchLogsComponent implements OnInit {
     if (this.searchTerm) {
       this.catalog = {};
       this.isSearching = true;
-      this.currentParameters.msg_query_filter = keyWord;
+      this.currentParameters.msg_query_filter = keyWord.toLowerCase();
       this.requestSearchLogs();
       this.notificationsService.add({
         message: this.translateService.instant('logs.searchByTermMessage', {keyWord: keyWord}),
