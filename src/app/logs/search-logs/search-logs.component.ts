@@ -228,6 +228,7 @@ export class SearchLogsComponent implements OnInit {
       this.resetRateFilter();
       this.resetDateFilter();
     }
+    this.requestSearchLogs();
     this.notificationsService.add({
       message: this.translateService.instant('logs.resetFiltersMessage', {list: list}),
     });
@@ -246,7 +247,7 @@ export class SearchLogsComponent implements OnInit {
     if (this.searchTerm) {
       this.catalog = {};
       this.isSearching = true;
-      this.currentParameters.msg_query_filter = keyWord.toLowerCase();
+      this.currentParameters.msg_query_filter = keyWord;
       this.requestSearchLogs();
       this.notificationsService.add({
         message: this.translateService.instant('logs.searchByTermMessage', {keyWord: keyWord}),
@@ -567,5 +568,7 @@ export class SearchLogsComponent implements OnInit {
   private resetTimingFilter() {
     this.timingFilter.lastDay = false;
     this.timingFilter.lastHour = false;
+    delete this.currentParameters.from;
+    delete this.currentParameters.to;
   }
 }
