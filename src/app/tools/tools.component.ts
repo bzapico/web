@@ -57,7 +57,7 @@ export class ToolsComponent implements OnInit {
     OFFLINE: '#949494',
     SCALING: '#E5FF79',
     UNINSTALLING: '#FFEB6C',
-    DECOMISIONING: '#FF9898',
+    DECOMMISSIONING: '#FF9898',
     FAILURE: '#F7478A',
     UNKNOWN: '#151515',
     // Instances
@@ -188,9 +188,9 @@ export class ToolsComponent implements OnInit {
       case ClusterStatus.Uninstalling:
       case AppStatus.Deploying:
         return ToolsComponent.STATUS_COLORS.UNINSTALLING;
-      case ClusterStatus.Decomisioning:
+      case ClusterStatus.Decommissioning:
       case AppStatus.Terminating:
-        return ToolsComponent.STATUS_COLORS.DECOMISIONING;
+        return ToolsComponent.STATUS_COLORS.DECOMMISSIONING;
       case ClusterStatus.Failure:
       case AppStatus.DeploymentError:
       case AppStatus.Incomplete:
@@ -225,7 +225,7 @@ export class ToolsComponent implements OnInit {
       case AppStatus.Running:
       case ClusterStatus.Offline:
       case AppStatus.Terminated:
-      case ClusterStatus.Decomisioning:
+      case ClusterStatus.Decommissioning:
       case AppStatus.Terminating:
       case ClusterStatus.Failure:
       case AppStatus.DeploymentError:

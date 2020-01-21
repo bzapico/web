@@ -21,7 +21,7 @@ export enum ClusterStatus {
     Offline = 'offline',
     Scaling = 'scaling',
     Uninstalling = 'uninstalling',
-    Decomisioning = 'decomisioning',
+    Decommissioning = 'decommissioning',
     Failure = 'failure',
     Unknown = 'unknown',
     Installed = 'installed'

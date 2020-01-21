@@ -13,12 +13,12 @@
 
 import { Injectable } from '@angular/core';
 import { LogResponse } from 'src/app/definitions/interfaces/log-response';
-import { mockLogsList } from 'src/app/services/utils/logs.mocks';
 import { Backend } from '../definitions/interfaces/backend';
 import { Subject } from 'rxjs';
 import { LocalStorageKeys } from 'src/app/definitions/const/local-storage-keys';
 import { DownloadLogResponse } from '../definitions/interfaces/download-log-response';
 import { MockupBackendService } from '../services/mockup-backend.service';
+import { BackendService } from '../services/backend.service';
 
 @Injectable({
   providedIn: 'root'
@@ -43,8 +43,7 @@ export class LogsService {
   /**
    * LogResponse reference
    */
-  // Temporary dummy mode
-  logs: LogResponse = mockLogsList as LogResponse;
+  logs: LogResponse;
   /**
    * DownloadLogResponse reference
    */
@@ -56,15 +55,24 @@ export class LogsService {
 
   constructor(
     private mockupBackendService: MockupBackendService,
+    private backendService: BackendService,
   ) {
+    const mock = localStorage.getItem(LocalStorageKeys.logsMock) || null;
+    // Check which backend is required (fake or real)
+    if (mock && mock === 'true') {
       this.backend = this.mockupBackendService;
+    } else {
+      this.backend = this.backendService;
+    }
   }
   /**
    * Search for log entries matching a query
    * @param searchParams message with the query to be resolved
    */
   searchLogs(searchParams) {
-    this.searchLogsResponse.next(this.logs);
+    this.backend.searchLogs(searchParams).subscribe(searchResponse =>  {
+      this.searchLogsResponse.next(searchResponse);
+    });
   }
   /**
    * Download ask for log entries and store them into a zip file
@@ -72,31 +80,21 @@ export class LogsService {
    */
   download(downloadParams) {
     this.backend.downloadLogs(downloadParams).subscribe(downloadResponse => {
-      // Get User data from localStorage
-      const jwtData = localStorage.getItem(LocalStorageKeys.jwtData) || null;
-      if (jwtData !== null) {
-        this.organizationId = JSON.parse(jwtData).organizationID;
-        if (this.organizationId !== null) {
-          this.downloadResponse = {
-            organization_id: this.organizationId,
-            request_id: downloadResponse.request_id
-          };
-        }
-      }
       this.interval = setTimeout(() => {
-        this.checkLogs(downloadResponse.request_id);
+        this.checkLogs(downloadResponse);
       }, 5000);
     });
   }
-
   /**
    * Check checks the state of the download operation
    * @param downloadParams DownloadRequestId contains the identifier of an operation
    */
-  checkLogs(downloadParams) {
-    this.backend.checkLogs(downloadParams.request_id).subscribe(checkResponse => {
-        this.downloadStatus.next(checkResponse.url);
-        clearTimeout(this.interval);
+  private checkLogs(downloadParams) {
+    this.backend.checkLogs(downloadParams).subscribe(checkResponse => {
+        if (checkResponse.url) {
+          this.downloadStatus.next(checkResponse.url);
+          clearTimeout(this.interval);
+        }
       });
   }
 }

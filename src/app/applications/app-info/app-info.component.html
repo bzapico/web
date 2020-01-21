@@ -1,4 +1,4 @@
-<!-- 
+<!--
   Copyright 2019 Nalej
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
@@ -17,7 +17,7 @@
     <h5 *ngIf="openFromRegistered" class="d-inline">{{'app-info.registered.title' | translate}}</h5>
     <div
       *ngIf="openFromInstance"
-      tooltip="{{'tables.tableInfo' | translate}}" 
+      tooltip="{{'tables.tableInfo' | translate}}"
       placement="left"
       (click)="openAppInfoDetailed(instance)"
       class="app-info-button">
@@ -25,7 +25,7 @@
     </div>
     <div
       *ngIf="openFromRegistered"
-      tooltip="{{'tables.tableInfo' | translate}}" 
+      tooltip="{{'tables.tableInfo' | translate}}"
       placement="left"
       (click)="openDescriptorDetailed(registeredData)"
       class="app-info-button">
@@ -37,11 +37,11 @@
     <div class="summary-table">
       <div class="summary-table-tr">
         <div class="summary-table-th">{{'tables.tableName' | translate}}</div>
-        <div *ngIf="openFromInstance" class="text-uppercase summary-table-td">{{instance.name}}</div> 
-        <div *ngIf="openFromRegistered" class="text-uppercase summary-table-td-big">{{registeredData.name}}</div> 
+        <div *ngIf="openFromInstance" class="text-uppercase summary-table-td">{{instance.name}}</div>
+        <div *ngIf="openFromRegistered" class="text-uppercase summary-table-td-big">{{registeredData.name}}</div>
       </div>
       <div *ngIf="openFromInstance" class="summary-table-tr">
-        <div class="summary-table-th">{{'tables.tableStatus' | translate}}</div> 
+        <div class="summary-table-th">{{'tables.tableStatus' | translate}}</div>
         <div id="summary-status" class="summary-table-td">
           <div class="cluster-status-dot" [ngStyle]="getStatusDotColor(instance.status_name, cluster)"></div>
           {{ instance.status_name }}
@@ -49,11 +49,11 @@
       </div>
       <div *ngIf="openFromInstance" class="summary-table-tr">
         <div class="summary-table-th">{{'apps.instance.tableInstanceOf' | translate}}</div>
-        <!-- GET REGISTERED AND SET THE RIGHT NAME --> 
+        <!-- GET REGISTERED AND SET THE RIGHT NAME -->
         <div class="summary-table-td">
-          <a 
-            [routerLink]="['/applications/registered', instance.app_descriptor_id]" 
-            routerLinkActive="active" 
+          <a
+            [routerLink]="['/applications/registered', instance.app_descriptor_id]"
+            routerLinkActive="active"
             class="blue">
             {{registeredData.name}}
           </a>
@@ -63,33 +63,33 @@
     <!-- Summary tabs -->
     <div class="flex-grow-0">
       <ul class="tabs-box">
-        <li 
-          (click)="changeActiveList('parameters')" 
+        <li
+          (click)="changeActiveList('parameters')"
           [ngClass]=
             "{
               'active': showParameters && !showNetwork && !showSetup,
               'tabs-btn-selected': showParameters && !showNetwork && !showSetup
-            }" 
+            }"
           class="tabs-btn">
           {{'app-info.tabs.parameters' | translate}}
         </li>
-        <li 
-          (click)="changeActiveList('network')" 
+        <li
+          (click)="changeActiveList('network')"
           [ngClass]=
             "{
               'active': showNetwork && !showParameters && !showSetup,
               'tabs-btn-selected': showNetwork && !showParameters && !showSetup
-            }" 
+            }"
           class="tabs-btn">
             {{'app-info.tabs.networks' | translate}}
         </li>
-        <li 
-          (click)="changeActiveList('setup')" 
+        <li
+          (click)="changeActiveList('setup')"
           [ngClass]=
             "{
               'active': showSetup && !showParameters && !showNetwork ,
-              'tabs-btn-selected': showSetup && !showParameters && !showNetwork 
-            }" 
+              'tabs-btn-selected': showSetup && !showParameters && !showNetwork
+            }"
           class="tabs-btn">
             {{'app-info.tabs.setup' | translate}}
         </li>
@@ -98,15 +98,15 @@
     <!-- Search box -->
     <div class="flex-grow-0">
       <div class="search-box">
-        <input 
-          name="searchTerm" 
+        <input
+          name="searchTerm"
           [(ngModel)]="searchTerm"
-          type="text" 
+          type="text"
           placeholder="{{'searcher.placeholder' | translate }}"
-          class="form-control"> 
+          class="form-control">
         <div *ngIf="searchTerm === ''" class="search-icon">
           <i class="material-icons">search</i>
-        </div>     
+        </div>
         <div *ngIf="searchTerm !== ''" class="close-icon">
           <i (click)="resetFilters()" class="material-icons">close</i>
         </div>
@@ -118,14 +118,14 @@
       <div *ngIf="showParameters">
         <!-- Basic Parameters list -->
         <div class="accordion-box">
-          <accordion 
+          <accordion
             class="accordion-tabs">
-            <accordion-group 
+            <accordion-group
               heading="Basic"
               [panelClass]="nalejAccordionSmall"
               [isOpen]="isFirstOpen">
-              <span     
-                accordion-heading 
+              <span
+                accordion-heading
                 class="accordion-icons-box">
                 <i class="material-icons accordion-arrow">arrow_drop_down</i>
               </span>
@@ -148,14 +148,14 @@
         </div>
         <!-- Advanced Parameters list -->
         <div class="accordion-box">
-          <accordion 
+          <accordion
             class="accordion-tabs">
-            <accordion-group 
+            <accordion-group
               heading="Advanced"
               [panelClass]="nalejAccordionSmall"
               [isOpen]="isFirstOpen">
-              <span     
-                accordion-heading 
+              <span
+                accordion-heading
                 class="accordion-icons-box">
                 <i class="material-icons accordion-arrow">arrow_drop_down</i>
               </span>
@@ -182,14 +182,14 @@
       <!-- Networks list -->
       <div *ngIf="showNetwork">
         <div class="accordion-box">
-          <accordion 
+          <accordion
             class="accordion-tabs">
-            <accordion-group 
+            <accordion-group
               heading="Inbounds"
               [panelClass]="nalejAccordionSmall"
               [isOpen]="isFirstOpen">
-              <span     
-                accordion-heading 
+              <span
+                accordion-heading
                 class="accordion-icons-box">
                 <i class="material-icons accordion-arrow">arrow_drop_down</i>
               </span>
@@ -274,12 +274,12 @@
             [panelClass]="nalejAccordionSmall"
             [isOpen]="isFirstOpen">
             <span
-              accordion-heading 
+              accordion-heading
               class="accordion-icons-box">
               <i class="material-icons accordion-arrow">arrow_drop_down</i>
             </span>
             <span
-              accordion-heading 
+              accordion-heading
               class="accordion-legend">
               <p>{{'app-info.requiredElements' | translate}}</p>
             </span>
@@ -361,14 +361,14 @@
       <div *ngIf="showSetup">
         <!-- Environment variables list -->
         <div class="accordion-box">
-          <accordion 
+          <accordion
             class="accordion-tabs">
-            <accordion-group 
+            <accordion-group
               heading="{{'apps.instance.environmentVariables' | translate}}"
               [panelClass]="nalejAccordionSmall"
               [isOpen]="isFirstOpen">
               <span
-                accordion-heading 
+                accordion-heading
                 class="accordion-icons-box">
                 <i class="material-icons accordion-arrow">arrow_drop_down</i>
               </span>
@@ -378,7 +378,7 @@
                   <div *ngIf="registeredData.environment_variables">
                     <div *ngFor="let variable of registeredData.environment_variables | keyvalue" class="row nalej-tbody">
                       <div class="col-6 grey">
-                        {{variable.key}} 
+                        {{variable.key}}
                       </div>
                       <div class="col-6 text-right">
                         {{variable.value}}
@@ -394,7 +394,7 @@
                   <div *ngIf="instance.environment_variables">
                     <div *ngFor="let variable of instance.environment_variables | keyvalue" class="row nalej-tbody">
                       <div class="col-6 grey">
-                        {{variable.key}} 
+                        {{variable.key}}
                       </div>
                       <div class="col-6 text-right">
                         {{variable.value}}
@@ -411,14 +411,14 @@
         </div>
         <!-- Other setting list -->
         <div class="accordion-box">
-          <accordion 
+          <accordion
             class="accordion-tabs">
-            <accordion-group 
+            <accordion-group
               heading="{{'apps.instance.otherSettings' | translate}}"
               [panelClass]="nalejAccordionSmall"
               [isOpen]="isFirstOpen">
-              <span     
-                accordion-heading 
+              <span
+                accordion-heading
                 class="accordion-icons-box">
                 <i class="material-icons accordion-arrow">arrow_drop_down</i>
               </span>
@@ -429,7 +429,7 @@
                     <p class="text-left">{{'apps.instance.otherSettings' | translate}}</p>
                     <div *ngFor="let configuration of registeredData.configuration_options| keyvalue" class="row mb-1">
                       <div class="col-12 grey text-right">
-                        {{configuration.key}} 
+                        {{configuration.key}}
                       </div>
                       <div class="col-12 text-right">
                         {{configuration.value}}
@@ -446,7 +446,7 @@
                     <p class="text-left">{{'apps.instance.otherSettings' | translate}}</p>
                     <div *ngFor="let configuration of instance.configuration_options| keyvalue" class="row mb-1" >
                       <div class="col-12 grey text-right">
-                        {{configuration.key}} 
+                        {{configuration.key}}
                       </div>
                       <div class="col-12 text-right">
                         {{configuration.value}}

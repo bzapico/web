@@ -825,7 +825,7 @@ export class BackendService implements Backend {
    */
   searchLogs(searchRequest: SearchRequest) {
     return this.post(
-      API_URL + 'logs' + searchRequest.organization_id + '/search',
+      API_URL + 'log/' + searchRequest.organization_id + '/search',
       searchRequest
     );
   }
@@ -836,7 +836,7 @@ export class BackendService implements Backend {
    */
   downloadLogs(downloadLogRequest: DownloadLogRequest) {
     return this.post(
-      API_URL + 'logs' + downloadLogRequest.organization_id + '/download',
+      API_URL + 'log/' + downloadLogRequest.organization_id + '/download',
       downloadLogRequest
     );
   }
@@ -847,7 +847,7 @@ export class BackendService implements Backend {
    */
   checkLogs(downloadRequestId: DownloadRequestId) {
     return this.get(
-      API_URL + 'logs' + downloadRequestId.organization_id + '/download/' + downloadRequestId.request_id + '/check',
+      API_URL + 'log/' + downloadRequestId.organization_id + '/download/' + downloadRequestId.request_id + '/check',
     );
   }
   // GET: '/v1/log/{organization_id}/download/list'
@@ -857,7 +857,7 @@ export class BackendService implements Backend {
    */
   listLogs(organizationId: string) {
     return this.get(
-      API_URL + 'logs' + organizationId + '/download/list',
+      API_URL + 'log/' + organizationId + '/download/list',
     );
   }
 }
