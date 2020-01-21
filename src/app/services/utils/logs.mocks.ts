@@ -736,8 +736,8 @@ export const mockDownloadLogs: DownloadLogResponse = {
     request_id: 'b80799bb-ec7a-41d2-b161-0327e01903ca',
     from: 1575457623642000000,
     to: 1575457623642000000,
-    state: DownloadLogState.Generating,
-    state_name: 'Generating',
+    state: DownloadLogState.Ready,
+    state_name: 'READY',
     url: 'https://web.nalej.tech/v1/logs/download/c5c289a3-dca0-49ef-973d-40bb554ae0c7.zip',
     expiration: 6,
     info: 'info'

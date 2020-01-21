@@ -65,7 +65,7 @@ export interface SearchRequest {
   /**
    *  Order specifies the sort order of the entries (on timestamp)
    */
-  order?: OrderOptions[];
+  order?: OrderOptions;
   /**
    * NFirst is a flag that identifies whether the user expects to receive the first n results or not
    */

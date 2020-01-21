@@ -80,20 +80,8 @@ export class LogsService {
    */
   download(downloadParams) {
     this.backend.downloadLogs(downloadParams).subscribe(downloadResponse => {
-      // Get User data from localStorage
-      const jwtData = localStorage.getItem(LocalStorageKeys.jwtData) || null;
-      if (jwtData !== null) {
-        this.organizationId = JSON.parse(jwtData).organizationID;
-        if (this.organizationId !== null) {
-          this.downloadResponse = {
-            organization_id: this.organizationId,
-            request_id: downloadResponse.request_id
-          };
-          this.downloadStatus.next(downloadResponse);
-        }
-      }
       this.interval = setTimeout(() => {
-        this.checkLogs(downloadResponse.request_id);
+        this.checkLogs(downloadResponse);
       }, 5000);
     });
   }
@@ -101,10 +89,12 @@ export class LogsService {
    * Check checks the state of the download operation
    * @param downloadParams DownloadRequestId contains the identifier of an operation
    */
-  checkLogs(downloadParams) {
-    this.backend.checkLogs(downloadParams.request_id).subscribe(checkResponse => {
-        this.downloadStatus.next(checkResponse.url);
-        clearTimeout(this.interval);
+  private checkLogs(downloadParams) {
+    this.backend.checkLogs(downloadParams).subscribe(checkResponse => {
+        if (checkResponse.url) {
+          this.downloadStatus.next(checkResponse.url);
+          clearTimeout(this.interval);
+        }
       });
   }
 }

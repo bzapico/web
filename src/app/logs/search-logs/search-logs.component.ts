@@ -45,14 +45,14 @@ export class SearchLogsComponent implements OnInit {
   /**
    * Order is used to define the ordering of the results
    */
-  static orderAsc: OrderOptions[] =  [{
+  static orderAsc: OrderOptions =  {
     field: 'timestamp',
     order: Order.ASC
-  }];
-  static orderDesc: OrderOptions[] = [{
+  };
+  static orderDesc: OrderOptions = {
     field: 'timestamp',
     order: Order.DESC
-  }];
+  };
   /**
    * entityDropdown decorator that configures a view query for the dropdown
    */
@@ -136,8 +136,13 @@ export class SearchLogsComponent implements OnInit {
    * Open modal reference
    */
   bsModalRef: BsModalRef;
-
+  /**
+   * Variable to store the value loaded hierarchy data
+   */
   entityHierarchyLoaded: boolean;
+  /**
+   * Variable to store the value of when to add a css class to the dropdown
+   */
   greyClass: boolean;
 
   constructor(
@@ -199,7 +204,7 @@ export class SearchLogsComponent implements OnInit {
       }
     });
     this.logsService.downloadStatus.subscribe(downloadLinkResponse => {
-      if (downloadLinkResponse) {
+        if (downloadLinkResponse) {
         this.openDownloadFileInfo(downloadLinkResponse);
       }
     });
