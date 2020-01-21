@@ -1,4 +1,4 @@
-<!-- 
+<!--
   Copyright 2019 Nalej
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
@@ -14,9 +14,9 @@
 <div class="row row-title">
   <div class="col-lg-12">
       <h2 class="section-title">
-        <a 
-          [routerLink]="['/applications']" 
-          routerLinkActive="active" 
+        <a
+          [routerLink]="['/applications']"
+          routerLinkActive="active"
           class="blue fw-black">
           {{'apps.instance.title' | translate}}
         </a>
@@ -37,15 +37,15 @@
         [registeredData]="getDescriptorFromInstance(instance)[0]"
         [instance]="instance"
         [openFromInstance]="openFromInstance"
-        class="row-info-app flex-grow-1 h-75">
+        class="row-info-app flex-grow-1 extra-row-mb">
       </app-info>
-      <labels-card 
+      <labels-card
         [loadedData]="loadedData"
         [labelsData]="instance"
         [isSelectableLabel]="isSelectableLabel"
         class="row-info-app flex-grow-0">
       </labels-card>
-      <action-buttons-card  
+      <action-buttons-card
         [loadedData]="loadedData"
         [app]="instance"
         [isOpenFromRegistered]="isOpenFromRegistered"
@@ -62,7 +62,7 @@
           <div *ngIf=
             "graphDataLoaded &&
             !graphReset &&
-            countGroupServices() > 0" 
+            countGroupServices() > 0"
             class="graph">
             <graph
               [autoCenter]="autoCenter"
@@ -131,10 +131,10 @@
               <div class="col-5">
                 <form>
                   <div class="search-box">
-                    <input 
-                      name="searchTerm" 
+                    <input
+                      name="searchTerm"
                       [(ngModel)]="searchTerm"
-                      type="text" 
+                      type="text"
                       placeholder="{{'searcher.placeholder' | translate }}"
                       class="form-control">
                     <div *ngIf="searchTerm === ''" class="search-icon">
@@ -150,22 +150,22 @@
             <!-- Services tabs -->
             <div class="row h-100">
               <div class="col accordion-box">
-                <accordion 
+                <accordion
                   *ngFor="let group of groups"
                   class="accordion-tabs">
-                  <accordion-group 
+                  <accordion-group
                     *ngIf="groups.length > 0"
                     heading="{{group.name}}"
                     [panelClass]="nalejAccordion"
                     [isOpen]="isFirstOpen">
-                    <span     
-                      accordion-heading 
+                    <span
+                      accordion-heading
                       class="accordion-icons-box">
                       <i class="material-icons accordion-arrow">arrow_drop_down</i>
                       <div class="accordion-btn">
-                        <div    
-                          (click)="openGroupServicesInfo(group, $event)" 
-                          tooltip="{{'tables.tableInfo' | translate}}" 
+                        <div
+                          (click)="openGroupServicesInfo(group, $event)"
+                          tooltip="{{'tables.tableInfo' | translate}}"
                           placement="left">
                           <i class="material-icons info-icon">info</i>
                         </div>
@@ -183,7 +183,7 @@
                       class="nalej-table-box no-p-col no-m-row">
                       <div class="nalej-table">
                         <div *ngIf="!searchTerm" class="nalej-thead row">
-                          <div 
+                          <div
                             (click)="setOrder('services','name')"
                             [ngClass]="getCategoryCSSClass('services','name')"
                             class="label-th col-1">
@@ -195,8 +195,8 @@
                               <i class="material-icons">expand_less</i>
                             </span>
                           </div>
-                          <div 
-                            (click)="setOrder('services','replicas')"   
+                          <div
+                            (click)="setOrder('services','replicas')"
                             [ngClass]="getCategoryCSSClass('services','replicas')"
                             class="label-th text-center col-2">
                               {{'tables.tableReplicas' | translate}}
@@ -208,7 +208,7 @@
                             </span>
                           </div>
                           <div
-                            (click)="setOrder('services','status')" 
+                            (click)="setOrder('services','status')"
                             [ngClass]="getCategoryCSSClass('services','status')"
                             class="label-th text-center col-2">
                               {{'tables.tableStatus' | translate}}
@@ -219,9 +219,9 @@
                               <i class="material-icons">expand_less</i>
                             </span>
                           </div>
-                          <div  
-                            (click)="setOrder('services','endpoints')" 
-                            [ngClass]="getCategoryCSSClass('services','endpoints')" 
+                          <div
+                            (click)="setOrder('services','endpoints')"
+                            [ngClass]="getCategoryCSSClass('services','endpoints')"
                             class="label-th col-6">
                               {{'tables.tableEndpoints' | translate}}
                             <span *ngIf="sortedBy === 'endpoints' && !reverse" class="expand-chevron">
@@ -241,21 +241,21 @@
                         sortBy : sortedBy : reverse : true |
                         filter : searchTerm">
                         <div class="nalej-tbody row">
-                          <div class="col-1 nalej-td grey"> 
+                          <div class="col-1 nalej-td grey">
                             {{service.name}}
                           </div>
                           <div class="col-2 text-center nalej-td grey">
                             {{service.specs.replicas}}
                           </div>
                           <div class="col-2 text-center nalej-td">
-                            <span 
+                            <span
                               [ngClass]=
                                 "{
                                   'status-dot': classStatusCheck(service.status_name, 'status.serviceRunning' | translate),
                                   'status-dot-error': classStatusCheck(service.status_name, 'status.serviceError' | translate),
                                   'status-dot-process': classStatusCheck(service.status_name, 'status.serviceWaiting' | translate)
                                 }"
-                              tooltip="{{service.status_name}}" 
+                              tooltip="{{service.status_name}}"
                               placement="bottom"
                               class="status-dot">
                               <span class="text-lowercase">
@@ -265,9 +265,9 @@
                           </div>
                           <div class="col-6 nalej-td">
                             <span *ngFor="let endpoint of service.endpoints">
-                              <a 
-                                *ngIf="endpoint" 
-                                href="{{getEndpointHref(endpoint)}}" 
+                              <a
+                                *ngIf="endpoint"
+                                href="{{getEndpointHref(endpoint)}}"
                                 target="_blank"
                                 class="endpoint">
                                 {{endpoint}}
@@ -276,9 +276,9 @@
                             <span *ngIf="!service.endpoints" class="grey">No</span>
                           </div>
                           <div class="col-1 nalej-td-flex text-center">
-                            <div    
-                              (click)="openServicesInfo(service)" 
-                              tooltip="{{'tables.tableInfo' | translate}}" 
+                            <div
+                              (click)="openServicesInfo(service)"
+                              tooltip="{{'tables.tableInfo' | translate}}"
                               placement="left">
                               <i class="material-icons info-icon">info</i>
                             </div>
@@ -286,12 +286,12 @@
                           <hr class="accordion-table-separator">
                         </div>
                       </div>
-                    </div> 
+                    </div>
                     <!-- No info to show -->
                     <div *ngIf=
                       "loadedData &&
                       !requestError &&
-                      groups.length === 0" 
+                      groups.length === 0"
                       class="no-elements">
                       {{'apps.instance.noServices' | translate}}
                     </div>
@@ -303,17 +303,17 @@
                 </accordion>
               </div>
             </div>
-            
+
             <div *ngIf="!loadedData" class="nalej-loader-box">
               <div class="loader">
                 <svg class="circular" viewBox="25 25 50 50">
-                  <circle 
-                    class="path" 
-                    cx="50" 
-                    cy="50" 
-                    r="20" 
-                    fill="none" 
-                    stroke-width="2" 
+                  <circle
+                    class="path"
+                    cx="50"
+                    cy="50"
+                    r="20"
+                    fill="none"
+                    stroke-width="2"
                     stroke-miterlimit="10" />
                 </svg>
               </div>
@@ -517,7 +517,7 @@
             <div *ngIf="loadedData && requestError" class="no-elements">
               <p>{{requestError}}</p>
             </div>
-            
+
             <div *ngIf="!loadedData" class="nalej-loader-box">
               <div class="loader">
                 <svg class="circular" viewBox="25 25 50 50">
