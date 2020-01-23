@@ -18,7 +18,6 @@ import { Backend } from '../definitions/interfaces/backend';
 import { LocalStorageKeys } from '../definitions/const/local-storage-keys';
 import { SearchRequest } from '../definitions/interfaces/search-request';
 import { AddUserRequest } from '../definitions/interfaces/add-user-request';
-import { UserChanges } from '../definitions/interfaces/user-changes';
 import { InstallAgentRequest } from '../definitions/interfaces/install-agent-request';
 import { AddAppDescriptorRequest } from '../definitions/interfaces/add-app-descriptor-request';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
@@ -28,6 +27,7 @@ import { LoginResponse } from '../definitions/interfaces/login-response';
 import { UpdateAssetRequest } from '../definitions/interfaces/update-asset-request';
 import { DownloadRequestId } from '../definitions/interfaces/download-request-id';
 import { DownloadLogRequest } from '../definitions/interfaces/download-log-request';
+import { UpdateUserRequest } from '../definitions/interfaces/update-user-request';
 
 // tslint:disable:no-any
 /**
@@ -166,7 +166,7 @@ export class BackendService implements Backend {
    * @param organizationId Organization identifier
    * @param user Object containing user data
    */
-  saveUserChanges(organizationId: string, user: UserChanges) {
+  saveUserChanges(organizationId: string, user: UpdateUserRequest) {
     return this.post(
       API_URL + 'users/' + organizationId + '/update',
       user

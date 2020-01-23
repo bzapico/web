@@ -26,7 +26,8 @@ import {
   mockJwtToken,
   mockNodeList,
   mockOrganizationInfo,
-  mockUserList
+  mockUserList,
+  mockUpdateUserList
 } from './utils/mocks';
 import { Group } from '../definitions/interfaces/group';
 import { HttpResponse } from '@angular/common/http';
@@ -41,7 +42,6 @@ import { SearchRequest } from '../definitions/interfaces/search-request';
 import { mockLogsList, mockDownloadLogs, mockDownloadLogResponseList } from './utils/logs.mocks';
 import { AddUserRequest } from '../definitions/interfaces/add-user-request';
 import { PasswordChange } from '../definitions/interfaces/password-change';
-import { UserChanges } from '../definitions/interfaces/user-changes';
 import { InstallAgentRequest } from '../definitions/interfaces/install-agent-request';
 import { RemoveConnectionRequest } from '../definitions/interfaces/remove-connection-request';
 import { AddConnectionRequest } from '../definitions/interfaces/add-connection-request';
@@ -49,6 +49,7 @@ import { LoginResponse } from '../definitions/interfaces/login-response';
 import { UpdateAssetRequest } from '../definitions/interfaces/update-asset-request';
 import { DownloadLogRequest } from '../definitions/interfaces/download-log-request';
 import { DownloadRequestId } from '../definitions/interfaces/download-request-id';
+import { UpdateUserRequest } from '../definitions/interfaces/update-user-request';
 
 @Injectable({
   providedIn: 'root'
@@ -117,9 +118,9 @@ export class MockupBackendService implements Backend {
    */
   getOrganizationUsers(organizationId: string) {
     return of (new HttpResponse({
-      body: JSON.stringify({ users: mockUserList }),
+      body: JSON.stringify({users: mockUserList}),
       status: 200
-    }));
+    })).pipe(map(users => JSON.parse(users.body)));
   }
   /**
    * Simulates adding a user
@@ -165,12 +166,19 @@ export class MockupBackendService implements Backend {
    * Simulates save user changes
    * @param userId String containing the user identifier - used to replicate expected backend behavior
    */
-  saveUserChanges(organizationId: string, user: UserChanges) {
-    const index = mockUserList.map(x => x.email).indexOf(user.email);
+  saveUserChanges(organizationId: string, user: UpdateUserRequest) {
+    const index = mockUpdateUserList.map(x => x.email).indexOf(user.email);
     if (index !== -1) {
-      mockUserList[index].name = user.name;
-      mockUserList[index].email = user.email;
-      mockUserList[index].role_name = user.role_name;
+      mockUpdateUserList[index].name = user.name;
+      mockUpdateUserList[index].email = user.email;
+      mockUpdateUserList[index].role_name = user.role_name;
+      mockUpdateUserList[index].title = user.title;
+      mockUpdateUserList[index].update_title = true;
+      mockUpdateUserList[index].update_name = true;
+      mockUpdateUserList[index].update_phone = true;
+      mockUpdateUserList[index].update_location = true;
+      mockUpdateUserList[index].update_last_name = true;
+      mockUpdateUserList[index].update_photo_base64  = true;
     }
     return of(new HttpResponse({
       status: 200
