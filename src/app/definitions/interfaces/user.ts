@@ -14,5 +14,8 @@
 import { UserChanges } from './user-changes';
 
 export interface User extends UserChanges {
+    /**
+     * OrganizationID with the organization id
+     */
     organization_id: string;
 }

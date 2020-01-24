@@ -14,5 +14,8 @@
 import { UserChanges } from './user-changes';
 
 export interface AddUserRequest extends UserChanges {
+    /**
+     * Password for the new user
+     */
     password: string;
 }

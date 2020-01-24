@@ -14,7 +14,49 @@
 import { RoleOptions } from '../enums/role-options.enum';
 
 export interface UserChanges {
+    /**
+     * Email address of the user
+     */
     email: string;
+    /**
+     * Name of the user
+     */
     name: string;
+    /**
+     * PhotoBase64 with the base64 encoded photo of the user
+     */
+    photo_base64?: string;
+    /**
+     * MemberSince with the date in which the user was registered in the organization
+     */
+    member_since?: number;
+    /**
+     * RoleId with the id of the role of the user
+     */
+    role_id?: string;
+    /**
+     * RoleName with the name of the role of the user
+     */
     role_name: RoleOptions;
+    /**
+     * LastName of the user
+     */
+    last_name?: string;
+    /**
+     * Title of the user
+     */
+    title?: string;
+    /**
+     * LastLogin with the timestamp of the last time the user logged in
+     */
+    last_login?: number;
+    /**
+     * Phone number of the user
+     */
+    phone?: string;
+    /**
+     * Location of the user
+     */
+    location?: string;
+
 }
