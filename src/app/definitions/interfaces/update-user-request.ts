@@ -17,28 +17,28 @@ import { User } from './user';
  * UpdateUserRequest message with the information required for updating an user.
  */
 export interface UpdateUserRequest extends User {
-/**
- * UpdateName if the name is to be updated
- */
+	/**
+	 * UpdateName if the name is to be updated
+	 */
   update_name?: boolean;
-/**
- * UpdatePhotoBase64 if the photo encoded in base64 is to be updated
- */
+	/**
+	 * UpdatePhotoBase64 if the photo encoded in base64 is to be updated
+	 */
   update_photo_base64?: boolean;
-/**
- * UpdateLastName if the last name is to be updated
- */
+	/**
+	 * UpdateLastName if the last name is to be updated
+	 */
   update_last_name?: boolean;
-/**
- * UpdateTitle if the title is to be updated
- */
+	/**
+	 * UpdateTitle if the title is to be updated
+	 */
   update_title?: boolean;
-/**
- * UpdatePhone if the phone is to be updated
- */
+	/**
+	 * UpdatePhone if the phone is to be updated
+	 */
   update_phone?: boolean;
-/**
- * UpdateLocation if the location is to be updated
- */
+	/**
+	 * UpdateLocation if the location is to be updated
+	 */
   update_location?: boolean;
 }

@@ -1,5 +1,3 @@
-import { OrderOptions } from './order-options';
-
 /*
  *  Copyright 2019 Nalej
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,6 +10,7 @@ import { OrderOptions } from './order-options';
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
+import { OrderOptions } from './order-options';
 
 /**
  *  SearchRequest message with the query to be resolved.
