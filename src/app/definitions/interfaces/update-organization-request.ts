@@ -1,3 +1,4 @@
+
 /*
  *  Copyright 2019 Nalej
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -10,13 +11,12 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
-import { User } from './user';
+import { Organization } from './organization';
 
 /**
- * UpdateUserRequest message with the information required for updating an user.
+ * UpdateOrganizationRequest message with the information required for updating an user.
  */
-export interface UpdateUserRequest extends User {
+export interface UpdateOrganizationRequest extends Organization {
   /**
 	 * UpdateName if the name is to be updated
 	 */
@@ -24,21 +24,25 @@ export interface UpdateUserRequest extends User {
   /**
 	 * UpdatePhotoBase64 if the photo encoded in base64 is to be updated
 	 */
-  update_photo_base64?: boolean;
+  update_photo?: boolean;
   /**
-	 * UpdateLastName if the last name is to be updated
+	 * UpdateZipCode if the zip code is to be updated
 	 */
-  update_last_name?: boolean;
+  update_zip_code?: boolean;
   /**
-	 * UpdateTitle if the title is to be updated
+	 * UpdateCountry if the country is to be updated
 	 */
-  update_title?: boolean;
+  update_country?: boolean;
   /**
-	 * UpdatePhone if the phone is to be updated
+	 * UpdateState if the state is to be updated
 	 */
-  update_phone?: boolean;
+  update_state?: boolean;
   /**
-	 * UpdateLocation if the location is to be updated
+	 * UpdateCity if the city is to be updated
 	 */
-  update_location?: boolean;
+  update_city?: boolean;
+  /**
+   * UpdateFullAddress of the organization is to be updated
+   */
+  update_full_address?: boolean;
 }

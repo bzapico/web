@@ -11,21 +11,24 @@
  *  limitations under the License.
  */
 
-export interface PasswordChange {
+/**
+ * OrganizationSetting message with a setting defined for an organization
+ */
+export interface OrganizationSettings {
   /**
-	 * Password confirm
+	 * OrganizationId organization identifier
 	 */
-  passwordConfirm: string;
+  organization_id?: string;
   /**
-	 * Password contains the old password
+	 * Key of the setting
 	 */
-  password: string;
+  key?: string;
   /**
-	 * NewPassword contains the new password
+	 * Value of the setting
 	 */
-  new_password: string;
+  value?: string;
   /**
-	 * User email address
+	 * Description of the setting
 	 */
-  email: string;
+  description?: string;
 }
