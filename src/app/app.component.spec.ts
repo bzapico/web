@@ -29,6 +29,7 @@ import { FilterPipe } from './pipes/filter.pipe';
 import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
 import { createTranslateLoader } from './app.module';
 import { HttpClient } from '@angular/common/http';
+import { OrganizationInfoCardComponent } from './organization/organization-info-card/organization-info-card.component';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -40,6 +41,7 @@ describe('AppComponent', () => {
         SidebarComponent,
         NotificationsComponent,
         OrganizationComponent,
+        OrganizationInfoCardComponent,
         FilterPipe,
         SortByPipe
       ],
