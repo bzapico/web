@@ -13,54 +13,6 @@
 
 @import '../scss/variables/colors';
 @import '../scss/variables/mixins';
-.company-info {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	text-align: center;
-	height: 100%;
-	@include for-desktop-h {
-		flex-direction: row;
-		text-align: left;
-	}
-}
-.company-img {
-	display: block;
-	img {
-		height: 112px;
-		width: 112px;
-		@include for-desktop-h {
-			height: 100px;
-			width: 100px;
-		}
-	}
-}
-.company-info-text {
-	margin-top: 1.5rem;
-	margin-bottom: .5rem;
-	@include for-desktop-h {
-		margin-left: 1.5em;
-		margin-top: 0;
-		margin-bottom: 0;
-	}
-}
-.company-name {
-	font-size: 1em;
-	font-weight: 700;
-	text-transform: capitalize;
-}
-.company-subscription {
-	font-size: .8em;
-	color: $base-violet;
-	margin-bottom: 0;
-	font-weight: 500;
-}
-.company-users {
-	color: $base-grey;
-	font-size: .8em;
-	margin-bottom: 0;
-}
 .search-box {
 	width: 250px;
 	@include for-desktop-up {
@@ -90,42 +42,5 @@
 	}
 	@include for-md-desktop-up {
 		padding-top: 0;
-	}
-}
-.subscription-card {
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	height: 100%;
-	text-align: center;
-	.subscription-icon {
-		height: 87px;
-		width: 87px;
-		border-radius: 50%;
-		font-size: 1em;
-		margin: 0 auto;
-		background-color: $base-violet;
-		color: $white;
-		@include for-desktop-up {
-			height: 70px;
-			width: 70px;
-		}
-		i {
-			font-size: 2.2em;
-			margin: 25px;
-			@include for-desktop-up {
-				margin: 18px;
-			}
-		}
-	}
-	.subscription-check {
-		font-size: .9em;
-		color: $base-grey;
-	}
-	.subscription-plan {
-		color: $base-violet;
-		@include for-desktop-up {
-			font-size: 1.5rem;
-		}
 	}
 }
