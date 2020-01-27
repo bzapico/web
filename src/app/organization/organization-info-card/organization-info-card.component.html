@@ -1,0 +1,173 @@
+<!--
+  Copyright 2019 Nalej
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+      http://www.apache.org/licenses/LICENSE-2.0
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<div class="card" id="org-info-card">
+  <div class="card-title-name mb-2">
+    <h5 class="d-inline">{{'organization.infoTitle' | translate}}</h5>
+  </div>
+  <span class="org-box">
+    <div class="org-info-box">
+      <span class="button-right">
+        <div
+          tooltip="{{'tables.tableInfo' | translate}}"
+          placement="left"
+          class="action-btn-white">
+          <i class="material-icons i-black">more_vert</i>
+        </div>
+      </span>
+      <div class="org-info-img">
+        <div class="avatar-frame">
+          <img
+            *ngIf="!organization.photo_base64"
+            src="../assets/images/new-white.svg"
+            alt="org-img"
+            class="extra-img">
+          <img
+            *ngIf="organization.photo_base64"
+            src="{{organization.photo_base64}}"
+            alt="org-img"
+            class="org-img">
+        </div>
+      </div>
+      <div class="org-info">
+        <h2 class="org-name">{{organization.name}}</h2>
+        <p class="org-email">{{organization.email}}</p>
+        <p class="org-address">
+          <span>
+            {{address[0]}}<br>
+            {{address[1]}},
+          </span>
+          <span>{{organization.zip_code}}</span><br>
+          <span>{{organization.city}}</span>
+          </p>
+      </div>
+      <ul class="org-info-numbers">
+        <li>
+          <span class="org-numbers-title">
+            {{'organization.users.title' | translate}}
+          </span>
+          <span class="org-count">
+            {{users.length}}
+          </span>
+        </li>
+        <li>
+          <span class="org-numbers-title">
+            {{'organization.settings' | translate}}
+          </span>
+          <span class="org-count">
+            {{settings.length}}
+          </span>
+        </li>
+        <li>
+          <span class="org-numbers-title">
+            {{'organization.roles' | translate}}
+          </span>
+          <span class="org-count">
+            {{rolesCount}}
+          </span>
+        </li>
+      </ul>
+    </div>
+    <ul class="tabs-box">
+      <li
+        (click)="changeActiveList('settings')"
+        [ngClass]=
+          "{
+            'active': showSettings && !showRoles && !showBilling,
+            'tabs-btn-selected': showSettings && !showRoles && !showBilling
+          }"
+        class="tabs-btn">
+        <i class="material-icons tabs-icon">settings_applications</i>
+        {{'organization.settings' | translate}}
+      </li>
+      <li
+        (click)="changeActiveList('roles')"
+        [ngClass]=
+          "{
+            'active': showRoles && !showSettings && !showBilling,
+            'tabs-btn-selected': showRoles && !showSettings && !showBilling
+          }"
+        class="tabs-btn">
+          <i class="material-icons tabs-icon">people</i>
+          {{'organization.roles' | translate}}
+      </li>
+      <li
+        (click)="changeActiveList('billing')"
+        [ngClass]=
+          "{
+            'active': showBilling && !showSettings && !showRoles ,
+            'tabs-btn-selected': showBilling && !showSettings && !showRoles
+          }"
+        class="tabs-btn">
+          <i class="material-icons tabs-icon">monetization_on</i>
+          {{'organization.billing' | translate}}
+      </li>
+    </ul>
+    <div class="org-table">
+      <!-- Settings -->
+      <div *ngIf="showSettings" class="nalej-table-box no-p-col no-m-row">
+        <div class="nalej-table">
+          <div *ngFor="let setting of settings" class="nalej-tbody row">
+            <div class="col-10">
+              <div class="row">
+                <div class="col-6 nalej-td">
+                  {{setting.key}}
+                </div>
+                <div class="col-6 nalej-td super-dark-grey">
+                  {{setting.value}}
+                </div>
+              </div>
+            </div>
+            <div class="col-2 text-center nalej-td-flex">
+              <button
+                tooltip="{{'tables.tableInfo' | translate}}"
+                placement="left"
+                class="action-btn-grey position-relative">
+                <i class="material-icons i-black">more_vert</i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Roles -->
+      <div *ngIf="showRoles" class="nalej-table-box no-p-col no-m-row">
+        <div class="nalej-table">
+          <div *ngFor="let role of roles | keyvalue" class="nalej-tbody row">
+            <div class="col-10">
+              <div class="row">
+                <div class="col-2"></div>
+                <div class="col-6 nalej-td">
+                  {{role.value}}
+                </div>
+              </div>
+            </div>
+            <div class="col-2 text-center nalej-td-flex">
+              <button
+                tooltip="{{'tables.tableInfo' | translate}}"
+                placement="left"
+                class="action-btn-grey position-relative">
+                <i class="material-icons i-black">more_vert</i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Billing -->
+      <div *ngIf="showBilling">
+        <div class="no-elements">
+          {{'organization.noBilling' | translate}}
+        </div>
+      </div>
+
+    </div>
+  </span>
+</div>

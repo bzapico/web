@@ -11,36 +11,24 @@
  *  limitations under the License.
  */
 
-@import '../scss/variables/colors';
-@import '../scss/variables/mixins';
-.search-box {
-	width: 250px;
-	@include for-desktop-up {
-		margin-right: 0;
-	}
-	.close-icon i,
-	.search-icon i {
-		@include for-desktop-up {
-			right: 7px;
-		}
-	}
-}
-.add-user-btn {
-	margin-top: 3em;
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-}
-.nalej-table-box {
-	.nalej-table {
-		.nalej-thead {
-			margin-bottom: 10px;
-		}
-	}
-	.nalej-table div:nth-child(2) > div {
-		border-top: 0;
-	}
-	@include for-md-desktop-up {
-		padding-top: 0;
-	}
+/**
+ * OrganizationSetting message with a setting defined for an organization
+ */
+export interface OrganizationSettings {
+  /**
+	 * OrganizationId organization identifier
+	 */
+  organization_id?: string;
+  /**
+	 * Key of the setting
+	 */
+  key?: string;
+  /**
+	 * Value of the setting
+	 */
+  value?: string;
+  /**
+	 * Description of the setting
+	 */
+  description?: string;
 }

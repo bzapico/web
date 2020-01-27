@@ -32,7 +32,7 @@
 		background-color: $super-light-grey;
 	}
 	.nalej-tbody {
-		border-top: .8px solid $light-grey;
+		border-top: 0.8px solid $light-grey;
 	}
 	div :nth-child(2) > div {
 		border: none;
@@ -46,10 +46,18 @@
 		border-top: none;
 	}
 }
+#org-info-card .nalej-table-box {
+	&.no-p-col.no-m-row > div > div:nth-child(1) {
+		border-top: none;
+	}
+	&.no-p-col.no-m-row > div > div:nth-child(2) {
+		border-top: 0.8px solid $super-light-grey;
+	}
+}
 .no-p-col [class*='col-'] {
 	padding: 0;
 }
-.no-m-row [class*='row']{
+.no-m-row [class*='row'] {
 	margin-right: 0;
 	margin-left: 0;
 }
@@ -60,12 +68,12 @@
 	float: right;
 	margin-right: 2em;
 	@include for-sm-desktop-up {
-		margin-bottom: .2rem;
+		margin-bottom: 0.2rem;
 		margin-right: 0;
 	}
 	.form-control {
 		font-size: 1rem;
-		padding: .375rem 2.1rem .5rem 0;
+		padding: 0.375rem 2.1rem 0.5rem 0;
 	}
 	> input {
 		border: 2px solid $light-grey;
@@ -74,7 +82,7 @@
 		text-align: left;
 		background-color: transparent;
 		&::placeholder {
-			font-size: .9em;
+			font-size: 0.9em;
 			color: $base-light-grey;
 		}
 		&:focus {
@@ -131,7 +139,7 @@
 		}
 		.label-th {
 			float: left;
-			font-size: .9em;
+			font-size: 0.9em;
 			font-weight: 500;
 			cursor: pointer;
 			&.default {
@@ -150,18 +158,18 @@
 				i {
 					color: $base-violet;
 				}
-				span i{
+				span i {
 					visibility: visible;
 				}
 			}
 		}
 	}
 	.nalej-tbody {
-		border-top: .8px solid $super-light-grey;
-		padding: .9rem 0;
+		border-top: 0.8px solid $super-light-grey;
+		padding: 0.9rem 0;
 		.nalej-td {
 			float: left;
-			font-size: .9em;
+			font-size: 0.9em;
 			color: $base-grey;
 			outline: none;
 		}
@@ -173,7 +181,7 @@
 			text-align: center;
 		}
 		.nalej-td-flex-text {
-			font-size: .9em;
+			font-size: 0.9em;
 			color: $base-grey;
 			display: flex;
 			flex-direction: column;
@@ -184,17 +192,17 @@
 }
 .sorting-message {
 	color: $base-light-grey;
-	font-size: .9em;
-	padding: .55rem;
+	font-size: 0.9em;
+	padding: 0.55rem;
 	margin-bottom: 0;
 	font-weight: 500;
 	min-height: 39px;
-	.reset-search{
+	.reset-search {
 		cursor: pointer;
 		color: $base-violet;
 	}
 	@include for-sm-desktop-up {
-		padding: .4rem .75rem;
+		padding: 0.4rem 0.75rem;
 	}
 }
 .status-dot-nalej,
@@ -265,7 +273,7 @@
 		}
 	}
 }
-.big-status-dot-error{
+.big-status-dot-error {
 	&::before {
 		@extend %big-status-dot-nalej;
 
@@ -301,19 +309,26 @@
 	margin-bottom: 5px;
 	li {
 		list-style-type: none;
-		display: inline-block;
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
 		margin-right: 20px;
 		cursor: pointer;
+		line-height: 1.9;
 	}
 	.tabs-btn {
-		font-size: .65em;
+		font-size: 0.65em;
 		font-weight: 700;
 		color: $base-light-grey;
 	}
 	.tabs-btn-selected {
-		font-size: .65em;
+		font-size: 0.65em;
 		font-weight: 700;
 		color: $base-violet;
+	}
+	.tabs-icon {
+		font-size: 17px;
+		margin-right: 8px;
 	}
 }
 .summary-table {
@@ -341,7 +356,7 @@
 		display: inline;
 		font-size: 14px;
 		@include for-desktop-only {
-			font-size: .8em;
+			font-size: 0.8em;
 		}
 	}
 	.summary-table-td {
@@ -352,7 +367,7 @@
 		display: inline;
 		font-size: 16px;
 		@include for-desktop-only {
-			font-size: .8em;
+			font-size: 0.8em;
 			text-align: right;
 		}
 	}
@@ -364,7 +379,7 @@
 		display: inline;
 		font-size: 20px;
 		@include for-desktop-only {
-			font-size: .8em;
+			font-size: 0.8em;
 			text-align: right;
 		}
 	}

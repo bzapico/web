@@ -52,6 +52,19 @@ button[type='submit']:disabled {
 		outline: 0;
 	}
 }
+.action-btn-sm,
+%action-btn-sm {
+	height: 25px;
+	width: 25px;
+	border-radius: 50%;
+	position: relative;
+	border: 0;
+	font-weight: 500;
+	cursor: pointer;
+	&:focus {
+		outline: 0;
+	}
+}
 .action-btn-blue,
 %action-btn-blue {
 	@extend %action-btn;
@@ -117,6 +130,36 @@ button[type='submit']:disabled {
 		width: 25px;
 		min-height: 25px;
 		min-width: 25px;
+	}
+}
+.action-btn-white,
+%action-btn-white {
+	@extend %action-btn-sm;
+
+	color: $dark-grey;
+	background-color: $white;
+	&:hover {
+		color: $white;
+		transition: 0.3s;
+		background-color: $dark-grey;
+	}
+	@include for-desktop-up {
+		height: 19px;
+		width: 19px;
+		min-height: 19px;
+		min-width: 19px;
+	}
+}
+.action-btn-white-selected {
+	@extend %action-btn;
+
+	color: $white;
+	background-color: $dark-grey;
+	@include for-desktop-up {
+		height: 19px;
+		width: 19px;
+		min-height: 19px;
+		min-width: 19px;
 	}
 }
 .i-white,

@@ -10,43 +10,25 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { MainComponent } from './main.component';
-import { RouterTestingModule } from '@angular/router/testing';
-import { OrganizationComponent } from '../organization/organization.component';
-import { SidebarComponent } from '../sidebar/sidebar.component';
-import { ModalModule, BsModalService, TooltipModule } from 'ngx-bootstrap';
-import { AuthService } from '../services/auth.service';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { FilterPipe } from '../pipes/filter.pipe';
-import { SortByPipe } from '../pipes/sort-by.pipe';
-import { FormsModule } from '@angular/forms';
+import { OrganizationInfoCardComponent } from './organization-info-card.component';
+import { ButtonsModule, BsModalRef, TooltipModule } from 'ngx-bootstrap';
 import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
-import { createTranslateLoader } from '../app.module';
 import { HttpClient } from '@angular/common/http';
-import { OrganizationInfoCardComponent } from '../organization/organization-info-card/organization-info-card.component';
+import { createTranslateLoader } from '../../app.module';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
-describe('MainComponent', () => {
-  let component: MainComponent;
-  let fixture: ComponentFixture<MainComponent>;
+describe('OrganizationInfoCardComponent', () => {
+  let component: OrganizationInfoCardComponent;
+  let fixture: ComponentFixture<OrganizationInfoCardComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        MainComponent,
-        OrganizationComponent,
-        OrganizationInfoCardComponent,
-        SidebarComponent,
-        FilterPipe,
-        SortByPipe
-      ],
+      declarations: [ OrganizationInfoCardComponent ],
       imports: [
-        ModalModule.forRoot(),
-        HttpClientTestingModule,
-        RouterTestingModule,
+        ButtonsModule,
         TooltipModule.forRoot(),
-        FormsModule,
+        HttpClientTestingModule,
         TranslateModule.forRoot({
           loader: {
             provide: TranslateLoader,
@@ -56,8 +38,7 @@ describe('MainComponent', () => {
         })
       ],
       providers: [
-        BsModalService,
-        AuthService,
+        BsModalRef,
         TranslateService
       ]
     })
@@ -65,7 +46,7 @@ describe('MainComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MainComponent);
+    fixture = TestBed.createComponent(OrganizationInfoCardComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

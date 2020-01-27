@@ -434,10 +434,14 @@
 	},
 	"nalej": "NALEJ",
 	"organization": {
+		"billing": "BILLING",
 		"deleteUser": "Delete user?",
+		"infoTitle": "INFO",
 		"loading": "Loading...",
+		"noBilling": "NO BILLING",
 		"notRegisteredUsers": "<p>There are not registered users in this organization<br>Click on \"add user\" button to start adding new users</p>",
-		"subscriptionType": "Free subscription",
+		"roles": "ROLES",
+		"settings": "SETTINGS",
 		"title": "ORGANIZATION",
 		"userCreated": "The user {{user}}  has been created successfully",
 		"userDeleted": "User {{userMail}} has been deleted",
@@ -450,14 +454,8 @@
 			"role": "Role",
 			"roleReq": "A role is required",
 			"saveChange": "The user {{user}} has been edited",
-			"subscription": {
-				"check": "Check all our subscription modes and payments",
-				"plan": "Free",
-				"title": "SUBSCRIPTION"
-			},
 			"title": "USERS"
-		},
-		"usersNumber": "{{value}} users"
+		}
 	},
 	"resources": {
 		"NoAvailableClusters": "No available clusters",

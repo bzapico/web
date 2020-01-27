@@ -24,6 +24,7 @@ import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-transla
 import { HttpClient } from '@angular/common/http';
 import { createTranslateLoader } from '../app.module';
 import { AbbreviatePipe } from '../pipes/abbreviate.pipe';
+import { OrganizationInfoCardComponent } from './organization-info-card/organization-info-card.component';
 
 
 describe('OrganizationComponent', () => {
@@ -36,13 +37,14 @@ describe('OrganizationComponent', () => {
         OrganizationComponent,
         FilterPipe,
         SortByPipe,
-        AbbreviatePipe
+        AbbreviatePipe,
+        OrganizationInfoCardComponent
       ],
       imports: [
         HttpClientTestingModule,
         FormsModule,
         ButtonsModule,
-        TooltipModule,
+        TooltipModule.forRoot(),
         RouterTestingModule,
         ModalModule.forRoot(),
         TranslateModule.forRoot({

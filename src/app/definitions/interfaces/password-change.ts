@@ -12,20 +12,20 @@
  */
 
 export interface PasswordChange {
-	/**
+  /**
 	 * Password confirm
 	 */
-	passwordConfirm: string;
-	/**
+  passwordConfirm: string;
+  /**
 	 * Password contains the old password
 	 */
-	password: string;
-	/**
+  password: string;
+  /**
 	 * NewPassword contains the new password
 	 */
-	new_password: string;
-	/**
-	 * Email address of the user
+  new_password: string;
+  /**
+	 * User email address
 	 */
-	email: string;
+  email: string;
 }
