@@ -443,6 +443,7 @@
 		"userDeleted": "User {{userMail}} has been deleted",
 		"userExists": "ERROR: {{error}} already exists",
 		"userInfo": "User info",
+		"infoTitle": "INFO",
 		"users": {
 			"add": "Add user",
 			"addEx": "e.g. NalejAdmin",
@@ -457,6 +458,10 @@
 			},
 			"title": "USERS"
 		},
+		"settings": "SETTINGS",
+		"billing": "BILLING",
+		"roles": "ROLES",
+		"noBilling": "NO BILLING",
 		"usersNumber": "{{value}} users"
 	},
 	"resources": {
