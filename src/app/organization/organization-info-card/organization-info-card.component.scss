@@ -1,0 +1,138 @@
+/*
+ *  Copyright 2019 Nalej
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
+
+@import '../../scss/variables/colors';
+@import '../../scss/variables/mixins';
+.org-info-box {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+	border-radius: 15px;
+	border: 0;
+	overflow: hidden;
+	padding: 11px;
+	height: 100%;
+	background-color: $light-grey;
+	margin-bottom: 30px;
+	max-height: 517px;
+	@include for-desktop-up {
+		margin-right: 0;
+	}
+	.action-btn-white {
+		align-self: flex-end;
+	}
+	.i-black {
+		font-size: 21px;
+		@include for-desktop-up {
+			font-size: 17px;
+		}
+	}
+}
+.org-info-img {
+	min-height: 20px;
+	border-bottom: 10px;
+	.avatar-frame {
+		align-items: center;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		border: 0;
+		width: 168px;
+		height: 168px;
+		-webkit-border-radius: 50%;
+		border-radius: 50%;
+		background-color: $dark-grey;
+		@include for-desktop-sidebar {
+			width: 100px;
+			height: 100px;
+		}
+		@include for-sm-desktop-only {
+			width: 70px;
+			height: 70px;
+		}
+	}
+	.org-img {
+		box-sizing: border-box;
+		background-clip: content-box;
+		border: 1px solid transparent;
+		width: 79%;
+	}
+	.extra-img {
+		width: 86px;
+		height: 86px;
+	}
+	@include for-sm-desktop-h {
+		display: none;
+	}
+}
+.org-info {
+	min-height: 20px;
+	border-bottom: 10px;
+	.org-name {
+		font-weight: 700;
+		font-size: 32px;
+		@include for-desktop-sidebar {
+			font-size: 28px;
+		}
+	}
+	.org-email {
+		font-weight: 500;
+		font-size: 16px;
+		margin-bottom: 0.7em;
+		@include for-desktop-sidebar {
+			font-size: 12px;
+		}
+	}
+	.org-address {
+		color: $base-grey;
+		font-size: 18px;
+		line-height: 1.2;
+		@include for-desktop-sidebar {
+			font-size: 14px;
+		}
+	}
+}
+.org-info-numbers {
+	display: inline-flex;
+	justify-content: space-around;
+	width: 79%;
+	padding: 0;
+	li {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	}
+	.org-numbers-title {
+		font-size: 10px;
+		color: $base-grey;
+	}
+	.org-count {
+		font-size: 32px;
+		@include for-sm-desktop-h {
+			font-size: 12px;
+		}
+	}
+}
+.tabs-box {
+	padding: 0 2em;
+}
+.nalej-tbody {
+	width: 87%;
+	margin: 0 auto;
+	.nalej-td {
+		font-size: 12px;
+	}
+}
+
