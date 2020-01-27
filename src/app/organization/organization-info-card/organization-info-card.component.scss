@@ -22,14 +22,14 @@
 	border: 0;
 	overflow: hidden;
 	padding: 11px;
-	height: 100%;
 	background-color: $light-grey;
 	margin-bottom: 30px;
-	max-height: 517px;
+	min-height: 317px;
+	height: 100%;
 	@include for-desktop-up {
 		margin-right: 0;
 	}
-	.action-btn-white {
+	.button-right {
 		align-self: flex-end;
 	}
 	.i-black {
@@ -40,8 +40,7 @@
 	}
 }
 .org-info-img {
-	min-height: 20px;
-	border-bottom: 10px;
+	margin-bottom: 1em;
 	.avatar-frame {
 		align-items: center;
 		display: flex;
@@ -77,8 +76,6 @@
 	}
 }
 .org-info {
-	min-height: 20px;
-	border-bottom: 10px;
 	.org-name {
 		font-weight: 700;
 		font-size: 32px;
@@ -127,6 +124,11 @@
 }
 .tabs-box {
 	padding: 0 2em;
+	margin-bottom: 1em;
+	min-height: 38px;
+}
+.nalej-table-box {
+	height: 100%;
 }
 .nalej-tbody {
 	width: 87%;
@@ -135,4 +137,14 @@
 		font-size: 12px;
 	}
 }
-
+.org-table {
+	overflow-y: scroll;
+	height: 40%;
+}
+.org-box {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	height: 100%;
+	overflow: hidden;
+}

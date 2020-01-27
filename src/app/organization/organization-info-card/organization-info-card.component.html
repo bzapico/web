@@ -14,67 +14,69 @@
   <div class="card-title-name mb-2">
     <h5 class="d-inline">{{'organization.infoTitle' | translate}}</h5>
   </div>
-  <div class="org-info-box flex-grow-0">
-    <div
-      tooltip="{{'tables.tableInfo' | translate}}"
-      placement="left"
-      class="action-btn-white">
-      <i class="material-icons i-black">more_vert</i>
-    </div>
-    <div class="org-info-img">
-      <div class="avatar-frame">
-        <img
-          *ngIf="!organization.photo_base64"
-          src="../assets/images/new-white.svg"
-          alt="org-img"
-          class="extra-img">
-        <img
-          *ngIf="organization.photo_base64"
-          src="{{organization.photo_base64}}"
-          alt="org-img"
-          class="org-img">
+  <span class="org-box">
+    <div class="org-info-box">
+      <span class="button-right">
+        <div
+          tooltip="{{'tables.tableInfo' | translate}}"
+          placement="left"
+          class="action-btn-white">
+          <i class="material-icons i-black">more_vert</i>
+        </div>
+      </span>
+      <div class="org-info-img">
+        <div class="avatar-frame">
+          <img
+            *ngIf="!organization.photo_base64"
+            src="../assets/images/new-white.svg"
+            alt="org-img"
+            class="extra-img">
+          <img
+            *ngIf="organization.photo_base64"
+            src="{{organization.photo_base64}}"
+            alt="org-img"
+            class="org-img">
+        </div>
       </div>
+      <div class="org-info">
+        <h2 class="org-name">{{organization.name}}</h2>
+        <p class="org-email">{{organization.email}}</p>
+        <p class="org-address">
+          <span>
+            {{address[0]}}<br>
+            {{address[1]}},
+          </span>
+          <span>{{organization.zip_code}}</span><br>
+          <span>{{organization.city}}</span>
+          </p>
+      </div>
+      <ul class="org-info-numbers">
+        <li>
+          <span class="org-numbers-title">
+            {{'organization.users.title' | translate}}
+          </span>
+          <span class="org-count">
+            {{users.length}}
+          </span>
+        </li>
+        <li>
+          <span class="org-numbers-title">
+            {{'organization.settings' | translate}}
+          </span>
+          <span class="org-count">
+            {{settings.length}}
+          </span>
+        </li>
+        <li>
+          <span class="org-numbers-title">
+            {{'organization.roles' | translate}}
+          </span>
+          <span class="org-count">
+            {{rolesCount}}
+          </span>
+        </li>
+      </ul>
     </div>
-    <div class="org-info">
-      <h2 class="org-name">{{organization.name}}</h2>
-      <p class="org-email">{{organization.email}}</p>
-      <p class="org-address">
-        <span>
-          {{address[0]}},<br>
-          {{address[1]}}
-        </span>
-        <span>{{organization.zip_code}}</span><br>
-        <span>{{organization.city}}</span>
-        </p>
-    </div>
-    <ul class="org-info-numbers">
-      <li>
-        <span class="org-numbers-title">
-          {{'organization.users.title' | translate}}
-        </span>
-        <span class="org-count">
-          {{users.length}}
-        </span>
-      </li>
-      <li>
-        <span class="org-numbers-title">
-          {{'organization.settings' | translate}}
-        </span>
-        <span class="org-count">
-          {{settings.length}}
-        </span>
-      </li>
-      <li>
-        <span class="org-numbers-title">
-          {{'organization.roles' | translate}}
-        </span>
-        <span class="org-count">
-          {{rolesCount}}
-        </span>
-      </li>
-    </ul>
-  </div>
-  <div class="flex-grow-0">
     <ul class="tabs-box">
       <li
         (click)="changeActiveList('settings')"
@@ -110,59 +112,62 @@
           {{'organization.billing' | translate}}
       </li>
     </ul>
-  </div>
-  <div class="flex-grow-1">
-    <div class="nalej-table-box no-p-col no-m-row">
+    <div class="org-table">
       <!-- Settings -->
-      <div *ngIf="showSettings" class="nalej-table">
-        <div *ngFor="let setting of settings" class="nalej-tbody row">
-          <div class="col-10">
-            <div class="row">
-              <div class="col-6 nalej-td">
-                {{setting.key}}
-              </div>
-              <div class="col-6 nalej-td super-dark-grey">
-                {{setting.value}}
+      <div *ngIf="showSettings" class="nalej-table-box no-p-col no-m-row">
+        <div class="nalej-table">
+          <div *ngFor="let setting of settings" class="nalej-tbody row">
+            <div class="col-10">
+              <div class="row">
+                <div class="col-6 nalej-td">
+                  {{setting.key}}
+                </div>
+                <div class="col-6 nalej-td super-dark-grey">
+                  {{setting.value}}
+                </div>
               </div>
             </div>
-          </div>
-          <div class="col-2 text-center nalej-td-flex">
-            <button
-              tooltip="{{'tables.tableInfo' | translate}}"
-              placement="left"
-              class="action-btn-grey position-relative">
-              <i class="material-icons i-black">more_vert</i>
-            </button>
+            <div class="col-2 text-center nalej-td-flex">
+              <button
+                tooltip="{{'tables.tableInfo' | translate}}"
+                placement="left"
+                class="action-btn-grey position-relative">
+                <i class="material-icons i-black">more_vert</i>
+              </button>
+            </div>
           </div>
         </div>
       </div>
       <!-- Roles -->
-      <div *ngIf="showRoles" class="nalej-table">
-        <div *ngFor="let role of roles | keyvalue" class="nalej-tbody row">
-          <div class="col-10">
-            <div class="row">
-              <div class="col-2"></div>
-              <div class="col-6 nalej-td">
-                {{role.value}}
+      <div *ngIf="showRoles" class="nalej-table-box no-p-col no-m-row">
+        <div class="nalej-table">
+          <div *ngFor="let role of roles | keyvalue" class="nalej-tbody row">
+            <div class="col-10">
+              <div class="row">
+                <div class="col-2"></div>
+                <div class="col-6 nalej-td">
+                  {{role.value}}
+                </div>
               </div>
             </div>
-          </div>
-          <div class="col-2 text-center nalej-td-flex">
-            <button
-              tooltip="{{'tables.tableInfo' | translate}}"
-              placement="left"
-              class="action-btn-grey position-relative">
-              <i class="material-icons i-black">more_vert</i>
-            </button>
+            <div class="col-2 text-center nalej-td-flex">
+              <button
+                tooltip="{{'tables.tableInfo' | translate}}"
+                placement="left"
+                class="action-btn-grey position-relative">
+                <i class="material-icons i-black">more_vert</i>
+              </button>
+            </div>
           </div>
         </div>
       </div>
       <!-- Billing -->
-      <div *ngIf="showBilling" class="nalej-table">
+      <div *ngIf="showBilling">
         <div class="no-elements">
           {{'organization.noBilling' | translate}}
         </div>
       </div>
+
     </div>
-  </div>
+  </span>
 </div>

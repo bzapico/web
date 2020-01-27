@@ -71,6 +71,18 @@ export const mockOrganizationSettings: OrganizationSettings[] = [
         value: 'value',
         description: 'description'
     },
+    {
+        organization_id: 'ae832b4a-a1ec-4244-8c5b-8c3f3a000d53',
+        key: 'Setting6',
+        value: 'value',
+        description: 'description'
+    },
+    {
+        organization_id: 'ae832b4a-a1ec-4244-8c5b-8c3f3a000d53',
+        key: 'Setting7',
+        value: 'value',
+        description: 'description'
+    },
 ];
 /**
  * Mocked user roles

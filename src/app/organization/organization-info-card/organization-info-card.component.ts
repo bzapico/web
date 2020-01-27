@@ -28,9 +28,6 @@ export class OrganizationInfoCardComponent implements OnInit {
   users = mockUserList as UserChanges[];
   roles = mockUserRoles;
   rolesCount: number;
-  /**
-   * Model that hold the address
-   */
   address: string[];
   /**
    *  Active List reference
@@ -46,14 +43,8 @@ export class OrganizationInfoCardComponent implements OnInit {
   }
 
   ngOnInit() {
-    // console.log('org ', this.organization);
-    // console.log('settings ', this.settings);
     this.getFormattedAddress();
     this.rolesCount = Object.keys(this.roles).length;
-
-    console.log('rolessss ', Object.keys(this.roles));
-    console.log('roles ', this.roles);
-
   }
 
   /**
