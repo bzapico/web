@@ -56,7 +56,7 @@ import { AddLabelComponent } from './add-label/add-label.component';
 import { RegisteredInfoComponent } from './applications/registered-info/registered-info.component';
 import { RegisterApplicationComponent } from './applications/register-application/register-application.component';
 import { DeployInstanceComponent } from './applications/deploy-instance/deploy-instance.component';
-import { FileDropModule } from 'ngx-file-drop';
+import { NgxFileDropModule } from 'ngx-file-drop';
 import { InstanceInfoComponent } from './applications/instance-info/instance-info.component';
 import { ServiceInstancesInfoComponent } from './applications/instance-info/service-instances-info/service-instances-info.component';
 import { RuleInfoComponent } from './applications/rule-info/rule-info.component';
@@ -207,7 +207,7 @@ export function createTranslateLoader(http: HttpClient) {
     HttpClientModule,
     SelectDropDownModule,
     RouterModule,
-    FileDropModule,
+    NgxFileDropModule,
     // NGX-TRANSLATE
     TranslateModule.forRoot({
       loader: {

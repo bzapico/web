@@ -1,0 +1,4023 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>nalej-web-ui documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">nalej-web-ui documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li>SearchLogsComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/logs/search-logs/search-logs.component.ts</code>
+</p>
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>search-logs</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./search-logs.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./search-logs.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#backend">backend</a>
+                            </li>
+                            <li>
+                                <a href="#bsModalRef">bsModalRef</a>
+                            </li>
+                            <li>
+                                <a href="#catalog">catalog</a>
+                            </li>
+                            <li>
+                                <a href="#currentParameters">currentParameters</a>
+                            </li>
+                            <li>
+                                <a href="#dateFilter">dateFilter</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Static</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#DAY_IN_NANO_SEC">DAY_IN_NANO_SEC</a>
+                            </li>
+                            <li>
+                                <a href="#entitiesHierarchy">entitiesHierarchy</a>
+                            </li>
+                            <li>
+                                <a href="#entityDropdown">entityDropdown</a>
+                            </li>
+                            <li>
+                                <a href="#entityHierarchyLoaded">entityHierarchyLoaded</a>
+                            </li>
+                            <li>
+                                <a href="#filterField">filterField</a>
+                            </li>
+                            <li>
+                                <a href="#greyClass">greyClass</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Static</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#HOUR_IN_NANO_SEC">HOUR_IN_NANO_SEC</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Static</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#INSTANCE_HEADER">INSTANCE_HEADER</a>
+                            </li>
+                            <li>
+                                <a href="#isOpen">isOpen</a>
+                            </li>
+                            <li>
+                                <a href="#isSearching">isSearching</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Static</span>
+                                <a href="#orderAsc">orderAsc</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Static</span>
+                                <a href="#orderDesc">orderDesc</a>
+                            </li>
+                            <li>
+                                <a href="#organizationId">organizationId</a>
+                            </li>
+                            <li>
+                                <a href="#rate">rate</a>
+                            </li>
+                            <li>
+                                <a href="#rateFilter">rateFilter</a>
+                            </li>
+                            <li>
+                                <a href="#refreshIntervalRef">refreshIntervalRef</a>
+                            </li>
+                            <li>
+                                <a href="#searchTerm">searchTerm</a>
+                            </li>
+                            <li>
+                                <a href="#selectConfig">selectConfig</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Static</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#SERVICE_HEADER">SERVICE_HEADER</a>
+                            </li>
+                            <li>
+                                <a href="#sorting">sorting</a>
+                            </li>
+                            <li>
+                                <a href="#sortingFilter">sortingFilter</a>
+                            </li>
+                            <li>
+                                <a href="#timing">timing</a>
+                            </li>
+                            <li>
+                                <a href="#timingFilter">timingFilter</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#changeSorting">changeSorting</a>
+                            </li>
+                            <li>
+                                <a href="#copyLogs">copyLogs</a>
+                            </li>
+                            <li>
+                                <a href="#downloadLogs">downloadLogs</a>
+                            </li>
+                            <li>
+                                <a href="#dropdownSelectionChanged">dropdownSelectionChanged</a>
+                            </li>
+                            <li>
+                                <a href="#fromOnChange">fromOnChange</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#getEntityHierarchy">getEntityHierarchy</a>
+                            </li>
+                            <li>
+                                <a href="#getLastDayLogs">getLastDayLogs</a>
+                            </li>
+                            <li>
+                                <a href="#getLastHourLogs">getLastHourLogs</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit">ngOnInit</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#openDownloadFileInfo">openDownloadFileInfo</a>
+                            </li>
+                            <li>
+                                <a href="#refreshRateChange">refreshRateChange</a>
+                            </li>
+                            <li>
+                                <a href="#requestSearchLogs">requestSearchLogs</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#resetDateFilter">resetDateFilter</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#resetDropdownOptions">resetDropdownOptions</a>
+                            </li>
+                            <li>
+                                <a href="#resetFilters">resetFilters</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#resetRateFilter">resetRateFilter</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#resetSearchFilter">resetSearchFilter</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#resetSortingFilter">resetSortingFilter</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#resetTimingFilter">resetTimingFilter</a>
+                            </li>
+                            <li>
+                                <a href="#searchByTerm">searchByTerm</a>
+                            </li>
+                            <li>
+                                <a href="#searchOnKeyUp">searchOnKeyUp</a>
+                            </li>
+                            <li>
+                                <a href="#showSearchOptions">showSearchOptions</a>
+                            </li>
+                            <li>
+                                <a href="#toOnChange">toOnChange</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(translateService: <a href="../interfaces/Service.html">TranslateService</a>, logsService: <a href="../injectables/LogsService.html">LogsService</a>, backendService: <a href="../injectables/BackendService.html">BackendService</a>, mockupBackendService: <a href="../injectables/MockupBackendService.html">MockupBackendService</a>, modalService: <a href="../interfaces/Service.html">BsModalService</a>, notificationsService: <a href="../injectables/NotificationsService.html">NotificationsService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="145" class="link-to-prism">src/app/logs/search-logs/search-logs.component.ts:145</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>translateService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../interfaces/Service.html" target="_self" >TranslateService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>logsService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/LogsService.html" target="_self" >LogsService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>backendService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/BackendService.html" target="_self" >BackendService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>mockupBackendService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/MockupBackendService.html" target="_self" >MockupBackendService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>modalService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../interfaces/Service.html" target="_self" >BsModalService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>notificationsService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/NotificationsService.html" target="_self" >NotificationsService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="changeSorting"></a>
+                    <span class="name">
+                        <b>
+                            changeSorting
+                        </b>
+                        <a href="#changeSorting"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>changeSorting(sorting: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="369"
+                            class="link-to-prism">src/app/logs/search-logs/search-logs.component.ts:369</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Adds a quick filter</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>sorting</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>sort type</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="copyLogs"></a>
+                    <span class="name">
+                        <b>
+                            copyLogs
+                        </b>
+                        <a href="#copyLogs"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>copyLogs()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="434"
+                            class="link-to-prism">src/app/logs/search-logs/search-logs.component.ts:434</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Copy logs to clipboard</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="downloadLogs"></a>
+                    <span class="name">
+                        <b>
+                            downloadLogs
+                        </b>
+                        <a href="#downloadLogs"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>downloadLogs()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="467"
+                            class="link-to-prism">src/app/logs/search-logs/search-logs.component.ts:467</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Download logs ask for log entries and store them into a zip file</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="dropdownSelectionChanged"></a>
+                    <span class="name">
+                        <b>
+                            dropdownSelectionChanged
+                        </b>
+                        <a href="#dropdownSelectionChanged"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>dropdownSelectionChanged(e: literal type)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="347"
+                            class="link-to-prism">src/app/logs/search-logs/search-logs.component.ts:347</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Change event when user changes the selected options in dropdown</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>e</td>
+                                    <td>
+                                            <code>literal type</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>event that binds the template</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="fromOnChange"></a>
+                    <span class="name">
+                        <b>
+                            fromOnChange
+                        </b>
+                        <a href="#fromOnChange"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>fromOnChange(e: literal type)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="303"
+                            class="link-to-prism">src/app/logs/search-logs/search-logs.component.ts:303</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Watches the changes in the calendar/date template using the dateTimeChange callback</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>e</td>
+                                    <td>
+                                            <code>literal type</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>event that binds the template to invoke when change event is fired on</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getEntityHierarchy"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            getEntityHierarchy
+                        </b>
+                        <a href="#getEntityHierarchy"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getEntityHierarchy()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="477"
+                            class="link-to-prism">src/app/logs/search-logs/search-logs.component.ts:477</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Gets the entity hierarchy to order the dropdown options</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getLastDayLogs"></a>
+                    <span class="name">
+                        <b>
+                            getLastDayLogs
+                        </b>
+                        <a href="#getLastDayLogs"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getLastDayLogs()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="285"
+                            class="link-to-prism">src/app/logs/search-logs/search-logs.component.ts:285</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Gets the last day logs filtered list</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getLastHourLogs"></a>
+                    <span class="name">
+                        <b>
+                            getLastHourLogs
+                        </b>
+                        <a href="#getLastHourLogs"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getLastHourLogs()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="269"
+                            class="link-to-prism">src/app/logs/search-logs/search-logs.component.ts:269</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Gets the last hour logs filtered list</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <b>
+                            ngOnInit
+                        </b>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="187"
+                            class="link-to-prism">src/app/logs/search-logs/search-logs.component.ts:187</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="openDownloadFileInfo"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            openDownloadFileInfo
+                        </b>
+                        <a href="#openDownloadFileInfo"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>openDownloadFileInfo(url)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="516"
+                            class="link-to-prism">src/app/logs/search-logs/search-logs.component.ts:516</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Opens the modal view that holds download file info component</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>url</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="refreshRateChange"></a>
+                    <span class="name">
+                        <b>
+                            refreshRateChange
+                        </b>
+                        <a href="#refreshRateChange"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>refreshRateChange(rate: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="387"
+                            class="link-to-prism">src/app/logs/search-logs/search-logs.component.ts:387</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Refreshes rate</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>rate</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>the frequency</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="requestSearchLogs"></a>
+                    <span class="name">
+                        <b>
+                            requestSearchLogs
+                        </b>
+                        <a href="#requestSearchLogs"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>requestSearchLogs()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="215"
+                            class="link-to-prism">src/app/logs/search-logs/search-logs.component.ts:215</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Search logs method that calls the logs service to communicate between components</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="resetDateFilter"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            resetDateFilter
+                        </b>
+                        <a href="#resetDateFilter"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>resetDateFilter()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="547"
+                            class="link-to-prism">src/app/logs/search-logs/search-logs.component.ts:547</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Resets the date filter</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="resetDropdownOptions"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            resetDropdownOptions
+                        </b>
+                        <a href="#resetDropdownOptions"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>resetDropdownOptions()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="529"
+                            class="link-to-prism">src/app/logs/search-logs/search-logs.component.ts:529</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Resets the dropdown options</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="resetFilters"></a>
+                    <span class="name">
+                        <b>
+                            resetFilters
+                        </b>
+                        <a href="#resetFilters"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>resetFilters(list: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="221"
+                            class="link-to-prism">src/app/logs/search-logs/search-logs.component.ts:221</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Resets all the filters fields</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>list</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="resetRateFilter"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            resetRateFilter
+                        </b>
+                        <a href="#resetRateFilter"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>resetRateFilter()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="553"
+                            class="link-to-prism">src/app/logs/search-logs/search-logs.component.ts:553</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Resets the rate filter</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="resetSearchFilter"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            resetSearchFilter
+                        </b>
+                        <a href="#resetSearchFilter"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>resetSearchFilter()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="539"
+                            class="link-to-prism">src/app/logs/search-logs/search-logs.component.ts:539</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Resets the search filter</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="resetSortingFilter"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            resetSortingFilter
+                        </b>
+                        <a href="#resetSortingFilter"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>resetSortingFilter()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="561"
+                            class="link-to-prism">src/app/logs/search-logs/search-logs.component.ts:561</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Resets the sorting filter</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="resetTimingFilter"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            resetTimingFilter
+                        </b>
+                        <a href="#resetTimingFilter"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>resetTimingFilter()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="568"
+                            class="link-to-prism">src/app/logs/search-logs/search-logs.component.ts:568</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Resets the timing filter</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="searchByTerm"></a>
+                    <span class="name">
+                        <b>
+                            searchByTerm
+                        </b>
+                        <a href="#searchByTerm"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>searchByTerm(keyWord: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="246"
+                            class="link-to-prism">src/app/logs/search-logs/search-logs.component.ts:246</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Searches by term</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>keyWord</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>search term used in the search</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="searchOnKeyUp"></a>
+                    <span class="name">
+                        <b>
+                            searchOnKeyUp
+                        </b>
+                        <a href="#searchOnKeyUp"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>searchOnKeyUp(e: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, keyWord: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="262"
+                            class="link-to-prism">src/app/logs/search-logs/search-logs.component.ts:262</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Binds the keyup event in the template to search logs</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>e</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>event that binds the template</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>keyWord</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showSearchOptions"></a>
+                    <span class="name">
+                        <b>
+                            showSearchOptions
+                        </b>
+                        <a href="#showSearchOptions"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>showSearchOptions()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="239"
+                            class="link-to-prism">src/app/logs/search-logs/search-logs.component.ts:239</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Shows search options</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="toOnChange"></a>
+                    <span class="name">
+                        <b>
+                            toOnChange
+                        </b>
+                        <a href="#toOnChange"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>toOnChange(e: literal type)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="325"
+                            class="link-to-prism">src/app/logs/search-logs/search-logs.component.ts:325</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Watches the changes in the calendar/date template using the dateTimeChange callback</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>e</td>
+                                    <td>
+                                            <code>literal type</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>event that binds the template to invoke when change event is fired on</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="backend"></a>
+                        <span class="name">
+                            <b>
+                            backend</b>
+                            <a href="#backend"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../interfaces/Backend.html" target="_self" >Backend</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/app/logs/search-logs/search-logs.component.ts:71</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Backend reference</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="bsModalRef"></a>
+                        <span class="name">
+                            <b>
+                            bsModalRef</b>
+                            <a href="#bsModalRef"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>BsModalRef</code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="137" class="link-to-prism">src/app/logs/search-logs/search-logs.component.ts:137</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Open modal reference</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="catalog"></a>
+                        <span class="name">
+                            <b>
+                            catalog</b>
+                            <a href="#catalog"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../interfaces/LogResponse.html" target="_self" >LogResponse</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/app/logs/search-logs/search-logs.component.ts:63</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Logs response</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="currentParameters"></a>
+                        <span class="name">
+                            <b>
+                            currentParameters</b>
+                            <a href="#currentParameters"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../interfaces/SearchRequest.html" target="_self" >SearchRequest</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/app/logs/search-logs/search-logs.component.ts:67</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Search request parameter to be changed each time search method is called</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="dateFilter"></a>
+                        <span class="name">
+                            <b>
+                            dateFilter</b>
+                            <a href="#dateFilter"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://angular.io/api/forms/FormControl" target="_blank" >FormControl</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="125" class="link-to-prism">src/app/logs/search-logs/search-logs.component.ts:125</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Picker with rangeFrom and rangeTo selection</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="DAY_IN_NANO_SEC"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Private</span>
+                                <span class="modifier">Static</span>
+                                <span class="modifier">Readonly</span>
+                            DAY_IN_NANO_SEC</b>
+                            <a href="#DAY_IN_NANO_SEC"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>24 * SearchLogsComponent.HOUR_IN_NANO_SEC</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/logs/search-logs/search-logs.component.ts:44</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="entitiesHierarchy"></a>
+                        <span class="name">
+                            <b>
+                            entitiesHierarchy</b>
+                            <a href="#entitiesHierarchy"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../classes/EntitiesHierarchy.html" target="_self" >EntitiesHierarchy[]</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="129" class="link-to-prism">src/app/logs/search-logs/search-logs.component.ts:129</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Object array with entities names with object type to avoid auto array sort</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="entityDropdown"></a>
+                        <span class="name">
+                            <b>
+                            entityDropdown</b>
+                            <a href="#entityDropdown"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://angular.io/api/core/ElementRef" target="_blank" >ElementRef</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <b>Decorators : </b>
+                            <br />
+                            <code>
+                                @ViewChild(&#x27;entityDropdown&#x27;)<br />
+                            </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/app/logs/search-logs/search-logs.component.ts:59</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>entityDropdown decorator that configures a view query for the dropdown</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="entityHierarchyLoaded"></a>
+                        <span class="name">
+                            <b>
+                            entityHierarchyLoaded</b>
+                            <a href="#entityHierarchyLoaded"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="141" class="link-to-prism">src/app/logs/search-logs/search-logs.component.ts:141</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Variable to store the value loaded hierarchy data</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="filterField"></a>
+                        <span class="name">
+                            <b>
+                            filterField</b>
+                            <a href="#filterField"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="117" class="link-to-prism">src/app/logs/search-logs/search-logs.component.ts:117</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Variable to store the value of the filter search text and sortBy pipe</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="greyClass"></a>
+                        <span class="name">
+                            <b>
+                            greyClass</b>
+                            <a href="#greyClass"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="145" class="link-to-prism">src/app/logs/search-logs/search-logs.component.ts:145</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Variable to store the value of when to add a css class to the dropdown</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="HOUR_IN_NANO_SEC"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Private</span>
+                                <span class="modifier">Static</span>
+                                <span class="modifier">Readonly</span>
+                            HOUR_IN_NANO_SEC</b>
+                            <a href="#HOUR_IN_NANO_SEC"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>3600000000000</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/logs/search-logs/search-logs.component.ts:43</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="INSTANCE_HEADER"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Private</span>
+                                <span class="modifier">Static</span>
+                                <span class="modifier">Readonly</span>
+                            INSTANCE_HEADER</b>
+                            <a href="#INSTANCE_HEADER"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>&#x27;[instance]&#x27;</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/logs/search-logs/search-logs.component.ts:41</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Headers to show hierarchy in dropdown options</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="isOpen"></a>
+                        <span class="name">
+                            <b>
+                            isOpen</b>
+                            <a href="#isOpen"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="121" class="link-to-prism">src/app/logs/search-logs/search-logs.component.ts:121</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Variable to store the value of menu state</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="isSearching"></a>
+                        <span class="name">
+                            <b>
+                            isSearching</b>
+                            <a href="#isSearching"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="113" class="link-to-prism">src/app/logs/search-logs/search-logs.component.ts:113</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Boolean variables for indicate different flags to search/filter in the logs</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="orderAsc"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Static</span>
+                            orderAsc</b>
+                            <a href="#orderAsc"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../interfaces/OrderOptions.html" target="_self" >OrderOptions</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>{
+    field: &#x27;timestamp&#x27;,
+    order: Order.ASC
+  }</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/logs/search-logs/search-logs.component.ts:48</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Order is used to define the ordering of the results</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="orderDesc"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Static</span>
+                            orderDesc</b>
+                            <a href="#orderDesc"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../interfaces/OrderOptions.html" target="_self" >OrderOptions</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>{
+    field: &#x27;timestamp&#x27;,
+    order: Order.DESC
+  }</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/logs/search-logs/search-logs.component.ts:52</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="organizationId"></a>
+                        <span class="name">
+                            <b>
+                            organizationId</b>
+                            <a href="#organizationId"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/app/logs/search-logs/search-logs.component.ts:75</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Model that hold organization id</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="rate"></a>
+                        <span class="name">
+                            <b>
+                            rate</b>
+                            <a href="#rate"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="95" class="link-to-prism">src/app/logs/search-logs/search-logs.component.ts:95</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Model that hold the rate refresh</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="rateFilter"></a>
+                        <span class="name">
+                            <b>
+                            rateFilter</b>
+                            <a href="#rateFilter"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>{
+    off: true,
+    oneMin: false,
+    fiveMin: false,
+    name: &#x27;&#x27;
+  }</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="96" class="link-to-prism">src/app/logs/search-logs/search-logs.component.ts:96</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="refreshIntervalRef"></a>
+                        <span class="name">
+                            <b>
+                            refreshIntervalRef</b>
+                            <a href="#refreshIntervalRef"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>Subscription</code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="133" class="link-to-prism">src/app/logs/search-logs/search-logs.component.ts:133</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Interval reference</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="searchTerm"></a>
+                        <span class="name">
+                            <b>
+                            searchTerm</b>
+                            <a href="#searchTerm"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="109" class="link-to-prism">src/app/logs/search-logs/search-logs.component.ts:109</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Model that hold the search term in search box</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="selectConfig"></a>
+                        <span class="name">
+                            <b>
+                            selectConfig</b>
+                            <a href="#selectConfig"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>{}</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="105" class="link-to-prism">src/app/logs/search-logs/search-logs.component.ts:105</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>NGX-select-dropdown</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="SERVICE_HEADER"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Private</span>
+                                <span class="modifier">Static</span>
+                                <span class="modifier">Readonly</span>
+                            SERVICE_HEADER</b>
+                            <a href="#SERVICE_HEADER"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>&#x27;····[service]&#x27;</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/logs/search-logs/search-logs.component.ts:42</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="sorting"></a>
+                        <span class="name">
+                            <b>
+                            sorting</b>
+                            <a href="#sorting"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="87" class="link-to-prism">src/app/logs/search-logs/search-logs.component.ts:87</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Model that hold the sorting filter</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="sortingFilter"></a>
+                        <span class="name">
+                            <b>
+                            sortingFilter</b>
+                            <a href="#sortingFilter"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>{
+    ascend: true,
+    descend: false,
+  }</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="88" class="link-to-prism">src/app/logs/search-logs/search-logs.component.ts:88</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="timing"></a>
+                        <span class="name">
+                            <b>
+                            timing</b>
+                            <a href="#timing"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">src/app/logs/search-logs/search-logs.component.ts:79</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Model that hold the last day and last hour timing filters</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="timingFilter"></a>
+                        <span class="name">
+                            <b>
+                            timingFilter</b>
+                            <a href="#timingFilter"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>{
+    lastHour: false,
+    lastDay: false,
+  }</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/app/logs/search-logs/search-logs.component.ts:80</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit, ElementRef, ViewChild } from &#x27;@angular/core&#x27;;
+import { TranslateService } from &#x27;@ngx-translate/core&#x27;;
+import { FormControl } from &#x27;@angular/forms&#x27;;
+import { LogResponse } from &#x27;src/app/definitions/interfaces/log-response&#x27;;
+import { LogsService } from &#x27;../logs.service&#x27;;
+import { timer, Subscription } from &#x27;rxjs&#x27;;
+import { EntitiesHierarchy } from &#x27;../../definitions/models/entities-hierarchy&#x27;;
+import { BackendService } from &#x27;src/app/services/backend.service&#x27;;
+import { LocalStorageKeys } from &#x27;src/app/definitions/const/local-storage-keys&#x27;;
+import { MockupBackendService } from &#x27;src/app/services/mockup-backend.service&#x27;;
+import { Backend } from &#x27;src/app/definitions/interfaces/backend&#x27;;
+import { SearchRequest } from &#x27;src/app/definitions/interfaces/search-request&#x27;;
+import { OrderOptions } from &#x27;src/app/definitions/interfaces/order-options&#x27;;
+import { Order } from &#x27;src/app/definitions/enums/order.enum&#x27;;
+import { BsModalRef, BsModalService } from &#x27;ngx-bootstrap&#x27;;
+import { DownloadFileInfoComponent } from &#x27;../download-file-info/download-file-info.component&#x27;;
+import { NotificationsService } from &#x27;src/app/services/notifications.service&#x27;;
+
+@Component({
+  selector: &#x27;search-logs&#x27;,
+  templateUrl: &#x27;./search-logs.component.html&#x27;,
+  styleUrls: [&#x27;./search-logs.component.scss&#x27;]
+})
+
+export class SearchLogsComponent implements OnInit {
+  /**
+   * Headers to show hierarchy in dropdown options
+   */
+  private static readonly INSTANCE_HEADER &#x3D; &#x27;[instance]&#x27;;
+  private static readonly SERVICE_HEADER &#x3D; &#x27;····[service]&#x27;;
+  private static readonly HOUR_IN_NANO_SEC &#x3D; 3600000000000;
+  private static readonly DAY_IN_NANO_SEC &#x3D; 24 * SearchLogsComponent.HOUR_IN_NANO_SEC;
+  /**
+   * Order is used to define the ordering of the results
+   */
+  static orderAsc: OrderOptions &#x3D;  {
+    field: &#x27;timestamp&#x27;,
+    order: Order.ASC
+  };
+  static orderDesc: OrderOptions &#x3D; {
+    field: &#x27;timestamp&#x27;,
+    order: Order.DESC
+  };
+  /**
+   * entityDropdown decorator that configures a view query for the dropdown
+   */
+  @ViewChild(&#x27;entityDropdown&#x27;) entityDropdown: ElementRef;
+  /**
+   * Logs response
+   */
+  catalog: LogResponse;
+  /**
+   * Search request parameter to be changed each time search method is called
+   */
+  currentParameters: SearchRequest;
+  /**
+   * Backend reference
+   */
+  backend: Backend;
+  /**
+   * Model that hold organization id
+   */
+  organizationId: string;
+  /**
+   * Model that hold the last day and last hour timing filters
+   */
+  timing: string;
+  timingFilter &#x3D; {
+    lastHour: false,
+    lastDay: false,
+  };
+  /**
+   * Model that hold the sorting filter
+   */
+  sorting: string;
+  sortingFilter &#x3D; {
+    ascend: true,
+    descend: false,
+  };
+  /**
+   * Model that hold the rate refresh
+   */
+  rate: string;
+  rateFilter &#x3D; {
+    off: true,
+    oneMin: false,
+    fiveMin: false,
+    name: &#x27;&#x27;
+  };
+  /**
+   * NGX-select-dropdown
+   */
+  selectConfig &#x3D; {};
+  /**
+   * Model that hold the search term in search box
+   */
+  searchTerm: string;
+  /**
+   * Boolean variables for indicate different flags to search/filter in the logs
+   */
+  isSearching: boolean;
+  /**
+   * Variable to store the value of the filter search text and sortBy pipe
+   */
+  filterField: boolean;
+  /**
+   * Variable to store the value of menu state
+   */
+  isOpen: boolean;
+  /**
+   * Picker with rangeFrom and rangeTo selection
+   */
+  dateFilter: FormControl;
+  /**
+   * Object array with entities names with object type to avoid auto array sort
+   */
+  entitiesHierarchy: EntitiesHierarchy[];
+  /**
+   * Interval reference
+   */
+  refreshIntervalRef: Subscription;
+  /**
+   * Open modal reference
+   */
+  bsModalRef: BsModalRef;
+  /**
+   * Variable to store the value loaded hierarchy data
+   */
+  entityHierarchyLoaded: boolean;
+  /**
+   * Variable to store the value of when to add a css class to the dropdown
+   */
+  greyClass: boolean;
+
+  constructor(
+    private translateService: TranslateService,
+    private logsService: LogsService,
+    private backendService: BackendService,
+    private mockupBackendService: MockupBackendService,
+    private modalService: BsModalService,
+    private notificationsService: NotificationsService
+  ) {
+    const mock &#x3D; localStorage.getItem(LocalStorageKeys.logsMock) || null;
+    // Check which backend is required (fake or real)
+    if (mock &amp;&amp; mock &#x3D;&#x3D;&#x3D; &#x27;true&#x27;) {
+      this.backend &#x3D; this.mockupBackendService;
+    } else {
+      this.backend &#x3D; this.backendService;
+    }
+    this.currentParameters &#x3D; {
+      order: SearchLogsComponent.orderAsc
+    };
+    this.searchTerm &#x3D; &#x27;&#x27;;
+    this.filterField &#x3D; false;
+    this.isOpen &#x3D; true;
+    this.isSearching &#x3D; false;
+    this.greyClass &#x3D; true;
+    this.translateService.get(&#x27;logs.selectEntity&#x27;).subscribe(val &#x3D;&gt; {
+      this.selectConfig &#x3D; {
+        placeholder: val,
+        search: true,
+        searchPlaceholder: this.translateService.instant(&#x27;logs.searchEntity&#x27;),
+        displayKey: &#x27;displayedName&#x27;,
+        height: &#x27;auto&#x27;,
+        moreText: &#x27;more&#x27;,
+        customComparator: () &#x3D;&gt; {},
+        clearOnSelection: true,
+        noResultsFound: this.translateService.instant(&#x27;apps.addConnection.noResults&#x27;),
+      };
+    });
+    this.entityHierarchyLoaded &#x3D; false;
+    this.entitiesHierarchy &#x3D; [];
+  }
+
+  ngOnInit() {
+    // Get User data from localStorage
+    const jwtData &#x3D; localStorage.getItem(LocalStorageKeys.jwtData) || null;
+    if (jwtData !&#x3D;&#x3D; null) {
+      this.organizationId &#x3D; JSON.parse(jwtData).organizationID;
+      if (this.organizationId !&#x3D;&#x3D; null) {
+        this.currentParameters &#x3D; {
+          organization_id: this.organizationId
+        };
+      }
+    }
+    this.logsService.searchLogsResponse.subscribe(searchResponse &#x3D;&gt; {
+      if (searchResponse) {
+        searchResponse &#x3D; searchResponse as LogResponse;
+        this.catalog &#x3D; searchResponse;
+        this.getEntityHierarchy();
+      }
+    });
+    this.logsService.downloadStatus.subscribe(downloadLinkResponse &#x3D;&gt; {
+        if (downloadLinkResponse) {
+        this.openDownloadFileInfo(downloadLinkResponse);
+      }
+    });
+    this.requestSearchLogs();
+  }
+  /**
+   * Search logs method that calls the logs service to communicate between components
+   */
+  requestSearchLogs() {
+    return this.logsService.searchLogs(this.currentParameters);
+  }
+  /**
+   * Resets all the filters fields
+   */
+  resetFilters(list: string) {
+    if (list &#x3D;&#x3D;&#x3D; &#x27;search&#x27;) {
+      this.resetSearchFilter();
+    } else if (list &#x3D;&#x3D;&#x3D; &#x27;filters&#x27;) {
+      this.resetDropdownOptions();
+      this.resetTimingFilter();
+      this.resetSortingFilter();
+      this.resetRateFilter();
+      this.resetDateFilter();
+    }
+    this.requestSearchLogs();
+    this.notificationsService.add({
+      message: this.translateService.instant(&#x27;logs.resetFiltersMessage&#x27;, {list: list}),
+    });
+  }
+  /**
+   * Shows search options
+   */
+  showSearchOptions() {
+    this.isOpen &#x3D; !this.isOpen;
+  }
+  /**
+   * Searches by term
+   * @param keyWord search term used in the search
+   */
+  searchByTerm(keyWord: string) {
+    if (this.searchTerm) {
+      this.catalog &#x3D; {};
+      this.isSearching &#x3D; true;
+      this.currentParameters.msg_query_filter &#x3D; keyWord;
+      this.requestSearchLogs();
+      this.notificationsService.add({
+        message: this.translateService.instant(&#x27;logs.searchByTermMessage&#x27;, {keyWord: keyWord}),
+      });
+    }
+  }
+  /**
+   * Binds the keyup event in the template to search logs
+   * @param e event that binds the template
+   * @param searchTerm search term
+   */
+  searchOnKeyUp(e: any, keyWord: string) {
+    this.isSearching &#x3D; true;
+    this.searchByTerm(keyWord);
+  }
+  /**
+   * Gets the last hour logs filtered list
+   */
+  getLastHourLogs() {
+    this.catalog &#x3D; {};
+    this.resetDateFilter();
+    this.resetTimingFilter();
+    // Convert the time from milliseconds to nanoseconds
+    const dateTime &#x3D; (new Date().getTime() * 1000000) - SearchLogsComponent.HOUR_IN_NANO_SEC;
+    this.currentParameters.from &#x3D; dateTime;
+    delete this.currentParameters.to;
+    this.requestSearchLogs();
+    this.notificationsService.add({
+      message: this.translateService.instant(&#x27;logs.lastHourMessage&#x27;),
+    });
+  }
+  /**
+   * Gets the last day logs filtered list
+   */
+  getLastDayLogs() {
+    this.catalog &#x3D; {};
+    this.resetDateFilter();
+    this.timingFilter.lastDay &#x3D; true;
+    this.timingFilter.lastHour &#x3D; false;
+    // Convert the time from milliseconds to nanoseconds
+    const dateTime &#x3D; (new Date().getTime() * 1000000) - SearchLogsComponent.DAY_IN_NANO_SEC;
+    this.currentParameters.from &#x3D; dateTime;
+    delete this.currentParameters.to;
+    this.requestSearchLogs();
+    this.notificationsService.add({
+      message: this.translateService.instant(&#x27;logs.lastDayMessage&#x27;),
+    });
+  }
+  /**
+   * Watches the changes in the calendar/date template using the dateTimeChange callback
+   * @param e event that binds the template to invoke when change event is fired on
+   */
+  fromOnChange(e: { value: string[]; }) {
+    this.catalog &#x3D; {};
+    this.resetTimingFilter();
+    const selectedDateString: string &#x3D; e.value[0] + &#x27;&#x27;;
+    const selectedDateArray &#x3D; selectedDateString.split(&#x27; &#x27;);
+    // Parser library time
+    const fromDateTime &#x3D; Date.parse(
+      selectedDateArray[2] + &#x27; &#x27; +
+      selectedDateArray[1] + &#x27; &#x27; +
+      selectedDateArray[3] + &#x27; &#x27; +
+      selectedDateArray[4] + &#x27; &#x27; +
+      selectedDateArray[5]) * 1000000;
+      this.currentParameters.from &#x3D; fromDateTime;
+      this.requestSearchLogs();
+      this.notificationsService.add({
+        message: this.translateService.instant(&#x27;logs.fromDateMessage&#x27;, {date: selectedDateString}),
+      });
+  }
+  /**
+   * Watches the changes in the calendar/date template using the dateTimeChange callback
+   * @param e event that binds the template to invoke when change event is fired on
+   */
+  toOnChange(e: { value: string[]; }) {
+    this.catalog &#x3D; {};
+    this.resetTimingFilter();
+    const selectedDateString: string &#x3D; e.value[1] + &#x27;&#x27;;
+    const selectedDateArray &#x3D; selectedDateString.split(&#x27; &#x27;);
+    // Parser library time
+    const toDateTime &#x3D; Date.parse(
+      selectedDateArray[2] + &#x27; &#x27; +
+      selectedDateArray[1] + &#x27; &#x27; +
+      selectedDateArray[3] + &#x27; &#x27; +
+      selectedDateArray[4] + &#x27; &#x27; +
+      selectedDateArray[5]) * 1000000;
+      this.currentParameters.to &#x3D; toDateTime;
+      this.requestSearchLogs();
+      this.notificationsService.add({
+        message: this.translateService.instant(&#x27;logs.toDateMessage&#x27;, {date: selectedDateArray}),
+      });
+  }
+  /**
+   * Change event when user changes the selected options in dropdown
+   * @param e event that binds the template
+   */
+  dropdownSelectionChanged(e: { value: any; }) {
+    this.catalog &#x3D; {};
+    const entityIds &#x3D; e.value;
+    if (entityIds &amp;&amp; entityIds.app_descriptor_id) {
+      this.currentParameters.app_descriptor_id &#x3D; entityIds.app_descriptor_id;
+      this.currentParameters.app_instance_id &#x3D; entityIds.app_instance_id;
+      if (entityIds.service_group_id) {
+        this.currentParameters.service_group_id &#x3D; entityIds.service_group_id;
+        this.currentParameters.service_id &#x3D; entityIds.service_id;
+        this.currentParameters.service_group_instance_id &#x3D; entityIds.service_group_instance_id;
+      }
+      this.requestSearchLogs();
+      this.greyClass &#x3D; false;
+      this.notificationsService.add({
+        message: this.translateService.instant(&#x27;logs.changeEntityMessage&#x27;, {entityName: entityIds.name}),
+      });
+    }
+  }
+  /**
+   * Adds a quick filter
+   * @param sorting sort type
+   */
+    changeSorting(sorting: string) {
+    if (sorting &#x3D;&#x3D;&#x3D; &#x27;ascend&#x27;) {
+      this.resetSortingFilter();
+      this.currentParameters.order &#x3D; SearchLogsComponent.orderAsc;
+    } else if (sorting &#x3D;&#x3D;&#x3D; &#x27;descend&#x27;) {
+      this.sortingFilter.ascend &#x3D; false;
+      this.sortingFilter.descend &#x3D; true;
+      this.currentParameters.order &#x3D; SearchLogsComponent.orderDesc;
+    }
+    this.requestSearchLogs();
+    this.notificationsService.add({
+      message: this.translateService.instant(&#x27;logs.sortingMessage&#x27;, {sorting: sorting}),
+    });
+  }
+  /**
+   * Refreshes rate
+   * @param rate the frequency
+   */
+  refreshRateChange(rate: number) {
+    this.catalog &#x3D; {};
+    if (this.refreshIntervalRef) {
+      this.refreshIntervalRef.unsubscribe();
+    }
+    if (rate &#x3D;&#x3D;&#x3D; 0) {
+      this.rateFilter &#x3D; {
+        off: true,
+        oneMin: false,
+        fiveMin: false,
+        name: &#x27;off&#x27;
+      };
+      this.notificationsService.add({
+        message: this.translateService.instant(&#x27;logs.refreshRateOffMessage&#x27;),
+      });
+    } else if (rate &#x3D;&#x3D;&#x3D; 60000) {
+      this.rateFilter &#x3D; {
+        off: false,
+        oneMin: true,
+        fiveMin: false,
+        name: this.translateService.instant(&#x27;logs.rateOneMin&#x27;)
+      };
+      this.refreshIntervalRef &#x3D; timer(0, rate).subscribe(() &#x3D;&gt; {
+        this.requestSearchLogs();
+      });
+      this.notificationsService.add({
+        message: this.translateService.instant(&#x27;logs.refreshRateMessage&#x27;, {rate: this.rateFilter.name}),
+      });
+    } else {
+      this.rateFilter &#x3D; {
+        off: false,
+        oneMin: false,
+        fiveMin: true,
+        name: this.translateService.instant(&#x27;logs.rateFiveMin&#x27;)
+      };
+      this.refreshIntervalRef &#x3D; timer(0, rate).subscribe(() &#x3D;&gt; {
+        this.requestSearchLogs();
+      });
+      this.notificationsService.add({
+        message: this.translateService.instant(&#x27;logs.refreshRateMessage&#x27;, {rate: this.rateFilter.name}),
+      });
+    }
+  }
+  /**
+   * Copy logs to clipboard
+   * @param entries entries to be copied
+   */
+  copyLogs() {
+    if (this.catalog.entries) {
+      const logsForCopy: string[] &#x3D; [];
+      this.catalog.entries.forEach(entry &#x3D;&gt; {
+        const date &#x3D; new Date(entry.timestamp / 1000000);
+        const splitDate: string[] &#x3D; date.toString().split(&#x27; &#x27;);
+        const formattedDate &#x3D; splitDate[0] + &#x27; &#x27; + splitDate[1] + &#x27; &#x27; + splitDate[2] + &#x27; &#x27; + splitDate[3] + &#x27; &#x27; + splitDate[4] + &#x27; &#x27;;
+        let formattedId &#x3D;
+          &#x27;[DESCRIPTOR - &#x27; + entry.app_descriptor_name + &#x27;]&#x27; +
+          &#x27;[INSTANCE - &#x27; + entry.app_instance_name + &#x27;]&#x27;;
+          if (entry.service_name) {
+            formattedId +&#x3D;
+              &#x27;[SERVICE GROUP - &#x27; + entry.service_group_name + &#x27;]&#x27; +
+              &#x27;[SERVICE - &#x27; + entry.service_name + &#x27;]&#x27;;
+          }
+        logsForCopy.push(formattedDate + formattedId + &#x27; &#x27; + entry.msg);
+      });
+      const fullLogsText &#x3D; JSON.stringify(logsForCopy);
+      const temporalInput &#x3D; document.createElement(&#x27;input&#x27;);
+        document.body.appendChild(temporalInput);
+        temporalInput.setAttribute(&#x27;id&#x27;, &#x27;copy_id&#x27;);
+        (&lt;HTMLInputElement&gt;document.getElementById(&#x27;copy_id&#x27;)).value &#x3D; fullLogsText;
+        temporalInput.select();
+        document.execCommand(&#x27;copy&#x27;);
+        document.body.removeChild(temporalInput);
+        this.notificationsService.add({
+          message: this.translateService.instant(&#x27;logs.copiedMessage&#x27;),
+        });
+    }
+  }
+  /**
+   * Download logs ask for log entries and store them into a zip file
+   */
+  downloadLogs() {
+    this.notificationsService.add({
+      message: this.translateService.instant(&#x27;logs.downloadPrevMessage&#x27;),
+      type: &#x27;important&#x27;
+    });
+    this.logsService.download(this.currentParameters);
+  }
+  /**
+   * Gets the entity hierarchy to order the dropdown options
+   */
+  private getEntityHierarchy(): void {
+    if (this.catalog.app_descriptor_log_summary) {
+      this.catalog.app_descriptor_log_summary.forEach(descriptor &#x3D;&gt; {
+        descriptor.instances.forEach(instance &#x3D;&gt; {
+          this.entitiesHierarchy.push({
+            displayedName: SearchLogsComponent.INSTANCE_HEADER + instance.app_instance_name,
+            name: instance.app_instance_name,
+            app_descriptor_id: descriptor.app_descriptor_id,
+            id: instance.app_instance_id,
+            app_instance_id: instance.app_instance_id
+          });
+          instance.groups.forEach(serviceGroup &#x3D;&gt; {
+            serviceGroup.service_instances.forEach(service &#x3D;&gt; {
+              const serviceArray &#x3D; this.entitiesHierarchy.filter(a &#x3D;&gt;
+                a.service_id &#x3D;&#x3D;&#x3D; service.service_id &amp;&amp;
+                a.app_instance_id &#x3D;&#x3D;&#x3D; instance.app_instance_id);
+              if (serviceArray.length &#x3D;&#x3D;&#x3D; 0) {
+                this.entitiesHierarchy.push({
+                  displayedName: SearchLogsComponent.SERVICE_HEADER + service.name,
+                  name: service.name,
+                  app_descriptor_id: descriptor.app_descriptor_id,
+                  id: service.service_id,
+                  app_instance_id: instance.app_instance_id,
+                  service_group_id: serviceGroup.service_group_id,
+                  service_id: service.service_id,
+                  service_group_instance_id: serviceGroup.service_group_instance_id
+                });
+              }
+            });
+          });
+        });
+      });
+    }
+    this.entityHierarchyLoaded &#x3D; true;
+  }
+  /**
+   * Opens the modal view that holds download file info component
+   * @param downloadParams download params
+   */
+  private openDownloadFileInfo(url) {
+    const initialState &#x3D; {
+      organizationId: this.organizationId,
+      url: url
+    };
+    this.bsModalRef &#x3D;
+      this.modalService.show(DownloadFileInfoComponent, { initialState, backdrop: &#x27;static&#x27;, ignoreBackdropClick: false });
+    this.bsModalRef.content.closeBtnName &#x3D; &#x27;Close&#x27;;
+    this.bsModalRef.hide();
+  }
+  /**
+   * Resets the dropdown options
+   */
+  private resetDropdownOptions() {
+    this.greyClass &#x3D; true;
+    const temp: any &#x3D; this.entityDropdown;
+    temp.selectedItems &#x3D; [];
+    const selectEntityMessage &#x3D; this.translateService.instant(&#x27;logs.selectEntity&#x27;);
+    temp.selectedDisplayText &#x3D; selectEntityMessage;
+  }
+  /**
+   * Resets the search filter
+   */
+  private resetSearchFilter() {
+    this.filterField &#x3D; false;
+    this.isSearching &#x3D; false;
+    this.searchTerm &#x3D; &#x27;&#x27;;
+  }
+  /**
+   * Resets the date filter
+   */
+  private resetDateFilter() {
+    this.dateFilter &#x3D; new FormControl([]);
+  }
+  /**
+   * Resets the rate filter
+   */
+  private resetRateFilter() {
+    this.rateFilter.off &#x3D; true;
+    this.rateFilter.oneMin &#x3D; false;
+    this.rateFilter.fiveMin &#x3D; false;
+  }
+  /**
+   * Resets the sorting filter
+   */
+  private resetSortingFilter() {
+    this.sortingFilter.ascend &#x3D; true;
+    this.sortingFilter.descend &#x3D; false;
+  }
+  /**
+   * Resets the timing filter
+   */
+  private resetTimingFilter() {
+    this.timingFilter.lastDay &#x3D; false;
+    this.timingFilter.lastHour &#x3D; false;
+    delete this.currentParameters.from;
+    delete this.currentParameters.to;
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;!--
+  Copyright 2019 Nalej
+  Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+    http://www.apache.org/licenses/LICENSE-2.0
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+--&gt;
+&lt;button
+  (click)&#x3D;&quot;showSearchOptions()&quot;
+  class&#x3D;&quot;double-arrow&quot;
+  [ngClass]&#x3D;&quot;isOpen ? &#x27;double-arrow-in&#x27; : &#x27;double-arrow-out&#x27;&quot;&gt;
+  &lt;i class&#x3D;&quot;material-icons i-arrow&quot;&gt;double_arrow&lt;/i&gt;
+&lt;/button&gt;
+&lt;ng-container *ngIf&#x3D;&quot;!isOpen&quot;&gt;
+  &lt;div class&#x3D;&quot;search-logs-box-sm&quot;&gt;
+    &lt;div class&#x3D;&quot;search-logs&quot;&gt;
+      &lt;i
+        (click)&#x3D;&quot;showSearchOptions()&quot;
+        class&#x3D;&quot;material-icons i-side&quot;
+        tooltip&#x3D;&quot;{{ &#x27;searcher.placeholder&#x27; | translate }}&quot;
+        placement&#x3D;&quot;top&quot;&gt;
+        search
+      &lt;/i&gt;
+      &lt;i
+        (click)&#x3D;&quot;showSearchOptions()&quot;
+        class&#x3D;&quot;material-icons i-side&quot;
+        tooltip&#x3D;&quot; {{&#x27;logs.filter&#x27; | translate}}&quot;
+        placement&#x3D;&quot;top&quot;&gt;
+        filter_list
+      &lt;/i&gt;
+      &lt;i
+        (click)&#x3D;&quot;showSearchOptions()&quot;
+        class&#x3D;&quot;material-icons i-side&quot;
+        tooltip&#x3D;&quot; {{&#x27;logs.calendar&#x27; | translate}}&quot;
+        placement&#x3D;&quot;top&quot;&gt;
+        calendar_today
+      &lt;/i&gt;
+      &lt;i
+        (click)&#x3D;&quot;showSearchOptions()&quot;
+        class&#x3D;&quot;material-icons i-side&quot;
+        tooltip&#x3D;&quot; {{&#x27;logs.entity&#x27; | translate}}&quot;
+        placement&#x3D;&quot;top&quot;&gt;
+        apps
+      &lt;/i&gt;
+      &lt;i
+        (click)&#x3D;&quot;showSearchOptions()&quot;
+        class&#x3D;&quot;material-icons i-side&quot;
+        tooltip&#x3D;&quot; {{&#x27;logs.sorting&#x27; | translate}}&quot;
+        placement&#x3D;&quot;top&quot;&gt;
+        sort
+      &lt;/i&gt;
+      &lt;i
+        (click)&#x3D;&quot;showSearchOptions()&quot;
+        class&#x3D;&quot;material-icons i-side&quot;
+        tooltip&#x3D;&quot; {{&#x27;logs.refreshRate&#x27; | translate}}&quot;
+        placement&#x3D;&quot;top&quot;&gt;
+        autorenew
+      &lt;/i&gt;
+      &lt;div&gt;
+        &lt;button
+          (click)&#x3D;&quot;copyLogs()&quot;
+          tooltip&#x3D;&quot;{{ &#x27;logs.copy&#x27; | translate }}&quot;
+          placement&#x3D;&quot;bottom&quot;
+          class&#x3D;&quot;action-btn-blue&quot;&gt;
+          &lt;i class&#x3D;&quot;material-icons-round i-white&quot;&gt;file_copy&lt;/i&gt;
+        &lt;/button&gt;
+        &lt;button
+          (click)&#x3D;&quot;downloadLogs()&quot;
+          tooltip&#x3D;&quot;{{ &#x27;logs.download&#x27; | translate }}&quot;
+          placement&#x3D;&quot;bottom&quot;
+          class&#x3D;&quot;action-btn-blue&quot;&gt;
+          &lt;i class&#x3D;&quot;material-icons-round i-white i-down&quot;&gt;publish&lt;/i&gt;
+        &lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/ng-container&gt;
+&lt;ng-container *ngIf&#x3D;&quot;isOpen&quot;&gt;
+  &lt;div class&#x3D;&quot;search-logs-box&quot;&gt;
+    &lt;div class&#x3D;&quot;search-logs&quot;&gt;
+      &lt;!-- SEARCH --&gt;
+      &lt;div class&#x3D;&quot;search-section&quot;&gt;
+        &lt;div (click)&#x3D;&quot;resetFilters(&#x27;search&#x27;)&quot; class&#x3D;&quot;search-title&quot;&gt;
+          &lt;div class&#x3D;&quot;logs-title&quot;&gt;{{ &#x27;logs.search&#x27; | translate }}&lt;/div&gt;
+          &lt;span class&#x3D;&quot;reset-btn mr-2&quot;&gt;
+            {{ &#x27;logs.resetSearch&#x27; | translate }}
+          &lt;/span&gt;
+        &lt;/div&gt;
+        &lt;form&gt;
+          &lt;div class&#x3D;&quot;advanced-search-box&quot;&gt;
+            &lt;div class&#x3D;&quot;search-box&quot;&gt;
+              &lt;input
+                name&#x3D;&quot;searchTerm&quot;
+                [(ngModel)]&#x3D;&quot;searchTerm&quot;
+                type&#x3D;&quot;text&quot;
+                placeholder&#x3D;&quot;{{ &#x27;searcher.placeholder&#x27; | translate }}&quot;
+                class&#x3D;&quot;form-control&quot;
+                (keyup.enter)&#x3D;&quot;searchOnKeyUp($event, searchTerm)&quot;
+              /&gt;
+              &lt;div class&#x3D;&quot;advanced-search-icon&quot;&gt;
+                &lt;i
+                  (click)&#x3D;&quot;searchByTerm(searchTerm)&quot;
+                  class&#x3D;&quot;material-icons&quot;
+                  tooltip&#x3D;&quot;{{ &#x27;logs.search&#x27; | translate }}&quot;
+                  placement&#x3D;&quot;bottom&quot;&gt;
+                  search
+                &lt;/i&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/form&gt;
+        &lt;!-- Sorting messages --&gt;
+        &lt;div class&#x3D;&quot;row row-sorting-lg&quot;&gt;
+          &lt;div class&#x3D;&quot;col-12&quot;&gt;
+            &lt;p *ngIf&#x3D;&quot;isSearching &amp;&amp; searchTerm &amp;&amp; !filterField&quot; class&#x3D;&quot;sorting-message&quot;&gt;
+              {{&#x27;sortingMessage.filteredBy&#x27; | translate:{value: searchTerm} }}
+            &lt;/p&gt;
+            &lt;p *ngIf&#x3D;&quot;isSearching &amp;&amp; filterField &amp;&amp; !searchTerm&quot; class&#x3D;&quot;sorting-message&quot;&gt;
+              {{&#x27;sortingMessage.sortedBy&#x27; | translate:{value: getBeautyCategoryName(sortedBy)} }}
+              &lt;span *ngIf&#x3D;&quot;reverse&quot;&gt;{{&#x27;sortingMessage.ascendant&#x27; | translate:{value: &#x27;. &#x27;} }} &lt;/span&gt;
+              &lt;span *ngIf&#x3D;&quot;!reverse&quot;&gt;{{&#x27;sortingMessage.descendant&#x27; | translate:{value: &#x27;. &#x27;} }}&lt;/span&gt;
+            &lt;/p&gt;
+            &lt;p *ngIf&#x3D;&quot;isSearching &amp;&amp; filterField &amp;&amp; searchTerm&quot; class&#x3D;&quot;sorting-message&quot;&gt;
+              {{&#x27;sortingMessage.sortedBy&#x27; | translate:{value: getBeautyCategoryName(sortedBy)} }}
+              &lt;span *ngIf&#x3D;&quot;reverse&quot;&gt;{{&#x27;sortingMessage.ascendant&#x27; | translate:{value: &#x27; &#x27;} }}&lt;/span&gt;
+              &lt;span *ngIf&#x3D;&quot;!reverse&quot;&gt;{{&#x27;sortingMessage.descendant&#x27; | translate:{value: &#x27; &#x27;} }}&lt;/span&gt;
+              {{&#x27;sortingMessage.andFilteredBy&#x27; | translate:{value: searchTerm} }}.
+            &lt;/p&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;!-- FILTERS --&gt;
+      &lt;div class&#x3D;&quot;filters-section&quot;&gt;
+        &lt;div (click)&#x3D;&quot;resetFilters(&#x27;filters&#x27;)&quot; class&#x3D;&quot;search-title&quot;&gt;
+          &lt;div class&#x3D;&quot;logs-title&quot;&gt;{{ &#x27;logs.filters&#x27; | translate }}&lt;/div&gt;
+          &lt;span class&#x3D;&quot;reset-btn&quot;&gt;
+            {{ &#x27;logs.resetFilter&#x27; | translate }}
+          &lt;/span&gt;
+        &lt;/div&gt;
+        &lt;!-- TIME FILTER --&gt;
+        &lt;div class&#x3D;&quot;display-flex-box&quot;&gt;
+          &lt;div
+            (click)&#x3D;&quot;getLastHourLogs(&#x27;lastHour&#x27;)&quot;
+            class&#x3D;&quot;date-filters-btn&quot;
+            [ngClass]&#x3D;&quot;{
+              &#x27;date-filters-btn-selected&#x27;: timingFilter.lastHour,
+              &#x27;date-filters-btn&#x27;: !timingFilter.lastHour
+            }&quot;&gt;
+            &lt;i class&#x3D;&quot;material-icons i-filter&quot;&gt;filter_list&lt;/i&gt;
+            &lt;span&gt;{{ &#x27;logs.lastHour&#x27; | translate }}&lt;/span&gt;
+          &lt;/div&gt;
+          &lt;div
+            (click)&#x3D;&quot;getLastDayLogs(&#x27;lastDay&#x27;)&quot;
+            class&#x3D;&quot;date-filters-btn&quot;
+            [ngClass]&#x3D;&quot;{
+              &#x27;date-filters-btn-selected&#x27;: timingFilter.lastDay,
+              &#x27;date-filters-btn&#x27;: !timingFilter.lastDay
+            }&quot;&gt;
+            &lt;i class&#x3D;&quot;material-icons i-filter&quot;&gt;filter_list&lt;/i&gt;
+            &lt;span&gt;{{ &#x27;logs.lastDay&#x27; | translate }}&lt;/span&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;!-- DATE PICKER --&gt;
+        &lt;div class&#x3D;&quot;row&quot;&gt;
+          &lt;div class&#x3D;&quot;col-12 mt-4&quot;&gt;
+            &lt;p class&#x3D;&quot;label-form&quot;&gt;{{ &#x27;logs.from&#x27; | translate }}&lt;/p&gt;
+            &lt;div class&#x3D;&quot;form-group input-group&quot;&gt;
+              &lt;input
+                [owlDateTime]&#x3D;&quot;dt1&quot;
+                [owlDateTimeTrigger]&#x3D;&quot;dt1&quot;
+                [selectMode]&#x3D;&quot;&#x27;rangeFrom&#x27;&quot;
+                [(ngModel)]&#x3D;&quot;dateFilter&quot;
+                placeholder&#x3D;&quot;{{ &#x27;logs.chooseADate&#x27; | translate }}&quot;
+                aria-describedby&#x3D;&quot;calendar-addon&quot;
+                class&#x3D;&quot;form-control text-left&quot;
+                (dateTimeChange)&#x3D;&quot;fromOnChange($event)&quot;&gt;
+              &lt;owl-date-time #dt1&gt;&lt;/owl-date-time&gt;
+              &lt;div class&#x3D;&quot;input-group-append calendar-btn&quot;&gt;
+                &lt;button
+                  [owlDateTimeTrigger]&#x3D;&quot;dt1&quot;
+                  type&#x3D;&quot;button&quot;
+                  class&#x3D;&quot;btn calendar-btn&quot;&gt;
+                  &lt;i class&#x3D;&quot;material-icons&quot;&gt;calendar_today&lt;/i&gt;
+                &lt;/button&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;p class&#x3D;&quot;label-form&quot;&gt;{{ &#x27;logs.to&#x27; | translate }}&lt;/p&gt;
+            &lt;div class&#x3D;&quot;form-group input-group&quot;&gt;
+              &lt;input
+                [owlDateTime]&#x3D;&quot;dt2&quot;
+                [owlDateTimeTrigger]&#x3D;&quot;dt2&quot;
+                [selectMode]&#x3D;&quot;&#x27;rangeTo&#x27;&quot;
+                [(ngModel)]&#x3D;&quot;dateFilter&quot;
+                placeholder&#x3D;&quot;{{ &#x27;logs.chooseADate&#x27; | translate }}&quot;
+                aria-describedby&#x3D;&quot;calendar-addon&quot;
+                class&#x3D;&quot;form-control text-left&quot;
+                (dateTimeChange)&#x3D;&quot;toOnChange($event)&quot;&gt;
+              &lt;owl-date-time #dt2&gt;&lt;/owl-date-time&gt;
+              &lt;div class&#x3D;&quot;input-group-append calendar-btn&quot;&gt;
+                &lt;button
+                  [owlDateTimeTrigger]&#x3D;&quot;dt2&quot;
+                  type&#x3D;&quot;button&quot;
+                  class&#x3D;&quot;btn calendar-btn&quot;&gt;
+                  &lt;i class&#x3D;&quot;material-icons&quot;&gt;calendar_today&lt;/i&gt;
+                &lt;/button&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;!-- SELECT DROPDOWN --&gt;
+        &lt;div *ngIf&#x3D;&quot;entityHierarchyLoaded&quot; class&#x3D;&quot;form-group form-group-drop&quot;&gt;
+          &lt;label class&#x3D;&quot;app-filter-label&quot;&gt;{{ &#x27;logs.entity&#x27; | translate }}&lt;/label&gt;
+            &lt;span id&#x3D;&quot;entity-drop&quot;&gt;
+              &lt;span class&#x3D;&quot;drop-arrow&quot;&gt;
+                &lt;i class&#x3D;&quot;material-icons&quot;&gt;arrow_drop_down&lt;/i&gt;
+              &lt;/span&gt;
+              &lt;ngx-select-dropdown
+                #entityDropdown
+                [multiple]&#x3D;&quot;false&quot;
+                [config]&#x3D;&quot;selectConfig&quot;
+                [ngClass]&#x3D;&quot;{
+                  &#x27;base-light-grey&#x27;: greyClass
+                }&quot;
+                [options]&#x3D;&quot;entitiesHierarchy&quot;
+                (change)&#x3D;&quot;dropdownSelectionChanged($event)&quot;&gt;
+              &lt;/ngx-select-dropdown&gt;
+            &lt;/span&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;!-- SORTING --&gt;
+      &lt;div class&#x3D;&quot;sorting-section&quot;&gt;
+        &lt;div class&#x3D;&quot;search-title&quot;&gt;{{ &#x27;logs.sorting&#x27; | translate }}&lt;/div&gt;
+        &lt;div class&#x3D;&quot;row&quot;&gt;
+          &lt;div class&#x3D;&quot;col&quot;&gt;
+            &lt;ul class&#x3D;&quot;quick-filters-box&quot;&gt;
+              &lt;i
+                class&#x3D;&quot;material-icons i-filter&quot;
+                [ngClass]&#x3D;&quot;{
+                  &#x27;blue&#x27;: sortingFilter.ascend,
+                  &#x27;grey&#x27;: !sortingFilter.ascend
+                }&quot;&gt;sort&lt;/i&gt;
+              &lt;li
+                (click)&#x3D;&quot;changeSorting(&#x27;ascend&#x27;)&quot;
+                [ngClass]&#x3D;&quot;{
+                  &#x27;quick-filters-btn-selected&#x27;: sortingFilter.ascend,
+                  &#x27;quick-filters-btn&#x27;: !sortingFilter.ascend
+                }&quot;
+                tooltip&#x3D;&quot;{{ &#x27;logs.ascending&#x27; | translate }}&quot;
+                placement&#x3D;&quot;bottom&quot;
+                class&#x3D;&quot;quick-filters-btn&quot;&gt;
+                {{ &#x27;logs.ascending&#x27; | translate }}
+              &lt;/li&gt;
+              &lt;i
+                class&#x3D;&quot;material-icons i-filter i-scale-rotate&quot;
+                [ngClass]&#x3D;&quot;{
+                  &#x27;blue&#x27;: sortingFilter.descend,
+                  &#x27;grey&#x27;: !sortingFilter.descend
+                }&quot;&gt;sort
+              &lt;/i&gt;
+              &lt;li
+                (click)&#x3D;&quot;changeSorting(&#x27;descend&#x27;)&quot;
+                [ngClass]&#x3D;&quot;{
+                  &#x27;quick-filters-btn-selected&#x27;: sortingFilter.descend,
+                  &#x27;quick-filters-btn&#x27;: !sortingFilter.descend
+                }&quot;
+                tooltip&#x3D;&quot;{{ &#x27;logs.descending&#x27; | translate }}&quot;
+                placement&#x3D;&quot;bottom&quot;
+                class&#x3D;&quot;quick-filters-btn&quot;&gt;
+                {{ &#x27;logs.descending&#x27; | translate }}
+              &lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;!-- REFRESH RATE --&gt;
+      &lt;div class&#x3D;&quot;refresh-section&quot;&gt;
+        &lt;div class&#x3D;&quot;search-title&quot;&gt;{{ &#x27;logs.refreshRate&#x27; | translate }}&lt;/div&gt;
+        &lt;div class&#x3D;&quot;row&quot;&gt;
+          &lt;div class&#x3D;&quot;col&quot;&gt;
+            &lt;ul class&#x3D;&quot;quick-filters-box&quot;&gt;
+              &lt;li
+                (click)&#x3D;&quot;refreshRateChange(0)&quot;
+                [ngClass]&#x3D;&quot;{
+                  &#x27;quick-filters-btn-selected&#x27;: rateFilter.off,
+                  &#x27;quick-filters-btn&#x27;: !rateFilter.off
+                }&quot;
+                tooltip&#x3D;&quot;{{ &#x27;logs.off&#x27; | translate }}&quot;
+                placement&#x3D;&quot;bottom&quot;
+                class&#x3D;&quot;quick-filters-btn&quot;&gt;
+                {{ &#x27;logs.off&#x27; | translate }}
+              &lt;/li&gt;
+              &lt;li
+                (click)&#x3D;&quot;refreshRateChange(60000)&quot;
+                [ngClass]&#x3D;&quot;{
+                  &#x27;quick-filters-btn-selected&#x27;: rateFilter.oneMin,
+                  &#x27;quick-filters-btn&#x27;: !rateFilter.oneMin
+                }&quot;
+                tooltip&#x3D;&quot;{{ &#x27;logs.rateOneMin&#x27; | translate }}&quot;
+                placement&#x3D;&quot;bottom&quot;
+                class&#x3D;&quot;quick-filters-btn&quot;&gt;
+                {{ &#x27;logs.oneMin&#x27; | translate }}
+              &lt;/li&gt;
+              &lt;li
+                (click)&#x3D;&quot;refreshRateChange(300000)&quot;
+                [ngClass]&#x3D;&quot;{
+                  &#x27;quick-filters-btn-selected&#x27;: rateFilter.fiveMin,
+                  &#x27;quick-filters-btn&#x27;: !rateFilter.fiveMin
+                }&quot;
+                tooltip&#x3D;&quot;{{ &#x27;logs.rateFiveMin&#x27; | translate }}&quot;
+                placement&#x3D;&quot;bottom&quot;
+                class&#x3D;&quot;quick-filters-btn&quot;&gt;
+                {{ &#x27;logs.fiveMins&#x27; | translate }}
+              &lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;!-- ACTIONS --&gt;
+      &lt;div class&#x3D;&quot;actions-section&quot;&gt;
+        &lt;div class&#x3D;&quot;search-title text-uppercase&quot;&gt;{{ &#x27;tables.tableActions&#x27; | translate }}&lt;/div&gt;
+        &lt;div class&#x3D;&quot;display-flex-box&quot;&gt;
+          &lt;button
+            (click)&#x3D;&quot;copyLogs()&quot;
+            class&#x3D;&quot;search-actions-btn mr-1&quot;
+            tooltip&#x3D;&quot;{{ &#x27;logs.copy&#x27; | translate }}&quot;
+            placement&#x3D;&quot;bottom&quot;&gt;
+            &lt;i class&#x3D;&quot;material-icons-round i-options&quot;&gt;file_copy&lt;/i&gt;
+            &lt;span&gt;{{ &#x27;logs.copy&#x27; | translate }}&lt;/span&gt;
+          &lt;/button&gt;
+          &lt;button
+            (click)&#x3D;&quot;downloadLogs()&quot;
+            class&#x3D;&quot;search-actions-btn&quot;
+            tooltip&#x3D;&quot;{{ &#x27;logs.download&#x27; | translate }}&quot;
+            placement&#x3D;&quot;bottom&quot;&gt;
+            &lt;i class&#x3D;&quot;material-icons-round i-options i-down&quot;&gt;publish&lt;/i&gt;
+            &lt;span&gt;{{ &#x27;logs.download&#x27; | translate }}&lt;/span&gt;
+          &lt;/button&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/ng-container&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./search-logs.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">/*
+ *  Copyright 2019 Nalej
+ *  Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
+
+@import &#x27;../../scss/variables/colors&#x27;;
+@import &#x27;../../scss/variables/mixins&#x27;;
+.search-logs-box,
+%search-logs-box {
+	background-color: $super-light-grey;
+	border-radius: 10px 0 0 10px;
+	border: 0;
+	overflow: hidden;
+	padding: 1.5rem;
+	height: 100%;
+	width: 301px;
+}
+.search-logs {
+	height: 100%;
+	display: flex;
+	justify-content: space-between;
+	flex-direction: column;
+}
+.search-logs-box-sm {
+	@extend %search-logs-box;
+
+	width: 78px;
+	.i-side {
+		color: $base-grey;
+		font-size: 21px;
+		cursor: pointer;
+		&amp;:hover {
+			color: $base-violet;
+		}
+		&amp;:first-child {
+			margin-top: 5em;
+		}
+	}
+	.search-logs {
+		align-items: center;
+	}
+	.action-btn-blue {
+		margin: 10px;
+	}
+}
+.search-title {
+	font-size: 20px;
+	font-weight: 500;
+	padding-bottom: 1em;
+	@include for-desktop-h {
+		font-size: 15px;
+	}
+	.logs-title {
+		display: inline-block;
+	}
+	.reset-btn {
+		cursor: pointer;
+		color: $base-violet;
+		font-weight: 500;
+		font-size: 14px;
+		float: right;
+	}
+	@media all and (max-height: 969px) {
+		padding-bottom: .5em;
+	}
+}
+.search-section {
+	min-height: 120px;
+	@include for-desktop-h {
+		min-height: 100px;
+	}
+}
+.search-box {
+	width: 100%;
+	position: relative;
+	font-size: 1rem;
+	float: right;
+	margin-right: 0;
+	margin-bottom: 5px;
+}
+.search-box &gt; input {
+	background-color: $white;
+}
+.search-msg {
+	color: $base-light-grey;
+	font-weight: 500;
+	font-size: 14px;
+}
+.calendar-btn {
+	background-color: $base-violet;
+	color: $white;
+	width: 40px;
+	border: none;
+	outline: none;
+	border-radius: 5px;
+	i {
+		font-size: 15px;
+	}
+}
+.advanced-search-box {
+	width: 100%;
+	height: 100%;
+	position: relative;
+	.advanced-search-icon i {
+		position: absolute;
+		top: 11px;
+		right: 14px;
+		font-size: 1.3em;
+		color: $base-violet;
+		cursor: pointer;
+		z-index: 2;
+	}
+}
+.sorting-message {
+	padding: 2px;
+	margin-bottom: 0;
+	min-height: 0;
+}
+.date-filters-btn,
+%date-filters-btn {
+	background-color: $dark-grey;
+	border-radius: 10px;
+	width: 113px;
+	height: 32px;
+	font-size: 10px;
+	font-weight: 700;
+	color: $white;
+	text-align: center;
+	transition: all 0.5s;
+	cursor: pointer;
+	padding: 1em;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: center;
+	.i-filter {
+		font-size: 18px;
+	}
+	&amp;:hover {
+		color: $white;
+		transition: 0.3s;
+		background-color: $base-violet;
+		opacity: 0.6;
+	}
+}
+.date-filters-btn-selected {
+	@extend %date-filters-btn;
+
+	background-color: $base-violet;
+}
+.label-form {
+	font-size: 13px;
+	color: $base-grey;
+	margin: 0.2em 0;
+	font-weight: 500;
+}
+.quick-filters-box {
+	background-color: $light-grey;
+	border-radius: 10px;
+	height: 38px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: center;
+	padding-inline-start: 0;
+	margin-block-end: 0;
+	ul {
+		margin-bottom: 0;
+	}
+	li {
+		&amp;:first-child {
+			cursor: default;
+		}
+
+		list-style-type: none;
+		display: inline-block;
+		margin-right: 20px;
+		cursor: pointer;
+	}
+	.i-filter {
+		color: $base-light-grey;
+		font-size: 22px;
+		margin-left: 8px;
+	}
+	.quick-filters-btn {
+		font-size: 10px;
+		font-weight: 700;
+		color: $base-light-grey;
+	}
+	.quick-filters-btn-selected {
+		font-size: 10px;
+		font-weight: 700;
+		color: $base-violet;
+	}
+}
+.i-scale-rotate {
+	-moz-transform: scale( -1, 1 ) rotate( 180deg );
+	-webkit-transform: scale( -1, 1 ) rotate( 180deg );
+	-o-transform: scale( -1, 1 ) rotate( 180deg );
+	-ms-transform: scale( -1, 1 ) rotate( 180deg );
+	transform: scale( -1, 1 ) rotate( 180deg );
+}
+.search-actions-btn {
+	background-color: $base-violet;
+	border-radius: 5px;
+	font-weight: 500;
+	padding: 0 1em;
+	cursor: pointer;
+	color: $white;
+	border: none;
+	position: relative;
+	font-size: 14px;
+	outline: none;
+	height: 35px;
+	text-align: center;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: center;
+	&amp;:hover {
+		color: $white;
+		transition: 0.3s;
+		background-color: $base-violet;
+		opacity: 0.6;
+	}
+	span {
+		padding-right: 10px;
+	}
+	.i-options {
+		font-size: 19px;
+		margin-right: 13px;
+	}
+}
+.i-down {
+	transform: rotate( 180deg );
+}
+.display-flex-box {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+.double-arrow,
+%double-arrow {
+	height: 50px;
+	width: 50px;
+	position: absolute;
+	top: 38px;
+	z-index: 111;
+	outline: none;
+	background-color: $base-violet;
+	border-radius: 50%;
+	border: none;
+	cursor: pointer;
+	font-size: 39px;
+	.i-arrow {
+		position: absolute;
+		right: 13px;
+		top: 13px;
+		color: $white;
+		transition: all 0.5s;
+		-webkit-transition: all 0.25s;
+	}
+	&amp;:hover {
+		.i-arrow {
+			transform: rotate( 180deg );
+		}
+	}
+}
+.double-arrow-in {
+	@extend %double-arrow;
+
+	left: 300px;
+	transform: rotate( 180deg );
+}
+.double-arrow-out {
+	@extend %double-arrow;
+
+	left: 77px;
+}
+#entity-drop {
+	position: relative;
+	display: block;
+}
+.drop-arrow {
+	position: absolute;
+	top: 8px;
+	right: 6px;
+	color: $main-grey;
+	z-index: 1;
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><!--  Copyright 2019 Nalej  Licensed under the Apache License, Version 2.0 (the "License");  you may not use this file except in compliance with the License.  You may obtain a copy of the License at    http://www.apache.org/licenses/LICENSE-2.0  Unless required by applicable law or agreed to in writing, software  distributed under the License is distributed on an "AS IS" BASIS,  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the License for the specific language governing permissions and  limitations under the License.--><button  (click)="showSearchOptions()"  class="double-arrow"  [ngClass]="isOpen ? \'double-arrow-in\' : \'double-arrow-out\'">  <i class="material-icons i-arrow">double_arrow</i></button><ng-container *ngIf="!isOpen">  <div class="search-logs-box-sm">    <div class="search-logs">      <i        (click)="showSearchOptions()"        class="material-icons i-side"        tooltip="{{ \'searcher.placeholder\' | translate }}"        placement="top">        search      </i>      <i        (click)="showSearchOptions()"        class="material-icons i-side"        tooltip=" {{\'logs.filter\' | translate}}"        placement="top">        filter_list      </i>      <i        (click)="showSearchOptions()"        class="material-icons i-side"        tooltip=" {{\'logs.calendar\' | translate}}"        placement="top">        calendar_today      </i>      <i        (click)="showSearchOptions()"        class="material-icons i-side"        tooltip=" {{\'logs.entity\' | translate}}"        placement="top">        apps      </i>      <i        (click)="showSearchOptions()"        class="material-icons i-side"        tooltip=" {{\'logs.sorting\' | translate}}"        placement="top">        sort      </i>      <i        (click)="showSearchOptions()"        class="material-icons i-side"        tooltip=" {{\'logs.refreshRate\' | translate}}"        placement="top">        autorenew      </i>      <div>        <button          (click)="copyLogs()"          tooltip="{{ \'logs.copy\' | translate }}"          placement="bottom"          class="action-btn-blue">          <i class="material-icons-round i-white">file_copy</i>        </button>        <button          (click)="downloadLogs()"          tooltip="{{ \'logs.download\' | translate }}"          placement="bottom"          class="action-btn-blue">          <i class="material-icons-round i-white i-down">publish</i>        </button>      </div>    </div>  </div></ng-container><ng-container *ngIf="isOpen">  <div class="search-logs-box">    <div class="search-logs">      <!-- SEARCH -->      <div class="search-section">        <div (click)="resetFilters(\'search\')" class="search-title">          <div class="logs-title">{{ \'logs.search\' | translate }}</div>          <span class="reset-btn mr-2">            {{ \'logs.resetSearch\' | translate }}          </span>        </div>        <form>          <div class="advanced-search-box">            <div class="search-box">              <input                name="searchTerm"                [(ngModel)]="searchTerm"                type="text"                placeholder="{{ \'searcher.placeholder\' | translate }}"                class="form-control"                (keyup.enter)="searchOnKeyUp($event, searchTerm)"              />              <div class="advanced-search-icon">                <i                  (click)="searchByTerm(searchTerm)"                  class="material-icons"                  tooltip="{{ \'logs.search\' | translate }}"                  placement="bottom">                  search                </i>              </div>            </div>          </div>        </form>        <!-- Sorting messages -->        <div class="row row-sorting-lg">          <div class="col-12">            <p *ngIf="isSearching && searchTerm && !filterField" class="sorting-message">              {{\'sortingMessage.filteredBy\' | translate:{value: searchTerm} }}            </p>            <p *ngIf="isSearching && filterField && !searchTerm" class="sorting-message">              {{\'sortingMessage.sortedBy\' | translate:{value: getBeautyCategoryName(sortedBy)} }}              <span *ngIf="reverse">{{\'sortingMessage.ascendant\' | translate:{value: \'. \'} }} </span>              <span *ngIf="!reverse">{{\'sortingMessage.descendant\' | translate:{value: \'. \'} }}</span>            </p>            <p *ngIf="isSearching && filterField && searchTerm" class="sorting-message">              {{\'sortingMessage.sortedBy\' | translate:{value: getBeautyCategoryName(sortedBy)} }}              <span *ngIf="reverse">{{\'sortingMessage.ascendant\' | translate:{value: \' \'} }}</span>              <span *ngIf="!reverse">{{\'sortingMessage.descendant\' | translate:{value: \' \'} }}</span>              {{\'sortingMessage.andFilteredBy\' | translate:{value: searchTerm} }}.            </p>          </div>        </div>      </div>      <!-- FILTERS -->      <div class="filters-section">        <div (click)="resetFilters(\'filters\')" class="search-title">          <div class="logs-title">{{ \'logs.filters\' | translate }}</div>          <span class="reset-btn">            {{ \'logs.resetFilter\' | translate }}          </span>        </div>        <!-- TIME FILTER -->        <div class="display-flex-box">          <div            (click)="getLastHourLogs(\'lastHour\')"            class="date-filters-btn"            [ngClass]="{              \'date-filters-btn-selected\': timingFilter.lastHour,              \'date-filters-btn\': !timingFilter.lastHour            }">            <i class="material-icons i-filter">filter_list</i>            <span>{{ \'logs.lastHour\' | translate }}</span>          </div>          <div            (click)="getLastDayLogs(\'lastDay\')"            class="date-filters-btn"            [ngClass]="{              \'date-filters-btn-selected\': timingFilter.lastDay,              \'date-filters-btn\': !timingFilter.lastDay            }">            <i class="material-icons i-filter">filter_list</i>            <span>{{ \'logs.lastDay\' | translate }}</span>          </div>        </div>        <!-- DATE PICKER -->        <div class="row">          <div class="col-12 mt-4">            <p class="label-form">{{ \'logs.from\' | translate }}</p>            <div class="form-group input-group">              <input                [owlDateTime]="dt1"                [owlDateTimeTrigger]="dt1"                [selectMode]="\'rangeFrom\'"                [(ngModel)]="dateFilter"                placeholder="{{ \'logs.chooseADate\' | translate }}"                aria-describedby="calendar-addon"                class="form-control text-left"                (dateTimeChange)="fromOnChange($event)">              <owl-date-time #dt1></owl-date-time>              <div class="input-group-append calendar-btn">                <button                  [owlDateTimeTrigger]="dt1"                  type="button"                  class="btn calendar-btn">                  <i class="material-icons">calendar_today</i>                </button>              </div>            </div>            <p class="label-form">{{ \'logs.to\' | translate }}</p>            <div class="form-group input-group">              <input                [owlDateTime]="dt2"                [owlDateTimeTrigger]="dt2"                [selectMode]="\'rangeTo\'"                [(ngModel)]="dateFilter"                placeholder="{{ \'logs.chooseADate\' | translate }}"                aria-describedby="calendar-addon"                class="form-control text-left"                (dateTimeChange)="toOnChange($event)">              <owl-date-time #dt2></owl-date-time>              <div class="input-group-append calendar-btn">                <button                  [owlDateTimeTrigger]="dt2"                  type="button"                  class="btn calendar-btn">                  <i class="material-icons">calendar_today</i>                </button>              </div>            </div>          </div>        </div>        <!-- SELECT DROPDOWN -->        <div *ngIf="entityHierarchyLoaded" class="form-group form-group-drop">          <label class="app-filter-label">{{ \'logs.entity\' | translate }}</label>            <span id="entity-drop">              <span class="drop-arrow">                <i class="material-icons">arrow_drop_down</i>              </span>              <ngx-select-dropdown                #entityDropdown                [multiple]="false"                [config]="selectConfig"                [ngClass]="{                  \'base-light-grey\': greyClass                }"                [options]="entitiesHierarchy"                (change)="dropdownSelectionChanged($event)">              </ngx-select-dropdown>            </span>        </div>      </div>      <!-- SORTING -->      <div class="sorting-section">        <div class="search-title">{{ \'logs.sorting\' | translate }}</div>        <div class="row">          <div class="col">            <ul class="quick-filters-box">              <i                class="material-icons i-filter"                [ngClass]="{                  \'blue\': sortingFilter.ascend,                  \'grey\': !sortingFilter.ascend                }">sort</i>              <li                (click)="changeSorting(\'ascend\')"                [ngClass]="{                  \'quick-filters-btn-selected\': sortingFilter.ascend,                  \'quick-filters-btn\': !sortingFilter.ascend                }"                tooltip="{{ \'logs.ascending\' | translate }}"                placement="bottom"                class="quick-filters-btn">                {{ \'logs.ascending\' | translate }}              </li>              <i                class="material-icons i-filter i-scale-rotate"                [ngClass]="{                  \'blue\': sortingFilter.descend,                  \'grey\': !sortingFilter.descend                }">sort              </i>              <li                (click)="changeSorting(\'descend\')"                [ngClass]="{                  \'quick-filters-btn-selected\': sortingFilter.descend,                  \'quick-filters-btn\': !sortingFilter.descend                }"                tooltip="{{ \'logs.descending\' | translate }}"                placement="bottom"                class="quick-filters-btn">                {{ \'logs.descending\' | translate }}              </li>            </ul>          </div>        </div>      </div>      <!-- REFRESH RATE -->      <div class="refresh-section">        <div class="search-title">{{ \'logs.refreshRate\' | translate }}</div>        <div class="row">          <div class="col">            <ul class="quick-filters-box">              <li                (click)="refreshRateChange(0)"                [ngClass]="{                  \'quick-filters-btn-selected\': rateFilter.off,                  \'quick-filters-btn\': !rateFilter.off                }"                tooltip="{{ \'logs.off\' | translate }}"                placement="bottom"                class="quick-filters-btn">                {{ \'logs.off\' | translate }}              </li>              <li                (click)="refreshRateChange(60000)"                [ngClass]="{                  \'quick-filters-btn-selected\': rateFilter.oneMin,                  \'quick-filters-btn\': !rateFilter.oneMin                }"                tooltip="{{ \'logs.rateOneMin\' | translate }}"                placement="bottom"                class="quick-filters-btn">                {{ \'logs.oneMin\' | translate }}              </li>              <li                (click)="refreshRateChange(300000)"                [ngClass]="{                  \'quick-filters-btn-selected\': rateFilter.fiveMin,                  \'quick-filters-btn\': !rateFilter.fiveMin                }"                tooltip="{{ \'logs.rateFiveMin\' | translate }}"                placement="bottom"                class="quick-filters-btn">                {{ \'logs.fiveMins\' | translate }}              </li>            </ul>          </div>        </div>      </div>      <!-- ACTIONS -->      <div class="actions-section">        <div class="search-title text-uppercase">{{ \'tables.tableActions\' | translate }}</div>        <div class="display-flex-box">          <button            (click)="copyLogs()"            class="search-actions-btn mr-1"            tooltip="{{ \'logs.copy\' | translate }}"            placement="bottom">            <i class="material-icons-round i-options">file_copy</i>            <span>{{ \'logs.copy\' | translate }}</span>          </button>          <button            (click)="downloadLogs()"            class="search-actions-btn"            tooltip="{{ \'logs.download\' | translate }}"            placement="bottom">            <i class="material-icons-round i-options i-down">publish</i>            <span>{{ \'logs.download\' | translate }}</span>          </button>        </div>      </div>    </div>  </div></ng-container></div>'
+    var COMPONENTS = [{'name': 'ActionButtonsCardComponent', 'selector': 'action-buttons-card'},{'name': 'AddConnectionsComponent', 'selector': 'add-connections'},{'name': 'AddDevicesGroupComponent', 'selector': ' add-device-group'},{'name': 'AddLabelComponent', 'selector': 'app-add-label'},{'name': 'AddUserComponent', 'selector': 'app-add-user'},{'name': 'AdvancedFilterOptionsComponent', 'selector': 'advanced-filter-options'},{'name': 'AgentJoinTokenInfoComponent', 'selector': 'app-agent-join-token-info'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AppInfoComponent', 'selector': 'app-info'},{'name': 'AppInfoDetailedComponent', 'selector': 'app-info-detailed'},{'name': 'ApplicationsComponent', 'selector': 'applications'},{'name': 'AssetInfoComponent', 'selector': 'app-asset-info'},{'name': 'ChangePasswordComponent', 'selector': 'app-change-password'},{'name': 'ClusterComponent', 'selector': 'app-cluster'},{'name': 'ClusterStatusInfoComponent', 'selector': 'cluster-status-info'},{'name': 'ContextualMenuComponent', 'selector': 'app-contextual-menu'},{'name': 'DebugPanelComponent', 'selector': 'debug-panel'},{'name': 'DeployInstanceComponent', 'selector': 'app-deploy-instance'},{'name': 'DeviceGroupCreatedComponent', 'selector': 'app-device-group-created'},{'name': 'DeviceGroupInfoComponent', 'selector': 'device-group-info'},{'name': 'DeviceInfoComponent', 'selector': 'app-device-info'},{'name': 'DevicesComponent', 'selector': 'app-devices'},{'name': 'DownloadFileInfoComponent', 'selector': 'download-file-info'},{'name': 'EdgeControllerInfoComponent', 'selector': 'app-edge-controller-info'},{'name': 'EditClusterComponent', 'selector': 'edit-cluster'},{'name': 'EditUserComponent', 'selector': 'app-edit-user'},{'name': 'GraphComponent', 'selector': 'graph'},{'name': 'GroupConfigurationComponent', 'selector': 'app-group-configuration'},{'name': 'InfrastructureComponent', 'selector': 'app-infrastructure'},{'name': 'InstallAgentComponent', 'selector': 'app-install-agent'},{'name': 'InstanceInfoComponent', 'selector': 'app-instance-info'},{'name': 'InstanceServiceGroupInfoComponent', 'selector': 'instance-service-group-info'},{'name': 'LabelsCardComponent', 'selector': 'labels-card'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'LogsComponent', 'selector': 'logs'},{'name': 'LogsDisplayComponent', 'selector': 'logs-display'},{'name': 'MainComponent', 'selector': 'nalej-main'},{'name': 'ManageConnectionsComponent', 'selector': 'manage-connections'},{'name': 'NotificationsComponent', 'selector': 'notifications'},{'name': 'OrganizationComponent', 'selector': 'organization'},{'name': 'RegisterApplicationComponent', 'selector': 'app-register-application'},{'name': 'RegisteredInfoComponent', 'selector': 'app-registered-info'},{'name': 'RegisteredServiceGroupInfoComponent', 'selector': 'registered-service-group-info'},{'name': 'ResourcesComponent', 'selector': 'app-resources'},{'name': 'RuleInfoComponent', 'selector': 'app-rule-info'},{'name': 'SearchLogsComponent', 'selector': 'search-logs'},{'name': 'ServiceInfoComponent', 'selector': 'app-service-info'},{'name': 'ServiceInstancesInfoComponent', 'selector': 'app-service-instances-info'},{'name': 'ServicesCardComponent', 'selector': 'services-card'},{'name': 'SidebarComponent', 'selector': 'nalej-sidebar'},{'name': 'SimpleLogComponent', 'selector': 'app-simple-log'},{'name': 'ToolsComponent', 'selector': 'tools'},{'name': 'UserInfoComponent', 'selector': 'user-info'}];
+    var DIRECTIVES = [{'name': 'AutofocusDirective', 'selector': '[appAutofocus]'}];
+    var ACTUAL_COMPONENT = {'name': 'SearchLogsComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+                   
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'SearchLogsComponent.html';
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
