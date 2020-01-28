@@ -344,7 +344,7 @@
                     [tooltipType]="'tooltip'"
                     [tooltipTitle]="node.tooltip">
                     <svg:rect
-                      [attr.width]="node.width"
+                      [attr.width]="node.dimension.width"
                       [attr.height]="node.customHeight"
                       [attr.fill]="node.color"
                       [attr.stroke]="node.customBorderColor"
@@ -356,7 +356,7 @@
                       [attr.fill]="node.text"
                       alignment-baseline="central"
                       [attr.x]="10"
-                      [attr.y]="node.height/2">
+                      [attr.y]="node.dimension.height/2">
                       {{node.label}}
                     </svg:text>
                   </svg:g>
