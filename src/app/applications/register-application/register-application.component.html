@@ -25,7 +25,7 @@
     </div>
     <div class="modal-body">
       <p class="upload-descriptor">{{'apps.registerUpload' | translate}}</p>
-      <file-drop 
+      <ngx-file-drop
         *ngIf="!readyToUpload"
         (onFileDrop)="onFileDrop($event)" 
         dropZoneClassName="file-drop">
@@ -42,7 +42,7 @@
             <label for="file" class="cursor-pointer blue">{{'apps.registerFile' | translate}}</label>
           </p>
         </span>
-      </file-drop>
+      </ngx-file-drop>
       <div *ngIf="readyToUpload" class="drop-note-uploaded"> 
         <span class="drop-title-uploaded">{{jsonFile.name}}</span> 
         <span class="subtitle">
