@@ -18,7 +18,7 @@ import { MockupBackendService } from '../../services/mockup-backend.service';
 import { BackendService } from '../../services/backend.service';
 import { BsModalRef } from 'ngx-bootstrap';
 import { LocalStorageKeys } from '../../definitions/const/local-storage-keys';
-import {FileSystemFileEntry, NgxFileDropEntry} from 'ngx-file-drop';
+import { FileSystemFileEntry, NgxFileDropEntry } from 'ngx-file-drop';
 import { TranslateService } from '@ngx-translate/core';
 import { KeyValue } from '../../definitions/interfaces/key-value';
 
