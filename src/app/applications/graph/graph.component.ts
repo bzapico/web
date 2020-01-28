@@ -11,7 +11,7 @@
  *  limitations under the License.
  */
 
-import { Component, Input } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import * as shape from 'd3-shape';
 import { GraphLink } from '../../definitions/interfaces/graph-link';
 import { GraphNode } from '../../definitions/interfaces/graph-node';
@@ -21,7 +21,7 @@ import { GraphNode } from '../../definitions/interfaces/graph-node';
   templateUrl: './graph.component.html',
   styleUrls: ['./graph.component.scss']
 })
-export class GraphComponent {
+export class GraphComponent implements OnInit{
 
   @Input() links: GraphLink[];
   @Input() nodes: GraphNode[];
@@ -35,6 +35,11 @@ export class GraphComponent {
   constructor() {
     this.links = [];
     this.nodes = [];
+  }
+
+  ngOnInit() {
+    console.log('NODES ::: ', this.nodes);
+    console.log('LINKS ::: ', this.links);
   }
 
   /**

@@ -29,13 +29,13 @@
       [tooltipTitle]="node.tooltip"
       [ngSwitch]="node.shape">
       <svg:rect *ngSwitchCase="'rectangle'"
-        [attr.width]="node.width"
-        [attr.height]="node.customHeight || node.height"
+        [attr.width]="node.dimension.width"
+        [attr.height]="node.customHeight || node.dimension.height"
         [attr.fill]="node.color"/>
       <svg:text *ngSwitchCase="'rectangle'"
         [attr.fill]="node.text.color"
         [attr.x]="10"
-        [attr.y]="node.height/2 + 3">
+        [attr.y]="node.dimension.height/2 + 3">
         {{node.label}}
       </svg:text>
       <text *ngSwitchCase="'circle'"
@@ -46,14 +46,14 @@
       </text>
       <svg:circle *ngSwitchCase="'circle'"
         [attr.r]="node.customRadius"
-        [attr.cx]="node.width/2"
-        [attr.cy]="node.height/2"
+        [attr.cx]="node.dimension.width/2"
+        [attr.cy]="node.dimension.height/2"
         [attr.fill]="node.color"/>
       <svg *ngIf="node.icon && node.shape === 'circle'"
         [attr.width]="node.icon.width"
         [attr.height]="node.icon.height"
-        [attr.x]="(node.width - node.icon.width)/2"
-        [attr.y]="(node.height - node.icon.height)/2"
+        [attr.x]="(node.dimension.width - node.icon.width)/2"
+        [attr.y]="(node.dimension.height - node.icon.height)/2"
         [attr.viewBox]="node.icon.viewBox">
         <path *ngFor="let path of node.icon.paths"
           [attr.fill]="path.fill"
