@@ -56,7 +56,7 @@ export class SearchLogsComponent implements OnInit {
   /**
    * entityDropdown decorator that configures a view query for the dropdown
    */
-  @ViewChild('entityDropdown') entityDropdown: ElementRef;
+  @ViewChild('entityDropdown', { static: false }) entityDropdown: ElementRef;
   /**
    * Logs response
    */
