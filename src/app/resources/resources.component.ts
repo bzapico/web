@@ -28,6 +28,7 @@ import { ToolsService } from '../tools/tools.service';
 import { NotificationsService } from '../services/notifications.service';
 import { NameValue } from '../definitions/interfaces/name-value';
 import { GraphData } from '../definitions/models/graph-data';
+import { Options } from 'ngx-network-vis';
 
 @Component({
   selector: 'app-resources',
@@ -106,6 +107,11 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
    * Active context menu item ID
    */
   activeContextMenuId: string;
+  /**
+   * Options to configure the layout and physic for the graph
+   */
+  options: Options;
+
 
   constructor(
     private modalService: BsModalService,
@@ -141,6 +147,7 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
     // Graph initialization
     this.graphDataLoaded = false;
     this.graphData = new GraphData([], []);
+    this.options = null;
   }
 
   ngOnInit() {
@@ -574,5 +581,11 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
     this.occurrencesCounter = this.graphData.nodes.filter(
       (node: { label: { toLowerCase: () => { includes: (arg0: string) => void; }; }; }) =>
       node.label.toLowerCase().includes(this.searchTermGraph)).length;
+  }
+  /**
+   * Alerts when the graph is ready
+   */
+  networkReady() {
+    console.log('Network is ready');
   }
 }
