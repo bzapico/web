@@ -97,7 +97,7 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 import { DownloadFileInfoComponent } from './logs/download-file-info/download-file-info.component';
 import { OrganizationInfoCardComponent } from './organization/organization-info-card/organization-info-card.component';
-import { NgxNetworkVisModule } from 'ngx-network-vis';
+import { NgxNetworkVisModule } from '@nalej/ngx-network-vis';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');

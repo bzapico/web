@@ -28,7 +28,9 @@ import { ToolsService } from '../tools/tools.service';
 import { NotificationsService } from '../services/notifications.service';
 import { NameValue } from '../definitions/interfaces/name-value';
 import { GraphData } from '../definitions/models/graph-data';
-import { Options } from 'ngx-network-vis';
+import { Options, DataSet, Node, Edge } from '@nalej/ngx-network-vis';
+import { GraphNode } from '../definitions/interfaces/graph-node';
+import { StyledNode } from '../definitions/interfaces/styled-node';
 
 @Component({
   selector: 'app-resources',
@@ -111,6 +113,16 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
    * Options to configure the layout and physic for the graph
    */
   options: Options;
+  /**
+   * Nodes data set
+   */
+  nodes: DataSet<Node>;
+  /**
+   * Edges data set
+   */
+  edges: DataSet<Edge>;
+
+  graphId = 'resources-graph';
 
 
   constructor(
@@ -147,7 +159,7 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
     // Graph initialization
     this.graphDataLoaded = false;
     this.graphData = new GraphData([], []);
-    this.options = null;
+    this.setOptions();
   }
 
   ngOnInit() {
@@ -542,14 +554,33 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
   private toGraphData() {
     this.graphData.nodes = [];
     this.graphData.links = [];
+    this.nodes = new DataSet<Node>([]);
+    this.edges = new DataSet<Edge>([]);
     if (this.searchTermGraph) {
       this.searchTermGraph = this.searchTermGraph.toLowerCase();
     }
     this.clusters.forEach(cluster => {
-      const nodeGroup = this.generateClusterNode(
+      const nodeGroup: GraphNode & StyledNode = this.generateClusterNode(
         cluster,
   this.translateService.instant('resources.cluster') + cluster.name + ': ' + this.getBeautyStatusName(cluster.status_name));
       this.graphData.nodes.push(nodeGroup);
+      this.nodes = new DataSet<Node>([{
+        id: nodeGroup.id,
+        label: nodeGroup.label,
+        font: {
+          color: '#fff',
+          size: 20,
+          strokeWidth: 1,
+          strokeColor: '#000'
+        },
+        level: 1,
+        shape: nodeGroup.shape,
+        shapeProperties: { borderRadius: 6 },
+        size: 37,
+        borderWidth: 2,
+        borderWidthSelected: 3,
+        color: '#00FF00'
+      }]);
       const instancesInCluster = this.getAppsInCluster(cluster.cluster_id);
       instancesInCluster.forEach(instance => {
         const nodeInstance = this.generateInstanceNode(
@@ -587,5 +618,33 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
    */
   networkReady() {
     console.log('Network is ready');
+  }
+
+  private setOptions() {
+    const layout = {
+      hierarchical: {
+        enabled: true,
+        levelSeparation: 150,
+        nodeSpacing: 110,
+        treeSpacing: 200,
+        blockShifting: true,
+        edgeMinimization: true,
+        parentCentralization: true,
+        direction: 'UD'
+      }
+    };
+    const manipulation = {
+      enabled: false,
+      initiallyActive: false,
+      addNode: true,
+      addEdge: true,
+      editEdge: true,
+      deleteNode: true,
+      deleteEdge: true
+    };
+    const interaction = {
+      navigationButtons: false
+    };
+    this.options = { layout, manipulation, interaction };
   }
 }

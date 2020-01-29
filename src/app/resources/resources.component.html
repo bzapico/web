@@ -327,9 +327,9 @@
           <div class="col-12">
 
             <div *ngIf="graphDataLoaded && !graphReset"
-                 id="resources-graph"
+                 [id]="graphId"
                  class="graph"
-                 [nalejVis]="'resources-graph'" [nalejVisNodes]="graphData.nodes" [nalejVisEdges]="graphData.links" [nalejVisOptions]="options"
+                 [nalejVis]="graphId" [nalejVisNodes]="nodes" [nalejVisEdges]="edges" [nalejVisOptions]="options"
                  (ready)="networkReady()"></div>
 
 <!--            <div    -->

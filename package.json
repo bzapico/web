@@ -41,6 +41,7 @@
     "@angular/platform-browser-dynamic": "^8.2.14",
     "@angular/router": "^8.2.14",
     "@auth0/angular-jwt": "2.1.0",
+    "@nalej/ngx-network-vis": "^0.1.0",
     "@ngx-translate/core": "^11.0.1",
     "@ngx-translate/http-loader": "^4.0.0",
     "@swimlane/ngx-charts": "^12.0.0",
@@ -63,9 +64,7 @@
     "popper.js": "^1.16.1",
     "rxjs": "^6.4.0",
     "tslib": "^1.9.0",
-    "vis-data": "^6.3.5",
     "vis-network": "^6.5.2",
-    "vis-util": "^2.1.0",
     "zone.js": "~0.9.1"
   },
   "devDependencies": {
@@ -112,7 +111,9 @@
     "stylelint-scss": "^3.11.1",
     "ts-node": "~7.0.0",
     "tslint": "~5.20.1",
-    "typescript": "~3.5.3"
+    "typescript": "~3.5.3",
+    "vis-data": "^6.3.5",
+    "vis-util": "^2.1.0"
   },
   "lint-staged": {
     "*.ts": [
