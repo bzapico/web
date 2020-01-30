@@ -568,18 +568,24 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
         id: nodeGroup.id,
         label: nodeGroup.label,
         font: {
-          color: '#fff',
-          size: 20,
-          strokeWidth: 1,
-          strokeColor: '#000'
+          color: nodeGroup.text.toString(),
+          size: 14,
+          face: 'Lato'
         },
         level: 1,
         shape: nodeGroup.shape,
+        borderWidth: nodeGroup.customBorderColor ? 2 : 0,
         shapeProperties: { borderRadius: 6 },
-        size: 37,
-        borderWidth: 2,
-        borderWidthSelected: 3,
-        color: nodeGroup.color
+        color: {
+          background: nodeGroup.color,
+          border: nodeGroup.customBorderColor || ''
+        },
+        margin: {
+          top: 20,
+          bottom: 20,
+          left: 5,
+          right: 5
+        }
       }]);
       const instancesInCluster = this.getAppsInCluster(cluster.cluster_id);
       instancesInCluster.forEach(instance => {
@@ -599,10 +605,8 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
           font: {
             color: '#fff',
             size: 20,
-            strokeWidth: 1,
-            strokeColor: '#000'
           },
-          level: 1,
+          level: 2,
           shape: nodeInstance.shape,
           shapeProperties: { borderRadius: 6 },
           size: 37,

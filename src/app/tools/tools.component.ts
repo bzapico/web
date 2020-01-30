@@ -337,14 +337,18 @@ export class ToolsComponent implements OnInit {
    * @param customBorderWidth Border width for the node
    * @param customHeight Height for the node
    */
-  getStyledNode(color: string, textColor: string, customBorderColor: string, customBorderWidth: number, customHeight: number): StyledNode {
-    return {
+  getStyledNode(color: string, textColor: string, customBorderColor: string, customBorderWidth: number, customHeight: number, shape?: string): StyledNode {
+    let styledNode: StyledNode = {
       color: color,
       text: textColor,
       customBorderColor: customBorderColor,
       customBorderWidth: customBorderWidth,
       customHeight: customHeight
     };
+    if (shape) {
+      styledNode.shape = shape;
+    }
+    return styledNode;
   }
   /**
    * It sets the links between apps
@@ -390,7 +394,8 @@ export class ToolsComponent implements OnInit {
                             ToolsComponent.FOUND_NODES_BORDER_COLOR : this.getBorderColor(status),
           (this.searchTermGraph && clusterName.includes(this.searchTermGraph)) ?
                             ToolsComponent.FOUND_NODES_BORDER_SIZE : this.getBorderSize(status),
-          ToolsComponent.CUSTOM_HEIGHT_CLUSTERS)
+          ToolsComponent.CUSTOM_HEIGHT_CLUSTERS,
+          'box')
     };
   }
   generateInstanceNode(instance: ApplicationInstance, cluster: Cluster, tooltip: string): GraphNode & StyledNode {
@@ -411,7 +416,8 @@ export class ToolsComponent implements OnInit {
                           ToolsComponent.FOUND_NODES_BORDER_COLOR : '',
         (this.searchTermGraph && instanceName.includes(this.searchTermGraph)) ?
                           ToolsComponent.FOUND_NODES_BORDER_SIZE : 0,
-        ToolsComponent.CUSTOM_HEIGHT_INSTANCES
+        ToolsComponent.CUSTOM_HEIGHT_INSTANCES,
+        'box'
     ),
         inbound_connections: instance.inbound_connections || [],
         outbound_connections: instance.outbound_connections || [],
