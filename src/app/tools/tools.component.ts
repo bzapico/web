@@ -25,6 +25,8 @@ import { GraphNode } from '../definitions/interfaces/graph-node';
 import { ColorScheme } from '../definitions/interfaces/color-scheme';
 import * as shape from 'd3-shape';
 import { GraphLink } from '../definitions/interfaces/graph-link';
+import { Direction } from '../definitions/interfaces/direction';
+import { Orientation } from '../definitions/enums/orientation.enum';
 
 @Component({
   selector: 'tools',
@@ -106,7 +108,7 @@ export class ToolsComponent implements OnInit {
    */
   graphData: GraphData;
   graphReset: boolean;
-  orientation: string;
+  orientation: Direction;
   curve = shape.curveBasis;
   autoZoom: boolean;
   autoCenter: boolean;
@@ -136,7 +138,7 @@ export class ToolsComponent implements OnInit {
     this.graphData = new GraphData([], []);
     this.graphReset = false;
     this.instances = [];
-    this.orientation = 'TB';
+    this.orientation = { orientation: Orientation.TOP_TO_BOTTOM };
     this.autoZoom = true;
     this.autoCenter = true;
     this.enableZoom = true;

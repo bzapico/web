@@ -18,7 +18,7 @@ import { BackendService } from '../../services/backend.service';
 import { MockupBackendService } from '../../services/mockup-backend.service';
 import { NotificationsService } from '../../services/notifications.service';
 import { LocalStorageKeys } from '../../definitions/const/local-storage-keys';
-import { BsModalService, BsModalRef } from 'ngx-bootstrap';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { DeployInstanceComponent } from '../deploy-instance/deploy-instance.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApplicationDescriptor } from '../../definitions/models/application-descriptor';
@@ -31,6 +31,8 @@ import { RegisteredInfoService } from './registered-info.service';
 import { KeyValue } from '../../definitions/interfaces/key-value';
 import { SecurityRule } from '../../definitions/interfaces/security-rule';
 import { GraphData } from '../../definitions/models/graph-data';
+import { Direction } from '../../definitions/interfaces/direction';
+import { Orientation } from '../../definitions/enums/orientation.enum';
 
 @Component({
   selector: 'app-registered-info',
@@ -116,7 +118,7 @@ export class RegisteredInfoComponent implements OnInit {
   graphDataLoaded: boolean;
   graphReset: boolean;
   graphData: GraphData;
-  orientation: string;
+  orientation: Direction;
   autoZoom: boolean;
   autoCenter: boolean;
   enableZoom: boolean;
@@ -160,7 +162,7 @@ export class RegisteredInfoComponent implements OnInit {
     this.filterField = false;
     this.filterFieldRules = false;
      // Graph initialization
-    this.orientation = 'TB';
+    this.orientation = { orientation: Orientation.TOP_TO_BOTTOM };
     this.autoZoom = true;
     this.autoCenter = true;
     this.enableZoom = true;

@@ -11,7 +11,7 @@
  *  limitations under the License.
  */
 
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Backend } from '../../definitions/interfaces/backend';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { BackendService } from '../../services/backend.service';
@@ -33,6 +33,8 @@ import { GraphData } from '../../definitions/models/graph-data';
 import { ColorScheme } from '../../definitions/interfaces/color-scheme';
 import { KeyValue } from '../../definitions/interfaces/key-value';
 import { ServiceInstance } from '../../definitions/interfaces/service-instance';
+import { Direction } from '../../definitions/interfaces/direction';
+import { Orientation } from '../../definitions/enums/orientation.enum';
 
 @Component({
   selector: 'app-instance-info',
@@ -127,7 +129,7 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
   graphReset: boolean;
   graphDataLoaded: boolean;
   graphData: GraphData;
-  orientation: string;
+  orientation: Direction;
   autoZoom: boolean;
   autoCenter: boolean;
   enableZoom: boolean;
@@ -177,7 +179,7 @@ export class InstanceInfoComponent implements OnInit, OnDestroy {
     this.filterFieldRules = false;
      // Graph initialization
     this.graphReset = false;
-    this.orientation = 'TB';
+    this.orientation = { orientation: Orientation.TOP_TO_BOTTOM};
     this.autoZoom = true;
     this.autoCenter = true;
     this.enableZoom = true;

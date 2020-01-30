@@ -15,6 +15,7 @@ import { Component, Input } from '@angular/core';
 import * as shape from 'd3-shape';
 import { GraphLink } from '../../definitions/interfaces/graph-link';
 import { GraphNode } from '../../definitions/interfaces/graph-node';
+import { Direction } from '../../definitions/interfaces/direction';
 
 @Component({
   selector: 'graph',
@@ -25,7 +26,7 @@ export class GraphComponent {
 
   @Input() links: GraphLink[];
   @Input() nodes: GraphNode[];
-  @Input() orientation: string;
+  @Input() orientation: Direction;
   @Input() autoZoom: boolean;
   @Input() autoCenter: boolean;
   @Input() enableZoom: boolean;
