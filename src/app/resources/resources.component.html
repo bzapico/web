@@ -326,8 +326,7 @@
           <!-- Cluster-apps graph -->
           <div class="col-12">
 
-            <div *ngIf="graphDataLoaded && !graphReset"
-                 [id]="graphId"
+            <div [id]="graphId"
                  class="graph"
                  [nalejVis]="graphId" [nalejVisNodes]="nodes" [nalejVisEdges]="edges" [nalejVisOptions]="options"
                  (ready)="networkReady()"></div>

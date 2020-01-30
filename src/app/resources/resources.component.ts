@@ -28,7 +28,7 @@ import { ToolsService } from '../tools/tools.service';
 import { NotificationsService } from '../services/notifications.service';
 import { NameValue } from '../definitions/interfaces/name-value';
 import { GraphData } from '../definitions/models/graph-data';
-import { Options, DataSet, Node, Edge } from '@nalej/ngx-network-vis';
+import { Options, DataSet, Node, Edge, NgxNetworkVisService } from '@nalej/ngx-network-vis';
 import { GraphNode } from '../definitions/interfaces/graph-node';
 import { StyledNode } from '../definitions/interfaces/styled-node';
 
@@ -124,14 +124,14 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
 
   graphId = 'resources-graph';
 
-
   constructor(
     private modalService: BsModalService,
     private backendService: BackendService,
     private mockupBackendService: MockupBackendService,
     private translateService: TranslateService,
     private toolsService: ToolsService,
-    private notificationsService: NotificationsService
+    private notificationsService: NotificationsService,
+    private ngxNetworkVisService: NgxNetworkVisService
     ) {
     super();
     const mock = localStorage.getItem(LocalStorageKeys.resourcesMock) || null;
@@ -564,7 +564,7 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
         cluster,
   this.translateService.instant('resources.cluster') + cluster.name + ': ' + this.getBeautyStatusName(cluster.status_name));
       this.graphData.nodes.push(nodeGroup);
-      this.nodes = new DataSet<Node>([{
+      this.nodes.add([{
         id: nodeGroup.id,
         label: nodeGroup.label,
         font: {
@@ -579,7 +579,7 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
         size: 37,
         borderWidth: 2,
         borderWidthSelected: 3,
-        color: '#00FF00'
+        color: nodeGroup.color
       }]);
       const instancesInCluster = this.getAppsInCluster(cluster.cluster_id);
       instancesInCluster.forEach(instance => {
@@ -593,6 +593,24 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
         if (index === -1) {
           this.graphData.nodes.push(nodeInstance);
         }
+        this.nodes.add([{
+          id: nodeInstance.id,
+          label: nodeInstance.label,
+          font: {
+            color: '#fff',
+            size: 20,
+            strokeWidth: 1,
+            strokeColor: '#000'
+          },
+          level: 1,
+          shape: nodeInstance.shape,
+          shapeProperties: { borderRadius: 6 },
+          size: 37,
+          borderWidth: 2,
+          borderWidthSelected: 3,
+          color: nodeInstance.color
+        }]);
+
         if ((this.areIncludedInstancesWithError
             && instance.status_name.toLowerCase() !== AppStatus.Error
             && instance.status_name.toLowerCase() !== AppStatus.DeploymentError)
@@ -603,6 +621,8 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
       });
     });
     this.setLinksBetweenApps();
+    const container = document.getElementById(this.graphId);
+    this.ngxNetworkVisService.generate(this.graphId, container, this.nodes, this.edges, this.options);
     this.graphDataLoaded = true;
   }
   /**
