@@ -25,6 +25,8 @@ import { GraphNode } from '../definitions/interfaces/graph-node';
 import { ColorScheme } from '../definitions/interfaces/color-scheme';
 import * as shape from 'd3-shape';
 import { GraphLink } from '../definitions/interfaces/graph-link';
+import { DataSet } from 'vis-data';
+import { Edge, Node } from 'vis-network/peer';
 
 @Component({
   selector: 'tools',
@@ -131,6 +133,14 @@ export class ToolsComponent implements OnInit {
    * Search process
    */
   searchTermGraph: string;
+  /**
+   * Nodes data set
+   */
+  nodes: DataSet<Node>;
+  /**
+   * Edges data set
+   */
+  edges: DataSet<Edge>;
 
   constructor() {
     this.graphData = new GraphData([], []);
@@ -337,16 +347,21 @@ export class ToolsComponent implements OnInit {
    * @param customBorderWidth Border width for the node
    * @param customHeight Height for the node
    */
-  getStyledNode(color: string, textColor: string, customBorderColor: string, customBorderWidth: number, customHeight: number, shape?: string): StyledNode {
-    let styledNode: StyledNode = {
+  getStyledNode(color: string,
+                textColor: string,
+                customBorderColor: string,
+                customBorderWidth: number,
+                customHeight: number,
+                nodeShape?: string): StyledNode {
+    const styledNode: StyledNode = {
       color: color,
       text: textColor,
       customBorderColor: customBorderColor,
       customBorderWidth: customBorderWidth,
       customHeight: customHeight
     };
-    if (shape) {
-      styledNode.shape = shape;
+    if (nodeShape) {
+      styledNode.shape = nodeShape;
     }
     return styledNode;
   }
@@ -373,6 +388,26 @@ export class ToolsComponent implements OnInit {
     });
     Object.values(linksBetweenApps).map((item: GraphLink) => {
       this.graphData.links.push({source: item.source, target: item.target, notMarker: false, isBetweenApps: item.isBetweenApps});
+      this.edges.add({
+        from: item.source,
+        to: item.target,
+        color: {color: '#828282'},
+        width: 1,
+        arrows: {
+          from: {
+            enabled: false,
+            type: 'arrow'
+          },
+          middle: {
+            enabled: true,
+            type: 'arrow'
+          },
+          to: {
+            enabled: true,
+            type: 'arrow'
+          }
+        },
+      });
     });
   }
   generateClusterNode(cluster: Cluster, tooltip: string): GraphNode & StyledNode {

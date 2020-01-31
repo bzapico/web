@@ -113,14 +113,6 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
    * Options to configure the layout and physic for the graph
    */
   options: Options;
-  /**
-   * Nodes data set
-   */
-  nodes: DataSet<Node>;
-  /**
-   * Edges data set
-   */
-  edges: DataSet<Edge>;
 
   graphId = 'resources-graph';
 
@@ -564,7 +556,7 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
         cluster,
   this.translateService.instant('resources.cluster') + cluster.name + ': ' + this.getBeautyStatusName(cluster.status_name));
       this.graphData.nodes.push(nodeGroup);
-      this.nodes.add([{
+      const visClusterNode = {
         id: nodeGroup.id,
         label: nodeGroup.label,
         font: {
@@ -585,8 +577,14 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
           bottom: 20,
           left: 5,
           right: 5
-        }
-      }]);
+        },
+        chosen: false
+      };
+      if (this.ngxNetworkVisService.isAnExistingGraphNetwork(this.graphId)) {
+        this.nodes.update(visClusterNode);
+      } else {
+        this.nodes.add(visClusterNode);
+      }
       const instancesInCluster = this.getAppsInCluster(cluster.cluster_id);
       instancesInCluster.forEach(instance => {
         const nodeInstance = this.generateInstanceNode(
@@ -599,34 +597,51 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
         if (index === -1) {
           this.graphData.nodes.push(nodeInstance);
         }
-        this.nodes.add([{
+        const visInstanceNode = {
           id: nodeInstance.id,
           label: nodeInstance.label,
           font: {
-            color: '#fff',
-            size: 20,
+            color: '#fff'
           },
           level: 2,
           shape: nodeInstance.shape,
           shapeProperties: { borderRadius: 6 },
-          size: 37,
-          borderWidth: 2,
-          borderWidthSelected: 3,
-          color: nodeInstance.color
-        }]);
-
+          color: nodeInstance.color,
+          chosen: false
+        };
+        if (this.ngxNetworkVisService.isAnExistingGraphNetwork(this.graphId)) {
+          this.nodes.update(visInstanceNode);
+        } else {
+          this.nodes.add(visInstanceNode);
+        }
         if ((this.areIncludedInstancesWithError
             && instance.status_name.toLowerCase() !== AppStatus.Error
             && instance.status_name.toLowerCase() !== AppStatus.DeploymentError)
             || !this.areIncludedInstancesWithError) {
           this.graphData
             .links.push({ source: cluster.cluster_id, target: instance.app_instance_id, notMarker: false, isBetweenApps: false});
+          this.edges.add({
+            from: cluster.cluster_id,
+            to: instance.app_instance_id,
+            color: {color: '#828282'},
+            width: 1,
+            arrowStrikethrough: false,
+            physics: false,
+            smooth: {
+              enabled: true,
+              type: 'dynamic',
+              roundness: 0.5
+            }
+          });
         }
       });
     });
     this.setLinksBetweenApps();
-    const container = document.getElementById(this.graphId);
-    this.ngxNetworkVisService.generate(this.graphId, container, this.nodes, this.edges, this.options);
+    if (!this.ngxNetworkVisService.isAnExistingGraphNetwork(this.graphId)) {
+      const container = document.getElementById(this.graphId);
+      this.ngxNetworkVisService.generate(this.graphId, container, this.nodes, this.edges, this.options);
+      this.ngxNetworkVisService.fit(this.graphId, {animation: true});
+    }
     this.graphDataLoaded = true;
   }
   /**
@@ -646,15 +661,19 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
 
   private setOptions() {
     const layout = {
+      improvedLayout: true,
+      clusterThreshold: 150,
       hierarchical: {
         enabled: true,
         levelSeparation: 150,
-        nodeSpacing: 110,
+        nodeSpacing: 200,
         treeSpacing: 200,
         blockShifting: true,
         edgeMinimization: true,
         parentCentralization: true,
-        direction: 'UD'
+        direction: 'UD',        // UD, DU, LR, RL
+        sortMethod: 'hubsize',  // hubsize, directed
+        shakeTowards: 'leaves'  // roots, leaves
       }
     };
     const manipulation = {
@@ -667,7 +686,10 @@ export class ResourcesComponent extends ToolsComponent implements OnInit, OnDest
       deleteEdge: true
     };
     const interaction = {
-      navigationButtons: false
+      navigationButtons: false,
+      selectable: false,
+      zoomView: true
+
     };
     this.options = { layout, manipulation, interaction };
   }
