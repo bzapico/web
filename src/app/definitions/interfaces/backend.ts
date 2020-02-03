@@ -24,6 +24,8 @@ import { KeyValue } from './key-value';
 import { UpdateAssetRequest } from './update-asset-request';
 import { DownloadLogRequest } from './download-log-request';
 import { DownloadRequestId } from './download-request-id';
+import { UpdateOrganizationRequest } from './update-organization-request';
+import { UpdateOrganizationSetting } from './update-organization-setting';
 
 // tslint:disable:no-any
 export interface Backend {
@@ -33,6 +35,9 @@ export interface Backend {
     // Organization
     getUserProfileInfo(organizationId: string, userId: string);
     getOrganizationInfo(organizationId: string);
+    updateOrganizationInfo(organizationId: string, organization: UpdateOrganizationRequest);
+    getOrganizationSettings(organizationId: string);
+    updateOrganizationSettings(organizationId: string, settings: UpdateOrganizationSetting);
     getOrganizationUsers(organizationId: string);
     addUser(organizationId: string, user: AddUserRequest);
     deleteUser(organizationId: string, userId: string);

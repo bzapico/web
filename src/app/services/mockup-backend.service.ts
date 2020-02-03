@@ -50,6 +50,8 @@ import { UpdateAssetRequest } from '../definitions/interfaces/update-asset-reque
 import { DownloadLogRequest } from '../definitions/interfaces/download-log-request';
 import { DownloadRequestId } from '../definitions/interfaces/download-request-id';
 import { UpdateUserRequest } from '../definitions/interfaces/update-user-request';
+import { UpdateOrganizationRequest } from '../definitions/interfaces/update-organization-request';
+import { UpdateOrganizationSetting } from '../definitions/interfaces/update-organization-setting';
 
 @Injectable({
   providedIn: 'root'
@@ -88,9 +90,55 @@ export class MockupBackendService implements Backend {
   }
 
   /********************
-   * Organization
+   * Organization info
    ********************/
 
+  /**
+   * Simulates to request organization info
+   * @param organizationId Organization identifier
+   */
+  getOrganizationInfo(organizationId: string) {
+    return of (new HttpResponse({
+      body: JSON.stringify(mockOrganizationInfo),
+      status: 200
+    }));
+  }
+  /**
+   * Updates an specific organization information
+   * @param organizationId Organization identifier
+   * @param organizationRequest Organization updated info
+   */
+  updateOrganizationInfo(organizationId: string, organization: UpdateOrganizationRequest) {
+    return of (new HttpResponse({
+      body: JSON.stringify(mockOrganizationInfo),
+      status: 200
+    }));
+  }
+    /**
+   * Simulates to request organization info
+   * @param organizationId Organization identifier
+   */
+  getOrganizationSettings(organizationId: string) {
+    return of (new HttpResponse({
+      body: JSON.stringify(mockOrganizationInfo),
+      status: 200
+    }));
+  }
+  /**
+   * Updates an specific organization information
+   * @param organizationId Organization identifier
+   * @param organizationRequest Organization updated info
+   */
+  updateOrganizationSettings(organizationId: string, settings: UpdateOrganizationSetting) {
+    return of (new HttpResponse({
+      body: JSON.stringify(mockOrganizationInfo),
+      status: 200
+    }));
+  }
+
+  /********************
+   * Organization users
+   ********************/
   /**
    * Simulates get profile info
    * @param userId String containing the user identifier - used to replicate expected backend behavior
@@ -99,16 +147,6 @@ export class MockupBackendService implements Backend {
     const index = mockUserList.map(x => x.email).indexOf(userId);
     return of (new HttpResponse({
       body: JSON.stringify(mockUserList[index]),
-      status: 200
-    }));
-  }
-  /**
-   * Simulates to request organization info
-   * @param organizationId Organization identifier
-   */
-  getOrganizationInfo(organizationId: string) {
-    return of (new HttpResponse({
-      body: JSON.stringify(mockOrganizationInfo),
       status: 200
     }));
   }

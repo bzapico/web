@@ -28,6 +28,8 @@ import { UpdateAssetRequest } from '../definitions/interfaces/update-asset-reque
 import { DownloadRequestId } from '../definitions/interfaces/download-request-id';
 import { DownloadLogRequest } from '../definitions/interfaces/download-log-request';
 import { UpdateUserRequest } from '../definitions/interfaces/update-user-request';
+import { UpdateOrganizationRequest } from '../definitions/interfaces/update-organization-request';
+import { UpdateOrganizationSetting } from '../definitions/interfaces/update-organization-setting';
 
 // tslint:disable:no-any
 /**
@@ -99,9 +101,56 @@ export class BackendService implements Backend {
   }
 
   /********************
-   * Organization
+   * Organization info
    ********************/
+  // GET '/organization/{organization_id}'
+  /**
+   * Requests to get an specific organization information
+   * @param organizationId Organization identifier
+   */
+  getOrganizationInfo(organizationId: string) {
+    return this.get(
+      API_URL + 'organization/' + organizationId
+    );
+  }
+  // POST '/v1/organization/{organization_id}/update'
+  /**
+   * Updates an specific organization information
+   * @param organizationId Organization identifier
+   * @param organizationRequest Organization updated info
+   */
+  updateOrganizationInfo(organizationId: string, organization: UpdateOrganizationRequest) {
+    return this.post(
+      API_URL + 'organization/' + organizationId + '/update',
+      organization
+    );
+  }
+  // GET '/v1/settings/{organization_id}/list'
+  /**
+   * Requests to get an specific organization settings
+   * @param organizationId Organization identifier
+   */
+  getOrganizationSettings(organizationId: string) {
+    return this.get(
+      API_URL + 'settings/' + organizationId + '/list'
+    );
+  }
+  // POST '/v1/settings/{organization_id}/{key}/update'
+  /**
+   * Updates an specific organization settings
+   * @param organizationId Organization identifier
+   * @param settings Organization updated settings
+   */
+  updateOrganizationSettings(organizationId: string, settings: UpdateOrganizationSetting) {
+    return this.post(
+      API_URL + 'settings/' + organizationId + '/' + settings.key + '/update',
+      settings
+    );
+  }
 
+  /********************
+   * Organization users
+   ********************/
   // GET 'users/{organization_id}/{email}/info
   /**
    * Requests to get an specific user information
@@ -111,16 +160,6 @@ export class BackendService implements Backend {
   getUserProfileInfo(organizationId: string, userId: string) {
     return this.get(
       API_URL + 'users/' + organizationId + '/' + userId + '/info'
-    );
-  }
-  // GET '/organization/{organization_id}'
-  /**
-   * Requests to get an specific organization information
-   * @param organizationId Organization identifier
-   */
-  getOrganizationInfo(organizationId: string) {
-    return this.get(
-      API_URL + 'organization/' + organizationId
     );
   }
   // GET 'users/{organization_id}/list

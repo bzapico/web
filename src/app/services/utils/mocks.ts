@@ -17,6 +17,7 @@ import { UserChanges } from 'src/app/definitions/interfaces/user-changes';
 import { UpdateUserRequest } from 'src/app/definitions/interfaces/update-user-request';
 import { Organization } from 'src/app/definitions/interfaces/organization';
 import { OrganizationSettings } from 'src/app/definitions/interfaces/organization-settings';
+import { UpdateOrganizationSetting } from 'src/app/definitions/interfaces/update-organization-setting';
 
 export const mockJwtToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9' +
     // tslint:disable-next-line:max-line-length
@@ -83,6 +84,32 @@ export const mockOrganizationSettings: OrganizationSettings[] = [
         value: 'value',
         description: 'description'
     },
+];
+/**
+ * Mocked updated organization settings
+ */
+export const mockOrganizationSettingsUpdate: UpdateOrganizationSetting[] = [
+    {
+        organization_id: '3bc6a816-bbb8-4b5f-a2b7-23921dde4146',
+        key: 'Update setting 1',
+        value: 'Update value',
+        update_description: true,
+        update_value: true
+    },
+    {
+        organization_id: '3bc6a816-bbb8-4b5f-a2b7-23921dde4146',
+        key: 'Update setting 2',
+        value: 'Update value',
+        update_description: true,
+        update_value: true
+    },
+    {
+        organization_id: '3bc6a816-bbb8-4b5f-a2b7-23921dde4146',
+        key: 'Update setting 3',
+        value: 'Update value',
+        update_description: true,
+        update_value: true
+    }
 ];
 /**
  * Mocked user roles
