@@ -27,7 +27,10 @@ import {
   mockNodeList,
   mockOrganizationInfo,
   mockUserList,
-  mockUpdateUserList
+  mockUpdateUserList,
+  mockOrganizationSettings,
+  mockOrganizationSettingsUpdate,
+  mockUserRoles
 } from './utils/mocks';
 import { Group } from '../definitions/interfaces/group';
 import { HttpResponse } from '@angular/common/http';
@@ -101,7 +104,7 @@ export class MockupBackendService implements Backend {
     return of (new HttpResponse({
       body: JSON.stringify(mockOrganizationInfo),
       status: 200
-    }));
+    })).pipe(map(organization => JSON.parse(organization.body)));
   }
   /**
    * Updates an specific organization information
@@ -115,23 +118,23 @@ export class MockupBackendService implements Backend {
     }));
   }
     /**
-   * Simulates to request organization info
+   * Simulates to request organization setting
    * @param organizationId Organization identifier
    */
   getOrganizationSettings(organizationId: string) {
     return of (new HttpResponse({
-      body: JSON.stringify(mockOrganizationInfo),
+      body: JSON.stringify({settings: mockOrganizationSettings}),
       status: 200
-    }));
+    })).pipe(map(setting => JSON.parse(setting.body)));
   }
   /**
    * Updates an specific organization information
    * @param organizationId Organization identifier
-   * @param organizationRequest Organization updated info
+   * @param settings Organization updated settings
    */
   updateOrganizationSettings(organizationId: string, settings: UpdateOrganizationSetting) {
     return of (new HttpResponse({
-      body: JSON.stringify(mockOrganizationInfo),
+      body: JSON.stringify(mockOrganizationSettingsUpdate),
       status: 200
     }));
   }
@@ -478,27 +481,9 @@ export class MockupBackendService implements Backend {
    */
   listRoles(organizationId: string) {
     return of (new HttpResponse({
-      body: JSON.stringify({roles: [
-          {
-            'organization_id': '2a95fe95-eade-4622-836f-e85d789024bf',
-            'role_id': '268d7644-bb17-48f2-815b-19a8ab6c7e83',
-            'name': 'NalejAdmin',
-            'primitives': ['ORG']
-          },
-          {
-            'organization_id': '2a95fe95-eade-4622-836f-e85d789024bf',
-            'role_id': 'a354bf26-2fb4-4d9e-bef0-427e25b52ba7',
-            'name': 'Developer', 'primitives': ['PROFILE', 'APPS']
-          },
-          {
-            'organization_id': '2a95fe95-eade-4622-836f-e85d789024bf',
-            'role_id': 'df00f420-8658-4c2e-8941-0e947aaeffe7',
-            'name': 'Operator',
-            'primitives': ['PROFILE', 'RESOURCES']
-          }]
-      }),
+      body: JSON.stringify({roles: mockUserRoles}),
       status: 200
-    }));
+    })).pipe(map(roles => JSON.parse(roles.body)));
   }
   /**
    * Simulates user role change

@@ -51,4 +51,16 @@ export interface Organization {
    * Organization email
    */
   email?: string;
+  /**
+   * NumUsers with the number of the users of the organization
+   */
+  num_users?: number;
+  /**
+   * NumRoles with the number of the roles defined in the organization
+   */
+  num_roles?: number;
+  /**
+   * NumSettings defined in the organization
+   */
+  num_settings?: number;
 }
