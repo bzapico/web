@@ -12,9 +12,12 @@
  */
 import { Component, OnInit } from '@angular/core';
 import { Organization } from 'src/app/definitions/interfaces/organization';
-import { mockOrganizationInfo, mockOrganizationSettings, mockUserList, mockUserRoles } from 'src/app/services/utils/mocks';
 import { OrganizationSettings } from 'src/app/definitions/interfaces/organization-settings';
-import { UserChanges } from 'src/app/definitions/interfaces/user-changes';
+import { LocalStorageKeys } from 'src/app/definitions/const/local-storage-keys';
+import { Backend } from 'src/app/definitions/interfaces/backend';
+import { BackendService } from 'src/app/services/backend.service';
+import { MockupBackendService } from 'src/app/services/mockup-backend.service';
+import { RoleOptions } from 'src/app/definitions/enums/role-options.enum';
 
 @Component({
   selector: 'organization-info-card',
@@ -22,36 +25,98 @@ import { UserChanges } from 'src/app/definitions/interfaces/user-changes';
   styleUrls: ['./organization-info-card.component.scss']
 })
 export class OrganizationInfoCardComponent implements OnInit {
-  // Dummy mode on
-  organization = mockOrganizationInfo as Organization;
-  settings = mockOrganizationSettings as OrganizationSettings[];
-  users = mockUserList as UserChanges[];
-  roles = mockUserRoles;
-  rolesCount: number;
+  /**
+   * Backend reference
+   */
+  backend: Backend;
+  /**
+   * Models that hold organization id, organization and settings
+   */
+  organizationId: string;
+  organization: Organization;
+  /**
+   * Models that hold the organization settings list
+   */
+  settings: OrganizationSettings[];
+  /**
+   * Models that hold the organization address
+   */
   address: string[];
   /**
-   *  Active List reference
+   * Models that hold the role list
+   */
+  rolesList: RoleOptions[];
+  /**
+   * Active List reference
    */
   showSettings: boolean;
   showRoles: boolean;
   showBilling: boolean;
+  /**
+   * Variable to store the value loaded data
+   */
+  loadedData: boolean;
 
-  constructor() {
+  constructor(
+    private backendService: BackendService,
+    private mockupBackendService: MockupBackendService,
+  ) {
+    const mock = localStorage.getItem(LocalStorageKeys.organizationMock) || null;
+    // check which backend is required (fake or real)
+    if (mock && mock === 'true') {
+      this.backend = this.mockupBackendService;
+    } else {
+      this.backend = this.backendService;
+    }
     this.showSettings = true;
     this.showRoles = false;
     this.showBilling = false;
+    this.loadedData = false;
   }
 
   ngOnInit() {
-    this.getFormattedAddress();
-    this.rolesCount = Object.keys(this.roles).length;
+    const jwtData = localStorage.getItem(LocalStorageKeys.jwtData) || null;
+    if (jwtData !== null) {
+      this.organizationId = JSON.parse(jwtData).organizationID;
+      if (this.organizationId !== null) {
+        this.backend.getOrganizationInfo(this.organizationId)
+          .subscribe(response => {
+              this.organization = response;
+              this.loadedData = true;
+              if (this.organization.full_address) {
+                this.getFormattedAddress();
+              }
+          });
+          this.getRoles();
+          this.getSettings();
+      }
+    }
   }
+  /**
+   * Query role list
+   */
+  getRoles() {
+    this.backend.listRoles(this.organizationId)
+    .subscribe(roles => {
+      this.rolesList = roles.roles;
+    });
 
+  }
+  /**
+   * Get the organization settings list
+   */
+  getSettings() {
+    this.backend.getOrganizationSettings(this.organizationId)
+    .subscribe(settings => {
+      this.settings = settings.settings;
+    });
+  }
   /**
    * Formats the address to be split in new lines by the comma
    */
   getFormattedAddress() {
-    this.address = this.organization.full_address.split(',');
+    this.address = this.organization['full_address'].split(',');
+    this.loadedData = true;
   }
     /**
    * Changes to active list
